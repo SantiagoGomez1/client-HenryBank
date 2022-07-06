@@ -1,7 +1,12 @@
 import React from "react";
 import { View, Text, TextInput, StyleSheet, Button } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 const RegisterB = () => {
+  const navigation = useNavigation();
+  const goRegisterC = () => {
+    navigation.navigate("RegisterC");
+  };
   return (
     <View style={styles.countainer}>
       <Text style={styles.textMain}>Regístrate</Text>
@@ -45,7 +50,7 @@ const RegisterB = () => {
           placeholder="Calle siempre viva 123"
         ></TextInput>
       </View>
-      <Button title="Siguiente"></Button>
+      <Button title="Siguiente" onPress={() => goRegisterC()}></Button>
     </View>
   );
 };
