@@ -8,6 +8,7 @@ import LogIn from "./components/Login/logIn.jsx";
 import RegisterA from "./components/RegisterA/RegisterA";
 import HomeRoutes from "./components/HomeRoutes/homeRoutes";
 import RegisterB from "./components/RegisterB/registerB.jsx";
+import Success from "./components/Success/success.jsx";
 
 export default function App() {
   const Stack = createStackNavigator();
@@ -22,6 +23,7 @@ export default function App() {
         <Stack.Screen name="Log In" component={LogIn} />
         <Stack.Screen name="RegisterA" component={RegisterA} />
         <Stack.Screen name="RegisterB" component={RegisterB} />
+        <Stack.Screen name="Success" component={Success} />
         <Stack.Screen name="HomeRoutes" component={HomeRoutes} />
       </Stack.Navigator>
     </NavigationContainer>
