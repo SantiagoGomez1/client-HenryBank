@@ -11,32 +11,37 @@ export default function RegisterA() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.tittle}>Regístrate</Text>
-      <Text style={styles.text}>E-mail</Text>
-      <TextInput
-        placeholderTextColor={"white"}
-        placeholder="soyhenry@gmail.com"
-      >
-        {}
-      </TextInput>
-      <Text style={styles.text}>Confirmar E-mail</Text>
-      <TextInput
-        placeholderTextColor={"white"}
-        placeholder="soyhenry@gmail.com"
-      >
-        {}
-      </TextInput>
-      <Text style={styles.text}>Contraseña</Text>
-      <TextInput placeholderTextColor={"white"} placeholder="************">
-        {}
-      </TextInput>
-      <Text style={styles.text}>Confirmar Contraseña</Text>
-      <TextInput placeholderTextColor={"white"} placeholder="************">
-        {}
-      </TextInput>
-      <Button onPress={() => goRegisterB()} style={styles.btn} title="Next">
-        Siguiente
-      </Button>
+      <Text style={styles.title}>Regístrate</Text>
+      <View>
+        <Text style={styles.text}>E-mail</Text>
+        <TextInput
+          placeholderTextColor={"grey"}
+          placeholder="soyhenry@gmail.com"
+        >
+          {}
+        </TextInput>
+        <Text style={styles.text}>Confirmar E-mail</Text>
+        <TextInput
+          placeholderTextColor={"grey"}
+          placeholder="soyhenry@gmail.com"
+        >
+          {}
+        </TextInput>
+        <Text style={styles.text}>Contraseña</Text>
+        <TextInput placeholderTextColor={"grey"} placeholder="************">
+          {}
+        </TextInput>
+        <Text style={styles.text}>Confirmar Contraseña</Text>
+        <TextInput
+          placeholderTextColor={"grey"}
+          placeholder="************"
+        ></TextInput>
+      </View>
+      <Button
+        onPress={() => goRegisterB()}
+        style={styles.btn}
+        title="Siguiente"
+      ></Button>
     </View>
   );
 }
@@ -55,7 +60,6 @@ const styles = StyleSheet.create({
     height: 200,
     borderRadius: 100,
   },
-  inputs: {},
   btn: {
     flexDirection: "column",
   },
@@ -63,9 +67,9 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 25,
   },
-  tittle: {
+  title: {
     color: "#fff",
-    fontSize: 25,
+    fontSize: 40,
   },
   passwordHelp: {
     color: "#fff",
