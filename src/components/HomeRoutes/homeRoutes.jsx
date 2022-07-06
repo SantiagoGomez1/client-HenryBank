@@ -3,7 +3,7 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import MaterialCommunityIcons from "react-native-vector-icons/Ionicons";
-import Home from "../Home/home.jsx";
+import Home from "../Home/home.jsx"
 import Wallet from "../Wallet/wallet.jsx";
 import Investor from "../Investor/investor.jsx";
 
