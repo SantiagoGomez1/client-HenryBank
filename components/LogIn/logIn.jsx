@@ -50,6 +50,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
   },
   text: {
+    fontSize: 25,
     color: "#fff",
   },
   passwordHelp: {
