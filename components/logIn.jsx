@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, TextInput, View, Image, StyleSheet, Text } from "react-native";
 
-const LogIn = () => {
+const LogIn = ({ navigation }) => {
   return (
     <View style={styles.countainer}>
       <Image
@@ -23,7 +23,10 @@ const LogIn = () => {
         ></TextInput>
       </View>
       <View style={styles.btn}>
-        <Button title="Login"></Button>
+        <Button
+          title="Login"
+          onPress={() => navigation.navigate("HomeRoutes")}
+        ></Button>
         <Button title="Registrarse"></Button>
       </View>
       <Text style={styles.text}>¿Olvidaste la contraseña?</Text>
