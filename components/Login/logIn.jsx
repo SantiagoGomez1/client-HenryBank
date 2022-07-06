@@ -25,7 +25,7 @@ const LogIn = ({ navigation }) => {
       <View style={styles.btn}>
         <Button
           title="Login"
-          onPress={() => navigation.navigate("HomeRoutes")}
+          onPress={() => navigation.navigate("Home")}
         ></Button>
         <Button title="Registrarse"></Button>
       </View>
