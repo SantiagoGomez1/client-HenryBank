@@ -1,20 +1,20 @@
-import { GET_USERS } from "../actions/index";
+// import { GET_USERS } from "../actions/index";
 
-const initialState = {
-  users: [],
-};
+// const initialState = {
+//   users: [],
+// };
 
-const rootReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case GET_USERS:
-      return {
-        ...state,
-        users: action.payload,
-      };
+// const rootReducer = (state = initialState, action) => {
+//   switch (action.type) {
+//     case GET_USERS:
+//       return {
+//         ...state,
+//         users: action.payload,
+//       };
 
-    default:
-      return state;
-  }
-};
+//     default:
+//       return state;
+//   }
+// };
 
-export default rootReducer;
+// export default rootReducer;
