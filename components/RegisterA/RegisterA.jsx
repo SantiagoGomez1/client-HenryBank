@@ -4,7 +4,7 @@ import { Button, TextInput, View, Image, StyleSheet, Text } from "react-native";
 export default function RegisterA(){
     
     return(
-        <View>
+        <View style={styles.container}>
             <Text style={styles.tittle}>Regístrate</Text>
             <Text style={styles.text}>E-mail</Text>
             <TextInput
@@ -40,7 +40,7 @@ export default function RegisterA(){
 };
 
 const styles = StyleSheet.create({
-    countainer: {
+    container: {
       display: "flex",
       flex: 1,
       flexDirection: "column",
