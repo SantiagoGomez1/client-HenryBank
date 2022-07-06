@@ -24,7 +24,7 @@ const LogIn = () => {
       </View>
       <View style={styles.btn}>
         <Button title="Login"></Button>
-        <Button title="Registrarse"></Button>
+        <Button title="Registrarse"  onPress={() => navigation.navigate("RegisterA")></Button>
       </View>
       <Text style={styles.text}>¿Olvidaste la contraseña?</Text>
     </View>
