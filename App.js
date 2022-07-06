@@ -5,7 +5,9 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 
 import LogIn from "./components/logIn";
+import RegisterA from './components/Register - A'
 import HomeRoutes from "./components/HomeRoutes/homeRoutes";
+
 
 export default function App() {
   const Stack = createStackNavigator();
@@ -13,6 +15,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Log In" component={LogIn} />
+        <Stack.Screen name="RegisterA" component={RegisterA} />
         <Stack.Screen name="HomeRoutes" component={HomeRoutes} />
       </Stack.Navigator>
     </NavigationContainer>

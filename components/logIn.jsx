@@ -23,6 +23,8 @@ const LogIn = ({ navigation }) => {
         ></TextInput>
       </View>
       <View style={styles.btn}>
+        <Button title="Login"></Button>
+        <Button title="Registrarse"  onPress={() => navigation.navigate("RegisterA")></Button>
         <Button
           title="Login"
           onPress={() => navigation.navigate("HomeRoutes")}
