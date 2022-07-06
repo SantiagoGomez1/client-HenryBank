@@ -34,7 +34,7 @@ export default function RegisterA() {
       <TextInput placeholderTextColor={"white"} placeholder="************">
         {}
       </TextInput>
-      <Button onPress={() => goRegisterB} style={styles.btn} title="Next">
+      <Button onPress={() => goRegisterB()} style={styles.btn} title="Next">
         Siguiente
       </Button>
     </View>
