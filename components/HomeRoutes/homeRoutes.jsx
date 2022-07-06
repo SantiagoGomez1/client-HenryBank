@@ -7,7 +7,7 @@ import Home from "../Home/home.jsx";
 import Wallet from "../Wallet/wallet.jsx";
 import Investor from "../Investor/investor.jsx";
 
-const homeRoutes = () => {
+const HomeRoutes = () => {
   const Tab = createBottomTabNavigator();
   return (
 
@@ -57,4 +57,4 @@ const homeRoutes = () => {
   );
 };
 
-export default homeRoutes;
+export default HomeRoutes;

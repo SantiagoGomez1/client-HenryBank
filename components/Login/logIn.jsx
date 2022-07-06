@@ -3,7 +3,7 @@ import { Button, TextInput, View, Image, StyleSheet, Text } from "react-native";
 
 const LogIn = ({ navigation }) => {
   return (
-    <View style={styles.countainer}>
+    <View style={styles.container}>
       <Image
         style={styles.image}
         source={{
@@ -23,13 +23,14 @@ const LogIn = ({ navigation }) => {
         ></TextInput>
       </View>
       <View style={styles.btn}>
-        <Button title="Login"></Button>
-        <Button title="Registrarse"  onPress={() => navigation.navigate("RegisterA")></Button>
         <Button
           title="Login"
           onPress={() => navigation.navigate("HomeRoutes")}
         ></Button>
-        <Button title="Registrarse"></Button>
+        <Button
+          title="Registrarse"
+          onPress={() => navigation.navigate("RegisterA")}
+        ></Button>
       </View>
       <Text style={styles.text}>¿Olvidaste la contraseña?</Text>
     </View>
@@ -37,7 +38,7 @@ const LogIn = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  countainer: {
+  container: {
     display: "flex",
     flex: 1,
     flexDirection: "column",
