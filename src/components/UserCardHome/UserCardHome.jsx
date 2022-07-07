@@ -1,6 +1,6 @@
 import React from "react";
 
-import { View, Text, FlatList, Button, Image, StyleSheet } from "react-native";
+import { View, Text, Image, StyleSheet } from "react-native";
 
 import { LinearGradient } from "expo-linear-gradient";
 
@@ -25,7 +25,7 @@ const UserCardHome = () => {
           <Text style={{ color: "gray" }}>{user.fullName}</Text>
         </View>
       </View>
-      <View style={{ paddingLeft: 175 }}></View>
+      <View style={{justifyContent:'center'}}><MaterialCommunityIcons style={{paddingLeft:175}} name="ellipsis-vertical" color={"white"} size={20}/></View>
     </View>
   );
 };
@@ -43,10 +43,7 @@ const styles = StyleSheet.create({
   },
   data: {
     paddingLeft: 10,
-  },
-  btn: {
-    backgroundColor: "transparent",
-  },
+  }
 });
 
 export default UserCardHome;
