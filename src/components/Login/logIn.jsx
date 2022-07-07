@@ -57,6 +57,7 @@ const styles = StyleSheet.create({
   },
   text: {
     color: "#fff",
+    fontSize: 25,
   },
   passwordHelp: {
     color: "#fff",
