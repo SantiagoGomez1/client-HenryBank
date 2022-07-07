@@ -14,10 +14,7 @@ const UserCardHome = () => {
     <View style={styles.container}>
       <View style={{ flexDirection: "row" }}>
         <View>
-          <LinearGradient
-            colors={["#126492", "#140152"]}
-            style={styles.image}
-          >
+          <LinearGradient colors={["#126492", "#140152"]} style={styles.image}>
             <Image style={styles.image} source={{ uri: `${user.image}` }} />
           </LinearGradient>
         </View>
@@ -25,23 +22,10 @@ const UserCardHome = () => {
           <Text style={{ color: "white", fontWeight: "bold" }}>
             Bienvenido!
           </Text>
-          <Text style={{ color: "gray", fontWeight: "semiBold" }}>
-            {user.fullName}
-          </Text>
+          <Text style={{ color: "gray" }}>{user.fullName}</Text>
         </View>
       </View>
-      <View style={{ paddingLeft:175}}>
-        <Button
-          color="transparent"
-          title={
-            <MaterialCommunityIcons
-              name="ellipsis-vertical"
-              color={"white"}
-              size={20}
-            />
-          }
-        />
-      </View>
+      <View style={{ paddingLeft: 175 }}></View>
     </View>
   );
 };

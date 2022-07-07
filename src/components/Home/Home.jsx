@@ -8,11 +8,7 @@ import UserCardHome from "../UserCardHome/UserCardHome.jsx";
 const Home = () => {
   return (
     <View style={styles.container}>
-      <LinearGradient
-        // colors={["#0965C0","#285EB9","purple","#140152"]}
-        colors={["#126492", "#140152"]}
-        style={styles.background}
-      >
+      <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
         <Text>
           <UserCardHome />
         </Text>

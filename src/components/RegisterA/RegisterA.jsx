@@ -38,9 +38,11 @@ export default function RegisterA() {
             {}
           </TextInput>
         </View>
-        <Button onPress={() => goRegisterB()} style={styles.btn} title="Next">
-          Siguiente
-        </Button>
+        <Button
+          onPress={() => goRegisterB()}
+          style={styles.btn}
+          title="Siguiente"
+        ></Button>
       </LinearGradient>
     </View>
   );
