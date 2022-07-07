@@ -2,8 +2,10 @@ import React, {useState} from "react";
 import { Button, View, StyleSheet, Text } from "react-native";
 import { Input, Icon } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
+
 import { createIconSetFromFontello } from "react-native-vector-icons";
 
+import { LinearGradient } from "expo-linear-gradient";
 
 
 export default function RegisterA() {
@@ -72,6 +74,7 @@ export default function RegisterA() {
 
   return (
     <View style={styles.container}>
+
       <Text style={styles.tittle}>Regístrate</Text>
 
       {/* <Text style={styles.text}>E-mail</Text> */}
@@ -141,19 +144,55 @@ export default function RegisterA() {
         onPress={() => registerUser()}
       >
       </Button>
+
+      <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
+        <Text style={styles.tittle}>Regístrate</Text>
+        <View>
+          <Text style={styles.text}>E-mail</Text>
+          <TextInput
+            placeholderTextColor={"grey"}
+            placeholder="soyhenry@gmail.com"
+          >
+            {}
+          </TextInput>
+          <Text style={styles.text}>Confirmar E-mail</Text>
+          <TextInput
+            placeholderTextColor={"grey"}
+            placeholder="soyhenry@gmail.com"
+          >
+            {}
+          </TextInput>
+          <Text style={styles.text}>Contraseña</Text>
+          <TextInput placeholderTextColor={"grey"} placeholder="************">
+            {}
+          </TextInput>
+          <Text style={styles.text}>Confirmar Contraseña</Text>
+          <TextInput placeholderTextColor={"grey"} placeholder="************">
+            {}
+          </TextInput>
+        </View>
+        <Button
+          onPress={() => goRegisterB()}
+          style={styles.btn}
+          title="Siguiente"
+        ></Button>
+      </LinearGradient>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    display: "flex",
+    flex: 1,
+  },
+  background: {
     flex: 1,
     flexDirection: "column",
-    justifyContent: "space-around",
-    backgroundColor: "#140152",
     alignItems: "center",
     marginTop: 30,
+    width: "100%",
+    justifyContent: "space-around",
+
   },
   input: {
     backgroundColor: 'white',
@@ -168,6 +207,7 @@ const styles = StyleSheet.create({
   },
   text: {
     color: "#fff",
+    fontSize: 25,
   },
   tittle: {
     color: "#fff",

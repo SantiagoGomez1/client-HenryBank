@@ -1,17 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, Image, Text, StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import { useNavigation } from "@react-navigation/native";
+import img from "../../imgs/Success.png";
 
 const Success = () => {
+  const navigation = useNavigation();
+
+  const set = () => {
+    setTimeout(() => {
+      navigation.navigate("HomeRoutes");
+    }, 1500);
+  };
+
+  useEffect(() => {
+    set();
+  }, []);
   return (
     <View style={styles.container}>
       <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
         <Text style={styles.textMain}>Registro exitoso</Text>
         <Image
           style={styles.imgSuccess}
-          source={{
-            uri: "https://www.pngmart.com/files/20/Success-Transparent-Background.png",
-          }}
+          source={require("../../imgs/Success.png")}
         ></Image>
         <Text style={styles.textSecondaty}>¡Gracias!</Text>
       </LinearGradient>
@@ -23,7 +34,6 @@ const styles = StyleSheet.create({
   container: {
     alignSelf: "center",
     textAlign: "center",
-    backgroundColor: "#140152",
     flex: 1,
     width: "100%",
   },

@@ -7,30 +7,32 @@ import store from "./src/redux/store/index";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 
-import LogIn from "./src/components/Login/logIn.jsx";
-import RegisterA from "./src/components/RegisterA/RegisterA";
+import LogIn from "./src/components/Login/LogIn.jsx";
 import HomeRoutes from "./src/components/HomeRoutes/HomeRoutes";
-import RegisterB from "./src/components/RegisterB/registerB.jsx";
-import Success from "./src/components/Success/success";
+import RegisterA from "./src/components/RegisterA/RegisterA";
+import RegisterB from "./src/components/RegisterB/RegisterB.jsx";
+import RegisterC from "./src/components/RegisterC/RegisterC";
+import Success from "./src/components/Success/Success";
 
 export default function App() {
   const Stack = createStackNavigator();
   return (
-    // <Provider store={store}>
-    <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName="Success"
-        screenOptions={{
-          headerShown: false,
-        }}
-      >
-        <Stack.Screen name="Log In" component={LogIn} />
-        <Stack.Screen name="RegisterA" component={RegisterA} />
-        <Stack.Screen name="RegisterB" component={RegisterB} />
-        <Stack.Screen name="Success" component={Success} />
-        <Stack.Screen name="HomeRoutes" component={HomeRoutes} />
-      </Stack.Navigator>
-    </NavigationContainer>
-    // </Provider>
+    <Provider store={store}>
+      <NavigationContainer>
+        <Stack.Navigator
+          initialRouteName="Log In"
+          screenOptions={{
+            headerShown: false,
+          }}
+        >
+          <Stack.Screen name="Log In" component={LogIn} />
+          <Stack.Screen name="RegisterA" component={RegisterA} />
+          <Stack.Screen name="RegisterB" component={RegisterB} />
+          <Stack.Screen name="RegisterC" component={RegisterC} />
+          <Stack.Screen name="Success" component={Success} />
+          <Stack.Screen name="HomeRoutes" component={HomeRoutes} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 }
