@@ -22,9 +22,7 @@ const Success = () => {
         <Text style={styles.textMain}>Registro exitoso</Text>
         <Image
           style={styles.imgSuccess}
-          source={{
-            uri: img,
-          }}
+          source={require("../../imgs/Success.png")}
         ></Image>
         <Text style={styles.textSecondaty}>¡Gracias!</Text>
       </LinearGradient>
