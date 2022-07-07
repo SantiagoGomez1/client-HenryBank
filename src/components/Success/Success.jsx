@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { View, Image, Text, StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/native";
-import img from "../../imgs/Success.png";
 
 const Success = () => {
   const navigation = useNavigation();
@@ -43,11 +42,13 @@ const styles = StyleSheet.create({
   },
   textMain: {
     color: "#fff",
-    fontSize: 45,
+    fontSize: 40,
+    textAlign: "center",
   },
   textSecondaty: {
     color: "#fff",
     fontSize: 20,
+    textAlign: "center",
   },
   imgSuccess: {
     height: 250,
