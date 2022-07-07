@@ -1,42 +1,48 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { List } from "react-native-paper";
+import { IconButton } from "react-native-paper";
 
 const conversion = 0.0079;
 
 export default function WalletTotal({ dinero }) {
-  const [expanded, setExpanded] = React.useState(true);
-
-  const handlePress = () => setExpanded(!expanded);
+  const [desplegable, setDesplegable] = React.useState(true);
 
   return (
-    <View>
-      <List.Section>
-        <List.Accordion
-          title="Tu total"
-          left={(props) => <List.Icon {...props} icon="bank" />}
-          expanded={expanded}
-          onPress={handlePress}
-        >
-          <List.Item
-            title={dinero + " $"}
-            left={() => <List.Icon icon="piggy-bank" />}
+    <View style={styles.tarjeta}>
+      <View style={styles.container}>
+        <Text>Tu total</Text>
+        {desplegable ? (
+          <IconButton
+            icon="eye-off-outline"
+            iconColor="red"
+            size={20}
+            onPress={() => setDesplegable(!desplegable)}
           />
-          <List.Item
-            title={(dinero * conversion).toFixed(2) + " $"}
-            left={() => <List.Icon icon="hand-coin" />}
+        ) : (
+          <IconButton
+            icon="eye-outline"
+            iconColor="red"
+            size={20}
+            onPress={() => setDesplegable(!desplegable)}
           />
-        </List.Accordion>
-      </List.Section>
+        )}
+      </View>
+      {desplegable && <Text>{"ARG: " + dinero}</Text>}
+      {desplegable && <Text>{"DOL: " + (dinero * conversion).toFixed(2)}</Text>}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  tarjeta: {
     backgroundColor: "white",
     margin: 10,
     borderRadius: 8,
-    height: 100,
+    padding: 10,
+  },
+  container: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
 });
