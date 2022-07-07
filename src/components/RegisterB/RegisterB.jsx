@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, TextInput, StyleSheet, Button } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { LinearGradient } from "expo-linear-gradient";
 
 const RegisterB = () => {
   const navigation = useNavigation();
@@ -9,60 +10,67 @@ const RegisterB = () => {
   };
   return (
     <View style={styles.countainer}>
-      <Text style={styles.textMain}>Regístrate</Text>
-      <View>
-        <Text style={styles.text}>Nombre</Text>
-        <TextInput placeholderTextColor={"grey"} placeholder="Toni"></TextInput>
-        <Text style={styles.text}>Apellido</Text>
-        <TextInput
-          placeholderTextColor={"grey"}
-          placeholder="Tralice"
-        ></TextInput>
-        <Text style={styles.text}>Cedula de identidad / D.N.I</Text>
-        <TextInput
-          placeholderTextColor={"grey"}
-          placeholder="44333222"
-        ></TextInput>
-        <Text style={styles.text}>Fecha de nacimiento</Text>
-        <TextInput
-          placeholderTextColor={"grey"}
-          placeholder="22/04/1995"
-        ></TextInput>
-        <View style={styles.ciudadNacionalidad}>
-          <View>
-            <Text style={styles.text}>Ciudad</Text>
-            <TextInput
-              placeholderTextColor={"grey"}
-              placeholder="Buenos Aires"
-            ></TextInput>
+      <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
+        <Text style={styles.textMain}>Regístrate</Text>
+        <View>
+          <Text style={styles.text}>Nombre</Text>
+          <TextInput
+            placeholderTextColor={"grey"}
+            placeholder="Toni"
+          ></TextInput>
+          <Text style={styles.text}>Apellido</Text>
+          <TextInput
+            placeholderTextColor={"grey"}
+            placeholder="Tralice"
+          ></TextInput>
+          <Text style={styles.text}>Cedula de identidad / D.N.I</Text>
+          <TextInput
+            placeholderTextColor={"grey"}
+            placeholder="44333222"
+          ></TextInput>
+          <Text style={styles.text}>Fecha de nacimiento</Text>
+          <TextInput
+            placeholderTextColor={"grey"}
+            placeholder="22/04/1995"
+          ></TextInput>
+          <View style={styles.ciudadNacionalidad}>
+            <View>
+              <Text style={styles.text}>Ciudad</Text>
+              <TextInput
+                placeholderTextColor={"grey"}
+                placeholder="Buenos Aires"
+              ></TextInput>
+            </View>
+            <View>
+              <Text style={styles.text}>Nacionalidad</Text>
+              <TextInput
+                placeholderTextColor={"grey"}
+                placeholder="Argentina"
+              ></TextInput>
+            </View>
           </View>
-          <View>
-            <Text style={styles.text}>Nacionalidad</Text>
-            <TextInput
-              placeholderTextColor={"grey"}
-              placeholder="Argentina"
-            ></TextInput>
-          </View>
+          <Text style={styles.text}>Domicilio</Text>
+          <TextInput
+            placeholderTextColor={"grey"}
+            placeholder="Calle siempre viva 123"
+          ></TextInput>
         </View>
-        <Text style={styles.text}>Domicilio</Text>
-        <TextInput
-          placeholderTextColor={"grey"}
-          placeholder="Calle siempre viva 123"
-        ></TextInput>
-      </View>
-      <Button title="Siguiente" onPress={() => goRegisterC()}></Button>
+        <Button title="Siguiente" onPress={() => goRegisterC()}></Button>
+      </LinearGradient>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   countainer: {
-    display: "flex",
+    flex: 1,
+  },
+  background: {
     flex: 1,
     flexDirection: "column",
-    justifyContent: "space-around",
-    backgroundColor: "#140152",
     alignItems: "center",
+    width: "100%",
+    justifyContent: "space-around",
   },
   ciudadNacionalidad: {
     flexDirection: "row",

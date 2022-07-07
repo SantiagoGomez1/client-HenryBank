@@ -1,50 +1,56 @@
 import React from "react";
 import { Button, TextInput, View, Image, StyleSheet, Text } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
+import img from "../../imgs/henry.png";
 
 const LogIn = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <Image
-        style={styles.image}
-        source={{
-          uri: "https://avatars.githubusercontent.com/u/57154655?s=200&v=4",
-        }}
-      ></Image>
-      <View style={styles.inputs}>
-        <Text style={styles.text}>Email</Text>
-        <TextInput
-          placeholderTextColor={"grey"}
-          placeholder="soyhenry@gmail.com"
-        ></TextInput>
-        <Text style={styles.text}>Contraseña</Text>
-        <TextInput
-          placeholderTextColor={"grey"}
-          placeholder="*******"
-        ></TextInput>
-      </View>
-      <View style={styles.btn}>
-        <Button
-          title="Login"
-          onPress={() => navigation.navigate("HomeRoutes")}
-        ></Button>
-        <Button
-          title="Registrarse"
-          onPress={() => navigation.navigate("RegisterA")}
-        ></Button>
-      </View>
-      <Text style={styles.text}>¿Olvidaste la contraseña?</Text>
+      <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
+        <Image
+          style={styles.image}
+          source={{
+            uri: img,
+          }}
+        ></Image>
+        <View style={styles.inputs}>
+          <Text style={styles.text}>Email</Text>
+          <TextInput
+            placeholderTextColor={"grey"}
+            placeholder="soyhenry@gmail.com"
+          ></TextInput>
+          <Text style={styles.text}>Contraseña</Text>
+          <TextInput
+            placeholderTextColor={"grey"}
+            placeholder="*******"
+          ></TextInput>
+        </View>
+        <View style={styles.btn}>
+          <Button
+            title="Login"
+            onPress={() => navigation.navigate("HomeRoutes")}
+          ></Button>
+          <Button
+            title="Registrarse"
+            onPress={() => navigation.navigate("RegisterA")}
+          ></Button>
+        </View>
+        <Text style={styles.text}>¿Olvidaste la contraseña?</Text>
+      </LinearGradient>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    display: "flex",
+    flex: 1,
+  },
+  background: {
     flex: 1,
     flexDirection: "column",
-    justifyContent: "space-around",
-    backgroundColor: "#140152",
     alignItems: "center",
+    width: "100%",
+    justifyContent: "space-around",
   },
   image: {
     width: 200,
