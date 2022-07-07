@@ -1,6 +1,6 @@
 import { Dimensions, StyleSheet, Text, View } from "react-native";
 import React from "react";
-import Carousel from "react-native-snap-carousel";
+import Carousel, { Pagination } from "react-native-snap-carousel";
 
 const SLIDER_WIDTH = Dimensions.get("window").width;
 
@@ -22,7 +22,12 @@ const data = [
   },
 ];
 
-export default function CarouselImages({ width, height }) {
+export default function CarouselImages({
+  width,
+  height,
+  activeSlide,
+  setActiveSlide,
+}) {
   //Images son url's
   const _renderItem = ({ item, index }) => {
     return (
@@ -58,8 +63,24 @@ export default function CarouselImages({ width, height }) {
         sliderWidth={SLIDER_WIDTH}
         itemHeight={250}
         itemWidth={SLIDER_WIDTH}
+        onSnapToItem={(index) => setActiveSlide(index)}
       />
+      <MyPagination data={data} activeSlide={activeSlide} />
     </View>
+  );
+}
+
+function MyPagination({ data, activeSlide }) {
+  return (
+    <Pagination
+      dotsLength={data.length}
+      activeDotIndex={activeSlide}
+      containerStyle={styles.containerPagination}
+      dotStyle={styles.dotActive}
+      inactiveDotStyle={styles.dotInactive}
+      inactiveDotOpacity={0.6}
+      inactiveDotScale={0.6}
+    />
   );
 }
 
@@ -90,5 +111,26 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.29,
     shadowRadius: 4.65,
     elevation: 7,
+  },
+  containerPagination: {
+    backgroundColor: "transparent",
+    zIndex: 1,
+    position: "absolute",
+    bottom: 0,
+    alignSelf: "center",
+  },
+  dotActive: {
+    width: 20,
+    height: 20,
+    borderRadius: 10,
+    marginHorizontal: 2,
+    backgroundColor: "#126492",
+  },
+  dotInactive: {
+    width: 14,
+    height: 14,
+    borderRadius: 7,
+    marginHorizontal: 2,
+    backgroundColor: "white",
   },
 });
