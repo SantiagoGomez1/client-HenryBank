@@ -7,12 +7,12 @@ import store from "./src/redux/store/index";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 
-import LogIn from "./src/components/Login/logIn.jsx";
+import LogIn from "./src/components/Login/LogIn.jsx";
 import HomeRoutes from "./src/components/HomeRoutes/HomeRoutes";
 import RegisterA from "./src/components/RegisterA/RegisterA";
-import RegisterB from "./src/components/RegisterB/registerB.jsx";
-import RegisterC from "./src/components/RegisterC/registerC";
-import Success from "./src/components/Success/success";
+import RegisterB from "./src/components/RegisterB/RegisterB.jsx";
+import RegisterC from "./src/components/RegisterC/RegisterC";
+import Success from "./src/components/Success/Success";
 
 export default function App() {
   const Stack = createStackNavigator();
