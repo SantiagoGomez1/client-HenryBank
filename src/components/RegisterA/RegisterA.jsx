@@ -12,28 +12,30 @@ export default function RegisterA() {
   return (
     <View style={styles.container}>
       <Text style={styles.tittle}>Regístrate</Text>
-      <Text style={styles.text}>E-mail</Text>
-      <TextInput
-        placeholderTextColor={"white"}
-        placeholder="soyhenry@gmail.com"
-      >
-        {}
-      </TextInput>
-      <Text style={styles.text}>Confirmar E-mail</Text>
-      <TextInput
-        placeholderTextColor={"white"}
-        placeholder="soyhenry@gmail.com"
-      >
-        {}
-      </TextInput>
-      <Text style={styles.text}>Contraseña</Text>
-      <TextInput placeholderTextColor={"white"} placeholder="************">
-        {}
-      </TextInput>
-      <Text style={styles.text}>Confirmar Contraseña</Text>
-      <TextInput placeholderTextColor={"white"} placeholder="************">
-        {}
-      </TextInput>
+      <View>
+        <Text style={styles.text}>E-mail</Text>
+        <TextInput
+          placeholderTextColor={"grey"}
+          placeholder="soyhenry@gmail.com"
+        >
+          {}
+        </TextInput>
+        <Text style={styles.text}>Confirmar E-mail</Text>
+        <TextInput
+          placeholderTextColor={"grey"}
+          placeholder="soyhenry@gmail.com"
+        >
+          {}
+        </TextInput>
+        <Text style={styles.text}>Contraseña</Text>
+        <TextInput placeholderTextColor={"grey"} placeholder="************">
+          {}
+        </TextInput>
+        <Text style={styles.text}>Confirmar Contraseña</Text>
+        <TextInput placeholderTextColor={"grey"} placeholder="************">
+          {}
+        </TextInput>
+      </View>
       <Button onPress={() => goRegisterB()} style={styles.btn} title="Next">
         Siguiente
       </Button>
@@ -61,6 +63,7 @@ const styles = StyleSheet.create({
   },
   text: {
     color: "#fff",
+    fontSize: 25,
   },
   tittle: {
     color: "#fff",
