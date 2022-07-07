@@ -3,7 +3,6 @@ import React from "react";
 import Carousel from "react-native-snap-carousel";
 
 const SLIDER_WIDTH = Dimensions.get("window").width;
--20;
 
 const data = [
   {
@@ -28,8 +27,8 @@ export default function CarouselImages({ width, height }) {
   const _renderItem = ({ item, index }) => {
     return (
       <View style={styles.container} key={index}>
-        <Text>Numero Tarjeta</Text>
-        <Text>{item.number}</Text>
+        <Text style={{ color: "white" }}>Numero Tarjeta</Text>
+        <Text style={{ color: "white" }}>{item.number}</Text>
         <View
           style={{
             display: "flex",
@@ -39,12 +38,12 @@ export default function CarouselImages({ width, height }) {
           }}
         >
           <View>
-            <Text>Nombre Tarjeta</Text>
-            <Text>{item.title}</Text>
+            <Text style={{ color: "white" }}>Nombre Tarjeta</Text>
+            <Text style={{ color: "white" }}>{item.title}</Text>
           </View>
           <View>
-            <Text>Expira</Text>
-            <Text>{item.expira}</Text>
+            <Text style={{ color: "white" }}>Expira</Text>
+            <Text style={{ color: "white" }}>{item.expira}</Text>
           </View>
         </View>
       </View>
@@ -66,7 +65,10 @@ export default function CarouselImages({ width, height }) {
 
 const styles = StyleSheet.create({
   containerCarousel: {
-    backgroundColor: "white",
+    backgroundColor: "transparent",
+    borderWidth: 2,
+    borderStyle: "solid",
+    borderColor: "white",
     margin: 10,
     borderRadius: 8,
     height: 250,
