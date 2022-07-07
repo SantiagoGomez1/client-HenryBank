@@ -9,22 +9,20 @@ const UserCapital = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>{`$${user.capital}`}</Text>
-      <Text style={{color:'gray'}}>Saldo Disponible</Text>
+      <Text style={{ color: "gray", textAlign: "center" }}>
+        Saldo Disponible
+      </Text>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container:{
-    flex: 1,
-    alignItems:'center',
-    paddingVertical: 10
+  text: {
+    color: "white",
+    fontWeight: "bold",
+    fontSize: 30,
+    textAlign: "center",
   },
-  text:{
-    color:'white',
-    fontWeight:'bold',
-    fontSize:30
-  }
-})
+});
 
 export default UserCapital;
