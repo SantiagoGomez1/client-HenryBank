@@ -4,14 +4,18 @@ import { View, Text, StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
 import UserCardHome from "../UserCardHome/UserCardHome.jsx";
+import UserCapital from '../UserCapital/UserCapital.jsx'
 
 const Home = () => {
   return (
     <View style={styles.container}>
       <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
-        <Text>
+        <View>
           <UserCardHome />
-        </Text>
+        </View>
+        <View>
+          <UserCapital />
+        </View>
       </LinearGradient>
     </View>
   );

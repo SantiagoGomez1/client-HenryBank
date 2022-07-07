@@ -4,7 +4,7 @@ export const data = [
     fullName: "Santiago Gomez",
     image: "https://images.ole.com.ar/2021/11/26/WAiNp6lrL_340x340__1.jpg",
     birthday: "26-09-1999",
-    years: 22
+    years: 22,
   },
   {
     id: 2,
@@ -18,7 +18,8 @@ export const data = [
     fullName: "Brian Vazquez",
     image: "https://i0.wp.com/hipertextual.com/wp-content/uploads/2020/06/hipertextual-mark-zuckerberg-defiende-ante-sus-empleados-decision-no-censurar-donald-trump-2020065553.jpg?fit=2000%2C1333&ssl=1",
     birthday: "26-09-2002",
-    years: 20
+    years: 20,
+    capital:"25000,00"
   },
   {
     id: 4,

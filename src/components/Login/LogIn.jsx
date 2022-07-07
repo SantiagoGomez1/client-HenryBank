@@ -1,7 +1,6 @@
 import React from "react";
 import { Button, TextInput, View, Image, StyleSheet, Text } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import img from "../../imgs/henry.png";
 
 const LogIn = ({ navigation }) => {
   return (

@@ -1,12 +1,12 @@
 import React from "react";
 
-import { View, Text, FlatList, Button, Image, StyleSheet } from "react-native";
+import { View, Text, Image, StyleSheet } from "react-native";
+
+import { IconButton } from "react-native-paper";
 
 import { LinearGradient } from "expo-linear-gradient";
 
 import { useSelector } from "react-redux";
-
-import MaterialCommunityIcons from "react-native-vector-icons/Ionicons";
 
 const UserCardHome = () => {
   const user = useSelector((state) => state.user);
@@ -25,15 +25,23 @@ const UserCardHome = () => {
           <Text style={{ color: "gray" }}>{user.fullName}</Text>
         </View>
       </View>
-      <View style={{ paddingLeft: 175 }}></View>
+      <View style={{ justifyContent: "center" }}>
+        <IconButton
+            icon="menu"
+            color="white"
+            size={20}
+            onPress={() => console.log("uy")}
+          />
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    paddingVertical: 25,
-    paddingLeft: 20,
+    paddingVertical: 20,
+    paddingHorizontal: 25,
+    gap:155,
     flexDirection: "row",
   },
   image: {
@@ -43,9 +51,6 @@ const styles = StyleSheet.create({
   },
   data: {
     paddingLeft: 10,
-  },
-  btn: {
-    backgroundColor: "transparent",
   },
 });
 
