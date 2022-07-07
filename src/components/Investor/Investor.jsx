@@ -1,32 +1,29 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import UserCardHome from "../UserCardHome/UserCardHome";
+import WalletTotal from "../WalletTotal/WalletTotal";
+import Possession from "../Possession/Possession";
 
 const Investor = () => {
   return (
     <View style={styles.container}>
       <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
-        <Text style={styles.text}>
-          Estamos trabajando en el apartado de estadisiticas
-        </Text>
+        <UserCardHome />
+        <WalletTotal money={150000} />
+        <Possession />
       </LinearGradient>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  text: {
-    color: "#fff",
-  },
   background: {
     flex: 1,
-    flexDirection: "column",
-    alignItems: "center",
-    width: "100%",
     justifyContent: "space-around",
+  },
+  container: {
+    flex: 1,
   },
 });
 
