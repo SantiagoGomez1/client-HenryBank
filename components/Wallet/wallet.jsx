@@ -1,13 +1,16 @@
-import React from 'react'
+import React from "react";
 
-import { View, Text } from 'react-native'
+import { Text, ScrollView } from "react-native";
+import CarouselImages from "../CarouselImages/CarouselImages";
+import WalletTotal from "../WalletTotal/WalletTotal";
 
 const Wallet = () => {
-    return (
-        <View>
-            <Text>Estas en tu billetera</Text>
-        </View>
-    )
-}
+  return (
+    <ScrollView>
+      <WalletTotal dinero={150000} />
+      <CarouselImages />
+    </ScrollView>
+  );
+};
 
-export default Wallet
+export default Wallet;
