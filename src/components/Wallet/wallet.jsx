@@ -1,8 +1,8 @@
 import React from "react";
 
 import { Text, ScrollView } from "react-native";
-import CarouselImages from "../CarouselImages/CarouselImages";
-import WalletTotal from "../WalletTotal/WalletTotal";
+import CarouselImages from "../CarouselImages/CarouselImages.jsx";
+import WalletTotal from "../WalletTotal/WalletTotal.jsx";
 
 const Wallet = () => {
   return (

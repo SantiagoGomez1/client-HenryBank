@@ -1,7 +1,6 @@
-import { Dimensions, StyleSheet, Text, View, Image } from "react-native";
+import { Dimensions, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import Carousel from "react-native-snap-carousel";
-import { FlipInEasyX } from "react-native-reanimated";
 
 const SLIDER_WIDTH = Dimensions.get("window").width;
 -20;
