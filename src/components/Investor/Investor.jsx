@@ -6,7 +6,9 @@ const Investor = () => {
   return (
     <View style={styles.container}>
       <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
-        <Text>Estamos trabajando en el apartado de estadisiticas</Text>
+        <Text style={styles.text}>
+          Estamos trabajando en el apartado de estadisiticas
+        </Text>
       </LinearGradient>
     </View>
   );
@@ -15,6 +17,9 @@ const Investor = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  text: {
+    color: "#fff",
   },
   background: {
     flex: 1,

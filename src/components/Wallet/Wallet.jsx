@@ -1,6 +1,5 @@
 import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
-
 import { StyleSheet, View } from "react-native";
 import CarouselImages from "../CarouselImages/CarouselImages.jsx";
 import WalletTotal from "../WalletTotal/WalletTotal.jsx";
@@ -26,7 +25,7 @@ const Wallet = () => {
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    justifyContent: "space-around",
+    justifyContent: "space-between",
   },
   container: {
     flex: 1,
