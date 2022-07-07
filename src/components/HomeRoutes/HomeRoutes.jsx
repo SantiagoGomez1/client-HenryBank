@@ -23,9 +23,9 @@ const HomeRoutes = () => {
 
   return (
     <Tab.Navigator
-      initialRouteName="Home"
+      initialRouteName="home"
       screenOptions={{
-        tabBarActiveTintColor: "black",
+        headerShown: false,
       }}
     >
       <Tab.Screen
