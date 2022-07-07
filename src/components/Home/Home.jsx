@@ -10,7 +10,7 @@ const Home = () => {
     <View style={styles.container}>
       <LinearGradient
         // colors={["#0965C0","#285EB9","purple","#140152"]}
-        colors={["#39358B", "#126492"]}
+        colors={["#126492", "#140152"]}
         style={styles.background}
       >
         <Text>
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   background: {
-    height: 1000,
+    height: 800,
   },
 });
 

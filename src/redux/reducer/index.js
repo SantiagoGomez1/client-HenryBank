@@ -15,7 +15,7 @@ const rootReducer = (state = initialState, action) => {
       case GET_USER:
       return {
         ...state,
-        user: action.payload.find(user => user.id === 1),
+        user: action.payload.find(user => user.id === 3),
       };
 
     default:
