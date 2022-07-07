@@ -73,105 +73,74 @@ export default function RegisterA() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.tittle}>Regístrate</Text>
-
-      {/* <Text style={styles.text}>E-mail</Text> */}
-      <Input
-        containerStyle={styles.input}
-        placeholder="soyhenry@gmail.com"
-        label="E-mail"
-        onChange={(e) => handleOnChange(e, "email")}
-        errorMessage={errorEmail}
-        defaultValue={formData.email}
-      />
-
-      {/* <Text style={styles.text}>Confirmar E-mail</Text> */}
-      <Input
-        containerStyle={styles.input}
-        placeholder="soyhenry@gmail.com"
-        label="Confirmar E-mail"
-        onChange={(e) => handleOnChange(e, "confirmEmail")}
-        errorMessage={errorConfirmEmail}
-        defaultValue={formData.confirmEmail}
-      />
-
-      {/* <Text style={styles.text}>Contraseña</Text> */}
-      <Input
-        containerStyle={styles.input}
-        placeholder="alfanumérica de 8 digitos"
-        label="Contraseña"
-        password={true}
-        secureTextEntry={!showPassword}
-        onChange={(e) => handleOnChange(e, "password")}
-        errorMessage={errorPassword}
-        defaultValue={formData.password}
-        rightIcon={
-          <Icon
-            type="material-community"
-            name={showPassword ? "eye-off-outline" : "eye-outline"}
-            iconStyle={styles.icon}
-            onPress={() => setShowPassword(!showPassword)}
-          />
-        }
-      />
-
-      {/* <Text style={styles.text}>Confirmar Contraseña</Text> */}
-      <Input
-        containerStyle={styles.input}
-        placeholder="alfanumérica de 8 digitos"
-        label="Confirmar Contraseña"
-        password={true}
-        secureTextEntry={!showPassword}
-        onChange={(e) => handleOnChange(e, "confirmPassword")}
-        errorMessage={errorConfirPassword}
-        defaultValue={formData.confirmPassword}
-        rightIcon={
-          <Icon
-            type="material-community"
-            name={showPassword ? "eye-off-outline" : "eye-outline"}
-            iconStyle={styles.icon}
-            onPress={() => setShowPassword(!showPassword)}
-          />
-        }
-      />
-
-      <Button
-        style={styles.btn}
-        title="Siguiente"
-        // onPress={() => goRegisterB()}
-        onPress={() => registerUser()}
-      ></Button>
-
       <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
         <Text style={styles.tittle}>Regístrate</Text>
-        <View>
-          <Text style={styles.text}>E-mail</Text>
-          <TextInput
-            placeholderTextColor={"grey"}
-            placeholder="soyhenry@gmail.com"
-          >
-            {}
-          </TextInput>
-          <Text style={styles.text}>Confirmar E-mail</Text>
-          <TextInput
-            placeholderTextColor={"grey"}
-            placeholder="soyhenry@gmail.com"
-          >
-            {}
-          </TextInput>
-          <Text style={styles.text}>Contraseña</Text>
-          <TextInput placeholderTextColor={"grey"} placeholder="************">
-            {}
-          </TextInput>
-          <Text style={styles.text}>Confirmar Contraseña</Text>
-          <TextInput placeholderTextColor={"grey"} placeholder="************">
-            {}
-          </TextInput>
-        </View>
+
+        {/* <Text style={styles.text}>E-mail</Text> */}
+        <Input
+          containerStyle={styles.input}
+          placeholder="soyhenry@gmail.com"
+          label="E-mail"
+          onChange={(e) => handleOnChange(e, "email")}
+          errorMessage={errorEmail}
+          defaultValue={formData.email}
+        />
+
+        {/* <Text style={styles.text}>Confirmar E-mail</Text> */}
+        <Input
+          containerStyle={styles.input}
+          placeholder="soyhenry@gmail.com"
+          label="Confirmar E-mail"
+          onChange={(e) => handleOnChange(e, "confirmEmail")}
+          errorMessage={errorConfirmEmail}
+          defaultValue={formData.confirmEmail}
+        />
+
+        {/* <Text style={styles.text}>Contraseña</Text> */}
+        <Input
+          containerStyle={styles.input}
+          placeholder="8 digitos"
+          label="Contraseña"
+          password={true}
+          secureTextEntry={!showPassword}
+          onChange={(e) => handleOnChange(e, "password")}
+          errorMessage={errorPassword}
+          defaultValue={formData.password}
+          rightIcon={
+            <Icon
+              type="material-community"
+              name={showPassword ? "eye-off-outline" : "eye-outline"}
+              iconStyle={styles.icon}
+              onPress={() => setShowPassword(!showPassword)}
+            />
+          }
+        />
+
+        {/* <Text style={styles.text}>Confirmar Contraseña</Text> */}
+        <Input
+          containerStyle={styles.input}
+          placeholder="8 digitos"
+          label="Confirmar Contraseña"
+          password={true}
+          secureTextEntry={!showPassword}
+          onChange={(e) => handleOnChange(e, "confirmPassword")}
+          errorMessage={errorConfirPassword}
+          defaultValue={formData.confirmPassword}
+          rightIcon={
+            <Icon
+              type="material-community"
+              name={showPassword ? "eye-off-outline" : "eye-outline"}
+              iconStyle={styles.icon}
+              onPress={() => setShowPassword(!showPassword)}
+            />
+          }
+        />
+
         <Button
-          onPress={() => goRegisterB()}
           style={styles.btn}
           title="Siguiente"
+          // onPress={() => goRegisterB()}
+          onPress={() => registerUser()}
         ></Button>
       </LinearGradient>
     </View>
@@ -186,7 +155,6 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
     alignItems: "center",
-    marginTop: 30,
     width: "100%",
     justifyContent: "space-around",
   },
