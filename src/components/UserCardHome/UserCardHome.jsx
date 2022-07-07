@@ -27,11 +27,11 @@ const UserCardHome = () => {
       </View>
       <View style={{ justifyContent: "center" }}>
         <IconButton
-            icon="menu"
-            color="white"
-            size={20}
-            onPress={() => console.log("uy")}
-          />
+          icon="menu"
+          color="white"
+          size={20}
+          onPress={() => console.log("uy")}
+        />
       </View>
     </View>
   );
@@ -41,8 +41,8 @@ const styles = StyleSheet.create({
   container: {
     paddingVertical: 20,
     paddingHorizontal: 25,
-    gap:155,
     flexDirection: "row",
+    justifyContent: "space-between",
   },
   image: {
     width: 40,
