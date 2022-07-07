@@ -9,9 +9,7 @@ const LogIn = ({ navigation }) => {
       <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
         <Image
           style={styles.image}
-          source={{
-            uri: img,
-          }}
+          source={require("../../imgs/henry.png")}
         ></Image>
         <View style={styles.inputs}>
           <Text style={styles.text}>Email</Text>
