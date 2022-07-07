@@ -9,7 +9,7 @@ const RegisterB = () => {
     navigation.navigate("RegisterC");
   };
   return (
-    <View style={styles.countainer}>
+    <View style={styles.container}>
       <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
         <Text style={styles.textMain}>Regístrate</Text>
         <View>
@@ -62,7 +62,7 @@ const RegisterB = () => {
 };
 
 const styles = StyleSheet.create({
-  countainer: {
+  container: {
     flex: 1,
   },
   background: {

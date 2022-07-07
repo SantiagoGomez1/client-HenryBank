@@ -42,11 +42,13 @@ const styles = StyleSheet.create({
   },
   textMain: {
     color: "#fff",
-    fontSize: 45,
+    fontSize: 40,
+    textAlign: "center",
   },
   textSecondaty: {
     color: "#fff",
     fontSize: 20,
+    textAlign: "center",
   },
   imgSuccess: {
     height: 250,
