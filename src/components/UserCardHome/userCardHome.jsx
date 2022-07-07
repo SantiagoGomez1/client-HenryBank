@@ -4,6 +4,8 @@ import { View, Text, FlatList, Button, Image, StyleSheet } from "react-native";
 
 import { useSelector } from "react-redux";
 
+//HPÑA
+
 const UserCardHome = () => {
   const user = useSelector((state) => state.user);
   return (
