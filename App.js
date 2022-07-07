@@ -13,6 +13,7 @@ import RegisterA from "./src/components/RegisterA/RegisterA";
 import RegisterB from "./src/components/RegisterB/RegisterB.jsx";
 import RegisterC from "./src/components/RegisterC/RegisterC";
 import Success from "./src/components/Success/Success";
+import DetailUser from "./src/components/DetailUser/detailUser";
 
 export default function App() {
   const Stack = createStackNavigator();
@@ -31,6 +32,7 @@ export default function App() {
           <Stack.Screen name="RegisterC" component={RegisterC} />
           <Stack.Screen name="Success" component={Success} />
           <Stack.Screen name="HomeRoutes" component={HomeRoutes} />
+          <Stack.Screen name="Detail User" component={DetailUser} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
