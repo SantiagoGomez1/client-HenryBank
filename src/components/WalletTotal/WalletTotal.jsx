@@ -4,38 +4,45 @@ import { IconButton } from "react-native-paper";
 
 const conversion = 0.0079;
 
-export default function WalletTotal({ dinero }) {
-  const [desplegable, setDesplegable] = React.useState(true);
+export default function WalletTotal({ money }) {
+  const [dropdown, setDropdown] = React.useState(true);
 
   return (
-    <View style={styles.tarjeta}>
+    <View style={styles.card}>
       <View style={styles.container}>
-        <Text>Tu total</Text>
-        {desplegable ? (
+        <Text style={{ color: "white" }}>Tu total</Text>
+        {dropdown ? (
           <IconButton
             icon="eye-off-outline"
-            iconColor="red"
+            color="white"
             size={20}
-            onPress={() => setDesplegable(!desplegable)}
+            onPress={() => setDropdown(!dropdown)}
           />
         ) : (
           <IconButton
             icon="eye-outline"
-            iconColor="red"
+            color="white"
             size={20}
-            onPress={() => setDesplegable(!desplegable)}
+            onPress={() => setDropdown(!dropdown)}
           />
         )}
       </View>
-      {desplegable && <Text>{"ARG: " + dinero}</Text>}
-      {desplegable && <Text>{"DOL: " + (dinero * conversion).toFixed(2)}</Text>}
+      {dropdown && <Text style={{ color: "white" }}>{"ARG: " + money}</Text>}
+      {dropdown && (
+        <Text style={{ color: "white" }}>
+          {"DOL: " + (money * conversion).toFixed(2)}
+        </Text>
+      )}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  tarjeta: {
-    backgroundColor: "white",
+  card: {
+    backgroundColor: "transparent",
+    borderWidth: 2,
+    borderStyle: "solid",
+    borderColor: "white",
     margin: 10,
     borderRadius: 8,
     padding: 10,
