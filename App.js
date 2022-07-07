@@ -17,22 +17,22 @@ import Success from "./src/components/Success/success";
 export default function App() {
   const Stack = createStackNavigator();
   return (
-    // <Provider store={store}>
-    <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName="Log In"
-        screenOptions={{
-          headerShown: false,
-        }}
-      >
-        <Stack.Screen name="Log In" component={LogIn} />
-        <Stack.Screen name="RegisterA" component={RegisterA} />
-        <Stack.Screen name="RegisterB" component={RegisterB} />
-        <Stack.Screen name="RegisterC" component={RegisterC} />
-        <Stack.Screen name="Success" component={Success} />
-        <Stack.Screen name="HomeRoutes" component={HomeRoutes} />
-      </Stack.Navigator>
-    </NavigationContainer>
-    // </Provider>
+    <Provider store={store}>
+      <NavigationContainer>
+        <Stack.Navigator
+          initialRouteName="Log In"
+          screenOptions={{
+            headerShown: false,
+          }}
+        >
+          <Stack.Screen name="Log In" component={LogIn} />
+          <Stack.Screen name="RegisterA" component={RegisterA} />
+          <Stack.Screen name="RegisterB" component={RegisterB} />
+          <Stack.Screen name="RegisterC" component={RegisterC} />
+          <Stack.Screen name="Success" component={Success} />
+          <Stack.Screen name="HomeRoutes" component={HomeRoutes} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 }
