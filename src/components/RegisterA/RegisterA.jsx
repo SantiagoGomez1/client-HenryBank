@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, TextInput, View, StyleSheet, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function RegisterA() {
   const navigation = useNavigation();
@@ -11,46 +12,50 @@ export default function RegisterA() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.tittle}>Regístrate</Text>
-      <View>
-        <Text style={styles.text}>E-mail</Text>
-        <TextInput
-          placeholderTextColor={"grey"}
-          placeholder="soyhenry@gmail.com"
-        >
-          {}
-        </TextInput>
-        <Text style={styles.text}>Confirmar E-mail</Text>
-        <TextInput
-          placeholderTextColor={"grey"}
-          placeholder="soyhenry@gmail.com"
-        >
-          {}
-        </TextInput>
-        <Text style={styles.text}>Contraseña</Text>
-        <TextInput placeholderTextColor={"grey"} placeholder="************">
-          {}
-        </TextInput>
-        <Text style={styles.text}>Confirmar Contraseña</Text>
-        <TextInput placeholderTextColor={"grey"} placeholder="************">
-          {}
-        </TextInput>
-      </View>
-      <Button onPress={() => goRegisterB()} style={styles.btn} title="Next">
-        Siguiente
-      </Button>
+      <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
+        <Text style={styles.tittle}>Regístrate</Text>
+        <View>
+          <Text style={styles.text}>E-mail</Text>
+          <TextInput
+            placeholderTextColor={"grey"}
+            placeholder="soyhenry@gmail.com"
+          >
+            {}
+          </TextInput>
+          <Text style={styles.text}>Confirmar E-mail</Text>
+          <TextInput
+            placeholderTextColor={"grey"}
+            placeholder="soyhenry@gmail.com"
+          >
+            {}
+          </TextInput>
+          <Text style={styles.text}>Contraseña</Text>
+          <TextInput placeholderTextColor={"grey"} placeholder="************">
+            {}
+          </TextInput>
+          <Text style={styles.text}>Confirmar Contraseña</Text>
+          <TextInput placeholderTextColor={"grey"} placeholder="************">
+            {}
+          </TextInput>
+        </View>
+        <Button onPress={() => goRegisterB()} style={styles.btn} title="Next">
+          Siguiente
+        </Button>
+      </LinearGradient>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    display: "flex",
+    flex: 1,
+  },
+  background: {
     flex: 1,
     flexDirection: "column",
-    justifyContent: "space-around",
-    backgroundColor: "#140152",
     alignItems: "center",
+    width: "100%",
+    justifyContent: "space-around",
   },
   image: {
     width: 200,

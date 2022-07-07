@@ -1,8 +1,13 @@
 import React from "react";
 import { View, Button, Text, StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import { useNavigation } from "@react-navigation/native";
 
 const RegisterC = () => {
+  const navigation = useNavigation();
+  const goHome = () => {
+    navigation.navigate("Success");
+  };
   return (
     <View style={styles.container}>
       <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
@@ -21,7 +26,7 @@ const RegisterC = () => {
           </View>
         </View>
         <View style={styles.btn}>
-          <Button title="Siguiente"></Button>
+          <Button title="Siguiente" onPress={() => goHome()}></Button>
         </View>
       </LinearGradient>
     </View>
@@ -43,7 +48,6 @@ const styles = StyleSheet.create({
   datos: {
     alignSelf: "center",
     height: "auto",
-    backgroundColor: "black",
     padding: 30,
   },
   titleMain: {
