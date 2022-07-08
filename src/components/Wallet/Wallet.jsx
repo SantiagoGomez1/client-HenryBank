@@ -25,7 +25,7 @@ const Wallet = () => {
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    justifyContent: "space-between",
+    justifyContent: "space-around",
   },
   container: {
     flex: 1,

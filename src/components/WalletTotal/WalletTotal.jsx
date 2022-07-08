@@ -39,10 +39,10 @@ export default function WalletTotal({ money }) {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: "transparent",
-    borderWidth: 2,
+    backgroundColor: "rgba(255, 255, 255, 0.3)",
+    borderWidth: 1,
     borderStyle: "solid",
-    borderColor: "white",
+    borderColor: "rgba(255, 255, 255, 0.5)",
     margin: 10,
     borderRadius: 8,
     padding: 10,
