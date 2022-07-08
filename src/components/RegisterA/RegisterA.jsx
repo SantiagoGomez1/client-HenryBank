@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: "100%",
     justifyContent: "space-around",
-    height: "100%",
+    height: height,
   },
   input: {
     backgroundColor: "white",
