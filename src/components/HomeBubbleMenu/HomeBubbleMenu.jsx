@@ -4,7 +4,10 @@ import { View, Text, StyleSheet } from "react-native";
 
 import { IconButton } from "react-native-paper";
 
+import { useNavigation } from "@react-navigation/native";
+
 const HomeBubbleMenu = () => {
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <View style={styles.buttonContainer}>
@@ -15,7 +18,9 @@ const HomeBubbleMenu = () => {
           size={50}
           onPress={() => console.log("uy")}
         />
-        <Text style={{ color: "white", paddingBottom: 10 }}>Ingresar</Text>
+        <View>
+          <Text style={{ color: "white", paddingBottom: 10, fontSize:8.5 }}>Ingresar</Text>
+        </View>
       </View>
       <View style={styles.buttonContainer}>
         <IconButton
@@ -25,7 +30,9 @@ const HomeBubbleMenu = () => {
           size={50}
           onPress={() => console.log("uy")}
         />
-        <Text style={{ color: "white", paddingBottom: 10 }}>Transferir</Text>
+        <View>
+          <Text style={{ color: "white", paddingBottom: 10, fontSize:8.5 }}>Transferir</Text>
+        </View>
       </View>
       <View style={styles.buttonContainer}>
         <IconButton
@@ -33,9 +40,11 @@ const HomeBubbleMenu = () => {
           icon="sync"
           color="white"
           size={40}
-          onPress={() => console.log("uy")}
+          onPress={() => navigation.navigate("HomeMovimientos")}
         />
-        <Text style={{ color: "white", paddingTop:5 }}>Movimientos</Text>
+        <View>
+          <Text style={{ color: "white", paddingTop: 5, fontSize:8.5 }}>Movimientos</Text>
+        </View>
       </View>
       <View style={styles.buttonContainer}>
         <IconButton
@@ -45,7 +54,9 @@ const HomeBubbleMenu = () => {
           size={40}
           onPress={() => console.log("uy")}
         />
-        <Text style={{ color: "white", paddingTop:5 }}>Inversiones</Text>
+        <View>
+          <Text style={{ color: "white", paddingTop: 5, fontSize:9 }}>Inversiones</Text>
+        </View>
       </View>
     </View>
   );
