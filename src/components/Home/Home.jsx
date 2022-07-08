@@ -1,10 +1,11 @@
 import React from "react";
 
-import { View, Text, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
 import UserCardHome from "../UserCardHome/UserCardHome.jsx";
-import UserCapital from '../UserCapital/UserCapital.jsx'
+import UserCapital from "../UserCapital/UserCapital.jsx";
+import HomeBubbleMenu from "../HomeBubbleMenu/HomeBubbleMenu.jsx";
 
 const Home = () => {
   return (
@@ -15,6 +16,9 @@ const Home = () => {
         </View>
         <View>
           <UserCapital />
+        </View>
+        <View style={styles.homeBubble}>
+          <HomeBubbleMenu />
         </View>
       </LinearGradient>
     </View>
@@ -28,6 +32,9 @@ const styles = StyleSheet.create({
   background: {
     flex: 1,
   },
+  homeBubble:{
+    paddingTop:15,
+  }
 });
 
 export default Home;
