@@ -2,11 +2,12 @@ import { StyleSheet, Text, TextInput, View, Dimensions } from "react-native";
 import React from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import UserCardHome from "../UserCardHome/UserCardHome";
-import { Input } from "@rneui/base";
 import { Button } from "react-native-elements";
 import { FlatList } from "react-native-gesture-handler";
-import { ScrollView } from "react-native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import CardCoinsInvestorBuy from "../CardCoinsInvestorBuy/CardCoinsInvestorBuy";
+
+var { height } = Dimensions.get("window");
 
 const coins = [
   {
@@ -52,7 +53,7 @@ const coins = [
 export default function InvestorBuy() {
   const [text, setText] = React.useState("");
   return (
-    <View style={styles.container}>
+    <KeyboardAwareScrollView style={styles.container}>
       <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
         <UserCardHome />
         <View
@@ -79,33 +80,33 @@ export default function InvestorBuy() {
           />
         </View>
         <View style={styles.card}>
-          <ScrollView>
-            <FlatList
-              data={coins}
-              keyExtractor={(item) => item.id}
-              renderItem={({ item }) => (
-                <CardCoinsInvestorBuy
-                  id={item.id}
-                  image={item.image.small}
-                  name={item.name}
-                  symbol={item.symbol}
-                />
-              )}
-            />
-          </ScrollView>
+          <FlatList
+            data={coins}
+            keyExtractor={(item) => item.id}
+            renderItem={({ item }) => (
+              <CardCoinsInvestorBuy
+                id={item.id}
+                image={item.image.small}
+                name={item.name}
+                symbol={item.symbol}
+              />
+            )}
+          />
         </View>
       </LinearGradient>
-    </View>
+    </KeyboardAwareScrollView>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: "column",
+  },
   background: {
     flex: 1,
     justifyContent: "space-around",
-  },
-  container: {
-    flex: 1,
+    height: height,
   },
   input: {
     backgroundColor: "rgba(25, 23, 61, 0.5)",
@@ -130,18 +131,3 @@ const styles = StyleSheet.create({
     height: 500,
   },
 });
-
-{
-  /* <FlatList
-            data={personajes.results}
-            keyExtractor={(item) => item.id}
-            renderItem={({ item }) => (
-              <CardsHome
-                id={item.id}
-                image={item.image}
-                name={item.name}
-                species={item.species}
-              />
-            )}
-          />  */
-}
