@@ -1,11 +1,22 @@
 import { StyleSheet, Text, View, Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
 
 export default function CardCoinsInvestorBuy({ id, image, name, symbol }) {
-  console.log(image);
+  const navigation = useNavigation();
   return (
-    <TouchableOpacity style={styles.container} onPress={() => console.log(id)}>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={() =>
+        navigation.navigate("DetailCoinsInvestorBuy", {
+          id,
+          image,
+          name,
+          symbol,
+        })
+      }
+    >
       <View style={styles.caract}>
         <Image style={styles.img} source={{ uri: image }} />
         <Text style={{ color: "white" }}>{name}</Text>
