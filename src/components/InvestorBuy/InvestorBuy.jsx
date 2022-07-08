@@ -2,7 +2,6 @@ import { StyleSheet, Text, TextInput, View, Dimensions } from "react-native";
 import React from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import UserCardHome from "../UserCardHome/UserCardHome";
-import { Input } from "@rneui/base";
 import { Button } from "react-native-elements";
 import { FlatList } from "react-native-gesture-handler";
 import { ScrollView } from "react-native";
