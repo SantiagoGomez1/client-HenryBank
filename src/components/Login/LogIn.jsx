@@ -25,9 +25,7 @@ const LogIn = ({ navigation }) => {
 
   const registerUser = () => {
     if (!validateData()) return;
-    if (formData.email === email && formData.password === password) {
-      navigation.navigate("HomeRoutes");
-    }
+    navigation.navigate("HomeRoutes");
   };
 
   const validateData = () => {
@@ -53,7 +51,7 @@ const LogIn = ({ navigation }) => {
       <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
         <Image
           style={styles.image}
-          source={require("../../imgs/henry.png")}
+          source={require("../../imgs/HenryBank.png")}
         ></Image>
         <View>
           <Input
@@ -66,7 +64,7 @@ const LogIn = ({ navigation }) => {
           ></Input>
           <Input
             containerStyle={styles.input}
-            placeholder="8 digitos"
+            placeholder="6 digitos"
             label="Contraseña"
             password={true}
             secureTextEntry={!showPassword}
@@ -109,11 +107,9 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
   },
   image: {
-    width: 200,
-    height: 200,
+    width: 340,
+    height: 340,
     borderRadius: 100,
-    borderColor: "#140152",
-    borderWidth: 5,
   },
   input: {
     backgroundColor: "white",

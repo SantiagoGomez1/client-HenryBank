@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { Button, View, StyleSheet, Text, TextInput } from "react-native";
+import { Button, StyleSheet, Text, ScrollView, Dimensions } from "react-native";
 import { Input, Icon } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
-
-import { createIconSetFromFontello } from "react-native-vector-icons";
-
 import { LinearGradient } from "expo-linear-gradient";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+
+var { height } = Dimensions.get("window");
+
 
 export default function RegisterA() {
   const navigation = useNavigation();
@@ -72,7 +73,7 @@ export default function RegisterA() {
   };
 
   return (
-    <View style={styles.container}>
+    <KeyboardAwareScrollView style={styles.container}>
       <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
         <Text style={styles.tittle}>Regístrate</Text>
 
@@ -143,7 +144,7 @@ export default function RegisterA() {
           onPress={() => registerUser()}
         ></Button>
       </LinearGradient>
-    </View>
+    </KeyboardAwareScrollView>
   );
 }
 
@@ -157,6 +158,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: "100%",
     justifyContent: "space-around",
+    height: height,
   },
   input: {
     backgroundColor: "white",

@@ -10,53 +10,45 @@ const HomeBubbleMenu = () => {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
-      <View style={styles.buttonContainer}>
+      <View>
         <IconButton
-          style={{ paddingTop: 20 }}
+          style={styles.btn}
           icon="bank-transfer-out"
           color="white"
-          size={50}
+          size={40}
           onPress={() => console.log("uy")}
         />
-        <View>
-          <Text style={{ color: "white", paddingBottom: 10, fontSize:8.5 }}>Ingresar</Text>
-        </View>
+        <Text style={styles.text}>Ingresar</Text>
       </View>
-      <View style={styles.buttonContainer}>
+      <View>
         <IconButton
-          style={{ paddingTop: 24 }}
+          style={styles.btn}
           icon="bank-transfer"
           color="white"
-          size={50}
+          size={40}
           onPress={() => console.log("uy")}
         />
-        <View>
-          <Text style={{ color: "white", paddingBottom: 10, fontSize:8.5 }}>Transferir</Text>
-        </View>
+        <Text style={styles.text}>Transferir</Text>
       </View>
-      <View style={styles.buttonContainer}>
+      <View>
         <IconButton
-          style={{ paddingTop: 20 }}
+          style={styles.btn}
           icon="sync"
           color="white"
           size={40}
           onPress={() => navigation.navigate("HomeMovimientos")}
         />
-        <View>
-          <Text style={{ color: "white", paddingTop: 5, fontSize:8.5 }}>Movimientos</Text>
-        </View>
+        <Text style={styles.text}>Movimientos</Text>
       </View>
-      <View style={styles.buttonContainer}>
+      <View>
         <IconButton
-          style={{ paddingTop: 15 }}
+          style={styles.btn}
           icon="align-vertical-bottom"
           color="white"
           size={40}
           onPress={() => console.log("uy")}
         />
-        <View>
-          <Text style={{ color: "white", paddingTop: 5, fontSize:9 }}>Inversiones</Text>
-        </View>
+        <Text style={styles.text}>Inversiones</Text>
       </View>
     </View>
   );
@@ -65,20 +57,24 @@ const HomeBubbleMenu = () => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "space-evenly",
     alignItems: "center",
-    paddingHorizontal: 10,
   },
-  buttonContainer: {
+  text: {
+    fontSize: 8.5,
+    color: "#fff",
+    paddingTop: 3,
+    alignSelf: "center",
+  },
+  btn: {
     backgroundColor: "transparent",
     borderWidth: 1,
     borderStyle: "solid",
     borderColor: "white",
-    alignItems: "center",
     justifyContent: "center",
     width: 60,
     height: 60,
-    borderRadius: 55,
+    borderRadius: 60,
   },
 });
 
