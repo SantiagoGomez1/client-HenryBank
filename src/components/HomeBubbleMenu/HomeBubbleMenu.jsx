@@ -4,7 +4,10 @@ import { View, Text, StyleSheet } from "react-native";
 
 import { IconButton } from "react-native-paper";
 
+import { useNavigation } from "@react-navigation/native";
+
 const HomeBubbleMenu = () => {
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <View>
@@ -33,7 +36,7 @@ const HomeBubbleMenu = () => {
           icon="sync"
           color="white"
           size={40}
-          onPress={() => console.log("uy")}
+          onPress={() => navigation.navigate("HomeMovimientos")}
         />
         <Text style={styles.text}>Movimientos</Text>
       </View>
