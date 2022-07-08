@@ -1,8 +1,9 @@
-import { GET_USERS, GET_USER } from "../actions/index";
+import { GET_USERS, GET_USER, LOG_IN } from "../actions/index";
 
 const initialState = {
   users: [],
-  user: {}
+  user: {},
+  logIn: {},
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -12,12 +13,16 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         users: action.payload,
       };
-      case GET_USER:
+    case GET_USER:
       return {
         ...state,
-        user: action.payload.find(user => user.id === 3),
+        user: action.payload.find((user) => user.id === 3),
       };
-
+    case LOG_IN:
+      return {
+        ...state,
+        logIn: action.payload,
+      };
     default:
       return state;
   }
