@@ -6,7 +6,7 @@ import { Input, Icon } from "react-native-elements";
 import {useDispatch, useSelector} from 'react-redux';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
-import { postUserData } from "../../redux/actions";
+import { postUserData, postUserDataCard } from "../../redux/actions";
 
 import Constants from "expo-constants";
 
@@ -58,7 +58,8 @@ const RegisterB = () => {
     if (!validateData()) {
       return;
     }
-    dispatch(postUserData(formData, userMP))      
+    dispatch(postUserData(formData, userMP))
+    dispatch(postUserDataCard(formData, userMP))
     goRegisterC();
   };
   //----------------------Funtion Validation----------------------//
