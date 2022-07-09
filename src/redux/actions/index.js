@@ -26,7 +26,7 @@ const config = {
 
 export const logIn = (form) => async (dispatch) => {
   console.log(form);
-  const response = await axios.post("http://localhost:3001/login", form);
+  const response = await axios.post("https://h-bank-deploy.herokuapp.com/login", form);
   const payload = await response.data;
   console.log(payload);
   return dispatch({ type: LOG_IN, payload });
@@ -61,7 +61,7 @@ export  const postUserData = (payload, userMP) => {
       "password": userMP.password,
     }    
       console.log('Aca hay un posteo', posteo);
-      const created = await axios.post('http://localhost:3001/register',posteo); 
+      const created = await axios.post('https://h-bank-deploy.herokuapp.com/register',posteo); 
       return dispatch({
           type : 'POST_USER_DATA',
           payload: created.data,
