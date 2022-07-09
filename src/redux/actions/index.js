@@ -6,6 +6,7 @@ export const GET_USER = "GET_USER";
 export const LOG_IN = "LOG_IN";
 
 export const POST_USER_DATA = 'POST_USER_DATA';
+export const POST_USER = 'POST_USER';
 
 export const GET_COINS = "GET_COINS";
 
@@ -42,7 +43,7 @@ export const getUser = () => {
 };
 
 
-export  const postUserData = (payload) => {
+export  const postUserData = (payload, userMP) => {
   return async function (dispatch){
     const posteo = {
       "name": payload.name,
@@ -53,6 +54,8 @@ export  const postUserData = (payload) => {
       "city": payload.city,
       "nationality": payload.nationality,
       "address": payload.address,
+      "email": userMP.email,
+      "password": userMP.password,
     }
  console.log('Aca hay un posteo', posteo);
       const created = await axios.post('http://localhost:3001/register',posteo); 
@@ -68,3 +71,16 @@ export const getCoins = () => async (dispatch) => {
   dispatch({ type: GET_COINS, payload: response.data });
 };
 
+
+export  const postUser = (payload) => {
+  return async function (dispatch){
+    const post = {      
+      "email": payload.email,
+      "password": payload.password,
+    } 
+      return dispatch({
+          type : 'POST_USER',
+          payload,
+      })
+  }
+};

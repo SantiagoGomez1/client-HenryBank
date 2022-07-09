@@ -1,12 +1,5 @@
 import React, { useState } from "react";
-import {
-  View,
-  Text,
-  TextInput,
-  StyleSheet,
-  Button,
-  ScrollView,
-} from "react-native";
+import { View, Text, StyleSheet, Button, ScrollView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
 import { Input, Icon } from "react-native-elements";
@@ -19,7 +12,8 @@ import Constants from "expo-constants";
 
 
 const RegisterB = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const userMP = useSelector(state => state.userMP)  
   const navigation = useNavigation();
   const goRegisterC = () => {
     navigation.navigate("RegisterC");
@@ -61,21 +55,10 @@ const RegisterB = () => {
   };
 
   const registerUserPerData = () => {
-    // if (!validateData()) {
-    //   return;
-    // }
-    dispatch(postUserData(formData))
-    console.log("todo ok B", formData);
-    setFormData({
-      name: "",
-      lastName: "",
-      identity: "",
-      gender: "",
-      dateOfBirth: "",
-      city: "",
-      nationality: "",
-      address: "", 
-    });    
+    if (!validateData()) {
+      return;
+    }
+    dispatch(postUserData(formData, userMP))      
     goRegisterC();
   };
   //----------------------Funtion Validation----------------------//
@@ -189,9 +172,7 @@ const RegisterB = () => {
           onCancel={hideDatePicker}
         />
         {/* </View> */}
-
-        {/* <View style={styles.ciudadNacionalidad}> */}
-
+        
         <Input
           containerStyle={styles.input}
           placeholder="Buenos Aires"
@@ -209,8 +190,6 @@ const RegisterB = () => {
           // errorMessage={errorEmail}
           defaultValue={formData.nationality}
         />
-
-        {/* </View> */}
 
         <Input
           containerStyle={styles.input}
@@ -243,11 +222,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     paddingTop: Constants.statusBarHeight,
   },
-  // ciudadNacionalidad: {
-  //   flexDirection: "row",
-  //   alignItems: "center",
-  //   width:'50%',
-  // },
   textMain: {
     color: "#fff",
     fontSize: 45,
