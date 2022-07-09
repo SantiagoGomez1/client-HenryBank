@@ -11,6 +11,7 @@ export const POST_USER_RENDER = "POST_USER_RENDER";
 
 export const GET_COINS = "GET_COINS";
 export const SEARCH_COINS = "SEARCH_COINS";
+export const GET_COIN_ID = "GET_COIN_ID";
 
 //------------Config with token ---------------------------
 
@@ -25,10 +26,12 @@ const config = {
 
 export const logIn = (form) => async (dispatch) => {
   console.log(form);
+
   const response = await axios.post(
     "https://h-bank-deploy.herokuapp.com/login",
     form
   );
+
   const payload = await response.data;
   console.log(payload);
   return dispatch({ type: LOG_IN, payload });
@@ -71,7 +74,7 @@ export const postUserData = (payload, userMP) => {
       type: "POST_USER_DATA",
       payload: created.data,
     });
-  };
+  };p
 };
 
 export const postUserDataCard = (payload, userMP) => {
@@ -119,4 +122,8 @@ export const getCoins = () => async (dispatch) => {
 
 export function searchCoins(name) {
   return { type: SEARCH_COINS, payload: name };
+}
+
+export function getCoinId(id) {
+  return { type: GET_COIN_ID, payload: id };
 }

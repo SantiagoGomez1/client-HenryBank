@@ -1,12 +1,20 @@
-import { GET_USERS, GET_USER, LOG_IN, POST_USER_DATA, POST_USER, POST_USER_RENDER} from "../actions/index";
+import {
+  GET_USERS,
+  GET_USER,
+  LOG_IN,
+  POST_USER_DATA,
+  POST_USER,
+  POST_USER_RENDER,
+} from "../actions/index";
 
-import { GET_COINS, SEARCH_COINS } from "../actions/index";
+import { GET_COINS, SEARCH_COINS, GET_COIN_ID } from "../actions/index";
 
 const initialState = {
   users: [],
   user: {},
   logIn: {},
   coins: [],
+  coinDetail: {},
   userMP: [],
   userData: [],
 };
@@ -29,7 +37,7 @@ const rootReducer = (state = initialState, action) => {
         logIn: action.payload,
       };
 
-    case POST_USER_DATA:      
+    case POST_USER_DATA:
       return {
         ...state,
       };
@@ -39,10 +47,10 @@ const rootReducer = (state = initialState, action) => {
         userMP: action.payload,
       };
     case POST_USER_RENDER:
-      return{
+      return {
         ...state,
         userData: action.payload,
-      };  
+      };
     case GET_COINS:
       return {
         ...state,
@@ -55,6 +63,14 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         coins: coinSearch,
+      };
+    case GET_COIN_ID:
+      const coinDetailSearch = state.coins.find(
+        (element) => element.id === action.payload
+      );
+      return {
+        ...state,
+        coinDetail: coinDetailSearch,
       };
     default:
       return state;
