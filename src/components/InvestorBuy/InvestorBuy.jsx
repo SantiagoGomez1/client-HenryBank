@@ -4,11 +4,10 @@ const axios = require("axios");
 import { LinearGradient } from "expo-linear-gradient";
 import UserCardHome from "../UserCardHome/UserCardHome";
 import { Button } from "react-native-elements";
-import { FlatList } from "react-native-gesture-handler";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import CardCoinsInvestorBuy from "../CardCoinsInvestorBuy/CardCoinsInvestorBuy";
 import { useDispatch, useSelector } from "react-redux";
-import { getCoins } from "../../redux/actions";
+import { getCoins, searchCoins } from "../../redux/actions";
+import CoinsInvestorBuy from "../CoinsInvestorBuy/CoinsInvestorBuy";
 
 var { height } = Dimensions.get("window");
 
@@ -22,7 +21,6 @@ export default function InvestorBuy() {
     dispatch(getCoins());
   }, []);
 
-  console.log(data);
   return (
     <KeyboardAwareScrollView style={styles.container}>
       <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
@@ -47,24 +45,17 @@ export default function InvestorBuy() {
             }}
             type="clear"
             titleStyle={{ color: "white" }}
-            onPress={() => console.log(text)}
+            onPress={() => {
+              if (text === "") {
+                dispatch(getCoins());
+              } else {
+                dispatch(searchCoins(text));
+              }
+            }}
           />
         </View>
         <View style={styles.card}>
-          {data.length && (
-            <FlatList
-              data={data}
-              keyExtractor={(item) => item.id}
-              renderItem={({ item }) => (
-                <CardCoinsInvestorBuy
-                  id={item.id}
-                  image={item.image.small}
-                  name={item.name}
-                  symbol={item.symbol}
-                />
-              )}
-            />
-          )}
+          <CoinsInvestorBuy data={data} />
         </View>
       </LinearGradient>
     </KeyboardAwareScrollView>
