@@ -4,8 +4,12 @@ import { useNavigation } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
 import Constants from "expo-constants";
 import { Input, Icon } from "react-native-elements";
+import {useDispatch, useSelector} from 'react-redux';
+
+import { postUser } from "../../redux/actions";
 
 export default function RegisterA() {
+  const dispatch = useDispatch();
   const navigation = useNavigation();
 
   const goRegisterB = () => {
@@ -32,7 +36,7 @@ export default function RegisterA() {
     if (!validateData()) {
       return;
     }
-    console.log("todo ok", formData);
+    dispatch(postUser(formData))    
     goRegisterB();
   };
 

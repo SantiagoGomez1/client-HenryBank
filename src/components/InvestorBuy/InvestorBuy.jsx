@@ -1,59 +1,36 @@
+
 import React from "react";
 
 import { StyleSheet, Text, TextInput, View, Dimensions } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { StyleSheet, Text, TextInput, View, Dimensions } from "react-native";
+import React, { useEffect } from "react";
+const axios = require("axios");
 import { LinearGradient } from "expo-linear-gradient";
 import { Button } from "react-native-elements";
+
 import { FlatList } from "react-native-gesture-handler";
 
 import CardCoinsInvestorBuy from "../CardCoinsInvestorBuy/CardCoinsInvestorBuy";
 import UserCardHome from "../UserCardHome/UserCardHome";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { useDispatch, useSelector } from "react-redux";
+import { getCoins, searchCoins } from "../../redux/actions";
+import CoinsInvestorBuy from "../CoinsInvestorBuy/CoinsInvestorBuy";
+
 
 var { height } = Dimensions.get("window");
 
-const coins = [
-  {
-    id: "huobi-btc",
-    symbol: "hbtc",
-    name: "Huobi BTC",
-    image: {
-      thumb:
-        "https://assets.coingecko.com/coins/images/12407/thumb/Unknown-5.png?1599624896",
-      small:
-        "https://assets.coingecko.com/coins/images/12407/small/Unknown-5.png?1599624896",
-      large:
-        "https://assets.coingecko.com/coins/images/12407/large/Unknown-5.png?1599624896",
-    },
-    current_price: 21916,
-    price_change_percentage_24h: 4.77115,
-    price_change_percentage_7d: 11.18081,
-    price_change_percentage_30d: -29.93179,
-    price_change_percentage_1y: -34.75568,
-    last_updated: "2022-07-08T15:34:10.002Z",
-  },
-  {
-    id: "huobi-btc2",
-    symbol: "hbtc",
-    name: "Huobi BTC",
-    image: {
-      thumb:
-        "https://assets.coingecko.com/coins/images/12407/thumb/Unknown-5.png?1599624896",
-      small:
-        "https://assets.coingecko.com/coins/images/12407/small/Unknown-5.png?1599624896",
-      large:
-        "https://assets.coingecko.com/coins/images/12407/large/Unknown-5.png?1599624896",
-    },
-    current_price: 21916,
-    price_change_percentage_24h: 4.77115,
-    price_change_percentage_7d: 11.18081,
-    price_change_percentage_30d: -29.93179,
-    price_change_percentage_1y: -34.75568,
-    last_updated: "2022-07-08T15:34:10.002Z",
-  },
-];
-
 export default function InvestorBuy() {
   const [text, setText] = React.useState("");
+
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.coins);
+
+  useEffect(() => {
+    dispatch(getCoins());
+  }, []);
+
   return (
     <KeyboardAwareScrollView style={styles.container}>
       <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
@@ -78,22 +55,17 @@ export default function InvestorBuy() {
             }}
             type="clear"
             titleStyle={{ color: "white" }}
-            onPress={() => console.log(text)}
+            onPress={() => {
+              if (text === "") {
+                dispatch(getCoins());
+              } else {
+                dispatch(searchCoins(text));
+              }
+            }}
           />
         </View>
         <View style={styles.card}>
-          <FlatList
-            data={coins}
-            keyExtractor={(item) => item.id}
-            renderItem={({ item }) => (
-              <CardCoinsInvestorBuy
-                id={item.id}
-                image={item.image.small}
-                name={item.name}
-                symbol={item.symbol}
-              />
-            )}
-          />
+          <CoinsInvestorBuy data={data} />
         </View>
       </LinearGradient>
     </KeyboardAwareScrollView>

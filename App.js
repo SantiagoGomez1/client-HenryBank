@@ -16,6 +16,7 @@ import Success from "./src/components/Success/Success";
 import DetailUser from "./src/components/UserDetail/UserDetail";
 import InvestorBuy from "./src/components/InvestorBuy/InvestorBuy";
 import DetailCoinsInvestorBuy from "./src/components/DetailCoinsInvestorBuy/DetailCoinsInvestorBuy";
+import Confirmation from "./src/components/SuccessLogIn/SuccessLogIn";
 
 export default function App() {
   const Stack = createStackNavigator();
@@ -29,6 +30,7 @@ export default function App() {
           }}
         >
           <Stack.Screen name="Log In" component={LogIn} />
+          <Stack.Screen name="Confirmation" component={Confirmation} />
           <Stack.Screen name="RegisterA" component={RegisterA} />
           <Stack.Screen name="RegisterB" component={RegisterB} />
           <Stack.Screen name="RegisterC" component={RegisterC} />
@@ -36,7 +38,10 @@ export default function App() {
           <Stack.Screen name="HomeRoutes" component={HomeRoutes} />
           <Stack.Screen name="Detail User" component={DetailUser} />
           <Stack.Screen name="InvestorBuy" component={InvestorBuy} />
-          <Stack.Screen name="DetailCoinsInvestorBuy" component={DetailCoinsInvestorBuy}/>
+          <Stack.Screen
+            name="DetailCoinsInvestorBuy"
+            component={DetailCoinsInvestorBuy}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
