@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { Button, StyleSheet, Text } from "react-native";
+import { Button, StyleSheet, Text, View, ScrollView } from "react-native";
 import { Input, Icon } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import Constants from "expo-constants";
 
 export default function RegisterA() {
@@ -75,69 +74,67 @@ export default function RegisterA() {
   };
 
   return (
-    <KeyboardAwareScrollView style={styles.container}>
-      <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
-        <Text style={styles.tittle}>Regístrate</Text>
-        <Input
-          containerStyle={styles.input}
-          placeholder="soyhenry@gmail.com"
-          label="E-mail"
-          onChange={(e) => handleOnChange(e, "email")}
-          errorMessage={errorEmail}
-          defaultValue={formData.email}
-        />
-        <Input
-          containerStyle={styles.input}
-          placeholder="soyhenry@gmail.com"
-          label="Confirmar E-mail"
-          onChange={(e) => handleOnChange(e, "confirmEmail")}
-          errorMessage={errorConfirmEmail}
-          defaultValue={formData.confirmEmail}
-        />
-        <Input
-          containerStyle={styles.input}
-          placeholder="8 digitos"
-          label="Contraseña"
-          password={true}
-          secureTextEntry={!showPassword}
-          onChange={(e) => handleOnChange(e, "password")}
-          errorMessage={errorPassword}
-          defaultValue={formData.password}
-          rightIcon={
-            <Icon
-              type="material-community"
-              name={showPassword ? "eye-off-outline" : "eye-outline"}
-              iconStyle={styles.icon}
-              onPress={() => setShowPassword(!showPassword)}
-            />
-          }
-        />
-        <Input
-          containerStyle={styles.input}
-          placeholder="8 digitos"
-          label="Confirmar Contraseña"
-          password={true}
-          secureTextEntry={!showPassword}
-          onChange={(e) => handleOnChange(e, "confirmPassword")}
-          errorMessage={errorConfirPassword}
-          defaultValue={formData.confirmPassword}
-          rightIcon={
-            <Icon
-              type="material-community"
-              name={showPassword ? "eye-off-outline" : "eye-outline"}
-              iconStyle={styles.icon}
-              onPress={() => setShowPassword(!showPassword)}
-            />
-          }
-        />
+    <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
+      <Text style={styles.tittle}>Regístrate</Text>
+      <Input
+        containerStyle={styles.input}
+        placeholder="soyhenry@gmail.com"
+        label="E-mail"
+        onChange={(e) => handleOnChange(e, "email")}
+        errorMessage={errorEmail}
+        defaultValue={formData.email}
+      />
+      <Input
+        containerStyle={styles.input}
+        placeholder="soyhenry@gmail.com"
+        label="Confirmar E-mail"
+        onChange={(e) => handleOnChange(e, "confirmEmail")}
+        errorMessage={errorConfirmEmail}
+        defaultValue={formData.confirmEmail}
+      />
+      <Input
+        containerStyle={styles.input}
+        placeholder="8 digitos"
+        label="Contraseña"
+        password={true}
+        secureTextEntry={!showPassword}
+        onChange={(e) => handleOnChange(e, "password")}
+        errorMessage={errorPassword}
+        defaultValue={formData.password}
+        rightIcon={
+          <Icon
+            type="material-community"
+            name={showPassword ? "eye-off-outline" : "eye-outline"}
+            iconStyle={styles.icon}
+            onPress={() => setShowPassword(!showPassword)}
+          />
+        }
+      />
+      <Input
+        containerStyle={styles.input}
+        placeholder="8 digitos"
+        label="Confirmar Contraseña"
+        password={true}
+        secureTextEntry={!showPassword}
+        onChange={(e) => handleOnChange(e, "confirmPassword")}
+        errorMessage={errorConfirPassword}
+        defaultValue={formData.confirmPassword}
+        rightIcon={
+          <Icon
+            type="material-community"
+            name={showPassword ? "eye-off-outline" : "eye-outline"}
+            iconStyle={styles.icon}
+            onPress={() => setShowPassword(!showPassword)}
+          />
+        }
+      />
 
-        <Button
-          style={styles.btn}
-          title="Siguiente"
-          onPress={() => registerUser()}
-        ></Button>
-      </LinearGradient>
-    </KeyboardAwareScrollView>
+      <Button
+        style={styles.btn}
+        title="Siguiente"
+        onPress={() => registerUser()}
+      ></Button>
+    </LinearGradient>
   );
 }
 
