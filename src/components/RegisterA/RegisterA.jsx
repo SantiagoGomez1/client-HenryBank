@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import { Button, View, StyleSheet, Text, TextInput } from "react-native";
-import { Input, Icon } from "react-native-elements";
+import { Button, StyleSheet, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-
-import { createIconSetFromFontello } from "react-native-vector-icons";
-
 import { LinearGradient } from "expo-linear-gradient";
+import Constants from "expo-constants";
+import { Input, Icon } from "react-native-elements";
 
 export default function RegisterA() {
   const navigation = useNavigation();
@@ -49,6 +47,10 @@ export default function RegisterA() {
       setErrorEmail("Debes ingresar un E-mail válido");
       isValid = false;
     }
+    if (!validateEmail(formData.confirmEmail)) {
+      setErrorConfirmEmail("Debes ingresar un E-mail válido");
+      isValid = false;
+    }
     if (formData.email !== formData.confirmEmail) {
       setErrorEmail("Los E-mails no coinciden");
       setErrorConfirmEmail("Los E-mails  no coinciden");
@@ -72,78 +74,67 @@ export default function RegisterA() {
   };
 
   return (
-    <View style={styles.container}>
-      <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
-        <Text style={styles.tittle}>Regístrate</Text>
+    <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
+      <Text style={styles.tittle}>Regístrate</Text>
+      <Input
+        containerStyle={styles.input}
+        placeholder="soyhenry@gmail.com"
+        label="E-mail"
+        onChange={(e) => handleOnChange(e, "email")}
+        errorMessage={errorEmail}
+        defaultValue={formData.email}
+      />
+      <Input
+        containerStyle={styles.input}
+        placeholder="soyhenry@gmail.com"
+        label="Confirmar E-mail"
+        onChange={(e) => handleOnChange(e, "confirmEmail")}
+        errorMessage={errorConfirmEmail}
+        defaultValue={formData.confirmEmail}
+      />
+      <Input
+        containerStyle={styles.input}
+        placeholder="8 digitos"
+        label="Contraseña"
+        password={true}
+        secureTextEntry={!showPassword}
+        onChange={(e) => handleOnChange(e, "password")}
+        errorMessage={errorPassword}
+        defaultValue={formData.password}
+        rightIcon={
+          <Icon
+            type="material-community"
+            name={showPassword ? "eye-off-outline" : "eye-outline"}
+            iconStyle={styles.icon}
+            onPress={() => setShowPassword(!showPassword)}
+          />
+        }
+      />
+      <Input
+        containerStyle={styles.input}
+        placeholder="8 digitos"
+        label="Confirmar Contraseña"
+        password={true}
+        secureTextEntry={!showPassword}
+        onChange={(e) => handleOnChange(e, "confirmPassword")}
+        errorMessage={errorConfirPassword}
+        defaultValue={formData.confirmPassword}
+        rightIcon={
+          <Icon
+            type="material-community"
+            name={showPassword ? "eye-off-outline" : "eye-outline"}
+            iconStyle={styles.icon}
+            onPress={() => setShowPassword(!showPassword)}
+          />
+        }
+      />
 
-        {/* <Text style={styles.text}>E-mail</Text> */}
-        <Input
-          containerStyle={styles.input}
-          placeholder="soyhenry@gmail.com"
-          label="E-mail"
-          onChange={(e) => handleOnChange(e, "email")}
-          errorMessage={errorEmail}
-          defaultValue={formData.email}
-        />
-
-        {/* <Text style={styles.text}>Confirmar E-mail</Text> */}
-        <Input
-          containerStyle={styles.input}
-          placeholder="soyhenry@gmail.com"
-          label="Confirmar E-mail"
-          onChange={(e) => handleOnChange(e, "confirmEmail")}
-          errorMessage={errorConfirmEmail}
-          defaultValue={formData.confirmEmail}
-        />
-
-        {/* <Text style={styles.text}>Contraseña</Text> */}
-        <Input
-          containerStyle={styles.input}
-          placeholder="8 digitos"
-          label="Contraseña"
-          password={true}
-          secureTextEntry={!showPassword}
-          onChange={(e) => handleOnChange(e, "password")}
-          errorMessage={errorPassword}
-          defaultValue={formData.password}
-          rightIcon={
-            <Icon
-              type="material-community"
-              name={showPassword ? "eye-off-outline" : "eye-outline"}
-              iconStyle={styles.icon}
-              onPress={() => setShowPassword(!showPassword)}
-            />
-          }
-        />
-
-        {/* <Text style={styles.text}>Confirmar Contraseña</Text> */}
-        <Input
-          containerStyle={styles.input}
-          placeholder="8 digitos"
-          label="Confirmar Contraseña"
-          password={true}
-          secureTextEntry={!showPassword}
-          onChange={(e) => handleOnChange(e, "confirmPassword")}
-          errorMessage={errorConfirPassword}
-          defaultValue={formData.confirmPassword}
-          rightIcon={
-            <Icon
-              type="material-community"
-              name={showPassword ? "eye-off-outline" : "eye-outline"}
-              iconStyle={styles.icon}
-              onPress={() => setShowPassword(!showPassword)}
-            />
-          }
-        />
-
-        <Button
-          style={styles.btn}
-          title="Siguiente"
-          // onPress={() => goRegisterB()}
-          onPress={() => registerUser()}
-        ></Button>
-      </LinearGradient>
-    </View>
+      <Button
+        style={styles.btn}
+        title="Siguiente"
+        onPress={() => registerUser()}
+      ></Button>
+    </LinearGradient>
   );
 }
 
@@ -157,6 +148,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: "100%",
     justifyContent: "space-around",
+    paddingTop: Constants.statusBarHeight,
   },
   input: {
     backgroundColor: "white",

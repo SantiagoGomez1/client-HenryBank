@@ -2,6 +2,7 @@ import React from "react";
 import { View, Button, Text, StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/native";
+import Constants from "expo-constants";
 
 const RegisterC = () => {
   const navigation = useNavigation();
@@ -44,6 +45,7 @@ const styles = StyleSheet.create({
   background: {
     flex: 1,
     justifyContent: "space-around",
+    paddingTop: Constants.statusBarHeight,
   },
   datos: {
     alignSelf: "center",
