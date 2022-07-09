@@ -14,7 +14,7 @@ import RegisterA from "./src/components/RegisterA/RegisterA";
 import RegisterB from "./src/components/RegisterB/RegisterB.jsx";
 import RegisterC from "./src/components/RegisterC/RegisterC";
 import Success from "./src/components/Success/Success";
-import DetailUser from "./src/components/UserDetail/UserDetail";
+import UserDetail from "./src/components/UserDetail/UserDetail";
 import InvestorBuy from "./src/components/InvestorBuy/InvestorBuy";
 import DetailCoinsInvestorBuy from "./src/components/DetailCoinsInvestorBuy/DetailCoinsInvestorBuy";
 import Confirmation from "./src/components/SuccessLogIn/SuccessLogIn";
@@ -38,7 +38,7 @@ export default function App() {
           <Stack.Screen name="Success" component={Success} />
           <Stack.Screen name="HomeRoutes" component={HomeRoutes} />
           <Stack.Screen name="HomeMovimientos" component={HomeMovimientos} />
-          <Stack.Screen name="Detail User" component={DetailUser} />
+          <Stack.Screen name="User Detail" component={UserDetail} />
           <Stack.Screen name="InvestorBuy" component={InvestorBuy} />
           <Stack.Screen
             name="DetailCoinsInvestorBuy"
