@@ -16,23 +16,27 @@ const Confirmation = () => {
           style={styles.imgS}
           source={require("../../imgs/Success.png")}
         ></Image>
-        {setTimeout(() => {
-          navigation.navigate("HomeRoutes");
-        }, 1500)}
+        <Text>
+          {setTimeout(() => {
+            navigation.navigate("HomeRoutes");
+          }, 1500)}
+        </Text>
       </LinearGradient>
     );
   }
   if (!logIn.token) {
     return (
       <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
-        <Text style={styles.textMain}>{logIn.msg}</Text>
+        <Text style={styles.textMain}>Cuenta inexistente</Text>
         <Image
           style={styles.imgS}
           source={require("../../imgs/error.png")}
         ></Image>
-        {setTimeout(() => {
-          navigation.navigate("Log In");
-        }, 1500)}
+        <Text>
+          {setTimeout(() => {
+            navigation.navigate("Log In");
+          }, 1500)}
+        </Text>
       </LinearGradient>
     );
   }
