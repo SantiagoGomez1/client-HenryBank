@@ -5,7 +5,10 @@ export const GET_USERS = "GET_USERS";
 export const GET_USER = "GET_USER";
 export const LOG_IN = "LOG_IN";
 
-export const POST_USER_DATA = "POST_USER_DATA";
+export const POST_USER_DATA = 'POST_USER_DATA';
+export const POST_USER = 'POST_USER';
+export const POST_USER_RENDER = 'POST_USER_RENDER';
+
 
 export const GET_COINS = "GET_COINS";
 export const SEARCH_COINS = "SEARCH_COINS";
@@ -43,25 +46,62 @@ export const getUser = () => {
   };
 };
 
-export const postUserData = (payload) => {
-  return async function (dispatch) {
+export  const postUserData = (payload, userMP) => {
+  return async function (dispatch){
     const posteo = {
-      name: payload.name,
-      lastName: payload.lastName,
-      identity: payload.identity,
-      gender: payload.gender,
-      dateOfBirth: payload.dateOfBirth,
-      city: payload.city,
-      nationality: payload.nationality,
-      address: payload.address,
-    };
-    console.log("Aca hay un posteo", posteo);
-    const created = await axios.post("http://localhost:3001/register", posteo);
-    return dispatch({
-      type: "POST_USER_DATA",
-      payload: created.data,
-    });
-  };
+      "name": payload.name,
+      "lastName": payload.lastName,
+      "identity": payload.identity,
+      "gender": payload.gender,
+      "dateOfBirth": payload.dateOfBirth,
+      "city": payload.city,
+      "nationality": payload.nationality,
+      "address": payload.address,
+      "email": userMP.email,
+      "password": userMP.password,
+    }    
+      console.log('Aca hay un posteo', posteo);
+      const created = await axios.post('http://localhost:3001/register',posteo); 
+      return dispatch({
+          type : 'POST_USER_DATA',
+          payload: created.data,
+      })
+  }
+};
+
+export  const postUserDataCard = (payload, userMP) => {
+  return async function (dispatch){
+    const posteo2 = {
+      "name": payload.name,
+      "lastName": payload.lastName,
+      "identity": payload.identity,
+      "gender": payload.gender,
+      "dateOfBirth": payload.dateOfBirth,
+      "city": payload.city,
+      "nationality": payload.nationality,
+      "address": payload.address,
+      "email": userMP.email,
+      "password": userMP.password,
+    }    
+      console.log('Aca hay un posteo2', posteo2);      
+      return dispatch({
+          type : 'POST_USER_RENDER',
+          payload,
+      })
+  }
+};
+
+export  const postUser = (payload) => {
+  return async function (dispatch){
+    const post = {      
+      "email": payload.email,
+      "password": payload.password,
+    } 
+      return dispatch({
+          type : 'POST_USER',
+          payload,
+      })
+  }
 };
 
 export const getCoins = () => async (dispatch) => {
@@ -75,3 +115,4 @@ export const getCoins = () => async (dispatch) => {
 export function searchCoins(name) {
   return { type: SEARCH_COINS, payload: name };
 }
+
