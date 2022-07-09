@@ -27,7 +27,12 @@ const config = {
 
 export const logIn = (form) => async (dispatch) => {
   console.log(form);
-  const response = await axios.post("https://h-bank-deploy.herokuapp.com/login", form);
+
+  const response = await axios.post(
+    "https://h-bank-deploy.herokuapp.com/login",
+    form
+  );
+
   const payload = await response.data;
   console.log(payload);
   return dispatch({ type: LOG_IN, payload });
@@ -50,24 +55,27 @@ export const getUser = () => {
 export const postUserData = (payload, userMP) => {
   return async function (dispatch) {
     const posteo = {
-      "name": payload.name,
-      "lastName": payload.lastName,
-      "identity": payload.identity,
-      "gender": payload.gender,
-      "dateOfBirth": payload.dateOfBirth,
-      "city": payload.city,
-      "nationality": payload.nationality,
-      "address": payload.address,
-      "email": userMP.email,
-      "password": userMP.password,
-    }    
-      console.log('Aca hay un posteo', posteo);
-      const created = await axios.post('https://h-bank-deploy.herokuapp.com/register',posteo); 
-      return dispatch({
-          type : 'POST_USER_DATA',
-          payload: created.data,
-      })
-  }
+      name: payload.name,
+      lastName: payload.lastName,
+      identity: payload.identity,
+      gender: payload.gender,
+      dateOfBirth: payload.dateOfBirth,
+      city: payload.city,
+      nationality: payload.nationality,
+      address: payload.address,
+      email: userMP.email,
+      password: userMP.password,
+    };
+    console.log("Aca hay un posteo", posteo);
+    const created = await axios.post(
+      "https://h-bank-deploy.herokuapp.com/register",
+      posteo
+    );
+    return dispatch({
+      type: "POST_USER_DATA",
+      payload: created.data,
+    });
+  };p
 };
 
 export const postUserDataCard = (payload, userMP) => {

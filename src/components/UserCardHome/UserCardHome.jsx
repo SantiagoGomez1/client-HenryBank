@@ -6,16 +6,30 @@ import { IconButton } from "react-native-paper";
 
 import { LinearGradient } from "expo-linear-gradient";
 
+import { useNavigation } from "@react-navigation/native";
+
 import { useSelector } from "react-redux";
+
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 const UserCardHome = () => {
   const user = useSelector((state) => state.user);
+  const navigation = useNavigation();
+  const onClick = () => {
+    navigation.navigate("User Detail");
+  };
   return (
     <View style={styles.container}>
       <View style={{ flexDirection: "row" }}>
         <View>
           <LinearGradient colors={["#126492", "#140152"]} style={styles.image}>
-            <Image style={styles.image} source={{ uri: `${user.image}` }} />
+            <TouchableOpacity onPress={() => onClick()}>
+              <Image
+                onAccessibilityTap={() => onClick()}
+                style={styles.image}
+                source={{ uri: `${user.image}` }}
+              />
+            </TouchableOpacity>
           </LinearGradient>
         </View>
         <View style={styles.data}>
