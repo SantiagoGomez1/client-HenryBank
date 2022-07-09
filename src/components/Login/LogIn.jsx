@@ -2,14 +2,15 @@ import React, { useState } from "react";
 import { Button, View, Image, StyleSheet, Text } from "react-native";
 import { Input, Icon } from "react-native-elements";
 import { LinearGradient } from "expo-linear-gradient";
+import Constants from "expo-constants";
 import { logIn } from "../../redux/actions";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useNavigation } from "@react-navigation/native";
 
-const LogIn = ({ navigation }) => {
+const LogIn = () => {
   const [showPassword, setShowPassword] = useState(false);
-
-  const email = "prueba@gmail.com";
-  const password = "12345678";
+  const dispatch = useDispatch();
+  const navigation = useNavigation();
 
   const [formData, setFormData] = useState({
     email: "",
@@ -25,7 +26,8 @@ const LogIn = ({ navigation }) => {
 
   const registerUser = () => {
     if (!validateData()) return;
-    navigation.navigate("HomeRoutes");
+    dispatch(logIn(formData));
+    navigation.navigate("Confirmation");
   };
 
   const validateData = () => {
@@ -105,6 +107,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: "100%",
     justifyContent: "space-around",
+    paddingTop: Constants.statusBarHeight,
   },
   image: {
     width: 300,
