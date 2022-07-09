@@ -39,7 +39,7 @@ export  const postUserData = (payload) => {
       "nationality": payload.nationality,
       "address": payload.address,
     }
- console.log(posteo);
+ console.log('Aca hay un posteo', posteo);
       const created = await axios.post('http://localhost:3001/register',posteo); 
       return dispatch({
           type : 'POST_USER_DATA',

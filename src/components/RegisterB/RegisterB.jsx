@@ -3,10 +3,14 @@ import { View, Text, TextInput, StyleSheet, Button, ScrollView } from "react-nat
 import { useNavigation } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
 import { Input, Icon } from "react-native-elements";
+import {useDispatch, useSelector} from 'react-redux';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
+
+import { postUserData } from "../../redux/actions";
 
 
 const RegisterB = () => {
+  const dispatch = useDispatch()
   const navigation = useNavigation();
   const goRegisterC = () => {
     navigation.navigate("RegisterC");
@@ -48,11 +52,11 @@ const RegisterB = () => {
   };  
 
   const registerUserPerData = () => {
-    if (!validateData()) {
-      return;
-    }
+    // if (!validateData()) {
+    //   return;
+    // }
+    dispatch(postUserData(formData))
     console.log("todo ok B", formData);
-    goRegisterC();
     setFormData({
       name: "",
       lastName: "",
@@ -62,7 +66,8 @@ const RegisterB = () => {
       city: "",
       nationality: "",
       address: "", 
-    });
+    });    
+    goRegisterC();
   };
 //----------------------Funtion Validation----------------------//
   const validateData = () => {

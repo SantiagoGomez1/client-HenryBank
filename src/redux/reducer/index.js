@@ -26,7 +26,7 @@ const rootReducer = (state = initialState, action) => {
 
     case POST_USER_DATA:
       return {
-        ...state,        
+        ...state,
       };
     default:
       return state;
