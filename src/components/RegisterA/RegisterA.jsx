@@ -1,17 +1,9 @@
 import React, { useState } from "react";
-import { Button, StyleSheet, Text, View, ScrollView } from "react-native";
-import { Input, Icon } from "react-native-elements";
+import { Button, StyleSheet, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
 import Constants from "expo-constants";
-import { Button, StyleSheet, Text, ScrollView, Dimensions } from "react-native";
 import { Input, Icon } from "react-native-elements";
-import { useNavigation } from "@react-navigation/native";
-import { LinearGradient } from "expo-linear-gradient";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-
-var { height } = Dimensions.get("window");
-
 
 export default function RegisterA() {
   const navigation = useNavigation();
