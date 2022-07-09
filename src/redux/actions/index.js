@@ -15,7 +15,7 @@ export const SEARCH_COINS = "SEARCH_COINS";
 const config = {
   headers: {
     Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im11bmRvMTIzQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJGVRcWFlRjhCLzZ3eWU2SE5VcmhzYmVYOEZ5Uk45dFhweUcuenRKUFVzNGx4S2R5QWRZR0IuIiwiaWF0IjoxNjU3MzgwNzE1LCJleHAiOjE2NTc0NjcxMTV9.jVT958aADKRQ4J7onwH93F2B0R-IZ-Cjk0L5J-rR6D8",
+      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvY28ucGVyZXpAZ21haWwuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkNXVmU2xvRWtHWTdya2FKdVl6ZXpDZTUuSXQyQnJZYjRvSFY4bGJMYUVyMVY1N21adGguNW0iLCJpYXQiOjE2NTczODk5MDEsImV4cCI6MTY1NzU2MjcwMX0.5AFPG-mYPkbborveIuNFIxgt2U9vmhe005RSz7hS37w",
   },
 };
 
@@ -64,7 +64,10 @@ export const postUserData = (payload) => {
 };
 
 export const getCoins = () => async (dispatch) => {
-  const response = await axios.get("http://localhost:3001/crypto", config);
+  const response = await axios.get(
+    "https://h-bank-deploy.herokuapp.com/crypto",
+    config
+  );
   dispatch({ type: GET_COINS, payload: response.data });
 };
 
