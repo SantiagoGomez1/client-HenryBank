@@ -10,10 +10,16 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
 import { Input, Icon } from "react-native-elements";
+import {useDispatch, useSelector} from 'react-redux';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
+
+import { postUserData } from "../../redux/actions";
+
 import Constants from "expo-constants";
 
+
 const RegisterB = () => {
+  const dispatch = useDispatch()
   const navigation = useNavigation();
   const goRegisterC = () => {
     navigation.navigate("RegisterC");
@@ -55,11 +61,11 @@ const RegisterB = () => {
   };
 
   const registerUserPerData = () => {
-    if (!validateData()) {
-      return;
-    }
-    console.log("todo ok", formData);
-    goRegisterC();
+    // if (!validateData()) {
+    //   return;
+    // }
+    dispatch(postUserData(formData))
+    console.log("todo ok B", formData);
     setFormData({
       name: "",
       lastName: "",
@@ -68,8 +74,9 @@ const RegisterB = () => {
       dateOfBirth: "",
       city: "",
       nationality: "",
-      address: "",
-    });
+      address: "", 
+    });    
+    goRegisterC();
   };
   //----------------------Funtion Validation----------------------//
   const validateData = () => {
