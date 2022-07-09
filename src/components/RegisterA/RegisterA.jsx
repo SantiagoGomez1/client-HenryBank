@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import { Button, View, StyleSheet, Text, TextInput } from "react-native";
+import { Button, StyleSheet, Text } from "react-native";
 import { Input, Icon } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
-
-import { createIconSetFromFontello } from "react-native-vector-icons";
-
 import { LinearGradient } from "expo-linear-gradient";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import Constants from "expo-constants";
 
 export default function RegisterA() {
   const navigation = useNavigation();
@@ -49,6 +48,10 @@ export default function RegisterA() {
       setErrorEmail("Debes ingresar un E-mail válido");
       isValid = false;
     }
+    if (!validateEmail(formData.confirmEmail)) {
+      setErrorConfirmEmail("Debes ingresar un E-mail válido");
+      isValid = false;
+    }
     if (formData.email !== formData.confirmEmail) {
       setErrorEmail("Los E-mails no coinciden");
       setErrorConfirmEmail("Los E-mails  no coinciden");
@@ -72,11 +75,9 @@ export default function RegisterA() {
   };
 
   return (
-    <View style={styles.container}>
+    <KeyboardAwareScrollView style={styles.container}>
       <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
         <Text style={styles.tittle}>Regístrate</Text>
-
-        {/* <Text style={styles.text}>E-mail</Text> */}
         <Input
           containerStyle={styles.input}
           placeholder="soyhenry@gmail.com"
@@ -85,8 +86,6 @@ export default function RegisterA() {
           errorMessage={errorEmail}
           defaultValue={formData.email}
         />
-
-        {/* <Text style={styles.text}>Confirmar E-mail</Text> */}
         <Input
           containerStyle={styles.input}
           placeholder="soyhenry@gmail.com"
@@ -95,8 +94,6 @@ export default function RegisterA() {
           errorMessage={errorConfirmEmail}
           defaultValue={formData.confirmEmail}
         />
-
-        {/* <Text style={styles.text}>Contraseña</Text> */}
         <Input
           containerStyle={styles.input}
           placeholder="8 digitos"
@@ -115,8 +112,6 @@ export default function RegisterA() {
             />
           }
         />
-
-        {/* <Text style={styles.text}>Confirmar Contraseña</Text> */}
         <Input
           containerStyle={styles.input}
           placeholder="8 digitos"
@@ -139,11 +134,10 @@ export default function RegisterA() {
         <Button
           style={styles.btn}
           title="Siguiente"
-          // onPress={() => goRegisterB()}
           onPress={() => registerUser()}
         ></Button>
       </LinearGradient>
-    </View>
+    </KeyboardAwareScrollView>
   );
 }
 
@@ -157,6 +151,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: "100%",
     justifyContent: "space-around",
+    paddingTop: Constants.statusBarHeight,
   },
   input: {
     backgroundColor: "white",
