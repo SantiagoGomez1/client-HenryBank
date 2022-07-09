@@ -51,7 +51,7 @@ const RegisterB = () => {
     if (!validateData()) {
       return;
     }
-    console.log("todo ok", formData);
+    console.log("todo ok B", formData);
     goRegisterC();
     setFormData({
       name: "",
