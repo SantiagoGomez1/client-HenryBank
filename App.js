@@ -9,7 +9,6 @@ import { NavigationContainer } from "@react-navigation/native";
 
 import LogIn from "./src/components/Login/LogIn.jsx";
 import HomeRoutes from "./src/components/HomeRoutes/HomeRoutes";
-import HomeMovimientos from './src/components/HomeMovimientos/HomeMovimientos.jsx'
 import RegisterA from "./src/components/RegisterA/RegisterA";
 import RegisterB from "./src/components/RegisterB/RegisterB.jsx";
 import RegisterC from "./src/components/RegisterC/RegisterC";
@@ -35,7 +34,6 @@ export default function App() {
           <Stack.Screen name="RegisterC" component={RegisterC} />
           <Stack.Screen name="Success" component={Success} />
           <Stack.Screen name="HomeRoutes" component={HomeRoutes} />
-          <Stack.Screen name="HomeMovimientos" component={HomeMovimientos} />
           <Stack.Screen name="Detail User" component={DetailUser} />
           <Stack.Screen name="InvestorBuy" component={InvestorBuy} />
           <Stack.Screen name="DetailCoinsInvestorBuy" component={DetailCoinsInvestorBuy}/>

@@ -1,9 +1,10 @@
-import { GET_USERS, GET_USER, LOG_IN } from "../actions/index";
+import { GET_USERS, GET_USER, LOG_IN, RENDER_SCREEN } from "../actions/index";
 
 const initialState = {
   users: [],
   user: {},
   logIn: {},
+  renderScreen:0,
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -22,6 +23,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         logIn: action.payload,
+      };
+      case RENDER_SCREEN:
+      return {
+        ...state,
+        renderScreen: action.payload,
       };
     default:
       return state;

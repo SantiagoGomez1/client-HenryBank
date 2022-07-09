@@ -2,12 +2,19 @@ import React from "react";
 
 import { View, Text, StyleSheet } from "react-native";
 
+import { useDispatch } from "react-redux";
+
+import { renderScreen } from "../../redux/actions";
+
 import { IconButton } from "react-native-paper";
 
-import { useNavigation } from "@react-navigation/native";
-
 const HomeBubbleMenu = () => {
-  const navigation = useNavigation();
+  const dispatch = useDispatch();
+
+  const setScreen = (screen) => {
+    dispatch(renderScreen(screen));
+  };
+
   return (
     <View style={styles.container}>
       <View>
@@ -36,17 +43,18 @@ const HomeBubbleMenu = () => {
           icon="sync"
           color="white"
           size={40}
-          onPress={() => navigation.navigate("HomeMovimientos")}
+          onPress={() => setScreen(3)}
         />
         <Text style={styles.text}>Movimientos</Text>
       </View>
       <View>
         <IconButton
           style={styles.btn}
-          icon="align-vertical-bottom"
+          // icon="align-vertical-bottom"
+          icon="finance"
           color="white"
           size={40}
-          onPress={() => console.log("uy")}
+          onPress={() => setScreen(4)}
         />
         <Text style={styles.text}>Inversiones</Text>
       </View>

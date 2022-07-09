@@ -1,11 +1,13 @@
-import { StyleSheet, Text, TextInput, View, Dimensions } from "react-native";
 import React from "react";
+
+import { StyleSheet, Text, TextInput, View, Dimensions } from "react-native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { LinearGradient } from "expo-linear-gradient";
-import UserCardHome from "../UserCardHome/UserCardHome";
 import { Button } from "react-native-elements";
 import { FlatList } from "react-native-gesture-handler";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+
 import CardCoinsInvestorBuy from "../CardCoinsInvestorBuy/CardCoinsInvestorBuy";
+import UserCardHome from "../UserCardHome/UserCardHome";
 
 var { height } = Dimensions.get("window");
 
