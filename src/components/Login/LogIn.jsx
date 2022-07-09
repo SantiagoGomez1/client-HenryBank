@@ -53,34 +53,34 @@ const LogIn = ({ navigation }) => {
           style={styles.image}
           source={require("../../imgs/HenryBank.png")}
         ></Image>
-        <View>
-          <Input
-            containerStyle={styles.input}
-            placeholder="soyhenry@gmail.com"
-            label="E-mail"
-            onChange={(e) => handleOnChange(e, "email")}
-            errorMessage={errorEmail}
-            defaultValue={formData.email}
-          ></Input>
-          <Input
-            containerStyle={styles.input}
-            placeholder="6 digitos"
-            label="Contraseña"
-            password={true}
-            secureTextEntry={!showPassword}
-            onChange={(e) => handleOnChange(e, "password")}
-            errorMessage={errorPassword}
-            defaultValue={formData.password}
-            rightIcon={
-              <Icon
-                type="material-community"
-                name={showPassword ? "eye-off-outline" : "eye-outline"}
-                iconStyle={styles.icon}
-                onPress={() => setShowPassword(!showPassword)}
-              />
-            }
-          />
-        </View>
+
+        <Input
+          containerStyle={styles.input}
+          placeholder="soyhenry@gmail.com"
+          label="E-mail"
+          onChange={(e) => handleOnChange(e, "email")}
+          errorMessage={errorEmail}
+          defaultValue={formData.email}
+        ></Input>
+        <Input
+          containerStyle={styles.input}
+          placeholder="6 digitos"
+          label="Contraseña"
+          password={true}
+          secureTextEntry={!showPassword}
+          onChange={(e) => handleOnChange(e, "password")}
+          errorMessage={errorPassword}
+          defaultValue={formData.password}
+          rightIcon={
+            <Icon
+              type="material-community"
+              name={showPassword ? "eye-off-outline" : "eye-outline"}
+              iconStyle={styles.icon}
+              onPress={() => setShowPassword(!showPassword)}
+            />
+          }
+        />
+
         <View style={styles.btn}>
           <Button title="Log In" onPress={() => registerUser()}></Button>
           <Button
@@ -107,18 +107,15 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
   },
   image: {
-    width: 340,
-    height: 340,
+    width: 300,
+    height: 300,
     borderRadius: 100,
   },
   input: {
     backgroundColor: "white",
     borderRadius: 25,
-    margin: 5,
-    alignSelf: "center",
-    paddingLeft: 25,
-    paddingTop: 15,
-    width: "100%",
+    paddingTop: 10,
+    width: "80%",
   },
   icon: {
     color: "#85929E",
@@ -128,7 +125,7 @@ const styles = StyleSheet.create({
   },
   text: {
     color: "#fff",
-    fontSize: 15,
+    fontSize: 10,
   },
   passwordHelp: {
     color: "#fff",

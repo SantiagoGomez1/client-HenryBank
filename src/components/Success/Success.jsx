@@ -51,9 +51,10 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   imgSuccess: {
-    height: 250,
+    height: 253.6,
     width: 250,
     alignSelf: "center",
+    padding: 5,
   },
 });
 
