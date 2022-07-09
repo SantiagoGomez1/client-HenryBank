@@ -4,13 +4,17 @@ import Constants from 'expo-constants'
 
 import { View, StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import { useSelector } from 'react-redux'
 
 import UserCardHome from "../UserCardHome/UserCardHome.jsx";
 import UserCapital from "../UserCapital/UserCapital.jsx";
 import HomeBubbleMenu from "../HomeBubbleMenu/HomeBubbleMenu.jsx";
 import RenderScreen from "../RenderScreen/RenderScreen.jsx";
+import RenderScreenMovimientos from "../RenderScreenMovimientos/RenderScreenMovimientos.jsx";
+import RenderScreenInvestor from "../RenderScreenInvestor/RenderScreenInvestor.jsx"
 
 const Home = () => {
+  let screen = useSelector(state => state.renderScreen)
   return (
     <View style={styles.container}>
       <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
@@ -24,7 +28,7 @@ const Home = () => {
           <HomeBubbleMenu />
         </View>
         <View style={{flex:0, paddingTop:40, alignItems:'center'}}>
-          <RenderScreen />
+           { screen === 0 ? <RenderScreen /> : screen === 3 ? <RenderScreenMovimientos /> : screen === 4 ?  <RenderScreenInvestor /> : <RenderScreen /> }
         </View>
       </LinearGradient>
     </View>

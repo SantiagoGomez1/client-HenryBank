@@ -4,6 +4,7 @@ import { dataa } from "../../../response";
 export const GET_USERS = "GET_USERS";
 export const GET_USER = "GET_USER";
 export const LOG_IN = "LOG_IN";
+export const RENDER_SCREEN = "RENDER_SCREEN";
 
 export const POST_USER_DATA = "POST_USER_DATA";
 export const POST_USER = "POST_USER";
@@ -103,6 +104,13 @@ export const postUser = (payload) => {
     });
   };
 };
+
+
+export const renderScreen = (payload) =>{
+  return {
+    type: RENDER_SCREEN,
+    payload
+  }
 
 export const getCoins = () => async (dispatch) => {
   const response = await axios.get(
