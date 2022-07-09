@@ -1,9 +1,10 @@
-import { GET_USERS, GET_USER, LOG_IN } from "../actions/index";
+import { GET_USERS, GET_USER, LOG_IN, GET_COINS } from "../actions/index";
 
 const initialState = {
   users: [],
   user: {},
   logIn: {},
+  coins: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -22,6 +23,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         logIn: action.payload,
+      };
+    case GET_COINS:
+      return {
+        ...state,
+        coins: action.payload,
       };
     default:
       return state;

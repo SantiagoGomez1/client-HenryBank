@@ -4,6 +4,18 @@ import { data } from "../../../response";
 export const GET_USERS = "GET_USERS";
 export const GET_USER = "GET_USER";
 export const LOG_IN = "LOG_IN";
+export const GET_COINS = "GET_COINS";
+
+//------------Config with token ---------------------------
+
+const config = {
+  headers: {
+    Authorization:
+      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im11bmRvMTIzQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJGVRcWFlRjhCLzZ3eWU2SE5VcmhzYmVYOEZ5Uk45dFhweUcuenRKUFVzNGx4S2R5QWRZR0IuIiwiaWF0IjoxNjU3MzgwNzE1LCJleHAiOjE2NTc0NjcxMTV9.jVT958aADKRQ4J7onwH93F2B0R-IZ-Cjk0L5J-rR6D8",
+  },
+};
+
+//---------------------------------------------------------
 
 export const logIn = (form) => async (dispatch) => {
   console.log(form);
@@ -24,4 +36,9 @@ export const getUser = () => {
     type: GET_USER,
     payload: data,
   };
+};
+
+export const getCoins = () => async (dispatch) => {
+  const response = await axios.get("http://localhost:3001/crypto", config);
+  dispatch({ type: GET_COINS, payload: response.data });
 };
