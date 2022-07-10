@@ -1,17 +1,26 @@
 import React from "react";
 
-import { View, Text, StyleSheet, Image, Button } from "react-native";
+import { View, Text, StyleSheet, Button } from "react-native";
+
+import { useDispatch } from "react-redux";
+
+import { renderScreen } from "../../redux/actions";
 
 const RenderScreen = () => {
+  const dispatch = useDispatch();
+
+  const setScreen = (screen) => {
+    dispatch(renderScreen(screen));
+  };
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Inversiones</Text>
       <View style={styles.containerButton}>
         <View>
-          <Button style={styles.btn} title="Plazo Fijo"></Button>
+          <Button title="Plazo Fijo" onPress={() => setScreen(5)}></Button>
         </View>
         <View>
-          <Button style={styles.btn} title="Divisas/Crypto"></Button>
+          <Button title="Divisas/Crypto"></Button>
         </View>
       </View>
     </View>
@@ -30,7 +39,7 @@ const styles = StyleSheet.create({
   containerButton: {
     flex: 1,
     justifyContent: "center",
-    justifyContent:'space-evenly',
+    justifyContent: "space-evenly",
     marginHorizontal: 20,
   },
   text: {

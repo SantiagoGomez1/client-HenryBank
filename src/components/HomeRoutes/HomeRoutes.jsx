@@ -25,6 +25,11 @@ const HomeRoutes = () => {
     <Tab.Navigator
       initialRouteName="home"
       screenOptions={{
+        tabBarStyle: {
+          backgroundColor: "#140152",
+        },
+        PressColor: "gray",
+        tabBarShowLabel: false,
         headerShown: false,
       }}
     >
@@ -33,7 +38,7 @@ const HomeRoutes = () => {
         component={Home}
         options={{
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="home" color={"black"} size={size} />
+            <MaterialCommunityIcons name="home" color={"white"} size={size} />
           ),
         }}
       />
@@ -42,7 +47,7 @@ const HomeRoutes = () => {
         component={Wallet}
         options={{
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="wallet" color={"black"} size={size} />
+            <MaterialCommunityIcons name="wallet" color={"white"} size={size} />
           ),
         }}
       />
@@ -53,7 +58,7 @@ const HomeRoutes = () => {
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons
               name="stats-chart"
-              color={"black"}
+              color={"white"}
               size={size}
             />
           ),
