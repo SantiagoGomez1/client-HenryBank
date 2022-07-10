@@ -110,8 +110,8 @@ const styles = StyleSheet.create({
     paddingTop: Constants.statusBarHeight,
   },
   image: {
-    width: 300,
-    height: 300,
+    width: 250,
+    height: 250,
     borderRadius: 100,
   },
   input: {
