@@ -1,17 +1,9 @@
-
-import React from "react";
-
-import { StyleSheet, Text, TextInput, View, Dimensions } from "react-native";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { StyleSheet, Text, TextInput, View, Dimensions } from "react-native";
 import React, { useEffect } from "react";
-const axios = require("axios");
+
+import { StyleSheet, Text, TextInput, View, Dimensions } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { Button } from "react-native-elements";
 
-import { FlatList } from "react-native-gesture-handler";
-
-import CardCoinsInvestorBuy from "../CardCoinsInvestorBuy/CardCoinsInvestorBuy";
 import UserCardHome from "../UserCardHome/UserCardHome";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { useDispatch, useSelector } from "react-redux";

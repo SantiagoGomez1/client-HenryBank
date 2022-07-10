@@ -1,6 +1,3 @@
-
-import { GET_USERS, GET_USER, LOG_IN, RENDER_SCREEN } from "../actions/index";
-
 import {
   GET_USERS,
   GET_USER,
@@ -8,16 +5,17 @@ import {
   POST_USER_DATA,
   POST_USER,
   POST_USER_RENDER,
+  RENDER_SCREEN,
+  GET_COINS,
+  SEARCH_COINS,
+  GET_COIN_ID,
 } from "../actions/index";
-
-import { GET_COINS, SEARCH_COINS, GET_COIN_ID } from "../actions/index";
-
 
 const initialState = {
   users: [],
   user: {},
   logIn: {},
-  renderScreen:0,
+  renderScreen: 0,
   coins: [],
   coinDetail: {},
   userMP: [],
@@ -41,11 +39,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         logIn: action.payload,
       };
-      case RENDER_SCREEN:
+    case RENDER_SCREEN:
       return {
         ...state,
         renderScreen: action.payload,
-
+      };
     case POST_USER_DATA:
       return {
         ...state,

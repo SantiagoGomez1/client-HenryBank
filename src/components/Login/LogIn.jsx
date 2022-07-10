@@ -66,7 +66,7 @@ const LogIn = () => {
         ></Input>
         <Input
           containerStyle={styles.input}
-          placeholder="6 digitos"
+          placeholder="8 digitos"
           label="Contraseña"
           password={true}
           secureTextEntry={!showPassword}

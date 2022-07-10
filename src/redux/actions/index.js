@@ -75,7 +75,8 @@ export const postUserData = (payload, userMP) => {
       type: "POST_USER_DATA",
       payload: created.data,
     });
-  };p
+  };
+  p;
 };
 
 export const postUserDataCard = (payload, userMP) => {
@@ -113,12 +114,12 @@ export const postUser = (payload) => {
   };
 };
 
-
-export const renderScreen = (payload) =>{
+export const renderScreen = (payload) => {
   return {
     type: RENDER_SCREEN,
-    payload
-  }
+    payload,
+  };
+};
 
 export const getCoins = () => async (dispatch) => {
   const response = await axios.get(

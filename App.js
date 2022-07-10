@@ -37,7 +37,6 @@ export default function App() {
           <Stack.Screen name="Success" component={Success} />
           <Stack.Screen name="HomeRoutes" component={HomeRoutes} />
           <Stack.Screen name="User Detail" component={UserDetail} />
-          <Stack.Screen name="Detail User" component={DetailUser} />
           <Stack.Screen name="InvestorBuy" component={InvestorBuy} />
           <Stack.Screen
             name="DetailCoinsInvestorBuy"
