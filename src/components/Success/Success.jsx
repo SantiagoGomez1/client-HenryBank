@@ -8,7 +8,7 @@ const Success = () => {
 
   const set = () => {
     setTimeout(() => {
-      navigation.navigate("HomeRoutes");
+      navigation.navigate("Log In");
     }, 1500);
   };
 

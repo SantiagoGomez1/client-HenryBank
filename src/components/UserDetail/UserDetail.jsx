@@ -1,21 +1,26 @@
 import React from "react";
-import { View, StyleSheet, Text, Image } from "react-native";
+import { View, StyleSheet, Text, Image, TouchableOpacity } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useSelector } from "react-redux";
+import { TouchableHighlight } from "react-native-gesture-handler";
+import { useNavigation } from "@react-navigation/native";
 
 const DetailUser = () => {
-  const user = useSelector((state) => state.userData);
+  const user = useSelector((state) => state.userDetail);
+  const navigation = useNavigation();
+  const goHome = () => {
+    navigation.navigate("HomeRoutes");
+  };
   return (
     <View style={styles.container}>
       <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
         <View>
-          <Text style={styles.textPerfil}>Perfil</Text>
+          <TouchableOpacity onPress={() => goHome()}>
+            <Text style={styles.textPerfil}>⬅ Perfil</Text>
+          </TouchableOpacity>
         </View>
         <View>
-          <Image
-            style={styles.imgUser}
-            source={require("../../imgs/userImgDefault.png")}
-          ></Image>
+          <Image style={styles.imgUser} source={{ uri: user.image }}></Image>
           <Text style={styles.textMain}>
             {user.name} {user.lastName}
           </Text>
@@ -23,7 +28,7 @@ const DetailUser = () => {
         <View style={styles.container2}>
           <View>
             <Text style={styles.textMain2}>Datos personales</Text>
-            <Text style={styles.textSecondary}>Dni: {user.identity}</Text>
+            <Text style={styles.textSecondary}>DNI: {user.identity}</Text>
             <Text style={styles.textSecondary}>Genero: {user.gender}</Text>
             <Text style={styles.textSecondary}>
               Cumpleaños: {user.dateOfBirth}
@@ -31,12 +36,13 @@ const DetailUser = () => {
             <Text style={styles.textSecondary}>Ciudad: {user.city}</Text>
             <Text style={styles.textSecondary}>País: {user.nationality}</Text>
             <Text style={styles.textSecondary}>Dirección: {user.address}</Text>
+            <Text style={styles.textSecondary}>E-mail: {user.email}</Text>
           </View>
           <View>
             <Text style={styles.textMain2}>Datos bancarios</Text>
-            <Text style={styles.textSecondary}>Alias:</Text>
-            <Text style={styles.textSecondary}>CBU:</Text>
-            <Text style={styles.textSecondary}>CVU:</Text>
+            <Text style={styles.textSecondary}>Alias: {user.alias}</Text>
+            <Text style={styles.textSecondary}>CBU: {user.cbu}</Text>
+            <Text style={styles.textSecondary}>Balance: {user.balance}</Text>
           </View>
         </View>
       </LinearGradient>
@@ -62,8 +68,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly",
   },
   imgUser: {
-    height: 175,
-    width: 175,
+    height: 300,
+    width: 300,
     borderRadius: 100,
     alignSelf: "center",
     margin: 10,
@@ -84,6 +90,7 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 15,
     textAlign: "center",
+    padding: 5,
   },
   textPerfil: {
     color: "#fff",
