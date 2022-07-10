@@ -1,12 +1,13 @@
 import React from "react";
 
 import { View, Text, StyleSheet, Button } from "react-native";
-
+import { useNavigation } from "@react-navigation/native";
 import { useDispatch } from "react-redux";
 
 import { renderScreen } from "../../redux/actions";
 
 const RenderScreen = () => {
+  const navigation = useNavigation();
   const dispatch = useDispatch();
 
   const setScreen = (screen) => {
@@ -20,7 +21,10 @@ const RenderScreen = () => {
           <Button title="Plazo Fijo" onPress={() => setScreen(5)}></Button>
         </View>
         <View>
-          <Button title="Divisas/Crypto"></Button>
+          <Button
+            title="Divisas/Crypto"
+            onPress={() => navigation.navigate("InvestorBuy")}
+          />
         </View>
       </View>
     </View>
