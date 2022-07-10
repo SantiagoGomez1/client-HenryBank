@@ -4,7 +4,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { getUsers, getUser } from "../../redux/actions";
+import { getUsers, getUser, renderScreen } from "../../redux/actions";
 
 import MaterialCommunityIcons from "react-native-vector-icons/Ionicons";
 import Home from "../Home/Home.jsx";
