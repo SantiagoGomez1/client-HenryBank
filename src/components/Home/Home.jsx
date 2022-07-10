@@ -12,6 +12,7 @@ import HomeBubbleMenu from "../HomeBubbleMenu/HomeBubbleMenu.jsx";
 import RenderScreen from "../RenderScreen/RenderScreen.jsx";
 import RenderScreenMovimientos from "../RenderScreenMovimientos/RenderScreenMovimientos.jsx";
 import RenderScreenInvestor from "../RenderScreenInvestor/RenderScreenInvestor.jsx"
+import RenderScreenPlazoFijo from "../RenderScreenPlazoFijo/RenderScreenPlazoFijo.jsx";
 
 const Home = () => {
   let screen = useSelector(state => state.renderScreen)
@@ -28,7 +29,7 @@ const Home = () => {
           <HomeBubbleMenu />
         </View>
         <View style={{flex:0, paddingTop:40, alignItems:'center'}}>
-           { screen === 0 ? <RenderScreen /> : screen === 3 ? <RenderScreenMovimientos /> : screen === 4 ?  <RenderScreenInvestor /> : <RenderScreen /> }
+           { screen === 0 ? <RenderScreen /> : screen === 3 ? <RenderScreenMovimientos /> : screen === 4 ?  <RenderScreenInvestor /> : screen === 5 ? <RenderScreenPlazoFijo /> : <RenderScreen /> }
         </View>
       </LinearGradient>
     </View>

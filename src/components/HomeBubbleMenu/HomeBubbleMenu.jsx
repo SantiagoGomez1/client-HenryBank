@@ -1,11 +1,8 @@
 import React from "react";
 
 import { View, Text, StyleSheet } from "react-native";
-
-import { useDispatch } from "react-redux";
-
 import { renderScreen } from "../../redux/actions";
-
+import { useDispatch, useSelector } from "react-redux";
 import { IconButton } from "react-native-paper";
 
 const HomeBubbleMenu = () => {
@@ -15,47 +12,88 @@ const HomeBubbleMenu = () => {
     dispatch(renderScreen(screen));
   };
 
+  const press = useSelector(state => state.renderScreen)
+
   return (
     <View style={styles.container}>
       <View>
-        <IconButton
-          style={styles.btn}
-          icon="bank-transfer-out"
-          color="white"
-          size={40}
-          onPress={() => console.log("uy")}
-        />
+        {press === 1 ? (
+          <IconButton
+            style={styles.btnPress}
+            icon="bank-transfer-out"
+            color="white"
+            size={40}
+            onPress={() => setScreen(1)}
+          />
+        ) : (
+          <IconButton
+            style={styles.btn}
+            icon="bank-transfer-out"
+            color="white"
+            size={40}
+            onPress={() => setScreen(1)}
+          />
+        )}
         <Text style={styles.text}>Ingresar</Text>
       </View>
       <View>
-        <IconButton
-          style={styles.btn}
-          icon="bank-transfer"
-          color="white"
-          size={40}
-          onPress={() => console.log("uy")}
-        />
+        {press === 2 ? (
+          <IconButton
+            style={styles.btnPress}
+            icon="bank-transfer"
+            color="white"
+            size={40}
+            onPress={() => setScreen(2)}
+          />
+        ) : (
+          <IconButton
+            style={styles.btn}
+            icon="bank-transfer"
+            color="white"
+            size={40}
+            onPress={() => setScreen(2)}
+          />
+        )}
         <Text style={styles.text}>Transferir</Text>
       </View>
       <View>
-        <IconButton
-          style={styles.btn}
-          icon="sync"
-          color="white"
-          size={40}
-          onPress={() => setScreen(3)}
-        />
+        {press === 3 ? (
+          <IconButton
+            style={styles.btnPress}
+            icon="sync"
+            color="white"
+            size={40}
+            onPress={() => setScreen(3)}
+          />
+        ) : (
+          <IconButton
+            style={styles.btn}
+            icon="sync"
+            color="white"
+            size={40}
+            onPress={() => setScreen(3)}
+          />
+        )}
         <Text style={styles.text}>Movimientos</Text>
       </View>
       <View>
-        <IconButton
-          style={styles.btn}
-          // icon="align-vertical-bottom"
-          icon="finance"
-          color="white"
-          size={40}
-          onPress={() => setScreen(4)}
-        />
+        {press === 4 || press === 5 ? (
+          <IconButton
+            style={styles.btnPress}
+            icon="finance"
+            color="white"
+            size={40}
+            onPress={() => setScreen(4)}
+          />
+        ) : (
+          <IconButton
+            style={styles.btn}
+            icon="finance"
+            color="white"
+            size={40}
+            onPress={() => setScreen(4)}
+          />
+        )}
         <Text style={styles.text}>Inversiones</Text>
       </View>
     </View>
@@ -82,6 +120,16 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: 60,
     height: 60,
+    borderRadius: 60,
+  },
+  btnPress: {
+    backgroundColor: "transparent",
+    borderWidth: 2,
+    borderStyle: "solid",
+    borderColor: "purple",
+    justifyContent: "center",
+    width: 70,
+    height: 70,
     borderRadius: 60,
   },
 });
