@@ -16,7 +16,7 @@ const Confirmation = () => {
           style={styles.imgS}
           source={require("../../imgs/Success.png")}
         ></Image>
-        <Text>
+        <Text style={styles.text0}>
           {setTimeout(() => {
             navigation.navigate("HomeRoutes");
           }, 1500)}
@@ -32,7 +32,7 @@ const Confirmation = () => {
           style={styles.imgS}
           source={require("../../imgs/error.png")}
         ></Image>
-        <Text>
+        <Text style={styles.text0}>
           {setTimeout(() => {
             navigation.navigate("Log In");
           }, 1500)}
@@ -64,6 +64,10 @@ const styles = StyleSheet.create({
     width: 250,
     alignSelf: "center",
     padding: 5,
+  },
+  text0: {
+    color: "transparent",
+    fontSize: 0.1,
   },
 });
 

@@ -13,6 +13,7 @@ export const POST_USER_RENDER = "POST_USER_RENDER";
 export const GET_COINS = "GET_COINS";
 export const SEARCH_COINS = "SEARCH_COINS";
 export const GET_COIN_ID = "GET_COIN_ID";
+export const GET_USER_DETAIL = "GET_USER_DETAIL";
 
 //------------Config with token ---------------------------
 
@@ -136,3 +137,17 @@ export function searchCoins(name) {
 export function getCoinId(id) {
   return { type: GET_COIN_ID, payload: id };
 }
+
+export const getUserDetail = (token) => async (dispatch) => {
+  const config = {
+    headers: {
+      Authorization: token,
+    },
+  };
+  const response = await axios.get(
+    "https://h-bank-deploy.herokuapp.com/user/profile",
+    config
+  );
+  console.log(response.data);
+  dispatch({ type: GET_USER_DETAIL, payload: response.data });
+};
