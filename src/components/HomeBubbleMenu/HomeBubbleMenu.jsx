@@ -17,7 +17,7 @@ const HomeBubbleMenu = () => {
   return (
     <View style={styles.container}>
       <View>
-        {press === 1 ? (
+        {press === 1 || press === 6 ? (
           <IconButton
             style={styles.btnPress}
             icon="bank-transfer-out"

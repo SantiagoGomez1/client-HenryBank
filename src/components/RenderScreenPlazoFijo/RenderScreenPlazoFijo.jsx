@@ -11,6 +11,7 @@ const RenderScreenPlazoFijo = () => {
         style={styles.input}
         placeholder="00,00$"
         placeholderTextColor="white"
+        keyboardType="number-pad"
       />
       <View style={styles.containerBoxes}>
         <View style={styles.box}>

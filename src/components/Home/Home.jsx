@@ -10,9 +10,11 @@ import UserCardHome from "../UserCardHome/UserCardHome.jsx";
 import UserCapital from "../UserCapital/UserCapital.jsx";
 import HomeBubbleMenu from "../HomeBubbleMenu/HomeBubbleMenu.jsx";
 import RenderScreen from "../RenderScreen/RenderScreen.jsx";
+import RenderScreenIngresarMonto from "../RenderScreenIngresarMonto/RenderScreenIngresarMonto.jsx";
 import RenderScreenMovimientos from "../RenderScreenMovimientos/RenderScreenMovimientos.jsx";
-import RenderScreenInvestor from "../RenderScreenInvestor/RenderScreenInvestor.jsx"
 import RenderScreenPlazoFijo from "../RenderScreenPlazoFijo/RenderScreenPlazoFijo.jsx";
+import RenderScreenInvestor from "../RenderScreenInvestor/RenderScreenInvestor.jsx"
+import RenderScreenIngresar from '../RenderScreenIngresar/RenderScreenIngresar.jsx'
 
 const Home = () => {
   let screen = useSelector(state => state.renderScreen)
@@ -29,7 +31,7 @@ const Home = () => {
           <HomeBubbleMenu />
         </View>
         <View style={{flex:0, paddingTop:40, alignItems:'center'}}>
-           { screen === 0 ? <RenderScreen /> : screen === 3 ? <RenderScreenMovimientos /> : screen === 4 ?  <RenderScreenInvestor /> : screen === 5 ? <RenderScreenPlazoFijo /> : <RenderScreen /> }
+           { screen === 0 ? <RenderScreen /> : screen === 1 ? <RenderScreenIngresar /> : screen === 3 ? <RenderScreenMovimientos /> : screen === 4 ?  <RenderScreenInvestor /> : screen === 5 ? <RenderScreenPlazoFijo /> : screen === 6 ? <RenderScreenIngresarMonto /> : <RenderScreen /> }
         </View>
       </LinearGradient>
     </View>

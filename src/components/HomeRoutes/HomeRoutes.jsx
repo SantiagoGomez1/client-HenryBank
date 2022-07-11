@@ -3,8 +3,10 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import { useEffect } from "react";
+
 import { useDispatch, useSelector } from "react-redux";
-import { getUsers, getUser, getUserDetail } from "../../redux/actions";
+import { getUsers, getUser, getUserDetail, renderScreen } from "../../redux/actions";
+
 
 import MaterialCommunityIcons from "react-native-vector-icons/Ionicons";
 import Home from "../Home/Home.jsx";
