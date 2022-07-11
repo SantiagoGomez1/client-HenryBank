@@ -11,7 +11,7 @@ const Confirmation = () => {
   if (logIn.token) {
     return (
       <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
-        <Text style={styles.textMain}>Log In exitoso</Text>
+        <Text style={styles.textMain}>¡Bienvenido!</Text>
         <Image
           style={styles.imgS}
           source={require("../../imgs/Success.png")}
