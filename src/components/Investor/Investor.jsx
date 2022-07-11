@@ -5,7 +5,6 @@ import { LinearGradient } from "expo-linear-gradient";
 import UserCardHome from "../UserCardHome/UserCardHome";
 import WalletTotal from "../WalletTotal/WalletTotal";
 import Possession from "../Possession/Possession";
-import HomeBubbleMenu from "../HomeBubbleMenu/HomeBubbleMenu";
 
 const Investor = () => {
   return (
