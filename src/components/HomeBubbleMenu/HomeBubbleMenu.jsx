@@ -37,7 +37,7 @@ const HomeBubbleMenu = () => {
         <Text style={styles.text}>Ingresar</Text>
       </View>
       <View>
-        {press === 2 ? (
+        {press === 2 || press === 7 ? (
           <IconButton
             style={styles.btnPress}
             icon="bank-transfer"

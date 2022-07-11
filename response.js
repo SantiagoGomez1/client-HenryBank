@@ -21,6 +21,7 @@ export const dataa = [
     birthday: "26-09-2002",
     years: 20,
     capital: "25000,00",
+    cbu:"12-42-24-1445",
     movimientos: [
       {
         id: 1,
