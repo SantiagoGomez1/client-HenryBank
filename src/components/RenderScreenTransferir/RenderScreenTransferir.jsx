@@ -18,14 +18,14 @@ const RenderScreenTransferir = () => {
       <View style={styles.containerInput}>
         <TextInput
           placeholder="Alias / CBU"
-          placeholderTextColor={"white"}
+          placeholderTextColor={"gray"}
           keyboardType="number-pad"
           style={styles.inputCode}
         />
       </View>
       <TextInput
         placeholder="Numero de CBU / Alias"
-        placeholderTextColor={"white"}
+        placeholderTextColor={"gray"}
         keyboardType="number-pad"
         style={styles.input}
       />
