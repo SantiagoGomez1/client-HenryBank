@@ -5,7 +5,7 @@ import { useNavigation } from "@react-navigation/native";
 import { useDispatch } from 'react-redux'
 import { renderScreen } from "../../redux/actions";
 
-const SuccessTransferencia = () => {
+const SuccessOperacion = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch()
 
@@ -63,4 +63,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SuccessTransferencia;
+export default SuccessOperacion;
