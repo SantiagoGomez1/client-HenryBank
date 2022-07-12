@@ -14,13 +14,14 @@ export const GET_COINS = "GET_COINS";
 export const SEARCH_COINS = "SEARCH_COINS";
 export const GET_COIN_ID = "GET_COIN_ID";
 export const GET_USER_DETAIL = "GET_USER_DETAIL";
+export const GET_ALL_USERS = "GET_ALL_USERS";
 
 //------------Config with token ---------------------------
 
 const config = {
   headers: {
     Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBydWViYTFAZ21haWwuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkQVdWUUE3S1QxbGNaR0VUT1V3QndBZU9OeFlaOFIyTm1DUHdEZ0tmTlpCSE1hb3hwUFFpcTYiLCJpYXQiOjE2NTc1NTM4MDgsImV4cCI6MTY1NzcyNjYwOH0.meHyMad71fghAdIjUhXqsNut7Ec4s8M9ifFBEPtukcw",
+       'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBldGVyQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJFNrMkx6Tk43V2VBUGpjNGZzbi5hSXVTb3EzaUF4YUhjdW9LUTdGdW1vVjRhV1VuYUI3WUMuIiwiaWF0IjoxNjU3NjI5ODI2LCJleHAiOjE2NTc4MDI2MjZ9.oly23yzzZ9SUsvdfNk1q0uRdDqelmw1mMdaZlXhk_kY',
   },
 };
 
@@ -39,11 +40,27 @@ export const logIn = (form) => async (dispatch) => {
   return dispatch({ type: LOG_IN, payload });
 };
 
-export const getUsers = () => {
-  return {
-    type: GET_USERS,
-    payload: dataa,
-  };
+// export const getUsers = () => {
+//   return {
+//     type: GET_USERS,
+//     payload: dataa,
+//   };
+// };
+
+export function getUsers(token){
+  return async function(dispatch){
+    // const config = {
+    //   headers: {
+    //     Authorization: token,
+    //   },
+    // };
+      const res = await axios.get('https://h-bank-deploy.herokuapp.com/user', config)
+      console.log('esto es la res', res.data);
+      return dispatch({
+          type: GET_USERS,
+          payload: res.data
+      })        
+  }
 };
 
 export const getUser = () => {
