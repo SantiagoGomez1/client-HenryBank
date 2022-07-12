@@ -14,6 +14,7 @@ export const GET_COINS = "GET_COINS";
 export const SEARCH_COINS = "SEARCH_COINS";
 export const GET_COIN_ID = "GET_COIN_ID";
 export const GET_USER_DETAIL = "GET_USER_DETAIL";
+export const GET_ALL_USERS = "GET_ALL_USERS";
 
 export const logIn = (form) => async (dispatch) => {
   console.log(form);
@@ -28,11 +29,27 @@ export const logIn = (form) => async (dispatch) => {
   return dispatch({ type: LOG_IN, payload });
 };
 
-export const getUsers = () => {
-  return {
-    type: GET_USERS,
-    payload: dataa,
-  };
+// export const getUsers = () => {
+//   return {
+//     type: GET_USERS,
+//     payload: dataa,
+//   };
+// };
+
+export function getUsers(token){
+  return async function(dispatch){
+    // const config = {
+    //   headers: {
+    //     Authorization: token,
+    //   },
+    // };
+      const res = await axios.get('https://h-bank-deploy.herokuapp.com/user', config)
+      console.log('esto es la res', res.data);
+      return dispatch({
+          type: GET_USERS,
+          payload: res.data
+      })        
+  }
 };
 
 export const getUser = () => {

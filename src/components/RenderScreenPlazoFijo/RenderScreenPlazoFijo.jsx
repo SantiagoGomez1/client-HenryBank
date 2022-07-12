@@ -1,8 +1,10 @@
 import React from "react";
 
 import { View, Text, StyleSheet, Button, TextInput } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 const RenderScreenPlazoFijo = () => {
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Plazo Fijo</Text>
@@ -27,7 +29,7 @@ const RenderScreenPlazoFijo = () => {
         </View>
       </View>
       <View style={styles.containerButton} >
-        <Button title="Confirmar"></Button>
+        <Button title="Confirmar" onPress={() => navigation.navigate("SuccessPlazoFijo")}></Button>
       </View>
     </View>
   );

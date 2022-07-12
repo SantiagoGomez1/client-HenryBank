@@ -13,9 +13,11 @@ import RegisterA from "./src/components/RegisterA/RegisterA";
 import RegisterB from "./src/components/RegisterB/RegisterB.jsx";
 import RegisterC from "./src/components/RegisterC/RegisterC";
 import Success from "./src/components/Success/Success";
+import SuccessOperacion from "./src/components/SuccessOperacion/SucessOperacion"
+import SuccessPlazoFijo from "./src/components/SucessPlazoFijo/SuccessPlazoFijo";
 import UserDetail from "./src/components/UserDetail/UserDetail";
-import InvestorBuy from "./src/components/InvestorBuy/InvestorBuy";
 import DetailCoinsInvestorBuy from "./src/components/DetailCoinsInvestorBuy/DetailCoinsInvestorBuy";
+import InvestorBuy from "./src/components/InvestorBuy/InvestorBuy";
 import Confirmation from "./src/components/SuccessLogIn/SuccessLogIn";
 
 export default function App() {
@@ -35,6 +37,8 @@ export default function App() {
           <Stack.Screen name="RegisterB" component={RegisterB} />
           <Stack.Screen name="RegisterC" component={RegisterC} />
           <Stack.Screen name="Success" component={Success} />
+          <Stack.Screen name="SuccessOperacion" component={SuccessOperacion} />
+          <Stack.Screen name="SuccessPlazoFijo" component={SuccessPlazoFijo} />
           <Stack.Screen name="HomeRoutes" component={HomeRoutes} />
           <Stack.Screen name="User Detail" component={UserDetail} />
           <Stack.Screen name="InvestorBuy" component={InvestorBuy} />

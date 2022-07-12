@@ -5,11 +5,19 @@ import { LinearGradient } from "expo-linear-gradient";
 import Constants from "expo-constants";
 import { Input, Icon } from "react-native-elements";
 import {useDispatch, useSelector} from 'react-redux';
+import { useEffect } from "react";
 
-import { postUser } from "../../redux/actions";
+import { postUser, allUsers, getUsers } from "../../redux/actions";
 
 export default function RegisterA() {
   const dispatch = useDispatch();
+  
+  useEffect(() => {
+    dispatch(getUsers());    
+  }, [dispatch]);  
+  const getAllUsers = useSelector(state => state.users)
+  console.log('Aca hay getUsers', getAllUsers);
+
   const navigation = useNavigation();
 
   const goRegisterB = () => {
@@ -49,6 +57,10 @@ export default function RegisterA() {
 
     if (!validateEmail(formData.email)) {
       setErrorEmail("Debes ingresar un E-mail válido");
+      isValid = false;
+    }
+    if (getAllUsers?.find(u => u.email === formData.email)) {      
+      setErrorEmail("Este E-mail ya está asociado a una cuenta");
       isValid = false;
     }
     if (!validateEmail(formData.confirmEmail)) {

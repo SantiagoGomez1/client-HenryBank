@@ -2,13 +2,17 @@ import React, { useEffect } from "react";
 import { View, Image, Text, StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/native";
+import { useDispatch } from 'react-redux'
+import { renderScreen } from "../../redux/actions";
 
-const Success = () => {
+const SuccessOperacion = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch()
 
   const set = () => {
     setTimeout(() => {
-      navigation.navigate("Log In");
+      navigation.navigate("HomeRoutes");
+      dispatch(renderScreen(0))
     }, 1500);
   };
 
@@ -18,7 +22,7 @@ const Success = () => {
   return (
     <View style={styles.container}>
       <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
-        <Text style={styles.textMain}>Registro exitoso</Text>
+        <Text style={styles.textMain}>Operacion Exitosa</Text>
         <Image
           style={styles.imgSuccess}
           source={require("../../imgs/Check.png")}
@@ -44,6 +48,7 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 40,
     textAlign: "center",
+    fontWeight:'bold'
   },
   textSecondaty: {
     color: "#fff",
@@ -58,4 +63,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Success;
+export default SuccessOperacion;

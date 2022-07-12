@@ -8,9 +8,6 @@ import { useNavigation } from "@react-navigation/native";
 
 const RenderScreenTransferirMonto = () => {
   const navigation = useNavigation();
-  const goHome = () => {
-    navigation.navigate("HomeRoutes");
-  };
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Transferencia</Text>
@@ -23,10 +20,9 @@ const RenderScreenTransferirMonto = () => {
           keyboardType="number-pad"
         />
       </View>
-
       <UserCardTransferencia />
       <View>
-        <Button title="Enviar" onPress={() => goHome()} />
+        <Button title="Enviar" onPress={() => navigation.navigate("Success")} />
       </View>
     </View>
   );

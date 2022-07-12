@@ -11,10 +11,10 @@ const Confirmation = () => {
   if (logIn.token) {
     return (
       <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
-        <Text style={styles.textMain}>Log In exitoso</Text>
+        <Text style={styles.textMain}>¡Bienvenido!</Text>
         <Image
           style={styles.imgS}
-          source={require("../../imgs/Success.png")}
+          source={require("../../imgs/Check.png")}
         ></Image>
         <Text style={styles.text0}>
           {setTimeout(() => {
@@ -60,8 +60,8 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   imgS: {
-    height: 253.6,
-    width: 250,
+    height: 300,
+    width: 300,
     alignSelf: "center",
     padding: 5,
   },
