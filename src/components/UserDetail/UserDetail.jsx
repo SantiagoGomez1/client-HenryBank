@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
   container2: {
     borderColor: "#126492",
     borderWidth: 1,
-    borderRadius: 50,
+    borderRadius: 8,
     padding: 15,
     margin: 5,
     width: 300,
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     padding: 2,
     margin: 4,
     backgroundColor: "#140152",
-    borderRadius: 50,
+    borderRadius: 8,
   },
   textPerfil: {
     color: "#fff",

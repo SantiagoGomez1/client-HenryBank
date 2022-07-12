@@ -9,9 +9,8 @@ import WalletTotal from "../WalletTotal/WalletTotal.jsx";
 import UserCardHome from "../UserCardHome/UserCardHome";
 
 const Wallet = () => {
-
   const [activeSlide, setActiveSlide] = React.useState(0);
-  
+
   return (
     <View style={styles.container}>
       <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
@@ -30,7 +29,7 @@ const styles = StyleSheet.create({
   background: {
     paddingTop: Constants.statusBarHeight,
     flex: 1,
-    justifyContent: "space-around",
+    justifyContent: "space-between",
   },
   container: {
     flex: 1,

@@ -28,7 +28,7 @@ export default function App() {
     <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName="Log In"
+          initialRouteName="HomeRoutes"
           screenOptions={{
             headerShown: false,
           }}

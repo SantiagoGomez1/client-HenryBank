@@ -5,7 +5,7 @@ import { View, Text, StyleSheet, Image, TextInput, Button } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 const RenderScreenIngresarMonto = () => {
-  const navigation = useNavigation()
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Ingresar Dinero</Text>
@@ -18,8 +18,11 @@ const RenderScreenIngresarMonto = () => {
           keyboardType="number-pad"
         />
       </View>
-      <View style={{paddingBottom:40}}>
-        <Button title="Confirmar" onPress={() => navigation.navigate("SuccessOperacion")}></Button>
+      <View style={{ paddingBottom: 40 }}>
+        <Button
+          title="Confirmar"
+          onPress={() => navigation.navigate("SuccessOperacion")}
+        ></Button>
       </View>
     </View>
   );
@@ -28,17 +31,17 @@ const RenderScreenIngresarMonto = () => {
 const styles = StyleSheet.create({
   container: {
     alignItems: "center",
-    justifyContent:'space-between',
+    justifyContent: "space-between",
     borderWidth: 1,
     borderColor: "white",
     height: 450,
     width: 350,
-    borderRadius: 25,
+    borderRadius: 8,
     paddingTop: 20,
   },
   containerAmount: {
     alignItems: "center",
-    paddingBottom:20
+    paddingBottom: 20,
   },
   input: {
     textAlign: "center",

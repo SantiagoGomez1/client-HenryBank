@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   text: {
     color: "white",
     fontWeight: "bold",
-    fontSize: 30,
+    fontSize: 15,
     textAlign: "center",
   },
 });

@@ -2,20 +2,20 @@ import React from "react";
 
 import { View, Text, StyleSheet, TextInput, Button } from "react-native";
 
-import { useDispatch } from 'react-redux'
+import { useDispatch } from "react-redux";
 
 import { renderScreen } from "../../redux/actions";
 
 const RenderScreenIngresar = () => {
-    const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-    const setScreen = (screen) => {
-        dispatch(renderScreen(screen));
-      };
+  const setScreen = (screen) => {
+    dispatch(renderScreen(screen));
+  };
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Ingresar Dinero</Text>
-      <View style={{paddingTop:30}}>
+      <View style={{ paddingTop: 30 }}>
         <TextInput
           placeholder="Numero de Tarjeta..."
           placeholderTextColor={"gray"}
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     borderColor: "white",
     height: 450,
     width: 350,
-    borderRadius: 25,
+    borderRadius: 8,
     alignItems: "center",
     paddingTop: 20,
   },
