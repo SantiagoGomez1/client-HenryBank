@@ -20,7 +20,7 @@ export const logIn = (form) => async (dispatch) => {
   console.log(form);
 
   const response = await axios.post(
-    "https://h-bank-deploy.herokuapp.com/login",
+    "https://h-bank.herokuapp.com/login",
     form
   );
 
@@ -44,7 +44,7 @@ export const getUsers = () => {
 //       },
 //     };
 //     const res = await axios.get(
-//       "https://h-bank-deploy.herokuapp.com/user",
+//       "https://h-bank.herokuapp.com/userEmail",
 //       config
 //     );
 //     console.log("esto es la res", res.data);
@@ -78,7 +78,7 @@ export const postUserData = (payload, userMP) => {
     };
     console.log("Aca hay un posteo", posteo);
     const created = await axios.post(
-      "https://h-bank-deploy.herokuapp.com/register",
+      "https://h-bank.herokuapp.com/register",
       posteo
     );
     return dispatch({
@@ -138,7 +138,7 @@ export const getCoins = (token) => async (dispatch) => {
     },
   };
   const response = await axios.get(
-    "https://h-bank-deploy.herokuapp.com/crypto",
+    "https://h-bank.herokuapp.com/crypto",
     config
   );
   dispatch({ type: GET_COINS, payload: response.data });
@@ -159,7 +159,7 @@ export const getUserDetail = (token) => async (dispatch) => {
     },
   };
   const response = await axios.get(
-    "https://h-bank-deploy.herokuapp.com/user/profile",
+    "https://h-bank.herokuapp.com/user/profile",
     config
   );
   console.log(response.data);
