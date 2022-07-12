@@ -16,17 +16,6 @@ export const GET_COIN_ID = "GET_COIN_ID";
 export const GET_USER_DETAIL = "GET_USER_DETAIL";
 export const GET_ALL_USERS = "GET_ALL_USERS";
 
-//------------Config with token ---------------------------
-
-const config = {
-  headers: {
-    Authorization:
-       'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBldGVyQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJFNrMkx6Tk43V2VBUGpjNGZzbi5hSXVTb3EzaUF4YUhjdW9LUTdGdW1vVjRhV1VuYUI3WUMuIiwiaWF0IjoxNjU3NjI5ODI2LCJleHAiOjE2NTc4MDI2MjZ9.oly23yzzZ9SUsvdfNk1q0uRdDqelmw1mMdaZlXhk_kY',
-  },
-};
-
-//---------------------------------------------------------
-
 export const logIn = (form) => async (dispatch) => {
   console.log(form);
 
@@ -139,7 +128,12 @@ export const renderScreen = (payload) => {
   };
 };
 
-export const getCoins = () => async (dispatch) => {
+export const getCoins = (token) => async (dispatch) => {
+  const config = {
+    headers: {
+      Authorization: token,
+    },
+  };
   const response = await axios.get(
     "https://h-bank-deploy.herokuapp.com/crypto",
     config
