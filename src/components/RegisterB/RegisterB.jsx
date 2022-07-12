@@ -41,7 +41,7 @@ const RegisterB = () => {
   };
 
   const handleConfirm = (date) => {
-    console.warn("A date has been picked: ", date);
+    console.warn("Fecha seleccionada: ", date);
     hideDatePicker();
   };
   //----------------------States Errors----------------------//

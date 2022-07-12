@@ -29,31 +29,30 @@ export const logIn = (form) => async (dispatch) => {
   return dispatch({ type: LOG_IN, payload });
 };
 
-export const getUsers = () => {
-  return {
-    type: GET_USERS,
-    payload: dataa,
-  };
-};
-
-// export function getUsers(token) {
-//   return async function (dispatch) {
-//     const config = {
-//       headers: {
-//         Authorization: token,
-//       },
-//     };
-//     const res = await axios.get(
-//       "https://h-bank.herokuapp.com/userEmail",
-//       config
-//     );
-//     console.log("esto es la res", res.data);
-//     return dispatch({
-//       type: GET_USERS,
-//       payload: res.data,
-//     });
+// export const getUsers = () => {
+//   return {
+//     type: GET_USERS,
+//     payload: dataa,
 //   };
-// }
+// };
+
+export function getUsers(token) {
+  return async function (dispatch) {
+    // const config = {
+    //   headers: {
+    //     Authorization: token,
+    //   },
+    // };
+    const res = await axios.get(
+      "https://h-bank.herokuapp.com/userEmail"
+    );
+    console.log("esto es la res", res.data);
+    return dispatch({
+      type: GET_USERS,
+      payload: res.data,
+    });
+  };
+}
 
 export const getUser = () => {
   return {
