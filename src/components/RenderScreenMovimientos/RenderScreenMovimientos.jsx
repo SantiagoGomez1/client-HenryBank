@@ -19,7 +19,7 @@ const RenderScreenMovimientos = () => {
     <View style={styles.container}>
       <Text style={styles.text}>Movimientos</Text>
       <View>
-        <TextInput style={styles.input} placeholder="Search..." />
+        <TextInput style={styles.input} placeholder="Search..." placeholderTextColor={'gray'} />
       </View>
       <FlatList
         data={user.movimientos}
@@ -59,6 +59,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderStyle: "solid",
     borderColor: "rgba(255, 255, 255, 0.5)",
+    paddingLeft:10,
     width: 300,
     height: 40,
     margin: 10,

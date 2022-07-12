@@ -16,7 +16,7 @@ export default function RegisterA() {
     dispatch(getUsers());    
   }, [dispatch]);  
   const getAllUsers = useSelector(state => state.users)
-  // console.log('Aca hay getUsers', getAllUsers);
+  console.log('Aca hay getUsers', getAllUsers);
 
   const navigation = useNavigation();
 
@@ -59,7 +59,7 @@ export default function RegisterA() {
       setErrorEmail("Debes ingresar un E-mail válido");
       isValid = false;
     }
-    if (getAllUsers.map(u => u.email === formData.email)) {      
+    if (getAllUsers?.find(u => u.email === formData.email)) {      
       setErrorEmail("Este E-mail ya está asociado a una cuenta");
       isValid = false;
     }
