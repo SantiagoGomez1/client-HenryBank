@@ -1,8 +1,9 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
-import { IconButton } from "react-native-paper";
+import { useNavigation } from "@react-navigation/native";
 
 export default function Possession() {
+  const navigation = useNavigation();
   return (
     <View style={styles.card}>
       <View>
@@ -40,9 +41,12 @@ export default function Possession() {
 
       <TouchableOpacity
         style={styles.subCard}
-        onPress={() => {
-          console.log("touchable2");
-        }}
+        onPress={() =>
+          navigation.navigate("InvestorDetail", {
+            ticket: "BTCUSD",
+            cantidad: 128,
+          })
+        }
       >
         <View style={styles.caract}>
           <Text style={{ color: "white" }}>BTCUSD</Text>

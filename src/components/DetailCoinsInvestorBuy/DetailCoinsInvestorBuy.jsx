@@ -11,7 +11,6 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getCoinId } from "../../redux/actions";
-import { useNavigation } from "@react-navigation/native";
 
 var { height } = Dimensions.get("window");
 
