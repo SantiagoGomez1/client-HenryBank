@@ -2,7 +2,10 @@ import React from "react";
 
 import { View, Text, StyleSheet, Image, TextInput, Button } from "react-native";
 
+import { useNavigation } from "@react-navigation/native";
+
 const RenderScreenIngresarMonto = () => {
+  const navigation = useNavigation()
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Ingresar Dinero</Text>
@@ -16,7 +19,7 @@ const RenderScreenIngresarMonto = () => {
         />
       </View>
       <View style={{paddingBottom:40}}>
-        <Button title="Confirmar"></Button>
+        <Button title="Confirmar" onPress={() => navigation.navigate("SuccessOperacion")}></Button>
       </View>
     </View>
   );

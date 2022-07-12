@@ -17,27 +17,27 @@ const RenderScreenIngresar = () => {
       <Text style={styles.text}>Ingresar Dinero</Text>
       <View style={{paddingTop:30}}>
         <TextInput
-          placeholder="Numero de Tarjeta"
-          placeholderTextColor={"white"}
+          placeholder="Numero de Tarjeta..."
+          placeholderTextColor={"gray"}
           keyboardType="number-pad"
           style={styles.input}
         />
         <TextInput
-          placeholder="Nombre Completo"
-          placeholderTextColor={"white"}
+          placeholder="Nombre Completo..."
+          placeholderTextColor={"gray"}
           style={styles.input}
         />
         <TextInput
-          placeholder="Fecha de Expiracion"
-          placeholderTextColor={"white"}
+          placeholder="Fecha de Expiracion..."
+          placeholderTextColor={"gray"}
           keyboardType="number-pad"
           style={styles.input}
         />
       </View>
       <View style={{ flexDirection: "row" }}>
         <TextInput
-          placeholder="Codigo de Seguridad"
-          placeholderTextColor={"white"}
+          placeholder="Codigo de Seguridad..."
+          placeholderTextColor={"gray"}
           keyboardType="number-pad"
           style={styles.inputCode}
         />
