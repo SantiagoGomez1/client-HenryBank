@@ -20,10 +20,9 @@ const RenderScreenTransferirMonto = () => {
           keyboardType="number-pad"
         />
       </View>
-
       <UserCardTransferencia />
       <View>
-        <Button title="Enviar" onPress={() => navigation.navigate("SuccessOperacion")} />
+        <Button title="Enviar" onPress={() => navigation.navigate("Success")} />
       </View>
     </View>
   );
