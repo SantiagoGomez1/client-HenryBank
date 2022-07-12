@@ -9,7 +9,7 @@ import {
   getUsers,
   getUser,
   getUserDetail,
-  renderScreen,
+  getNews,
 } from "../../redux/actions";
 
 import MaterialCommunityIcons from "react-native-vector-icons/Ionicons";
@@ -26,6 +26,7 @@ const HomeRoutes = () => {
   useEffect(() => {
     dispatch(getUsers());
     dispatch(getUser());
+    dispatch(getNews())
     dispatch(getUserDetail(logIn));
   }, [dispatch]);
 

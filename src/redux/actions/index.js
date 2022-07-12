@@ -6,6 +6,8 @@ export const GET_USER = "GET_USER";
 export const LOG_IN = "LOG_IN";
 export const RENDER_SCREEN = "RENDER_SCREEN";
 
+export const GET_NEWS = "GET_NEWS";
+
 export const POST_USER_DATA = "POST_USER_DATA";
 export const POST_USER = "POST_USER";
 export const POST_USER_RENDER = "POST_USER_RENDER";
@@ -86,7 +88,6 @@ export const postUserData = (payload, userMP) => {
       payload: created.data,
     });
   };
-  p;
 };
 
 export const postUserDataCard = (payload, userMP) => {
@@ -164,4 +165,12 @@ export const getUserDetail = (token) => async (dispatch) => {
   );
   console.log(response.data);
   dispatch({ type: GET_USER_DETAIL, payload: response.data });
+};
+
+export const getNews = () => (dispatch) => {
+  return fetch("https://newsapi.org/v2/top-headlines?country=ar&category=business&apiKey=a09836a597c24e2490cdcbcf5f32fb6c")
+    .then((response) => response.json())
+    .then((news) => {
+      dispatch({ type: GET_NEWS, payload: news.articles });
+    });
 };
