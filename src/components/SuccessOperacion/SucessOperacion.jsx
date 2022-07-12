@@ -2,17 +2,17 @@ import React, { useEffect } from "react";
 import { View, Image, Text, StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/native";
-import { useDispatch } from 'react-redux'
+import { useDispatch } from "react-redux";
 import { renderScreen } from "../../redux/actions";
 
 const SuccessOperacion = () => {
   const navigation = useNavigation();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const set = () => {
     setTimeout(() => {
       navigation.navigate("HomeRoutes");
-      dispatch(renderScreen(0))
+      dispatch(renderScreen(0));
     }, 1500);
   };
 
@@ -22,7 +22,7 @@ const SuccessOperacion = () => {
   return (
     <View style={styles.container}>
       <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
-        <Text style={styles.textMain}>Operacion Exitosa</Text>
+        <Text style={styles.textMain}>Operacion exitosa</Text>
         <Image
           style={styles.imgSuccess}
           source={require("../../imgs/Check.png")}
@@ -46,9 +46,9 @@ const styles = StyleSheet.create({
   },
   textMain: {
     color: "#fff",
-    fontSize: 40,
+    fontSize: 45,
     textAlign: "center",
-    fontWeight:'bold'
+    fontWeight: "bold",
   },
   textSecondaty: {
     color: "#fff",

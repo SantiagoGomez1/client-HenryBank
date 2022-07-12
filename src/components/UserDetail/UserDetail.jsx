@@ -60,6 +60,10 @@ const styles = StyleSheet.create({
     padding: 15,
     margin: 5,
     width: 300,
+    borderWidth: 1,
+    borderStyle: "solid",
+    borderColor: "rgba(255, 255, 255, 0.5)",
+    backgroundColor: "rgba(255, 255, 255, 0.3)",
   },
   background: {
     flex: 1,

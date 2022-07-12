@@ -11,21 +11,23 @@ import {
 import { useSelector } from "react-redux";
 
 import CardNews from "../CardNews/CardNews.jsx";
+let ID = 1;
 
 const RenderScreen = () => {
   const news = useSelector((state) => state.news);
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Noticias</Text>
-      {!news ? (
-        <ActivityIndicator size="large" color="#0000ff"/>
+      {!news[0] ? (
+        <View style={{}}>
+          <ActivityIndicator size="large" color="#0000ff" />
+        </View>
       ) : (
         <FlatList
           data={news}
-          keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
             <CardNews
-              id={item.id}
+              id={ID++}
               image={item.urlToImage}
               name={item.source.name}
               title={item.title}
