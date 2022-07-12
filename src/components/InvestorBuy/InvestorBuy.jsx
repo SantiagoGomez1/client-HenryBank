@@ -10,7 +10,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCoins, searchCoins } from "../../redux/actions";
 import CoinsInvestorBuy from "../CoinsInvestorBuy/CoinsInvestorBuy";
 
-
 var { height } = Dimensions.get("window");
 
 export default function InvestorBuy() {
@@ -18,9 +17,10 @@ export default function InvestorBuy() {
 
   const dispatch = useDispatch();
   const data = useSelector((state) => state.coins);
+  const logIn = useSelector((state) => state.logIn.token);
 
   useEffect(() => {
-    dispatch(getCoins());
+    dispatch(getCoins(logIn));
   }, []);
 
   return (

@@ -1,4 +1,11 @@
-import { StyleSheet, Text, View, Dimensions, Image } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Dimensions,
+  Image,
+  Button,
+} from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -21,9 +28,9 @@ export default function DetailCoinsInvestorBuy({ route }) {
         {data && (
           <View>
             <View style={{ display: "flex", alignItems: "center" }}>
-              {data.image.large && (
+              {data.hasOwnProperty("image") ? (
                 <Image style={styles.img} source={{ uri: data.image.large }} />
-              )}
+              ) : null}
             </View>
             <View style={styles.card}>
               <Text style={{ color: "white", fontSize: 35 }}>{data.name}</Text>
@@ -63,6 +70,9 @@ export default function DetailCoinsInvestorBuy({ route }) {
             </View>
           </View>
         )}
+        <View style={styles.containerButton}>
+          <Button title="Comprar" onPress={() => console.log("comprar")} />
+        </View>
       </LinearGradient>
     </View>
   );
@@ -94,5 +104,11 @@ const styles = StyleSheet.create({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+  },
+  containerButton: {
+    flex: 1,
+    justifyContent: "center",
+    justifyContent: "space-evenly",
+    marginHorizontal: 20,
   },
 });
