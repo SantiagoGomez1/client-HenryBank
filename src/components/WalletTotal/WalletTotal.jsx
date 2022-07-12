@@ -13,14 +13,14 @@ export default function WalletTotal({ money }) {
         <Text style={{ color: "white" }}>Tu total</Text>
         {dropdown ? (
           <IconButton
-            icon="eye-off-outline"
+            icon="eye-outline"
             color="white"
             size={20}
             onPress={() => setDropdown(!dropdown)}
           />
         ) : (
           <IconButton
-            icon="eye-outline"
+            icon="eye-off-outline"
             color="white"
             size={20}
             onPress={() => setDropdown(!dropdown)}
