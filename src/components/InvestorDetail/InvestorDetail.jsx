@@ -10,6 +10,7 @@ import React from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { Divider } from "@rneui/themed";
+import Charts from "../Charts/Charts";
 
 var { height } = Dimensions.get("window");
 
@@ -72,6 +73,9 @@ export default function InvestorBuyGeneral({ route, navigation }) {
         <View style={[styles.card, { height: 280 }]}>
           <View style={{ display: "flex", alignItems: "center" }}>
             <Text style={{ color: "white", fontSize: 30 }}>Cotización</Text>
+          </View>
+          <View>
+            <Charts />
           </View>
         </View>
 
