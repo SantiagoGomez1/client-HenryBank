@@ -12,7 +12,7 @@ const HomeBubbleMenu = () => {
     dispatch(renderScreen(screen));
   };
 
-  const press = useSelector(state => state.renderScreen)
+  const press = useSelector((state) => state.renderScreen);
 
   return (
     <View style={styles.container}>
@@ -37,7 +37,7 @@ const HomeBubbleMenu = () => {
         <Text style={styles.text}>Ingresar</Text>
       </View>
       <View>
-        {press === 2 ? (
+        {press === 2 || press === 7 ? (
           <IconButton
             style={styles.btnPress}
             icon="bank-transfer"
@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
     borderWidth: 2,
     borderStyle: "solid",
-    borderColor: "purple",
+    borderColor: "aqua",
     justifyContent: "center",
     width: 70,
     height: 70,

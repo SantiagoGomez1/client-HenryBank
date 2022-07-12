@@ -21,7 +21,7 @@ export const GET_ALL_USERS = "GET_ALL_USERS";
 const config = {
   headers: {
     Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBldGVyQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJFNrMkx6Tk43V2VBUGpjNGZzbi5hSXVTb3EzaUF4YUhjdW9LUTdGdW1vVjRhV1VuYUI3WUMuIiwiaWF0IjoxNjU3NjI5ODI2LCJleHAiOjE2NTc4MDI2MjZ9.oly23yzzZ9SUsvdfNk1q0uRdDqelmw1mMdaZlXhk_kY",
+       'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBldGVyQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJFNrMkx6Tk43V2VBUGpjNGZzbi5hSXVTb3EzaUF4YUhjdW9LUTdGdW1vVjRhV1VuYUI3WUMuIiwiaWF0IjoxNjU3NjI5ODI2LCJleHAiOjE2NTc4MDI2MjZ9.oly23yzzZ9SUsvdfNk1q0uRdDqelmw1mMdaZlXhk_kY',
   },
 };
 

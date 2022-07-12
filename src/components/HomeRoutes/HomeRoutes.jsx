@@ -5,8 +5,12 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { getUsers, getUser, getUserDetail, renderScreen } from "../../redux/actions";
-
+import {
+  getUsers,
+  getUser,
+  getUserDetail,
+  renderScreen,
+} from "../../redux/actions";
 
 import MaterialCommunityIcons from "react-native-vector-icons/Ionicons";
 import Home from "../Home/Home.jsx";
@@ -29,6 +33,7 @@ const HomeRoutes = () => {
     <Tab.Navigator
       initialRouteName="home"
       screenOptions={{
+        tabBarActiveTintColor: "aqua",
         tabBarStyle: {
           backgroundColor: "#140152",
         },
@@ -42,7 +47,7 @@ const HomeRoutes = () => {
         component={Home}
         options={{
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="home" color={"white"} size={size} />
+            <MaterialCommunityIcons name="home" color={color} size={size} />
           ),
         }}
       />
@@ -51,7 +56,7 @@ const HomeRoutes = () => {
         component={Wallet}
         options={{
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="wallet" color={"white"} size={size} />
+            <MaterialCommunityIcons name="wallet" color={color} size={size} />
           ),
         }}
       />
@@ -62,7 +67,7 @@ const HomeRoutes = () => {
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons
               name="stats-chart"
-              color={"white"}
+              color={color}
               size={size}
             />
           ),

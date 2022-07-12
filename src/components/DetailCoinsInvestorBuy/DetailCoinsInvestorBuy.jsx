@@ -21,7 +21,9 @@ export default function DetailCoinsInvestorBuy({ route }) {
         {data && (
           <View>
             <View style={{ display: "flex", alignItems: "center" }}>
-              <Image style={styles.img} source={{ uri: data.image.large }} />
+              {data.image.large && (
+                <Image style={styles.img} source={{ uri: data.image.large }} />
+              )}
             </View>
             <View style={styles.card}>
               <Text style={{ color: "white", fontSize: 35 }}>{data.name}</Text>
