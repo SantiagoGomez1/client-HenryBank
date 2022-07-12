@@ -11,10 +11,11 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getCoinId } from "../../redux/actions";
+import { useNavigation } from "@react-navigation/native";
 
 var { height } = Dimensions.get("window");
 
-export default function DetailCoinsInvestorBuy({ route }) {
+export default function DetailCoinsInvestorBuy({ route, navigation }) {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.coinDetail);
 
@@ -71,7 +72,15 @@ export default function DetailCoinsInvestorBuy({ route }) {
           </View>
         )}
         <View style={styles.containerButton}>
-          <Button title="Comprar" onPress={() => console.log("comprar")} />
+          <Button
+            title="Comprar"
+            onPress={() =>
+              navigation.navigate("InvestorBuyGeneral", {
+                ticket: data.symbol,
+                precio: data.current_price,
+              })
+            }
+          />
         </View>
       </LinearGradient>
     </View>
