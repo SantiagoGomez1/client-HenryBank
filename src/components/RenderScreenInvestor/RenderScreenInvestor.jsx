@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     borderColor: "white",
     height: 450,
     width: 350,
-    borderRadius: 25,
+    borderRadius: 8,
     paddingTop: 20,
   },
   containerButton: {

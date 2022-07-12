@@ -1,10 +1,10 @@
 import React from "react";
 
-import Constants from 'expo-constants'
+import Constants from "expo-constants";
 
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, ScrollView } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import { useSelector } from 'react-redux'
+import { useSelector } from "react-redux";
 
 import UserCardHome from "../UserCardHome/UserCardHome.jsx";
 import UserCapital from "../UserCapital/UserCapital.jsx";
@@ -15,26 +15,41 @@ import RenderScreenIngresarMonto from "../RenderScreenIngresarMonto/RenderScreen
 import RenderScreenMovimientos from "../RenderScreenMovimientos/RenderScreenMovimientos.jsx";
 import RenderScreenTransferir from "../RenderScreenTransferir/RenderScreenTransferir.jsx";
 import RenderScreenPlazoFijo from "../RenderScreenPlazoFijo/RenderScreenPlazoFijo.jsx";
-import RenderScreenInvestor from "../RenderScreenInvestor/RenderScreenInvestor.jsx"
-import RenderScreenIngresar from '../RenderScreenIngresar/RenderScreenIngresar.jsx'
+import RenderScreenInvestor from "../RenderScreenInvestor/RenderScreenInvestor.jsx";
+import RenderScreenIngresar from "../RenderScreenIngresar/RenderScreenIngresar.jsx";
 
 const Home = () => {
-  let screen = useSelector(state => state.renderScreen)
+  let screen = useSelector((state) => state.renderScreen);
   return (
     <View style={styles.container}>
       <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
         <View>
           <UserCardHome />
         </View>
-        <View>
-          <UserCapital />
+        <HomeBubbleMenu />
+        <View style={{ alignSelf: "center" }}>
+          {screen === 0 ? (
+            <RenderScreen />
+          ) : screen === 1 ? (
+            <RenderScreenIngresar />
+          ) : screen === 2 ? (
+            <RenderScreenTransferir />
+          ) : screen === 3 ? (
+            <RenderScreenMovimientos />
+          ) : screen === 4 ? (
+            <RenderScreenInvestor />
+          ) : screen === 5 ? (
+            <RenderScreenPlazoFijo />
+          ) : screen === 6 ? (
+            <RenderScreenIngresarMonto />
+          ) : screen === 7 ? (
+            <RenderScreenTransferirMonto />
+          ) : (
+            <RenderScreen />
+          )}
         </View>
-        <View style={styles.homeBubble}>
-          <HomeBubbleMenu />
-        </View>
-        <View style={{flex:0, paddingTop:40, alignItems:'center'}}>
-           { screen === 0 ? <RenderScreen /> : screen === 1 ? <RenderScreenIngresar /> : screen === 2 ? <RenderScreenTransferir /> : screen === 3 ? <RenderScreenMovimientos /> : screen === 4 ?  <RenderScreenInvestor /> : screen === 5 ? <RenderScreenPlazoFijo /> : screen === 6 ? <RenderScreenIngresarMonto /> : screen === 7 ? <RenderScreenTransferirMonto /> : <RenderScreen /> }
-        </View>
+
+        <View></View>
       </LinearGradient>
     </View>
   );
@@ -46,10 +61,8 @@ const styles = StyleSheet.create({
   },
   background: {
     paddingTop: Constants.statusBarHeight,
+    justifyContent: "space-between",
     flex: 1,
-  },
-  homeBubble: {
-    paddingTop: 15,
   },
 });
 

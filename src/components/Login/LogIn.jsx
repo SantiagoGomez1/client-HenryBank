@@ -40,7 +40,7 @@ const LogIn = () => {
       isValid = false;
     }
 
-    if (formData.password.length <= 6) {
+    if (formData.password.length < 8) {
       setErrorPassword("Contraseña incorrecta");
       isValid = false;
     }
@@ -58,7 +58,7 @@ const LogIn = () => {
 
         <Input
           containerStyle={styles.input}
-          placeholder="soyhenry@gmail.com"
+          placeholder="Soyhenry@gmail.com"
           label="E-mail"
           onChange={(e) => handleOnChange(e, "email")}
           errorMessage={errorEmail}
@@ -66,7 +66,7 @@ const LogIn = () => {
         ></Input>
         <Input
           containerStyle={styles.input}
-          placeholder=" digitos"
+          placeholder="Soyhenry123"
           label="Contraseña"
           password={true}
           secureTextEntry={!showPassword}

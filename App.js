@@ -13,7 +13,7 @@ import RegisterA from "./src/components/RegisterA/RegisterA";
 import RegisterB from "./src/components/RegisterB/RegisterB.jsx";
 import RegisterC from "./src/components/RegisterC/RegisterC";
 import Success from "./src/components/Success/Success";
-import SuccessOperacion from "./src/components/SuccessOperacion/SucessOperacion"
+import SuccessOperacion from "./src/components/SuccessOperacion/SucessOperacion";
 import SuccessPlazoFijo from "./src/components/SucessPlazoFijo/SuccessPlazoFijo";
 import UserDetail from "./src/components/UserDetail/UserDetail";
 import DetailCoinsInvestorBuy from "./src/components/DetailCoinsInvestorBuy/DetailCoinsInvestorBuy";
@@ -26,7 +26,7 @@ export default function App() {
     <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName="Log In"
+          initialRouteName="HomeRoutes"
           screenOptions={{
             headerShown: false,
           }}

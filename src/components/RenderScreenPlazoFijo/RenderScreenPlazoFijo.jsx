@@ -28,8 +28,11 @@ const RenderScreenPlazoFijo = () => {
           </View>
         </View>
       </View>
-      <View style={styles.containerButton} >
-        <Button title="Confirmar" onPress={() => navigation.navigate("SuccessPlazoFijo")}></Button>
+      <View style={styles.containerButton}>
+        <Button
+          title="Confirmar"
+          onPress={() => navigation.navigate("SuccessPlazoFijo")}
+        ></Button>
       </View>
     </View>
   );
@@ -41,7 +44,7 @@ const styles = StyleSheet.create({
     borderColor: "white",
     height: 450,
     width: 350,
-    borderRadius: 25,
+    borderRadius: 8,
     alignItems: "center",
     paddingTop: 20,
   },
@@ -77,7 +80,7 @@ const styles = StyleSheet.create({
   },
   containerButton: {
     justifyContent: "center",
-    paddingVertical:20
+    paddingVertical: 20,
   },
   box: {
     color: "white",
