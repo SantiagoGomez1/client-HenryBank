@@ -7,8 +7,10 @@ import {useDispatch, useSelector} from 'react-redux';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 import { postUserData, postUserDataCard } from "../../redux/actions";
+import DropdownComponent from './Dropdown'
 
 import Constants from "expo-constants";
+
 
 
 const RegisterB = () => {
@@ -17,8 +19,8 @@ const RegisterB = () => {
   const navigation = useNavigation();
   const goRegisterC = () => {
     navigation.navigate("RegisterC");
-  };
-
+  };  
+  
   const [formData, setFormData] = useState({
     name: "",
     lastName: "",
@@ -29,6 +31,13 @@ const RegisterB = () => {
     nationality: "",
     address: "",
   });
+
+  //----------------------States Gender----------------------------//
+  const handleGender = (props) => {
+    console.log('esta son las props', props)
+    setFormData({ ...formData, gender: props });
+  };
+
   //----------------------States Picker-Date----------------------//
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 
@@ -41,9 +50,16 @@ const RegisterB = () => {
   };
 
   const handleConfirm = (date) => {
-    console.warn("Fecha seleccionada: ", date);
-    hideDatePicker();
+    // console.log("Fecha seleccionada: ", JSON.stringify(date));
+    const year = JSON.stringify(date).substring(1,5)
+    const months = JSON.stringify(date).substring(6,8)
+    const days = JSON.stringify(date).substring(9,11)
+    var dates = `${days}/${months}/${year}`
+    console.log('Fecha', dates);
+    setFormData({ ...formData, dateOfBirth: dates });
+    hideDatePicker();  
   };
+  
   //----------------------States Errors----------------------//
   const [errorName, setErrorName] = useState("");
   const [errorIdentity, setErrorIdentity] = useState("");
@@ -55,6 +71,7 @@ const RegisterB = () => {
   };
 
   const registerUserPerData = () => {
+    console.log(formData);
     if (!validateData()) {
       return;
     }
@@ -138,22 +155,27 @@ const RegisterB = () => {
           defaultValue={formData.identity}
         />
 
-        <Input
+        {/* <Input
           containerStyle={styles.input}
           placeholder="Elige una opción"
           label="Genero"
           onChange={(e) => handleOnChange(e, "gender")}
           // errorMessage={errorEmail}
           defaultValue={formData.gender}
-        />
+        /> */}
 
+        <DropdownComponent
+          setGender={handleGender}
+        />
+        
         <Input
           containerStyle={styles.input}
           placeholder="22/04/1995"
           label="Fecha de Nacimiento"
           onChange={(e) => handleOnChange(e, "dateOfBirth")}
           errorMessage={errorDateOfBirth}
-          defaultValue={formData.dateOfBirth}
+          handleConfirm={handleConfirm}
+          defaultValue={handleConfirm ? handleConfirm : formData.dateOfBirth}
           rightIcon={
             <Icon
               type="material-community"
@@ -162,27 +184,14 @@ const RegisterB = () => {
               onPress={() => showDatePicker()}
             />
           }
-        />
-
-        {/* <View> */}
-        {/* <Button title="Show Date Picker" onPress={showDatePicker} /> */}
-        <DateTimePickerModal
-          isVisible={isDatePickerVisible}
-          mode="date"
-          onConfirm={handleConfirm}
-          onCancel={hideDatePicker}
-        />
-        {/* </View> */}
+        />    
+          <DateTimePickerModal
+            isVisible={isDatePickerVisible}
+            mode="date"
+            onConfirm={handleConfirm}
+            onCancel={hideDatePicker}
+          />       
         
-        <Input
-          containerStyle={styles.input}
-          placeholder="Buenos Aires"
-          label="Ciudad"
-          onChange={(e) => handleOnChange(e, "city")}
-          // errorMessage={errorEmail}
-          defaultValue={formData.city}
-        />
-
         <Input
           containerStyle={styles.input}
           placeholder="Argentina"
@@ -190,6 +199,15 @@ const RegisterB = () => {
           onChange={(e) => handleOnChange(e, "nationality")}
           // errorMessage={errorEmail}
           defaultValue={formData.nationality}
+        />
+
+        <Input
+          containerStyle={styles.input}
+          placeholder="Buenos Aires"
+          label="Ciudad"
+          onChange={(e) => handleOnChange(e, "city")}
+          // errorMessage={errorEmail}
+          defaultValue={formData.city}
         />
 
         <Input
