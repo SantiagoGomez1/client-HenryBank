@@ -74,7 +74,7 @@ export default function InvestorDetail({ route, navigation }) {
             <Text style={{ color: "white", fontSize: 30 }}>Cotización</Text>
           </View>
           <View>
-            <Charts />
+            <Charts id={id} />
           </View>
         </View>
 

@@ -19,6 +19,7 @@ export const GET_USER_DETAIL = "GET_USER_DETAIL";
 export const GET_ALL_USERS = "GET_ALL_USERS";
 export const BUY_CRYPTOS = "BUY_CRYPTOS";
 export const SELL_CRYPTOS = "SELL_CRYPTOS";
+export const PRICES_CHARTS = "PRICES_CHARTS";
 
 export const logIn = (form) => async (dispatch) => {
   console.log(form);
@@ -212,4 +213,17 @@ export const sellCryptos = (id, price, value, token) => async (dispatch) => {
     config
   );
   dispatch({ type: SELL_CRYPTOS, payload: response.data });
+};
+
+export const pricesCharts = (id, token) => async (dispatch) => {
+  const config = {
+    headers: {
+      Authorization: token,
+    },
+  };
+  const response = await axios.get(
+    `https://h-bank.herokuapp.com/crypto/prices/${id}`,
+    config
+  );
+  dispatch({ type: PRICES_CHARTS, payload: response.data });
 };

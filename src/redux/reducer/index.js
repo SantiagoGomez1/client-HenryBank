@@ -13,6 +13,7 @@ import {
   GET_NEWS,
   BUY_CRYPTOS,
   SELL_CRYPTOS,
+  PRICES_CHARTS,
 } from "../actions/index";
 
 const initialState = {
@@ -26,6 +27,7 @@ const initialState = {
   userData: [],
   userDetail: {},
   news: [],
+  charts: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -102,6 +104,11 @@ const rootReducer = (state = initialState, action) => {
     case SELL_CRYPTOS:
       return {
         ...state,
+      };
+    case PRICES_CHARTS:
+      return {
+        ...state,
+        charts: action.payload,
       };
     default:
       return state;
