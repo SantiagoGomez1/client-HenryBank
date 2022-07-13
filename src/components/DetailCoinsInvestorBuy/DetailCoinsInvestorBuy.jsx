@@ -75,8 +75,9 @@ export default function DetailCoinsInvestorBuy({ route, navigation }) {
             title="Comprar"
             onPress={() =>
               navigation.navigate("InvestorBuyGeneral", {
+                id: route.params.id,
                 ticket: data.symbol,
-                precio: data.current_price,
+                price: data.current_price,
               })
             }
           />

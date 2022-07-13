@@ -10,7 +10,8 @@ import {
   SEARCH_COINS,
   GET_COIN_ID,
   GET_USER_DETAIL,
-  GET_NEWS
+  GET_NEWS,
+  BUY_CRYPTOS,
 } from "../actions/index";
 
 const initialState = {
@@ -88,11 +89,15 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         userDetail: action.payload,
       };
-      case GET_NEWS:
-        return {
-          ...state,
-          news: action.payload,
-        };
+    case GET_NEWS:
+      return {
+        ...state,
+        news: action.payload,
+      };
+    case BUY_CRYPTOS:
+      return {
+        ...state,
+      };
     default:
       return state;
   }
