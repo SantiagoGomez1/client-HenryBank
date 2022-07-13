@@ -18,6 +18,7 @@ export const GET_COIN_ID = "GET_COIN_ID";
 export const GET_USER_DETAIL = "GET_USER_DETAIL";
 export const GET_ALL_USERS = "GET_ALL_USERS";
 export const BUY_CRYPTOS = "BUY_CRYPTOS";
+export const SELL_CRYPTOS = "SELL_CRYPTOS";
 
 export const logIn = (form) => async (dispatch) => {
   console.log(form);
@@ -192,4 +193,23 @@ export const buyCrytos = (id, price, value, token) => async (dispatch) => {
     config
   );
   dispatch({ type: BUY_CRYPTOS, payload: response.data });
+};
+
+export const sellCryptos = (id, price, value, token) => async (dispatch) => {
+  const config = {
+    headers: {
+      Authorization: token,
+    },
+  };
+  const data = {
+    amount: value,
+    crypto: id,
+    price,
+  };
+  const response = await axios.post(
+    "https://h-bank.herokuapp.com/crypto/sell",
+    data,
+    config
+  );
+  dispatch({ type: SELL_CRYPTOS, payload: response.data });
 };
