@@ -2,12 +2,13 @@ import React, { useEffect } from "react";
 import { View, Image, Text, StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/native";
-import { useDispatch } from "react-redux";
-import { renderScreen } from "../../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { renderScreen, getUserDetail } from "../../redux/actions";
 
 const SuccessOperacion = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
+  const log = useSelector((state) => state.logIn.token);
 
   const set = () => {
     setTimeout(() => {
@@ -15,9 +16,9 @@ const SuccessOperacion = () => {
       dispatch(renderScreen(0));
     }, 1500);
   };
-
   useEffect(() => {
     set();
+    dispatch(getUserDetail(log));
   }, []);
   return (
     <View style={styles.container}>
