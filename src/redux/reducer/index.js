@@ -13,6 +13,7 @@ import {
   GET_NEWS,
   BUY_CRYPTOS,
   SELL_CRYPTOS,
+  RECHANGE,
 } from "../actions/index";
 
 const initialState = {
@@ -100,6 +101,10 @@ const rootReducer = (state = initialState, action) => {
         ...state,
       };
     case SELL_CRYPTOS:
+      return {
+        ...state,
+      };
+    case RECHANGE:
       return {
         ...state,
       };

@@ -19,6 +19,7 @@ export const GET_USER_DETAIL = "GET_USER_DETAIL";
 export const GET_ALL_USERS = "GET_ALL_USERS";
 export const BUY_CRYPTOS = "BUY_CRYPTOS";
 export const SELL_CRYPTOS = "SELL_CRYPTOS";
+export const RECHANGE = "RECHANGE";
 
 export const logIn = (form) => async (dispatch) => {
   console.log(form);
@@ -212,4 +213,20 @@ export const sellCryptos = (id, price, value, token) => async (dispatch) => {
     config
   );
   dispatch({ type: SELL_CRYPTOS, payload: response.data });
+};
+
+export const rechange = (amount, token) => async (dispatch) => {
+  const config = {
+    headers: {
+      Authorization: token,
+    },
+  };
+  const response = await axios.post(
+    "https://h-bank.herokuapp.com/user/recharge",
+    amount,
+    config
+  );
+
+  const payload = await response.data;
+  return dispatch({ type: RECHANGE, payload });
 };

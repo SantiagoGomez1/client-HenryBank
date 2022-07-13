@@ -5,12 +5,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getUsers,
-  getUser,
-  getUserDetail,
-  getNews,
-} from "../../redux/actions";
+import { getUsers, getUser, getUserDetail, getNews } from "../../redux/actions";
 
 import MaterialCommunityIcons from "react-native-vector-icons/Ionicons";
 import Home from "../Home/Home.jsx";
@@ -19,15 +14,15 @@ import Investor from "../Investor/Investor.jsx";
 
 const HomeRoutes = () => {
   const Tab = createBottomTabNavigator();
-  const logIn = useSelector((state) => state.logIn.token);
+  const log = useSelector((state) => state.logIn.token);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getUsers());
     dispatch(getUser());
-    dispatch(getNews())
-    dispatch(getUserDetail(logIn));
+    dispatch(getNews());
+    dispatch(getUserDetail(log));
   }, [dispatch]);
 
   return (
