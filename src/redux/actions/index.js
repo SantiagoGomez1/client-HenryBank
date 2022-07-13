@@ -46,9 +46,7 @@ export function getUsers(token) {
     //     Authorization: token,
     //   },
     // };
-    const res = await axios.get(
-      "https://h-bank.herokuapp.com/userEmail"
-    );
+    const res = await axios.get("https://h-bank.herokuapp.com/userEmail");
     console.log("esto es la res", res.data);
     return dispatch({
       type: GET_USERS,
@@ -193,6 +191,7 @@ export const buyCrytos = (id, price, value, token) => async (dispatch) => {
     data,
     config
   );
+  console.log("Estado de la compra: ", response.data);
   dispatch({ type: BUY_CRYPTOS, payload: response.data });
 };
 
@@ -212,6 +211,7 @@ export const sellCryptos = (id, price, value, token) => async (dispatch) => {
     data,
     config
   );
+  console.log("Estado de la venta: ", response.data);
   dispatch({ type: SELL_CRYPTOS, payload: response.data });
 };
 

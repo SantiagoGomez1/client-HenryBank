@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
 import React, { useEffect } from "react";
 import {
   Chart,
@@ -25,45 +25,54 @@ export default function Charts({ id }) {
     arrayChart.push({ x: i, y: chart[i] });
   }
   return (
-    <Chart
-      style={{ height: 200, width: 360 }}
-      data={arrayChart}
-      padding={{ left: 40, bottom: 20, right: 20, top: 20 }}
-      xDomain={{ min: 0, max: 30 }}
-      yDomain={{ min: 10000, max: 28000 }}
-    >
-      <VerticalAxis
-        tickCount={11}
-        theme={{
-          labels: { formatter: (v) => v.toFixed(2), label: { color: "white" } },
-        }}
-      />
-      <HorizontalAxis
-        tickCount={5}
-        theme={{
-          labels: {
-            formatter: (v) => v.toFixed(2),
-            label: {
-              color: "white",
-            },
-          },
-        }}
-      />
-      <Area
-        theme={{
-          gradient: {
-            from: { color: "#00A6C2" },
-            to: { color: "#00A6C2", opacity: 0.4 },
-          },
-        }}
-      />
-      <Line
-        theme={{
-          stroke: { color: "#02CBED", width: 5 },
-          scatter: { default: { width: 4, height: 4, rx: 2 } },
-        }}
-      />
-    </Chart>
+    <View>
+      {chart.length ? (
+        <Chart
+          style={{ height: 200, width: 360 }}
+          data={arrayChart}
+          padding={{ left: 40, bottom: 20, right: 20, top: 20 }}
+          xDomain={{ min: 0, max: 30 }}
+          yDomain={{ min: 10000, max: 28000 }}
+        >
+          <VerticalAxis
+            tickCount={11}
+            theme={{
+              labels: {
+                formatter: (v) => v.toFixed(2),
+                label: { color: "white" },
+              },
+            }}
+          />
+          <HorizontalAxis
+            tickCount={5}
+            theme={{
+              labels: {
+                formatter: (v) => v.toFixed(2),
+                label: {
+                  color: "white",
+                },
+              },
+            }}
+          />
+          <Area
+            theme={{
+              gradient: {
+                from: { color: "#00A6C2" },
+                to: { color: "#00A6C2", opacity: 0.4 },
+              },
+            }}
+          />
+          <Line
+            theme={{
+              stroke: { color: "#02CBED", width: 5 },
+              scatter: { default: { width: 4, height: 4, rx: 2 } },
+            }}
+          />
+        </Chart>
+      ) : (
+        <ActivityIndicator />
+      )}
+    </View>
   );
 }
 
