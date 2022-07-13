@@ -216,9 +216,8 @@ export const sellCryptos = (id, price, value, token) => async (dispatch) => {
   dispatch({ type: SELL_CRYPTOS, payload: response.data });
 };
 
-
 export const pricesCharts = (id, token) => async (dispatch) => {
-const config = {
+  const config = {
     headers: {
       Authorization: token,
     },
@@ -228,8 +227,9 @@ const config = {
     config
   );
   dispatch({ type: PRICES_CHARTS, payload: response.data });
+};
 
-  export const rechange = (amount, token) => async (dispatch) => {
+export const rechange = (amount, token) => async (dispatch) => {
   const config = {
     headers: {
       Authorization: token,
@@ -240,6 +240,7 @@ const config = {
     amount,
     config
   );
+
   const payload = await response.data;
   return dispatch({ type: RECHANGE, payload });
 };
