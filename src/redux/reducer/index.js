@@ -14,6 +14,7 @@ import {
   BUY_CRYPTOS,
   SELL_CRYPTOS,
   PRICES_CHARTS,
+  RECHANGE,
 } from "../actions/index";
 
 const initialState = {
@@ -109,6 +110,10 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         charts: action.payload,
+      };
+    case RECHANGE:
+      return {
+        ...state,
       };
     default:
       return state;
