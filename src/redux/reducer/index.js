@@ -29,6 +29,8 @@ const initialState = {
   userDetail: {},
   news: [],
   charts: [],
+  buyDetail: {},
+  sellDetail: {},
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -101,10 +103,12 @@ const rootReducer = (state = initialState, action) => {
     case BUY_CRYPTOS:
       return {
         ...state,
+        buyDetail: action.payload,
       };
     case SELL_CRYPTOS:
       return {
         ...state,
+        sellDetail: action.payload,
       };
     case PRICES_CHARTS:
       return {

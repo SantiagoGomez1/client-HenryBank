@@ -48,6 +48,9 @@ export default function InvestorBuyGeneral({ route }) {
             <Text style={{ color: "white", fontSize: 16 }}>
               Precio de mercado: USD$ {price}
             </Text>
+            <Text style={{ color: "white", fontSize: 16 }}>
+              Precio de mercado: AR$ {(price * 127.82).toFixed(2)}
+            </Text>
           </View>
           <Text style={{ color: "white", fontSize: 20, marginLeft: 14 }}>
             Plazo: 48hs
@@ -73,7 +76,9 @@ export default function InvestorBuyGeneral({ route }) {
           <View style={{ display: "flex", alignItems: "center" }}>
             <Text style={{ color: "white", fontSize: 16 }}>
               Cantidad estimada V{" "}
-              {value !== "" ? (parseInt(value) / price).toFixed(1) : 0}
+              {value !== ""
+                ? (parseInt(value) / (price * 127.82)).toFixed(4)
+                : 0}
             </Text>
           </View>
         </View>
