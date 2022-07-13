@@ -17,14 +17,12 @@ export const SEARCH_COINS = "SEARCH_COINS";
 export const GET_COIN_ID = "GET_COIN_ID";
 export const GET_USER_DETAIL = "GET_USER_DETAIL";
 export const GET_ALL_USERS = "GET_ALL_USERS";
+export const BUY_CRYPTOS = "BUY_CRYPTOS";
 
 export const logIn = (form) => async (dispatch) => {
   console.log(form);
 
-  const response = await axios.post(
-    "https://h-bank.herokuapp.com/login",
-    form
-  );
+  const response = await axios.post("https://h-bank.herokuapp.com/login", form);
 
   const payload = await response.data;
   console.log(payload);
@@ -168,9 +166,30 @@ export const getUserDetail = (token) => async (dispatch) => {
 };
 
 export const getNews = () => (dispatch) => {
-  return fetch("https://newsapi.org/v2/top-headlines?country=ar&category=business&apiKey=a09836a597c24e2490cdcbcf5f32fb6c")
+  return fetch(
+    "https://newsapi.org/v2/top-headlines?country=ar&category=business&apiKey=a09836a597c24e2490cdcbcf5f32fb6c"
+  )
     .then((response) => response.json())
     .then((news) => {
       dispatch({ type: GET_NEWS, payload: news.articles });
     });
+};
+
+export const buyCrytos = (id, price, value, token) => async (dispatch) => {
+  const config = {
+    headers: {
+      Authorization: token,
+    },
+  };
+  const data = {
+    amount: value,
+    crypto: id,
+    price,
+  };
+  const response = await axios.post(
+    "https://h-bank.herokuapp.com/crypto/buy",
+    data,
+    config
+  );
+  dispatch({ type: BUY_CRYPTOS, payload: response.data });
 };
