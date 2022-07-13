@@ -11,7 +11,6 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getCoinId } from "../../redux/actions";
-import { useNavigation } from "@react-navigation/native";
 
 var { height } = Dimensions.get("window");
 
@@ -76,8 +75,9 @@ export default function DetailCoinsInvestorBuy({ route, navigation }) {
             title="Comprar"
             onPress={() =>
               navigation.navigate("InvestorBuyGeneral", {
+                id: route.params.id,
                 ticket: data.symbol,
-                precio: data.current_price,
+                price: data.current_price,
               })
             }
           />

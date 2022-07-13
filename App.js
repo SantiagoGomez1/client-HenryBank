@@ -21,6 +21,7 @@ import InvestorBuy from "./src/components/InvestorBuy/InvestorBuy";
 import Confirmation from "./src/components/SuccessLogIn/SuccessLogIn";
 import InvestorBuyGeneral from "./src/components/InvestorBuyGeneral/InvestorBuyGeneral";
 import InvestorSell from "./src/components/InvestorSell/InvestorSell";
+import InvestorDetail from "./src/components/InvestorDetail/InvestorDetail";
 
 export default function App() {
   const Stack = createStackNavigator();
@@ -28,7 +29,7 @@ export default function App() {
     <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName="LogIn"
+          initialRouteName="Log In"
           screenOptions={{
             headerShown: false,
           }}
@@ -53,6 +54,7 @@ export default function App() {
             component={InvestorBuyGeneral}
           />
           <Stack.Screen name="InvestorSell" component={InvestorSell} />
+          <Stack.Screen name="InvestorDetail" component={InvestorDetail} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

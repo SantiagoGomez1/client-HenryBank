@@ -10,12 +10,18 @@ import React from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import { Divider } from "@rneui/themed";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { useDispatch, useSelector } from "react-redux";
+import { buyCrytos } from "../../redux/actions";
 
 var { height } = Dimensions.get("window");
 
 export default function InvestorBuyGeneral({ route }) {
-  const { ticket, precio } = route.params;
+  const { id, ticket, price } = route.params;
   const [value, setValue] = React.useState("");
+
+  //Trayendo el token
+  const dispatch = useDispatch();
+  const token = useSelector((state) => state.logIn.token);
   return (
     <KeyboardAwareScrollView style={styles.container}>
       <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
@@ -40,7 +46,7 @@ export default function InvestorBuyGeneral({ route }) {
           <Divider inset={true} insetType="middle" />
           <View style={styles.subCard}>
             <Text style={{ color: "white", fontSize: 16 }}>
-              Precio de mercado: AR$ {precio}
+              Precio de mercado: USD$ {price}
             </Text>
           </View>
           <Text style={{ color: "white", fontSize: 20, marginLeft: 14 }}>
@@ -67,14 +73,16 @@ export default function InvestorBuyGeneral({ route }) {
           <View style={{ display: "flex", alignItems: "center" }}>
             <Text style={{ color: "white", fontSize: 16 }}>
               Cantidad estimada V{" "}
-              {value !== "" ? (parseInt(value) / precio).toFixed(1) : 0}
+              {value !== "" ? (parseInt(value) / price).toFixed(1) : 0}
             </Text>
           </View>
         </View>
 
         <Button
           title="Continuar"
-          onPress={() => console.log("continuar de comprar")}
+          onPress={() => {
+            dispatch(buyCrytos(id, price, value, token));
+          }}
         />
       </LinearGradient>
     </KeyboardAwareScrollView>

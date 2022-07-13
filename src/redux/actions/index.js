@@ -6,6 +6,8 @@ export const GET_USER = "GET_USER";
 export const LOG_IN = "LOG_IN";
 export const RENDER_SCREEN = "RENDER_SCREEN";
 
+export const GET_NEWS = "GET_NEWS";
+
 export const POST_USER_DATA = "POST_USER_DATA";
 export const POST_USER = "POST_USER";
 export const POST_USER_RENDER = "POST_USER_RENDER";
@@ -15,14 +17,15 @@ export const SEARCH_COINS = "SEARCH_COINS";
 export const GET_COIN_ID = "GET_COIN_ID";
 export const GET_USER_DETAIL = "GET_USER_DETAIL";
 export const GET_ALL_USERS = "GET_ALL_USERS";
+export const BUY_CRYPTOS = "BUY_CRYPTOS";
+export const SELL_CRYPTOS = "SELL_CRYPTOS";
+export const PRICES_CHARTS = "PRICES_CHARTS";
+export const RECHANGE = "RECHANGE";
 
 export const logIn = (form) => async (dispatch) => {
   console.log(form);
 
-  const response = await axios.post(
-    "https://h-bank.herokuapp.com/login",
-    form
-  );
+  const response = await axios.post("https://h-bank.herokuapp.com/login", form);
 
   const payload = await response.data;
   console.log(payload);
@@ -85,7 +88,6 @@ export const postUserData = (payload, userMP) => {
       payload: created.data,
     });
   };
-  p;
 };
 
 export const postUserDataCard = (payload, userMP) => {
@@ -163,4 +165,81 @@ export const getUserDetail = (token) => async (dispatch) => {
   );
   console.log(response.data);
   dispatch({ type: GET_USER_DETAIL, payload: response.data });
+};
+
+export const getNews = () => (dispatch) => {
+  return fetch(
+    "https://newsapi.org/v2/top-headlines?country=ar&category=business&apiKey=a09836a597c24e2490cdcbcf5f32fb6c"
+  )
+    .then((response) => response.json())
+    .then((news) => {
+      dispatch({ type: GET_NEWS, payload: news.articles });
+    });
+};
+
+export const buyCrytos = (id, price, value, token) => async (dispatch) => {
+  const config = {
+    headers: {
+      Authorization: token,
+    },
+  };
+  const data = {
+    amount: value,
+    crypto: id,
+    price,
+  };
+  const response = await axios.post(
+    "https://h-bank.herokuapp.com/crypto/buy",
+    data,
+    config
+  );
+  dispatch({ type: BUY_CRYPTOS, payload: response.data });
+};
+
+export const sellCryptos = (id, price, value, token) => async (dispatch) => {
+  const config = {
+    headers: {
+      Authorization: token,
+    },
+  };
+  const data = {
+    amount: value,
+    crypto: id,
+    price,
+  };
+  const response = await axios.post(
+    "https://h-bank.herokuapp.com/crypto/sell",
+    data,
+    config
+  );
+  dispatch({ type: SELL_CRYPTOS, payload: response.data });
+};
+
+export const pricesCharts = (id, token) => async (dispatch) => {
+  const config = {
+    headers: {
+      Authorization: token,
+    },
+  };
+  const response = await axios.get(
+    `https://h-bank.herokuapp.com/crypto/prices/${id}`,
+    config
+  );
+  dispatch({ type: PRICES_CHARTS, payload: response.data });
+};
+
+export const rechange = (amount, token) => async (dispatch) => {
+  const config = {
+    headers: {
+      Authorization: token,
+    },
+  };
+  const response = await axios.post(
+    "https://h-bank.herokuapp.com/user/recharge",
+    amount,
+    config
+  );
+
+  const payload = await response.data;
+  return dispatch({ type: RECHANGE, payload });
 };

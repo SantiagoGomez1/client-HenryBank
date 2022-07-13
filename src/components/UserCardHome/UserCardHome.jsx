@@ -1,16 +1,13 @@
 import React from "react";
 
 import { View, Text, Image, StyleSheet } from "react-native";
-
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { LinearGradient } from "expo-linear-gradient";
+import { useNavigation } from "@react-navigation/native";
+import { useSelector } from "react-redux";
 import { IconButton } from "react-native-paper";
 
-import { LinearGradient } from "expo-linear-gradient";
-
-import { useNavigation } from "@react-navigation/native";
-
-import { useSelector } from "react-redux";
-
-import { TouchableOpacity } from "react-native-gesture-handler";
+import Constants from "expo-constants";
 
 const UserCardHome = () => {
   const user = useSelector((state) => state.user);
@@ -53,10 +50,10 @@ const UserCardHome = () => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingVertical: 20,
     paddingHorizontal: 25,
     flexDirection: "row",
     justifyContent: "space-between",
+    paddingTop: Constants.statusBarHeight + 5,
   },
   image: {
     width: 40,

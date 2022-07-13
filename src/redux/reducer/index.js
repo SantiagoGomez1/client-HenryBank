@@ -10,6 +10,11 @@ import {
   SEARCH_COINS,
   GET_COIN_ID,
   GET_USER_DETAIL,
+  GET_NEWS,
+  BUY_CRYPTOS,
+  SELL_CRYPTOS,
+  PRICES_CHARTS,
+  RECHANGE,
 } from "../actions/index";
 
 const initialState = {
@@ -22,6 +27,8 @@ const initialState = {
   userMP: [],
   userData: [],
   userDetail: {},
+  news: [],
+  charts: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -85,6 +92,28 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         userDetail: action.payload,
+      };
+    case GET_NEWS:
+      return {
+        ...state,
+        news: action.payload,
+      };
+    case BUY_CRYPTOS:
+      return {
+        ...state,
+      };
+    case SELL_CRYPTOS:
+      return {
+        ...state,
+      };
+    case PRICES_CHARTS:
+      return {
+        ...state,
+        charts: action.payload,
+      };
+    case RECHANGE:
+      return {
+        ...state,
       };
     default:
       return state;

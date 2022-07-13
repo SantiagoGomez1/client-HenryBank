@@ -1,16 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, StyleSheet, Text, Image, TouchableOpacity } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import Constants from "expo-constants";
+import { getUserDetail } from "../../redux/actions";
 
 const DetailUser = () => {
   const user = useSelector((state) => state.userDetail);
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const log = useSelector((state) => state.logIn.token);
   const goHome = () => {
     navigation.navigate("HomeRoutes");
   };
+  useEffect(() => {
+    dispatch(getUserDetail(log));
+  }, []);
   return (
     <View style={styles.container}>
       <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
@@ -60,6 +66,10 @@ const styles = StyleSheet.create({
     padding: 15,
     margin: 5,
     width: 300,
+    borderWidth: 1,
+    borderStyle: "solid",
+    borderColor: "rgba(255, 255, 255, 0.5)",
+    backgroundColor: "rgba(255, 255, 255, 0.3)",
   },
   background: {
     flex: 1,

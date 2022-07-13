@@ -1,8 +1,6 @@
 import React from "react";
 
-import Constants from "expo-constants";
-
-import { View, StyleSheet, ScrollView } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useSelector } from "react-redux";
 
@@ -23,9 +21,8 @@ const Home = () => {
   return (
     <View style={styles.container}>
       <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
-        <View>
-          <UserCardHome />
-        </View>
+        <UserCardHome />
+        <UserCapital />
         <HomeBubbleMenu />
         <View style={{ alignSelf: "center" }}>
           {screen === 0 ? (
@@ -60,7 +57,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   background: {
-    paddingTop: Constants.statusBarHeight,
     justifyContent: "space-between",
     flex: 1,
   },
