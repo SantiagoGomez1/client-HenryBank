@@ -1,16 +1,11 @@
 import React from "react";
 
 import { View, Text, Image, StyleSheet } from "react-native";
-
-import { IconButton } from "react-native-paper";
-
-import { LinearGradient } from "expo-linear-gradient";
-
-import { useNavigation } from "@react-navigation/native";
-
-import { useSelector } from "react-redux";
-
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { LinearGradient } from "expo-linear-gradient";
+import { useNavigation } from "@react-navigation/native";
+import { useSelector } from "react-redux";
+import { IconButton } from "react-native-paper";
 
 import Constants from "expo-constants";
 
