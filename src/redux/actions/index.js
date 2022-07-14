@@ -22,6 +22,9 @@ export const SELL_CRYPTOS = "SELL_CRYPTOS";
 export const PRICES_CHARTS = "PRICES_CHARTS";
 export const RECHANGE = "RECHANGE";
 
+export const GET_COUNTRIES = "GET_COUNTRIES";
+export const GET_CITIES = "GET_CITIES";
+
 export const logIn = (form) => async (dispatch) => {
   console.log(form);
 
@@ -242,4 +245,42 @@ export const rechange = (amount, token) => async (dispatch) => {
 
   const payload = await response.data;
   return dispatch({ type: RECHANGE, payload });
+};
+
+export function getCountries() {
+  return async function (dispatch) {
+    const config = {
+      headers: {
+        Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJlbWFudWVsanVyaUBnbWFpbC5jb20iLCJhcGlfdG9rZW4iOiIxcnlqUGkyajZhWXJvbWZYY3JPcl9RQzhfeXQ1TzRMTFRQbXFGUFN4bnN0dEtZSE84Z1EzU2g4SmE5SlpJUmVGanZrIn0sImV4cCI6MTY1Nzg1MTIzMX0.WyBzjkGg03VD-kyTc4HMyoskEM5LvqLQ8pQ-L98ovzE',
+      },
+    };
+    const res = await axios.get(
+      "https://www.universal-tutorial.com/api/countries",
+      config
+    );
+    // console.log("esto es la res paises", res.data);
+    return dispatch({
+      type: GET_COUNTRIES,
+      payload: res.data,
+    });
+  };
+};
+
+export function getCities(value) {  
+  return async function (dispatch) {
+    const config = {
+      headers: {
+        Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJlbWFudWVsanVyaUBnbWFpbC5jb20iLCJhcGlfdG9rZW4iOiIxcnlqUGkyajZhWXJvbWZYY3JPcl9RQzhfeXQ1TzRMTFRQbXFGUFN4bnN0dEtZSE84Z1EzU2g4SmE5SlpJUmVGanZrIn0sImV4cCI6MTY1Nzg1MTIzMX0.WyBzjkGg03VD-kyTc4HMyoskEM5LvqLQ8pQ-L98ovzE',
+      },
+    };
+    const res = await axios.get(
+      `https://www.universal-tutorial.com/api/states/${value}`,
+      config
+    );
+    // console.log("esto es la res ciudades", res.data);
+    return dispatch({
+      type: GET_CITIES,
+      payload: res.data,
+    });
+  };
 };
