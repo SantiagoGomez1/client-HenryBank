@@ -15,6 +15,8 @@ import {
   SELL_CRYPTOS,
   PRICES_CHARTS,
   RECHANGE,
+  GET_COUNTRIES,
+  GET_CITIES,
 } from "../actions/index";
 
 const initialState = {
@@ -29,6 +31,8 @@ const initialState = {
   userDetail: {},
   news: [],
   charts: [],
+  countries: [],
+  cities: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -111,6 +115,16 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
       };
+    case GET_COUNTRIES:      
+      return {
+        ...state,
+        countries: action.payload.map(el => el.country_name),
+      };
+    case GET_CITIES:
+      return {
+        ...state,
+        cities: action.payload.map(el => el.state_name),
+      }
     default:
       return state;
   }

@@ -7,11 +7,9 @@ import {useDispatch, useSelector} from 'react-redux';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 import { postUserData, postUserDataCard } from "../../redux/actions";
-import DropdownComponent from './Dropdown'
+import {DropdownComponentGender, DropdownComponentNationality, DropdownComponentCity} from './Dropdown'
 
 import Constants from "expo-constants";
-
-
 
 const RegisterB = () => {
   const dispatch = useDispatch();
@@ -31,35 +29,15 @@ const RegisterB = () => {
     nationality: "",
     address: "",
   });
-
-  //----------------------States Gender----------------------------//
-  const handleGender = (props) => {
-    console.log('esta son las props', props)
-    setFormData({ ...formData, gender: props });
-  };
-
+  
   //----------------------States Picker-Date----------------------//
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
-
   const showDatePicker = () => {
     setDatePickerVisibility(true);
   };
-
   const hideDatePicker = () => {
     setDatePickerVisibility(false);
   };
-
-  const handleConfirm = (date) => {
-    // console.log("Fecha seleccionada: ", JSON.stringify(date));
-    const year = JSON.stringify(date).substring(1,5)
-    const months = JSON.stringify(date).substring(6,8)
-    const days = JSON.stringify(date).substring(9,11)
-    var dates = `${days}/${months}/${year}`
-    console.log('Fecha', dates);
-    setFormData({ ...formData, dateOfBirth: dates });
-    hideDatePicker();  
-  };
-  
   //----------------------States Errors----------------------//
   const [errorName, setErrorName] = useState("");
   const [errorIdentity, setErrorIdentity] = useState("");
@@ -68,6 +46,28 @@ const RegisterB = () => {
 
   const handleOnChange = (e, type) => {
     setFormData({ ...formData, [type]: e.nativeEvent.text });
+  };
+
+  const handleConfirm = (date) => {    
+    const year = JSON.stringify(date).substring(1,5)
+    const months = JSON.stringify(date).substring(6,8)
+    const days = JSON.stringify(date).substring(9,11)
+    var dates = `${days}/${months}/${year}`
+    // console.log('Fecha', dates);
+    setFormData({ ...formData, dateOfBirth: dates });
+    hideDatePicker();  
+  };
+
+  const handleGender = (props) => {    
+    setFormData({ ...formData, gender: props });
+  };
+
+  const handleNationality = (props) => {    
+    setFormData({ ...formData, nationality: props });
+  };
+
+  const handleCity = (props) => {    
+    setFormData({ ...formData, city: props });
   };
 
   const registerUserPerData = () => {
@@ -79,6 +79,7 @@ const RegisterB = () => {
     dispatch(postUserDataCard(formData, userMP))
     goRegisterC();
   };
+
   //----------------------Funtion Validation----------------------//
   const validateData = () => {
     setErrorName("");
@@ -164,7 +165,7 @@ const RegisterB = () => {
           defaultValue={formData.gender}
         /> */}
 
-        <DropdownComponent
+        <DropdownComponentGender
           setGender={handleGender}
         />
         
@@ -192,22 +193,30 @@ const RegisterB = () => {
             onCancel={hideDatePicker}
           />       
         
-        <Input
+        {/* <Input
           containerStyle={styles.input}
           placeholder="Argentina"
           label="Nacionalidad"
           onChange={(e) => handleOnChange(e, "nationality")}
           // errorMessage={errorEmail}
           defaultValue={formData.nationality}
+        /> */}
+        
+        <DropdownComponentNationality
+          setNationality={handleNationality}
         />
 
-        <Input
+        {/* <Input
           containerStyle={styles.input}
           placeholder="Buenos Aires"
           label="Ciudad"
           onChange={(e) => handleOnChange(e, "city")}
           // errorMessage={errorEmail}
           defaultValue={formData.city}
+        /> */}
+
+        <DropdownComponentCity
+          setCity={handleCity}
         />
 
         <Input
