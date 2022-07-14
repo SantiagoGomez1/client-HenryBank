@@ -5,10 +5,10 @@ import { View, Text, StyleSheet } from "react-native";
 import { useSelector } from "react-redux";
 
 const UserCapital = () => {
-  const user = useSelector((state) => state.user);
+  const saldo = useSelector((state) => state.userDetail.balance);
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>{`$${user.capital}`}</Text>
+      <Text style={styles.text}>{`$${saldo}`}</Text>
       <Text style={{ color: "gray", textAlign: "center" }}>
         Saldo Disponible
       </Text>

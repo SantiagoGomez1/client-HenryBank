@@ -10,12 +10,19 @@ import React from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import { Divider } from "@rneui/themed";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { useDispatch, useSelector } from "react-redux";
+const axios = require("axios");
 
 var { height } = Dimensions.get("window");
 
-export default function InvestorBuyGeneral({ route }) {
-  const { ticket, precio } = route.params;
+export default function InvestorBuyGeneral({ route, navigation }) {
+  const { id, ticket, price } = route.params;
   const [value, setValue] = React.useState("");
+
+  //Trayendo el token
+  const dispatch = useDispatch();
+  const token = useSelector((state) => state.logIn.token);
+  const buyDetail = useSelector((state) => state.buyDetail);
   return (
     <KeyboardAwareScrollView style={styles.container}>
       <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
@@ -32,7 +39,7 @@ export default function InvestorBuyGeneral({ route }) {
         </View>
 
         <View style={styles.card}>
-          <View style={{ display: "flex", alignItems: "center" }}>
+          <View style={{ display: "flex" }}>
             <Text style={{ color: "white", fontSize: 25, marginVertical: 15 }}>
               ¿Cuánto quieres comprar?
             </Text>
@@ -40,7 +47,10 @@ export default function InvestorBuyGeneral({ route }) {
           <Divider inset={true} insetType="middle" />
           <View style={styles.subCard}>
             <Text style={{ color: "white", fontSize: 16 }}>
-              Precio de mercado: AR$ {precio}
+              Precio de mercado: USD$ {price}
+            </Text>
+            <Text style={{ color: "white", fontSize: 16 }}>
+              Precio de mercado: AR$ {(price * 127.82).toFixed(2)}
             </Text>
           </View>
           <Text style={{ color: "white", fontSize: 20, marginLeft: 14 }}>
@@ -67,15 +77,41 @@ export default function InvestorBuyGeneral({ route }) {
           <View style={{ display: "flex", alignItems: "center" }}>
             <Text style={{ color: "white", fontSize: 16 }}>
               Cantidad estimada V{" "}
-              {value !== "" ? (parseInt(value) / precio).toFixed(1) : 0}
+              {value !== ""
+                ? (parseInt(value) / (price * 127.82)).toFixed(4)
+                : 0}
             </Text>
           </View>
         </View>
-
-        <Button
-          title="Continuar"
-          onPress={() => console.log("continuar de comprar")}
-        />
+        <View style={styles.btn}>
+          <Button
+            title="Continuar"
+            onPress={async () => {
+              const response = await axios.post(
+                "https://h-bank.herokuapp.com/crypto/buy",
+                {
+                  amount: value,
+                  crypto: id,
+                  price,
+                },
+                {
+                  headers: {
+                    Authorization: token,
+                  },
+                }
+              );
+              if (response.data.msg === "Crypto Comprada") {
+                navigation.navigate("SuccessBuy", {
+                  success: 1,
+                });
+              } else if (response.data.msg === "Fondos insuficientes") {
+                navigation.navigate("SuccessBuy", {
+                  success: 2,
+                });
+              }
+            }}
+          />
+        </View>
       </LinearGradient>
     </KeyboardAwareScrollView>
   );
@@ -84,6 +120,7 @@ export default function InvestorBuyGeneral({ route }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "#140152",
   },
   background: {
     flex: 1,
@@ -99,7 +136,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     borderRadius: 8,
     padding: 10,
-    height: 200,
+    alignItems: "center",
   },
   input: {
     textAlign: "center",
@@ -117,5 +154,8 @@ const styles = StyleSheet.create({
     margin: 10,
     borderRadius: 8,
     padding: 10,
+  },
+  btn: {
+    alignSelf: "center",
   },
 });

@@ -1,28 +1,72 @@
-import React from "react";
+import React, { useState } from "react";
 
-import { View, Text, StyleSheet, Image, TextInput, Button } from "react-native";
+import { View, Text, StyleSheet, TextInput, Button } from "react-native";
 
 import { useNavigation } from "@react-navigation/native";
 
+import { rechange } from "../../redux/actions";
+
+import { useDispatch, useSelector } from "react-redux";
+
 const RenderScreenIngresarMonto = () => {
+  const [input, setInput] = useState({
+    amount: 0,
+  });
+  const [error, setError] = useState("");
+
+  const token = useSelector((state) => state.logIn.token);
+
   const navigation = useNavigation();
+
+  const dispatch = useDispatch();
+
+  const handleOnChange = (e, type) => {
+    setInput({ ...input, [type]: e.nativeEvent.text });
+  };
+
+  const validateData = () => {
+    setError("");
+    let isValid = true;
+    if (input.amount.length === 0) {
+      setError("");
+      isValid = false;
+    }
+    if (input.amount === 0) {
+      setError("");
+      isValid = false;
+    }
+    if (input.amount > 100000) {
+      setError("");
+      isValid = false;
+    }
+    return isValid;
+  };
+
+  const onSubmit = () => {
+    if (!validateData()) {
+      return;
+    }
+    dispatch(rechange(input, token));
+    navigation.navigate("SuccessOperacion");
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Ingresar Dinero</Text>
       <View style={styles.containerAmount}>
-        <Text style={styles.subText}>Monto...</Text>
+        <Text style={styles.subText}>Ingresar monto...</Text>
+        <Text style={styles.subText}>MAXIMO $100000</Text>
         <TextInput
           style={styles.input}
-          placeholder="00,00$"
+          placeholder="$00,00"
           placeholderTextColor="white"
+          onChange={(e) => handleOnChange(e, "amount")}
           keyboardType="number-pad"
+          errorMessage={error}
         />
       </View>
       <View style={{ paddingBottom: 40 }}>
-        <Button
-          title="Confirmar"
-          onPress={() => navigation.navigate("SuccessOperacion")}
-        ></Button>
+        <Button title="Confirmar" onPress={() => onSubmit()}></Button>
       </View>
     </View>
   );

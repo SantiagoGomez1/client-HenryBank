@@ -43,6 +43,7 @@ export default function Possession() {
         style={styles.subCard}
         onPress={() =>
           navigation.navigate("InvestorDetail", {
+            id: "bitcoin",
             ticket: "BTCUSD",
             cantidad: 128,
           })

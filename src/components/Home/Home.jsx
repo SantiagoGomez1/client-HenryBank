@@ -1,8 +1,10 @@
 import React from "react";
 
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Text } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { TouchableOpacity } from "react-native";
+import { renderScreen } from "../../redux/actions";
 
 import UserCardHome from "../UserCardHome/UserCardHome.jsx";
 import UserCapital from "../UserCapital/UserCapital.jsx";
@@ -18,11 +20,29 @@ import RenderScreenIngresar from "../RenderScreenIngresar/RenderScreenIngresar.j
 
 const Home = () => {
   let screen = useSelector((state) => state.renderScreen);
+  const dispatch = useDispatch();
+
+  const setScreen = (screen) => {
+    dispatch(renderScreen(screen));
+  };
+
   return (
     <View style={styles.container}>
       <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
         <UserCardHome />
-        <UserCapital />
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-evenly",
+          }}
+        >
+          <TouchableOpacity onPress={() => setScreen(0)}>
+            <Text style={{ color: "#fff" }}>¡NOTICIAS!</Text>
+          </TouchableOpacity>
+          <UserCapital />
+        </View>
+
         <HomeBubbleMenu />
         <View style={{ alignSelf: "center" }}>
           {screen === 0 ? (
