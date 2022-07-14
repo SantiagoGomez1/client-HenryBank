@@ -10,7 +10,7 @@ import { IconButton } from "react-native-paper";
 import Constants from "expo-constants";
 
 const UserCardHome = () => {
-  const user = useSelector((state) => state.user);
+  const user = useSelector((state) => state.userDetail);
   const navigation = useNavigation();
   const onClick = () => {
     navigation.navigate("User Detail");
@@ -31,9 +31,11 @@ const UserCardHome = () => {
         </View>
         <View style={styles.data}>
           <Text style={{ color: "white", fontWeight: "bold" }}>
-            Bienvenido!
+            Bienvenido/a
           </Text>
-          <Text style={{ color: "gray" }}>{user.fullName}</Text>
+          <Text style={{ color: "gray" }}>
+            {user.name} {user.lastName}
+          </Text>
         </View>
       </View>
       <View style={{ justifyContent: "center" }}>

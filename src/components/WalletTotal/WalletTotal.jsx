@@ -1,12 +1,13 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { IconButton } from "react-native-paper";
+import { useSelector } from "react-redux";
 
-const conversion = 0.0079;
+const conversion = 128.01;
 
-export default function WalletTotal({ money }) {
+export default function WalletTotal() {
   const [dropdown, setDropdown] = React.useState(true);
-
+  const money = useSelector((state) => state.userDetail.balance);
   return (
     <View style={styles.card}>
       <View style={styles.container}>
@@ -30,7 +31,7 @@ export default function WalletTotal({ money }) {
       {dropdown && <Text style={{ color: "white" }}>{"ARG: " + money}</Text>}
       {dropdown && (
         <Text style={{ color: "white" }}>
-          {"DOL: " + (money * conversion).toFixed(2)}
+          {"DOL: " + (money / conversion).toFixed(2)}
         </Text>
       )}
     </View>
