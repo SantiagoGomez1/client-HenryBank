@@ -4,7 +4,6 @@ import {
   View,
   Text,
   StyleSheet,
-  Image,
   FlatList,
   ActivityIndicator,
 } from "react-native";

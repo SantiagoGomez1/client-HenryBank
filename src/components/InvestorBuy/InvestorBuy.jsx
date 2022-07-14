@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-import { StyleSheet, Text, TextInput, View, Dimensions } from "react-native";
+import { StyleSheet, TextInput, View, Dimensions } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { Button } from "react-native-elements";
 
@@ -31,6 +31,7 @@ export default function InvestorBuy() {
           style={{
             display: "flex",
             flexDirection: "row",
+            justifyContent: "space-between",
           }}
         >
           <TextInput
@@ -68,6 +69,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: "column",
+    backgroundColor: "#140152",
   },
   background: {
     flex: 1,
@@ -83,7 +85,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 10,
     color: "white",
-    width: 300,
+    width: 250,
   },
   card: {
     backgroundColor: "transparent",

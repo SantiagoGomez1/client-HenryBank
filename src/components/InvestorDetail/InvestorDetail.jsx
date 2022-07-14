@@ -1,11 +1,4 @@
-import {
-  Button,
-  Dimensions,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-} from "react-native";
+import { Button, Dimensions, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";

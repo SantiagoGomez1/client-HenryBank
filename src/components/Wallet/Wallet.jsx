@@ -1,5 +1,4 @@
 import React from "react";
-import Constants from "expo-constants";
 
 import { LinearGradient } from "expo-linear-gradient";
 import { StyleSheet, View } from "react-native";

@@ -39,7 +39,7 @@ export default function InvestorBuyGeneral({ route, navigation }) {
         </View>
 
         <View style={styles.card}>
-          <View style={{ display: "flex", alignItems: "center" }}>
+          <View style={{ display: "flex" }}>
             <Text style={{ color: "white", fontSize: 25, marginVertical: 15 }}>
               ¿Cuánto quieres comprar?
             </Text>
@@ -83,34 +83,35 @@ export default function InvestorBuyGeneral({ route, navigation }) {
             </Text>
           </View>
         </View>
-
-        <Button
-          title="Continuar"
-          onPress={async () => {
-            const response = await axios.post(
-              "https://h-bank.herokuapp.com/crypto/buy",
-              {
-                amount: value,
-                crypto: id,
-                price,
-              },
-              {
-                headers: {
-                  Authorization: token,
+        <View style={styles.btn}>
+          <Button
+            title="Continuar"
+            onPress={async () => {
+              const response = await axios.post(
+                "https://h-bank.herokuapp.com/crypto/buy",
+                {
+                  amount: value,
+                  crypto: id,
+                  price,
                 },
+                {
+                  headers: {
+                    Authorization: token,
+                  },
+                }
+              );
+              if (response.data.msg === "Crypto Comprada") {
+                navigation.navigate("SuccessBuy", {
+                  success: 1,
+                });
+              } else if (response.data.msg === "Fondos insuficientes") {
+                navigation.navigate("SuccessBuy", {
+                  success: 2,
+                });
               }
-            );
-            if (response.data.msg === "Crypto Comprada") {
-              navigation.navigate("SuccessBuy", {
-                success: 1,
-              });
-            } else if (response.data.msg === "Fondos insuficientes") {
-              navigation.navigate("SuccessBuy", {
-                success: 2,
-              });
-            }
-          }}
-        />
+            }}
+          />
+        </View>
       </LinearGradient>
     </KeyboardAwareScrollView>
   );
@@ -119,6 +120,7 @@ export default function InvestorBuyGeneral({ route, navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "#140152",
   },
   background: {
     flex: 1,
@@ -134,7 +136,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     borderRadius: 8,
     padding: 10,
-    height: 200,
+    alignItems: "center",
   },
   input: {
     textAlign: "center",
@@ -152,5 +154,8 @@ const styles = StyleSheet.create({
     margin: 10,
     borderRadius: 8,
     padding: 10,
+  },
+  btn: {
+    alignSelf: "center",
   },
 });
