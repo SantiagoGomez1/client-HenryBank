@@ -197,7 +197,8 @@ export function DropdownComponentCity ({setCity}){
       backgroundColor: 'white',
       padding: 16,
       borderRadius: 25,    
-      width: '85%',      
+      width: '85%',
+      margin: 15,
     },
     dropdown: {
       height: 50,
