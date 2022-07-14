@@ -10,7 +10,7 @@ export const USER_TRANSFER = "USER_TRANSFER";
 
 export const GET_NEWS = "GET_NEWS";
 export const SET_TRANSFER = "SET_TRANSFER";
-export const PUT_TRANSFER = "PUT_TRANSFER"
+export const PUT_TRANSFER = "PUT_TRANSFER";
 
 export const POST_USER_DATA = "POST_USER_DATA";
 export const POST_USER = "POST_USER";
@@ -34,7 +34,6 @@ export const logIn = (form) => async (dispatch) => {
   const payload = await response.data;
   return dispatch({ type: LOG_IN, payload });
 };
-
 
 export const getAllUsers = (token) => async (dispatch) => {
   const config = {
@@ -198,11 +197,9 @@ export const getNews = () => (dispatch) => {
     });
 };
 
-
 export const userTransfer = (payload) => {
   return { type: USER_TRANSFER, payload: payload };
 };
-
 
 export const sellCryptos = (id, price, value, token) => async (dispatch) => {
   const config = {
@@ -230,7 +227,7 @@ export const setTransfer = (token, cbu) => async (dispatch) => {
       Authorization: token,
     },
   };
- const response = await axios.post(
+  const response = await axios.post(
     "https://h-bank.herokuapp.com/search",
     cbu,
     config
@@ -253,7 +250,7 @@ export const rechange = (amount, token) => async (dispatch) => {
       Authorization: token,
     },
   };
-    const response = await axios.post(
+  const response = await axios.post(
     "https://h-bank.herokuapp.com/user/recharge",
     amount,
     config
@@ -263,13 +260,19 @@ export const rechange = (amount, token) => async (dispatch) => {
 };
 
 export const getBalance = (token) => async (dispatch) => {
+  const config = {
+    headers: {
+      Authorization: token,
+    },
+  };
   const response = await axios.get(
     "https://h-bank.herokuapp.com/crypto/balance",
     config
   );
   dispatch({ type: GET_BALANCE, payload: response.data });
-  
-  export const putTransfer = (token, amount) => async(dispatch) => {
+};
+
+export const putTransfer = (token, amount) => async (dispatch) => {
   const config = {
     headers: {
       Authorization: token,
@@ -280,15 +283,15 @@ export const getBalance = (token) => async (dispatch) => {
     amount,
     config
   );
-  dispatch({ type: PUT_TRANSFER, payload: response.data })
+  dispatch({ type: PUT_TRANSFER, payload: response.data });
 };
-
 
 export function getCountries() {
   return async function (dispatch) {
     const config = {
       headers: {
-        Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJlbWFudWVsanVyaUBnbWFpbC5jb20iLCJhcGlfdG9rZW4iOiIxcnlqUGkyajZhWXJvbWZYY3JPcl9RQzhfeXQ1TzRMTFRQbXFGUFN4bnN0dEtZSE84Z1EzU2g4SmE5SlpJUmVGanZrIn0sImV4cCI6MTY1Nzg1MTIzMX0.WyBzjkGg03VD-kyTc4HMyoskEM5LvqLQ8pQ-L98ovzE',
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJlbWFudWVsanVyaUBnbWFpbC5jb20iLCJhcGlfdG9rZW4iOiIxcnlqUGkyajZhWXJvbWZYY3JPcl9RQzhfeXQ1TzRMTFRQbXFGUFN4bnN0dEtZSE84Z1EzU2g4SmE5SlpJUmVGanZrIn0sImV4cCI6MTY1Nzg1MTIzMX0.WyBzjkGg03VD-kyTc4HMyoskEM5LvqLQ8pQ-L98ovzE",
       },
     };
     const res = await axios.get(
@@ -301,13 +304,14 @@ export function getCountries() {
       payload: res.data,
     });
   };
-};
+}
 
-export function getCities(value) {  
+export function getCities(value) {
   return async function (dispatch) {
     const config = {
       headers: {
-        Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJlbWFudWVsanVyaUBnbWFpbC5jb20iLCJhcGlfdG9rZW4iOiIxcnlqUGkyajZhWXJvbWZYY3JPcl9RQzhfeXQ1TzRMTFRQbXFGUFN4bnN0dEtZSE84Z1EzU2g4SmE5SlpJUmVGanZrIn0sImV4cCI6MTY1Nzg1MTIzMX0.WyBzjkGg03VD-kyTc4HMyoskEM5LvqLQ8pQ-L98ovzE',
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJlbWFudWVsanVyaUBnbWFpbC5jb20iLCJhcGlfdG9rZW4iOiIxcnlqUGkyajZhWXJvbWZYY3JPcl9RQzhfeXQ1TzRMTFRQbXFGUFN4bnN0dEtZSE84Z1EzU2g4SmE5SlpJUmVGanZrIn0sImV4cCI6MTY1Nzg1MTIzMX0.WyBzjkGg03VD-kyTc4HMyoskEM5LvqLQ8pQ-L98ovzE",
       },
     };
     const res = await axios.get(
@@ -320,4 +324,4 @@ export function getCities(value) {
       payload: res.data,
     });
   };
-};
+}
