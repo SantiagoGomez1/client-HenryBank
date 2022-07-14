@@ -12,9 +12,8 @@ import {
   getUserDetail,
   getNews,
   getAllUsers,
-  getMyUser
+  getMyUser,
 } from "../../redux/actions";
-
 
 import MaterialCommunityIcons from "react-native-vector-icons/Ionicons";
 import Home from "../Home/Home.jsx";
@@ -30,10 +29,10 @@ const HomeRoutes = () => {
   useEffect(() => {
     dispatch(getUsers());
     dispatch(getUser());
-    dispatch(getNews())
-    dispatch(getMyUser(logIn))
-    dispatch(getAllUsers(logIn))
-    dispatch(getUserDetail(logIn));
+    dispatch(getNews());
+    dispatch(getMyUser(log));
+    dispatch(getAllUsers(log));
+    dispatch(getUserDetail(log));
     dispatch(getNews());
     dispatch(getUserDetail(log));
   }, [dispatch]);
