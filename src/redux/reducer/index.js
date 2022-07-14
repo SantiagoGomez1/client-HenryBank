@@ -10,11 +10,17 @@ import {
   SEARCH_COINS,
   GET_COIN_ID,
   GET_USER_DETAIL,
-  GET_NEWS
+  GET_NEWS,
+  USER_TRANSFER,
+  GET_ALL_USERS,
+  GET_MY_USER,
+  PUT_TRANSFER
 } from "../actions/index";
 
 const initialState = {
   users: [],
+  allUsers: [],
+  myUser:{},
   user: {},
   logIn: {},
   renderScreen: 0,
@@ -24,6 +30,8 @@ const initialState = {
   userData: [],
   userDetail: {},
   news: [],
+  userTransfer: {},
+  putTransfer: {},
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -37,6 +45,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         user: action.payload.find((user) => user.id === 3),
+      };
+      case GET_MY_USER:
+      return {
+        ...state,
+        myUser: action.payload,
       };
     case LOG_IN:
       return {
@@ -88,11 +101,26 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         userDetail: action.payload,
       };
-      case GET_NEWS:
-        return {
-          ...state,
-          news: action.payload,
-        };
+    case GET_NEWS:
+      return {
+        ...state,
+        news: action.payload,
+      };
+    case USER_TRANSFER:
+      return {
+        ...state,
+        userTransfer: action.payload,
+      };
+    case GET_ALL_USERS:
+      return {
+        ...state,
+        allUsers: action.payload,
+      };
+      case PUT_TRANSFER:
+      return {
+        ...state,
+        putTransfer: action.payload,
+      };
     default:
       return state;
   }

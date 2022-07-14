@@ -10,6 +10,8 @@ import {
   getUser,
   getUserDetail,
   getNews,
+  getAllUsers,
+  getMyUser
 } from "../../redux/actions";
 
 import MaterialCommunityIcons from "react-native-vector-icons/Ionicons";
@@ -27,6 +29,8 @@ const HomeRoutes = () => {
     dispatch(getUsers());
     dispatch(getUser());
     dispatch(getNews())
+    dispatch(getMyUser(logIn))
+    dispatch(getAllUsers(logIn))
     dispatch(getUserDetail(logIn));
   }, [dispatch]);
 
