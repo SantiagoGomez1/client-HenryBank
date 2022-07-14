@@ -1,5 +1,12 @@
-import { Button, Dimensions, StyleSheet, Text, View } from "react-native";
-import React from "react";
+import {
+  Button,
+  Dimensions,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
+import React, { useEffect } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { Divider } from "@rneui/themed";
@@ -8,7 +15,8 @@ import Charts from "../Charts/Charts";
 var { height } = Dimensions.get("window");
 
 export default function InvestorDetail({ route, navigation }) {
-  const { id, ticket, cantidad } = route.params;
+  const { id, ticket, cantidad, precio } = route.params;
+
   return (
     <KeyboardAwareScrollView style={styles.container}>
       <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
@@ -41,7 +49,7 @@ export default function InvestorDetail({ route, navigation }) {
             >
               AR$
             </Text>
-            <Text style={{ color: "white", fontSize: 25 }}>234.351,45</Text>
+            <Text style={{ color: "white", fontSize: 25 }}>{cantidad}</Text>
           </View>
           <Text style={{ color: "white", fontSize: 20 }}>¡Estás ganando!</Text>
           <View>
@@ -115,7 +123,7 @@ export default function InvestorDetail({ route, navigation }) {
               navigation.navigate("InvestorSell", {
                 id,
                 ticket,
-                price: 50000,
+                price: precio,
               })
             }
           />
@@ -125,7 +133,7 @@ export default function InvestorDetail({ route, navigation }) {
               navigation.navigate("InvestorBuyGeneral", {
                 id,
                 ticket,
-                precio: 50000,
+                price: precio,
               })
             }
           />

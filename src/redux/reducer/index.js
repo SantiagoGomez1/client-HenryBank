@@ -11,6 +11,9 @@ import {
   GET_COIN_ID,
   GET_USER_DETAIL,
   GET_NEWS,
+  PRICES_CHARTS,
+  RECHANGE,
+  GET_BALANCE,
   USER_TRANSFER,
   GET_ALL_USERS,
   GET_MY_USER,
@@ -38,6 +41,7 @@ const initialState = {
   userTransfer: {},
   putTransfer: {},
   charts: [],
+  balance: [],
   countries: [],
   cities: [],
 };
@@ -142,6 +146,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
       };
+    case GET_BALANCE:
+      return {
+        ...state,
+        balance: action.payload,
+      };
     case GET_COUNTRIES:
       return {
         ...state,
@@ -152,7 +161,6 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         cities: action.payload.map((el) => el.state_name),
       };
-
     default:
       return state;
   }

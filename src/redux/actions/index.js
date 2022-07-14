@@ -24,6 +24,7 @@ export const GET_ALL_USERS = "GET_ALL_USERS";
 export const SELL_CRYPTOS = "SELL_CRYPTOS";
 export const PRICES_CHARTS = "PRICES_CHARTS";
 export const RECHANGE = "RECHANGE";
+export const GET_BALANCE = "GET_BALANCE";
 
 export const GET_COUNTRIES = "GET_COUNTRIES";
 export const GET_CITIES = "GET_CITIES";
@@ -261,6 +262,13 @@ export const rechange = (amount, token) => async (dispatch) => {
   return dispatch({ type: RECHANGE, payload });
 };
 
+export const getBalance = (token) => async (dispatch) => {
+  const response = await axios.get(
+    "https://h-bank.herokuapp.com/crypto/balance",
+    config
+  );
+  dispatch({ type: GET_BALANCE, payload: response.data });
+  
   export const putTransfer = (token, amount) => async(dispatch) => {
   const config = {
     headers: {
