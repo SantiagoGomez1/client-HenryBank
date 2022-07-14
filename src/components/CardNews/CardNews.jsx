@@ -1,8 +1,12 @@
 import React from "react";
 
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, Linking } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
-const CardNews = ({ name, title, description, content, date, image }) => {
+const CardNews = ({ name, title, description, url, date, image }) => {
+  const handleOpenUrl = () => {
+    Linking.openURL(url);
+  };
   return (
     <View style={styles.container}>
       <View>
@@ -11,8 +15,10 @@ const CardNews = ({ name, title, description, content, date, image }) => {
           style={styles.image}
           source={{ uri: `${image}` }}
         />
-        <Text style={styles.textTitle}>{title}</Text>
-        <Text style={styles.text}>{name}</Text>
+        <TouchableOpacity onPress={() => handleOpenUrl()}>
+          <Text style={styles.textTitle}>{title}</Text>
+          <Text style={styles.text}>{name}</Text>
+        </TouchableOpacity>
       </View>
       <Text style={styles.textDescription}>{description}</Text>
     </View>
@@ -56,7 +62,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     textAlign: "center",
     width: 300,
-    marginBottom:10
+    marginBottom: 10,
   },
 });
 

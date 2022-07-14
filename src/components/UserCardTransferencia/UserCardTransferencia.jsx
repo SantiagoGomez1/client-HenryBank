@@ -4,9 +4,8 @@ import { View, Text, StyleSheet, Image } from "react-native";
 
 import { useSelector } from "react-redux";
 
-const UserCardTransferencia = () => {
+const UserCardTransferencia = ({data}) => {
   const user = useSelector((state) => state.user);
-
   return (
     <View style={styles.container}>
       <Image
@@ -15,8 +14,8 @@ const UserCardTransferencia = () => {
         source={{ uri: `${user.image}` }}
       />
       <View style={styles.containerData}>
-        <Text style={styles.text}>{user.fullName}</Text>
-        <Text style={styles.textCBU}>CBU: {user.cbu}</Text>
+        <Text style={styles.text}>{data.name} {data.lastName}</Text>
+        <Text style={styles.textCBU}>CBU: {data.cbu}</Text>
       </View>
     </View>
   );
@@ -36,7 +35,7 @@ const styles = StyleSheet.create({
     width:300
   },
   containerData:{
-    paddingLeft:15
+    paddingLeft:10
   },
   image: {
     width: 70,
@@ -50,7 +49,7 @@ const styles = StyleSheet.create({
   },
   textCBU:{
     color:'gray',
-    fontSize:13
+    fontSize:12
   }
 });
 

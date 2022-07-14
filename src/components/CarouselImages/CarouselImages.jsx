@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
   },
   container: {
     margin: 10,
-    backgroundColor: "#BD00FF",
+    backgroundColor: "aqua",
     borderRadius: 8,
     padding: 10,
     paddingTop: 60,

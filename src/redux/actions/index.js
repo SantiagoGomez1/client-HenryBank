@@ -3,10 +3,14 @@ import { dataa } from "../../../response";
 
 export const GET_USERS = "GET_USERS";
 export const GET_USER = "GET_USER";
+export const GET_MY_USER = "GET_MY_USER";
 export const LOG_IN = "LOG_IN";
 export const RENDER_SCREEN = "RENDER_SCREEN";
+export const USER_TRANSFER = "USER_TRANSFER";
 
 export const GET_NEWS = "GET_NEWS";
+export const SET_TRANSFER = "SET_TRANSFER";
+export const PUT_TRANSFER = "PUT_TRANSFER"
 
 export const POST_USER_DATA = "POST_USER_DATA";
 export const POST_USER = "POST_USER";
@@ -22,32 +26,51 @@ export const PRICES_CHARTS = "PRICES_CHARTS";
 export const RECHANGE = "RECHANGE";
 export const GET_BALANCE = "GET_BALANCE";
 
+export const GET_COUNTRIES = "GET_COUNTRIES";
+export const GET_CITIES = "GET_CITIES";
+
 export const logIn = (form) => async (dispatch) => {
-  console.log(form);
-
   const response = await axios.post("https://h-bank.herokuapp.com/login", form);
-
   const payload = await response.data;
-  console.log(payload);
   return dispatch({ type: LOG_IN, payload });
 };
 
-// export const getUsers = () => {
-//   return {
-//     type: GET_USERS,
-//     payload: dataa,
-//   };
-// };
+
+export const getAllUsers = (token) => async (dispatch) => {
+  const config = {
+    headers: {
+      Authorization: token,
+    },
+  };
+  const response = await axios.get("https://h-bank.herokuapp.com/user", config);
+  dispatch({ type: GET_ALL_USERS, payload: response.data });
+};
+
+export const getMyUser = (token) => async (dispatch) => {
+  const config = {
+    headers: {
+      Authorization: token,
+    },
+  };
+  const response = await axios.get(
+    "https://h-bank.herokuapp.com/user/profile",
+    config
+  );
+  dispatch({ type: GET_MY_USER, payload: response.data });
+};
 
 export function getUsers(token) {
   return async function (dispatch) {
-    // const config = {
-    //   headers: {
-    //     Authorization: token,
-    //   },
-    // };
-    const res = await axios.get("https://h-bank.herokuapp.com/userEmail");
-    console.log("esto es la res", res.data);
+    const config = {
+      headers: {
+        Authorization: token,
+      },
+    };
+    const res = await axios.get(
+      "https://h-bank.herokuapp.com/userEmail",
+      config
+    );
+
     return dispatch({
       type: GET_USERS,
       payload: res.data,
@@ -175,6 +198,12 @@ export const getNews = () => (dispatch) => {
     });
 };
 
+
+export const userTransfer = (payload) => {
+  return { type: USER_TRANSFER, payload: payload };
+};
+
+
 export const sellCryptos = (id, price, value, token) => async (dispatch) => {
   const config = {
     headers: {
@@ -195,12 +224,22 @@ export const sellCryptos = (id, price, value, token) => async (dispatch) => {
   dispatch({ type: SELL_CRYPTOS, payload: response.data });
 };
 
-export const pricesCharts = (id, token) => async (dispatch) => {
+export const setTransfer = (token, cbu) => async (dispatch) => {
   const config = {
     headers: {
       Authorization: token,
     },
   };
+ const response = await axios.post(
+    "https://h-bank.herokuapp.com/search",
+    cbu,
+    config
+  );
+  console.log(response.data, "CORRECTO");
+  dispatch({ type: SET_TRANSFER, payload: response.data });
+};
+
+export const pricesCharts = (id, token) => async (dispatch) => {
   const response = await axios.get(
     `https://h-bank.herokuapp.com/crypto/prices/${id}`,
     config
@@ -214,25 +253,71 @@ export const rechange = (amount, token) => async (dispatch) => {
       Authorization: token,
     },
   };
-  const response = await axios.post(
+    const response = await axios.post(
     "https://h-bank.herokuapp.com/user/recharge",
     amount,
     config
   );
-
   const payload = await response.data;
   return dispatch({ type: RECHANGE, payload });
 };
 
 export const getBalance = (token) => async (dispatch) => {
-  const config = {
-    headers: {
-      Authorization: token,
-    },
-  };
   const response = await axios.get(
     "https://h-bank.herokuapp.com/crypto/balance",
     config
   );
   dispatch({ type: GET_BALANCE, payload: response.data });
+  
+  export const putTransfer = (token, amount) => async(dispatch) => {
+  const config = {
+    headers: {
+      Authorization: token,
+    },
+  };
+  const response = await axios.put(
+    "https://h-bank.herokuapp.com/search/tranfer",
+    amount,
+    config
+  );
+  dispatch({ type: PUT_TRANSFER, payload: response.data })
+};
+
+
+export function getCountries() {
+  return async function (dispatch) {
+    const config = {
+      headers: {
+        Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJlbWFudWVsanVyaUBnbWFpbC5jb20iLCJhcGlfdG9rZW4iOiIxcnlqUGkyajZhWXJvbWZYY3JPcl9RQzhfeXQ1TzRMTFRQbXFGUFN4bnN0dEtZSE84Z1EzU2g4SmE5SlpJUmVGanZrIn0sImV4cCI6MTY1Nzg1MTIzMX0.WyBzjkGg03VD-kyTc4HMyoskEM5LvqLQ8pQ-L98ovzE',
+      },
+    };
+    const res = await axios.get(
+      "https://www.universal-tutorial.com/api/countries",
+      config
+    );
+    // console.log("esto es la res paises", res.data);
+    return dispatch({
+      type: GET_COUNTRIES,
+      payload: res.data,
+    });
+  };
+};
+
+export function getCities(value) {  
+  return async function (dispatch) {
+    const config = {
+      headers: {
+        Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJlbWFudWVsanVyaUBnbWFpbC5jb20iLCJhcGlfdG9rZW4iOiIxcnlqUGkyajZhWXJvbWZYY3JPcl9RQzhfeXQ1TzRMTFRQbXFGUFN4bnN0dEtZSE84Z1EzU2g4SmE5SlpJUmVGanZrIn0sImV4cCI6MTY1Nzg1MTIzMX0.WyBzjkGg03VD-kyTc4HMyoskEM5LvqLQ8pQ-L98ovzE',
+      },
+    };
+    const res = await axios.get(
+      `https://www.universal-tutorial.com/api/states/${value}`,
+      config
+    );
+    // console.log("esto es la res ciudades", res.data);
+    return dispatch({
+      type: GET_CITIES,
+      payload: res.data,
+    });
+  };
 };

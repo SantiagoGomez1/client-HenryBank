@@ -11,14 +11,24 @@ import {
   GET_COIN_ID,
   GET_USER_DETAIL,
   GET_NEWS,
-  SELL_CRYPTOS,
   PRICES_CHARTS,
   RECHANGE,
   GET_BALANCE,
+  USER_TRANSFER,
+  GET_ALL_USERS,
+  GET_MY_USER,
+  PUT_TRANSFER,
+  SELL_CRYPTOS,
+  PRICES_CHARTS,
+  RECHANGE,
+  GET_COUNTRIES,
+  GET_CITIES,
 } from "../actions/index";
 
 const initialState = {
   users: [],
+  allUsers: [],
+  myUser: {},
   user: {},
   logIn: {},
   renderScreen: 0,
@@ -28,8 +38,12 @@ const initialState = {
   userData: [],
   userDetail: {},
   news: [],
+  userTransfer: {},
+  putTransfer: {},
   charts: [],
   balance: [],
+  countries: [],
+  cities: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -43,6 +57,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         user: action.payload.find((user) => user.id === 3),
+      };
+    case GET_MY_USER:
+      return {
+        ...state,
+        myUser: action.payload,
       };
     case LOG_IN:
       return {
@@ -99,6 +118,21 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         news: action.payload,
       };
+    case USER_TRANSFER:
+      return {
+        ...state,
+        userTransfer: action.payload,
+      };
+    case GET_ALL_USERS:
+      return {
+        ...state,
+        allUsers: action.payload,
+      };
+    case PUT_TRANSFER:
+      return {
+        ...state,
+        putTransfer: action.payload,
+      };
     case SELL_CRYPTOS:
       return {
         ...state,
@@ -116,6 +150,16 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         balance: action.payload,
+      };
+    case GET_COUNTRIES:
+      return {
+        ...state,
+        countries: action.payload.map((el) => el.country_name),
+      };
+    case GET_CITIES:
+      return {
+        ...state,
+        cities: action.payload.map((el) => el.state_name),
       };
     default:
       return state;

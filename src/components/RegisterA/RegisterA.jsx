@@ -4,19 +4,19 @@ import { useNavigation } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
 import Constants from "expo-constants";
 import { Input, Icon } from "react-native-elements";
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 
-import { postUser, allUsers, getUsers } from "../../redux/actions";
+import { postUser, getUsers } from "../../redux/actions";
 
 export default function RegisterA() {
   const dispatch = useDispatch();
-  
+
   useEffect(() => {
-    dispatch(getUsers());    
-  }, [dispatch]);  
-  const getAllUsers = useSelector(state => state.users)
-  console.log('Aca hay getUsers', getAllUsers);
+    dispatch(getUsers());
+  }, [dispatch]);
+  const getAllUsers = useSelector((state) => state.users);
+  console.log("Aca hay getUsers", getAllUsers);
 
   const navigation = useNavigation();
 
@@ -44,7 +44,7 @@ export default function RegisterA() {
     if (!validateData()) {
       return;
     }
-    dispatch(postUser(formData))    
+    dispatch(postUser(formData));
     goRegisterB();
   };
 
@@ -59,7 +59,7 @@ export default function RegisterA() {
       setErrorEmail("Debes ingresar un E-mail válido");
       isValid = false;
     }
-    if (getAllUsers?.find(u => u.email === formData.email)) {      
+    if (getAllUsers?.find((u) => u.email === formData.email)) {
       setErrorEmail("Este E-mail ya está asociado a una cuenta");
       isValid = false;
     }
@@ -98,7 +98,6 @@ export default function RegisterA() {
         label="E-mail"
         onChange={(e) => handleOnChange(e, "email")}
         errorMessage={errorEmail}
-        defaultValue={formData.email}
       />
       <Input
         containerStyle={styles.input}
@@ -106,7 +105,6 @@ export default function RegisterA() {
         label="Confirmar E-mail"
         onChange={(e) => handleOnChange(e, "confirmEmail")}
         errorMessage={errorConfirmEmail}
-        defaultValue={formData.confirmEmail}
       />
       <Input
         containerStyle={styles.input}
@@ -116,7 +114,6 @@ export default function RegisterA() {
         secureTextEntry={!showPassword}
         onChange={(e) => handleOnChange(e, "password")}
         errorMessage={errorPassword}
-        defaultValue={formData.password}
         rightIcon={
           <Icon
             type="material-community"
@@ -134,7 +131,6 @@ export default function RegisterA() {
         secureTextEntry={!showPassword}
         onChange={(e) => handleOnChange(e, "confirmPassword")}
         errorMessage={errorConfirPassword}
-        defaultValue={formData.confirmPassword}
         rightIcon={
           <Icon
             type="material-community"
