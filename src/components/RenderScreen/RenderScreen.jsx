@@ -10,9 +10,9 @@ import {
 import { useSelector } from "react-redux";
 
 import CardNews from "../CardNews/CardNews.jsx";
-let ID = 1;
 
 const RenderScreen = () => {
+  let ID = 1;
   const news = useSelector((state) => state.news);
   return (
     <View style={styles.container}>
@@ -31,7 +31,7 @@ const RenderScreen = () => {
               name={item.source.name}
               title={item.title}
               description={item.description}
-              content={item.content}
+              url={item.url}
               date={item.publishedAt}
             />
           )}
