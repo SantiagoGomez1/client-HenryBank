@@ -14,20 +14,18 @@ import {
   USER_TRANSFER,
   GET_ALL_USERS,
   GET_MY_USER,
-  PUT_TRANSFER
-  BUY_CRYPTOS,
+  PUT_TRANSFER,
   SELL_CRYPTOS,
   PRICES_CHARTS,
   RECHANGE,
   GET_COUNTRIES,
   GET_CITIES,
-
 } from "../actions/index";
 
 const initialState = {
   users: [],
   allUsers: [],
-  myUser:{},
+  myUser: {},
   user: {},
   logIn: {},
   renderScreen: 0,
@@ -42,7 +40,6 @@ const initialState = {
   charts: [],
   countries: [],
   cities: [],
-
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -57,7 +54,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         user: action.payload.find((user) => user.id === 3),
       };
-      case GET_MY_USER:
+    case GET_MY_USER:
       return {
         ...state,
         myUser: action.payload,
@@ -127,7 +124,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         allUsers: action.payload,
       };
-      case PUT_TRANSFER:
+    case PUT_TRANSFER:
       return {
         ...state,
         putTransfer: action.payload,
@@ -145,16 +142,16 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
       };
-    case GET_COUNTRIES:      
+    case GET_COUNTRIES:
       return {
         ...state,
-        countries: action.payload.map(el => el.country_name),
+        countries: action.payload.map((el) => el.country_name),
       };
     case GET_CITIES:
       return {
         ...state,
-        cities: action.payload.map(el => el.state_name),
-      }
+        cities: action.payload.map((el) => el.state_name),
+      };
 
     default:
       return state;
