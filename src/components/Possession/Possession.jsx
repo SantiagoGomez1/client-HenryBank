@@ -1,11 +1,28 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import React from "react";
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import React, { useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
+import { useDispatch, useSelector } from "react-redux";
+import { getBalance } from "../../redux/actions";
 
 export default function Possession() {
   const navigation = useNavigation();
+
+  const dispatch = useDispatch();
+  const token = useSelector((state) => state.logIn.token);
+  const balance = useSelector((state) => state.balance);
+  useEffect(() => {
+    dispatch(getBalance(token));
+  }, []);
+
+  console.log(balance);
   return (
-    <View style={styles.card}>
+    <ScrollView style={styles.card}>
       <View>
         <View style={{ display: "flex", alignItems: "center" }}>
           <Text
@@ -25,37 +42,33 @@ export default function Possession() {
         </View>
       </View>
 
-      <TouchableOpacity
-        style={styles.subCard}
-        onPress={() => {
-          console.log("touchable1");
-        }}
-      >
-        <View style={styles.caract}>
-          <Text style={{ color: "white" }}>APPL</Text>
-          <Text style={{ color: "white" }}>128</Text>
-          <Text style={{ color: "green" }}>8.79%</Text>
-          <Text style={{ color: "white" }}>3779.50</Text>
-        </View>
-      </TouchableOpacity>
-
-      <TouchableOpacity
-        style={styles.subCard}
-        onPress={() =>
-          navigation.navigate("InvestorDetail", {
-            id: "bitcoin",
-            ticket: "BTCUSD",
-            cantidad: 128,
-          })
-        }
-      >
-        <View style={styles.caract}>
-          <Text style={{ color: "white" }}>BTCUSD</Text>
-          <Text style={{ color: "white" }}>0.05</Text>
-          <Text style={{ color: "red" }}>-38.1%</Text>
-          <Text style={{ color: "white" }}>1000.50</Text>
-        </View>
-      </TouchableOpacity>
+      {balance.length > 0 &&
+        balance.map((item, index) => (
+          <View key={index}>
+            <TouchableOpacity
+              style={styles.subCard}
+              onPress={() => {
+                navigation.navigate("InvestorDetail", {
+                  id: item.name,
+                  ticket: item.name,
+                  cantidad: item.balance,
+                  precio: item.buyPrice,
+                });
+              }}
+            >
+              <View style={styles.caract}>
+                <Text style={{ color: "white" }}>{item.name}</Text>
+                <Text style={{ color: "white" }}>
+                  {parseInt(item.balance).toFixed(2)}
+                </Text>
+                <Text style={{ color: "green" }}>8.79%</Text>
+                <Text style={{ color: "white" }}>
+                  {parseInt(item.buyPrice).toFixed(2)}
+                </Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+        ))}
 
       {/* Segunda seccion */}
 
@@ -91,7 +104,7 @@ export default function Possession() {
           <Text style={{ color: "white" }}>$21.200</Text>
         </View>
       </TouchableOpacity>
-    </View>
+    </ScrollView>
   );
 }
 
@@ -104,6 +117,7 @@ const styles = StyleSheet.create({
     margin: 10,
     borderRadius: 8,
     padding: 10,
+    height: 400,
   },
   subCard: {
     backgroundColor: "rgba(25, 23, 61, 0.5)",

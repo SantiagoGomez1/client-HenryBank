@@ -1,5 +1,4 @@
 import React from "react";
-import Constants from "expo-constants";
 import { View, Text, StyleSheet, Button } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import UserCardHome from "../UserCardHome/UserCardHome";
