@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, View, Image, StyleSheet, Text } from "react-native";
 import { Input, Icon } from "react-native-elements";
 import { LinearGradient } from "expo-linear-gradient";
 import Constants from "expo-constants";
-import { logIn } from "../../redux/actions";
+import { logIn, cleanLogIn } from "../../redux/actions";
 import { useDispatch } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 
@@ -11,6 +11,10 @@ const LogIn = () => {
   const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
   const navigation = useNavigation();
+
+  useEffect(() => {
+    dispatch(cleanLogIn());
+  });
 
   const [formData, setFormData] = useState({
     email: "",
