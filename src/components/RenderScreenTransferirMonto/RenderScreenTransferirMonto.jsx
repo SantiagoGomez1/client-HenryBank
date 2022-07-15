@@ -11,7 +11,7 @@ const RenderScreenTransferirMonto = () => {
   const token = useSelector((state) => state.logIn.token);
   const user = useSelector((state) => state.userTransfer);
   const myUser = useSelector((state) => state.myUser);
-  console.log(myUser.balance)
+  console.log(myUser.balance);
   const [params, setParams] = useState({ amount: 0 });
   const [errors, setErrors] = useState(true);
 

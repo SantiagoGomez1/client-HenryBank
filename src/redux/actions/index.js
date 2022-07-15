@@ -378,8 +378,6 @@ export const putTransfer = (token, amount) => async (dispatch) => {
 //------------------------------------------------------------------------------------------------//
 
 
-};
-
 
 export function getCountries() {
   return async function (dispatch) {
