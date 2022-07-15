@@ -20,16 +20,7 @@ const DetailUser = () => {
   return (
     <View style={styles.container}>
       <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
-        <TouchableOpacity style={styles.back} onPress={() => goBack()}>
-          <Text style={styles.btn}>{"<"}</Text>
-        </TouchableOpacity>
         <Text style={styles.textPerfil}>Perfil</Text>
-        <View>
-          <Image style={styles.imgUser} source={{ uri: user.image }}></Image>
-          <Text style={styles.textMain}>
-            {user.name} {user.lastName}
-          </Text>
-        </View>
         <View style={styles.container2}>
           <View>
             <Text style={styles.textMain2}>Datos Personales</Text>
@@ -50,6 +41,11 @@ const DetailUser = () => {
             <Text style={styles.textSecondary}>Balance: {user.balance}</Text>
           </View>
         </View>
+        <TouchableOpacity>
+          <Text onPress={() => goBack()} style={styles.back}>
+            Volver
+          </Text>
+        </TouchableOpacity>
       </LinearGradient>
     </View>
   );
@@ -66,6 +62,10 @@ const styles = StyleSheet.create({
     padding: 15,
     margin: 5,
     width: 300,
+    borderWidth: 1,
+    borderStyle: "solid",
+    borderColor: "rgba(255, 255, 255, 0.5)",
+    backgroundColor: "rgba(255, 255, 255, 0.3)",
   },
   background: {
     flex: 1,
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     padding: 2,
     margin: 4,
-    backgroundColor: "rgba(255, 255, 255, 0.3)",
+    backgroundColor: "#140152",
     borderRadius: 8,
   },
   textPerfil: {
@@ -111,12 +111,13 @@ const styles = StyleSheet.create({
   },
   btn: {
     fontSize: 40,
-    color: "aqua",
+    color: "#fff",
   },
   back: {
-    position: "absolute",
-    left: 0,
-    margin: 10,
+    color: "aqua",
+    fontWeight: "bold",
+    fontSize: 20,
+    textAlign: "center",
   },
 });
 
