@@ -237,6 +237,11 @@ export const setTransfer = (token, cbu) => async (dispatch) => {
 };
 
 export const pricesCharts = (id, token) => async (dispatch) => {
+  const config = {
+    headers: {
+      Authorization: token,
+    },
+  };
   const response = await axios.get(
     `https://h-bank.herokuapp.com/crypto/prices/${id}`,
     config
