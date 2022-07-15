@@ -11,9 +11,9 @@ const Confirmation = () => {
   if (!logIn.msg) {
     return (
       <LinearGradient colors={["#126492", "#140152"]} style={styles.backgroun2}>
-        <Text style={styles.textMain2}>Henry Bank</Text>
-        <ActivityIndicator size="large" color="#0000ff" />
-        <Text style={styles.textThanks}>Gracias por confiar en nosotros</Text>
+        <View></View>
+        <ActivityIndicator size={50} color="#0000ff" />
+        <View></View>
       </LinearGradient>
     );
   }
