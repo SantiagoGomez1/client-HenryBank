@@ -16,9 +16,6 @@ const RenderScreen = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Inversiones</Text>
-      <Text style={styles.text3}>
-        Tu apartado en el cual tus inversiones son fáciles
-      </Text>
       <Text style={styles.text2}>¿Necesitas obtener un plazo fijo?</Text>
       <View style={styles.btn}>
         <Button
@@ -26,7 +23,7 @@ const RenderScreen = () => {
           onPress={() => setScreen(5)}
         ></Button>
       </View>
-      <Text style={styles.text2}>¿Querés comprar cripto o divisas?</Text>
+      <Text style={styles.text2}>¿Querés comprar crypto o divisas?</Text>
       <View style={styles.btn2}>
         <Button
           title="¡Entra aquí y comprá!"
@@ -45,7 +42,7 @@ const styles = StyleSheet.create({
     width: 350,
     borderRadius: 8,
     paddingTop: 20,
-    justifyContent: "space-between",
+    justifyContent: "space-around",
   },
   text: {
     color: "white",
@@ -57,14 +54,9 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 20,
     textAlign: "center",
-    margin: 5,
+
   },
-  text3: {
-    color: "grey",
-    fontSize: 15,
-    fontWeight: "bold",
-    textAlign: "center",
-  },
+
   btn2: {
     alignSelf: "center",
     paddingBottom: 20,

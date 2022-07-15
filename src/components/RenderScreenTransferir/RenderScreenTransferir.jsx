@@ -6,21 +6,30 @@ import {
   renderScreen,
   userTransfer,
   setTransfer,
+  setTransferAlias,
+  userTransferAlias,
 } from "../../redux/actions/index";
 import { useDispatch, useSelector } from "react-redux";
 
 import UserCardTransferencia from "../UserCardTransferencia/UserCardTransferencia";
+import { DropAliasCBU } from "./DropAliasCBU.jsx";
 
 const RenderScreenTransferir = () => {
   const user = useSelector((state) => state.userTransfer);
   const users = useSelector((state) => state.allUsers);
   const token = useSelector((state) => state.logIn.token);
 
-  const [params, setParams] = useState({ cbu: 0});
+  const [params, setParams] = useState({ cbu: 0 });
+  const [paramsAlias, setParamsAlias] = useState({ alias: "" });
   const [errors, setErrors] = useState("");
+  const [render, setRender] = useState("");
   const [next, setNext] = useState(false);
 
   const dispatch = useDispatch();
+
+  const setIdent = (value) => {
+    setRender(value);
+  };
 
   const setScreen = (screen) => {
     dispatch(renderScreen(screen));
@@ -30,10 +39,13 @@ const RenderScreenTransferir = () => {
     setParams({ ...params, [type]: e.nativeEvent.text });
   };
 
+
+
   const searchTransfer = () => {
     if (!params.cbu.length) {
       setErrors("Debes rellenar este campo.");
-    } else if (params.length > 22) {
+    }
+    if (params.length > 22) {
       setErrors("Estas excediendo los caracteres.");
     }
     let userExist = users?.find((user) => user.cbu === params.cbu);
@@ -46,32 +58,67 @@ const RenderScreenTransferir = () => {
       setErrors("");
     }
   };
-  
+
+  const handleOnChangeAlias = (e, type) => {
+    setParamsAlias({ ...paramsAlias, [type]: e.nativeEvent.text });
+  };
+
+  console.log(paramsAlias)
+
+  const searchTransferAlias = () => {
+    if (!paramsAlias.alias.length) {
+      setErrors("Debes rellenar este campo.");
+    }
+    let userExist = users?.find((user) => user.alias === paramsAlias.alias);
+    if (!userExist) {
+      setErrors("El identificador ingresado no existe");
+    } else {
+      dispatch(setTransferAlias(token, paramsAlias));
+      dispatch(userTransferAlias(userExist));
+      setNext(true);
+      setErrors("");
+    }
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Transferencia</Text>
-      <Input
-        placeholder="Alias / CBU"
-        placeholderTextColor={"gray"}
-        keyboardType="number-pad"
-        style={styles.inputCode}
-      />
-      <Input
-        placeholder="Numero de CBU / Alias"
-        placeholderTextColor={"gray"}
-        keyboardType="number-pad"
-        errorMessage={errors}
-        onChange={(e) => handleOnChange(e, "cbu")}
-        style={styles.input}
-        rightIcon={
-          <Icon
-            name="search"
-            color={"white"}
-            size={30}
-            onPress={() => searchTransfer()}
-          />
-        }
-      />
+      <DropAliasCBU setIdent={setIdent} />
+      {render === "CBU" ? (
+        <Input
+          placeholder="Numero de CBU"
+          placeholderTextColor={"gray"}
+          keyboardType="number-pad"
+          errorMessage={errors}
+          onChange={(e) => handleOnChange(e, "cbu")}
+          style={styles.input}
+          rightIcon={
+            <Icon
+              name="search"
+              color={"white"}
+              size={30}
+              onPress={() => searchTransfer()}
+            />
+          }
+        />
+      ) : (
+        <Input
+          placeholder="Alias"
+          placeholderTextColor={"gray"}
+          errorMessage={errors}
+          onChange={(e) => handleOnChangeAlias(e, "alias")}
+          style={styles.input}
+          rightIcon={
+            <Icon
+              name="search"
+              color={"white"}
+              size={30}
+              onPress={() => searchTransferAlias()}
+            />
+          }
+        />
+      )}
+
       {!next ? null : <UserCardTransferencia data={user} />}
       <View>
         {!next ? (

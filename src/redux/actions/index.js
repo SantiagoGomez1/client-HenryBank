@@ -7,10 +7,13 @@ export const GET_MY_USER = "GET_MY_USER";
 export const LOG_IN = "LOG_IN";
 export const RENDER_SCREEN = "RENDER_SCREEN";
 export const USER_TRANSFER = "USER_TRANSFER";
+export const USER_TRANSFER_ALIAS = "USER_TRANSFER_ALIAS";
+
 
 export const GET_NEWS = "GET_NEWS";
 export const SET_TRANSFER = "SET_TRANSFER";
-export const PUT_TRANSFER = "PUT_TRANSFER"
+export const SET_TRANSFER_ALIAS = "SET_TRANSFER_ALIAS";
+export const PUT_TRANSFER = "PUT_TRANSFER";
 
 export const POST_USER_DATA = "POST_USER_DATA";
 export const POST_USER = "POST_USER";
@@ -28,12 +31,15 @@ export const RECHANGE = "RECHANGE";
 export const GET_COUNTRIES = "GET_COUNTRIES";
 export const GET_CITIES = "GET_CITIES";
 
+//------------------------------------------------------------------------------------------------//
+
 export const logIn = (form) => async (dispatch) => {
   const response = await axios.post("https://h-bank.herokuapp.com/login", form);
   const payload = await response.data;
   return dispatch({ type: LOG_IN, payload });
 };
 
+//------------------------------------------------------------------------------------------------//
 
 export const getAllUsers = (token) => async (dispatch) => {
   const config = {
@@ -44,6 +50,8 @@ export const getAllUsers = (token) => async (dispatch) => {
   const response = await axios.get("https://h-bank.herokuapp.com/user", config);
   dispatch({ type: GET_ALL_USERS, payload: response.data });
 };
+
+//------------------------------------------------------------------------------------------------//
 
 export const getMyUser = (token) => async (dispatch) => {
   const config = {
@@ -57,6 +65,8 @@ export const getMyUser = (token) => async (dispatch) => {
   );
   dispatch({ type: GET_MY_USER, payload: response.data });
 };
+
+//------------------------------------------------------------------------------------------------//
 
 export function getUsers(token) {
   return async function (dispatch) {
@@ -77,12 +87,16 @@ export function getUsers(token) {
   };
 }
 
+//------------------------------------------------------------------------------------------------//
+
 export const getUser = () => {
   return {
     type: GET_USER,
     payload: dataa,
   };
 };
+
+//------------------------------------------------------------------------------------------------//
 
 export const postUserData = (payload, userMP) => {
   return async function (dispatch) {
@@ -110,6 +124,8 @@ export const postUserData = (payload, userMP) => {
   };
 };
 
+//------------------------------------------------------------------------------------------------//
+
 export const postUserDataCard = (payload, userMP) => {
   return async function (dispatch) {
     const posteo2 = {
@@ -132,6 +148,8 @@ export const postUserDataCard = (payload, userMP) => {
   };
 };
 
+//------------------------------------------------------------------------------------------------//
+
 export const postUser = (payload) => {
   return async function (dispatch) {
     const post = {
@@ -145,12 +163,16 @@ export const postUser = (payload) => {
   };
 };
 
+//------------------------------------------------------------------------------------------------//
+
 export const renderScreen = (payload) => {
   return {
     type: RENDER_SCREEN,
     payload,
   };
 };
+
+//------------------------------------------------------------------------------------------------//
 
 export const getCoins = (token) => async (dispatch) => {
   const config = {
@@ -165,13 +187,19 @@ export const getCoins = (token) => async (dispatch) => {
   dispatch({ type: GET_COINS, payload: response.data });
 };
 
+//------------------------------------------------------------------------------------------------//
+
 export function searchCoins(name) {
   return { type: SEARCH_COINS, payload: name };
 }
 
+//------------------------------------------------------------------------------------------------//
+
 export function getCoinId(id) {
   return { type: GET_COIN_ID, payload: id };
 }
+
+//------------------------------------------------------------------------------------------------//
 
 export const getUserDetail = (token) => async (dispatch) => {
   const config = {
@@ -187,6 +215,8 @@ export const getUserDetail = (token) => async (dispatch) => {
   dispatch({ type: GET_USER_DETAIL, payload: response.data });
 };
 
+//------------------------------------------------------------------------------------------------//
+
 export const getNews = () => (dispatch) => {
   return fetch(
     "https://newsapi.org/v2/top-headlines?country=ar&category=business&apiKey=a09836a597c24e2490cdcbcf5f32fb6c"
@@ -197,11 +227,25 @@ export const getNews = () => (dispatch) => {
     });
 };
 
+//------------------------------------------------------------------------------------------------//
 
 export const userTransfer = (payload) => {
+  console.log("CBU",payload)
   return { type: USER_TRANSFER, payload: payload };
 };
 
+
+
+//------------------------------------------------------------------------------------------------//
+
+
+export const userTransferAlias = (payload) => {
+  console.log("ALIAS",payload)
+  return { type: USER_TRANSFER_ALIAS, payload: payload };
+};
+
+
+//------------------------------------------------------------------------------------------------//
 
 export const sellCryptos = (id, price, value, token) => async (dispatch) => {
   const config = {
@@ -223,13 +267,15 @@ export const sellCryptos = (id, price, value, token) => async (dispatch) => {
   dispatch({ type: SELL_CRYPTOS, payload: response.data });
 };
 
+//------------------------------------------------------------------------------------------------//
+
 export const setTransfer = (token, cbu) => async (dispatch) => {
   const config = {
     headers: {
       Authorization: token,
     },
   };
- const response = await axios.post(
+  const response = await axios.post(
     "https://h-bank.herokuapp.com/search",
     cbu,
     config
@@ -237,6 +283,25 @@ export const setTransfer = (token, cbu) => async (dispatch) => {
   console.log(response.data, "CORRECTO");
   dispatch({ type: SET_TRANSFER, payload: response.data });
 };
+
+//------------------------------------------------------------------------------------------------//
+
+export const setTransferAlias = (token, alias) => async (dispatch) => {
+  const config = {
+    headers: {
+      Authorization: token,
+    },
+  };
+  const response = await axios.post(
+    "https://h-bank.herokuapp.com/search",
+    alias,
+    config
+  );
+  console.log(response.data, "CORRECTO");
+  dispatch({ type: SET_TRANSFER_ALIAS, payload: response.data });
+};
+
+//------------------------------------------------------------------------------------------------//
 
 export const pricesCharts = (id, token) => async (dispatch) => {
   const response = await axios.get(
@@ -246,13 +311,15 @@ export const pricesCharts = (id, token) => async (dispatch) => {
   dispatch({ type: PRICES_CHARTS, payload: response.data });
 };
 
+//------------------------------------------------------------------------------------------------//
+
 export const rechange = (amount, token) => async (dispatch) => {
   const config = {
     headers: {
       Authorization: token,
     },
   };
-    const response = await axios.post(
+  const response = await axios.post(
     "https://h-bank.herokuapp.com/user/recharge",
     amount,
     config
@@ -261,26 +328,33 @@ export const rechange = (amount, token) => async (dispatch) => {
   return dispatch({ type: RECHANGE, payload });
 };
 
-  export const putTransfer = (token, amount) => async(dispatch) => {
+//------------------------------------------------------------------------------------------------//
+
+export const putTransfer = (token, amount) => async (dispatch) => {
   const config = {
     headers: {
       Authorization: token,
     },
   };
+  // console.log("TOKEN", token)
+  // console.log("AMOUNT", amount)
   const response = await axios.put(
     "https://h-bank.herokuapp.com/search/tranfer",
     amount,
     config
   );
-  dispatch({ type: PUT_TRANSFER, payload: response.data })
+  dispatch({ type: PUT_TRANSFER, payload: response.data });
+  // console.log("FINALIZADO")
 };
 
+//------------------------------------------------------------------------------------------------//
 
 export function getCountries() {
   return async function (dispatch) {
     const config = {
       headers: {
-        Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJlbWFudWVsanVyaUBnbWFpbC5jb20iLCJhcGlfdG9rZW4iOiIxcnlqUGkyajZhWXJvbWZYY3JPcl9RQzhfeXQ1TzRMTFRQbXFGUFN4bnN0dEtZSE84Z1EzU2g4SmE5SlpJUmVGanZrIn0sImV4cCI6MTY1Nzg1MTIzMX0.WyBzjkGg03VD-kyTc4HMyoskEM5LvqLQ8pQ-L98ovzE',
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJlbWFudWVsanVyaUBnbWFpbC5jb20iLCJhcGlfdG9rZW4iOiIxcnlqUGkyajZhWXJvbWZYY3JPcl9RQzhfeXQ1TzRMTFRQbXFGUFN4bnN0dEtZSE84Z1EzU2g4SmE5SlpJUmVGanZrIn0sImV4cCI6MTY1Nzg1MTIzMX0.WyBzjkGg03VD-kyTc4HMyoskEM5LvqLQ8pQ-L98ovzE",
       },
     };
     const res = await axios.get(
@@ -293,13 +367,16 @@ export function getCountries() {
       payload: res.data,
     });
   };
-};
+}
 
-export function getCities(value) {  
+//------------------------------------------------------------------------------------------------//
+
+export function getCities(value) {
   return async function (dispatch) {
     const config = {
       headers: {
-        Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJlbWFudWVsanVyaUBnbWFpbC5jb20iLCJhcGlfdG9rZW4iOiIxcnlqUGkyajZhWXJvbWZYY3JPcl9RQzhfeXQ1TzRMTFRQbXFGUFN4bnN0dEtZSE84Z1EzU2g4SmE5SlpJUmVGanZrIn0sImV4cCI6MTY1Nzg1MTIzMX0.WyBzjkGg03VD-kyTc4HMyoskEM5LvqLQ8pQ-L98ovzE',
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJlbWFudWVsanVyaUBnbWFpbC5jb20iLCJhcGlfdG9rZW4iOiIxcnlqUGkyajZhWXJvbWZYY3JPcl9RQzhfeXQ1TzRMTFRQbXFGUFN4bnN0dEtZSE84Z1EzU2g4SmE5SlpJUmVGanZrIn0sImV4cCI6MTY1Nzg1MTIzMX0.WyBzjkGg03VD-kyTc4HMyoskEM5LvqLQ8pQ-L98ovzE",
       },
     };
     const res = await axios.get(
@@ -312,4 +389,6 @@ export function getCities(value) {
       payload: res.data,
     });
   };
-};
+}
+
+//------------------------------------------------------------------------------------------------//
