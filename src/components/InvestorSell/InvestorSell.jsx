@@ -97,13 +97,13 @@ export default function InvestorSell({ route, navigation }) {
             );
             console.log("Esta es la respuesta en sell", response.data);
             if (response.data.msg === "Crypto Vendida") {
-              navigation.navigate("SuccessBuy", {
+              navigation.navigate("SuccessSell", {
                 success: 1,
               });
             } else if (
               response.data.msg === "No se encontro la crypto, corrobora datos"
             ) {
-              navigation.navigate("SuccessBuy", {
+              navigation.navigate("SuccessSell", {
                 success: 2,
               });
             }
