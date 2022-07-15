@@ -1,20 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {View, TextInput, FlatList, Text, StyleSheet, Image} from "react-native";
 
-import { useSelector } from "react-redux";
+import { getMovements } from "../../redux/actions";
 
 import UserCardMovimientos from "../UserCardMovimientos/UserCardMovimientos.jsx";
 
-import {
-  View,
-  TextInput,
-  FlatList,
-  Text,
-  StyleSheet,
-  Image,
-} from "react-native";
-
 const RenderScreenMovimientos = () => {
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
+  const token = useSelector((state) => state.logIn.token);
+  const movements = useSelector((state) => state.movements);
+
+  // console.log('estados mov', movements)
+  // console.log('estados movimientos', user.movimientos)
+  // console.log('estados movements', user.movements)
+
+  useEffect(() => {
+    dispatch(getMovements(token));
+  }, []);
+
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Movimientos</Text>

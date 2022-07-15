@@ -66,6 +66,133 @@ export const dataa = [
         icon: "https://cdn-icons-png.flaticon.com/512/5968/5968819.png",
       },
     ],
+    movements:
+{
+  "recharges": [
+      {
+          "idOp": "529be36d-174a-4129-aec9-49769ae8c91d",
+          "image-icon-paper": "plus",
+          "amount": "+10000",
+          "date": "14/6/2022",
+          "hour": "23:42:51"
+      },
+      {
+          "idOp": "8c597f0f-7c59-4025-b8cb-cadee79734ca",
+          "image-icon-paper": "plus",
+          "amount": "+80125",
+          "date": "14/6/2022",
+          "hour": "23:49:6"
+      }
+  ],
+  "transactionsReceived": [
+      {
+          "idOp": "cd2673d1-75a2-43ba-89fe-0a0c62369c12",
+          "image-icon-paper": "transfer-down",
+          "amount": "+1239",
+          "date": "14/6/2022",
+          "hour": "23:53:4",
+          "accountOrigin": {
+              "cub": "8916461009058174658977",
+              "alias": "pedro.henrybank",
+              "name": "Pedro",
+              "lastName": "Picapiedra"
+          }
+      },
+      {
+          "idOp": "4d09f6f7-7df5-4149-af2c-0e7801907771",
+          "image-icon-paper": "transfer-down",
+          "amount": "+1239",
+          "date": "14/6/2022",
+          "hour": "23:53:58",
+          "accountOrigin": {
+              "cub": "8916461009058174658977",
+              "alias": "pedro.henrybank",
+              "name": "Pedro",
+              "lastName": "Picapiedra"
+          }
+      }
+  ],
+  "transactionsSent": [
+      {
+          "idOp": "fb8baff8-6f6c-4c14-9e02-c9aa507c53ce",
+          "image-icon-paper": "transfer-up",
+          "amount": "-200",
+          "date": "14/6/2022",
+          "hour": "23:49:18",
+          "accountDestiny": {
+              "cub": "0112929937902179307118",
+              "alias": "pablo.henrybank",
+              "name": "Pablo",
+              "lastName": "Picapiedra"
+          }
+      },
+      {
+          "idOp": "cd2673d1-75a2-43ba-89fe-0a0c62369c12",
+          "image-icon-paper": "transfer-up",
+          "amount": "-1239",
+          "date": "14/6/2022",
+          "hour": "23:53:4",
+          "accountDestiny": {
+              "cub": "8916461009058174658977",
+              "alias": "pedro.henrybank",
+              "name": "Pedro",
+              "lastName": "Picapiedra"
+          }
+      },
+  ],
+  "buyCrypto": [
+      {
+          "id": 1,
+          "image": {
+              "thumb": "https://assets.coingecko.com/coins/images/17385/thumb/Tether_full_logo_dm.png?1627537298",
+              "small": "https://assets.coingecko.com/coins/images/17385/small/Tether_full_logo_dm.png?1627537298",
+              "large": "https://assets.coingecko.com/coins/images/17385/large/Tether_full_logo_dm.png?1627537298"
+          },
+          "name": "tether-eurt",
+          "amount": "-10000",
+          "date": "14/6/2022",
+          "hour": "22:37:3"
+      },
+      {
+          "id": 22,
+          "image": {
+              "thumb": "https://assets.coingecko.com/coins/images/1/thumb/bitcoin.png?1547033579",
+              "small": "https://assets.coingecko.com/coins/images/1/small/bitcoin.png?1547033579",
+              "large": "https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579"
+          },
+          "name": "bitcoin",
+          "amount": "-100000",
+          "date": "14/6/2022",
+          "hour": "23:36:4"
+      }
+  ],
+  "sellCrypto": [
+      {
+          "id": 5,
+          "image": {
+              "thumb": "https://assets.coingecko.com/coins/images/325/thumb/Tether-logo.png?1598003707",
+              "small": "https://assets.coingecko.com/coins/images/325/small/Tether-logo.png?1598003707",
+              "large": "https://assets.coingecko.com/coins/images/325/large/Tether-logo.png?1598003707"
+          },
+          "name": "tether",
+          "amount": "+2498.8075",
+          "date": "14/6/2022",
+          "hour": "22:43:32"
+      },      
+      {
+          "id": 21,
+          "image": {
+              "thumb": "https://assets.coingecko.com/coins/images/325/thumb/Tether-logo.png?1598003707",
+              "small": "https://assets.coingecko.com/coins/images/325/small/Tether-logo.png?1598003707",
+              "large": "https://assets.coingecko.com/coins/images/325/large/Tether-logo.png?1598003707"
+          },
+          "name": "tether",
+          "amount": "+2498.8075",
+          "date": "14/6/2022",
+          "hour": "23:14:8"
+      }
+  ]
+}
   },
   {
     id: 4,

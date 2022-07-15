@@ -21,6 +21,7 @@ import {
   RECHANGE,
   GET_COUNTRIES,
   GET_CITIES,
+  GET_MOVEMENTS,
 } from "../actions/index";
 
 const initialState = {
@@ -42,6 +43,7 @@ const initialState = {
   balance: [],
   countries: [],
   cities: [],
+  movements: {},
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -158,6 +160,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         cities: action.payload.map((el) => el.state_name),
+      };
+    case GET_MOVEMENTS:
+      return {
+        ...state,
+        movements: action.payload,
       };
     default:
       return state;
