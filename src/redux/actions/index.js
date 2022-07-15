@@ -11,6 +11,7 @@ export const USER_TRANSFER = "USER_TRANSFER";
 export const GET_NEWS = "GET_NEWS";
 export const SET_TRANSFER = "SET_TRANSFER";
 export const PUT_TRANSFER = "PUT_TRANSFER";
+export const GET_MOVEMENTS = "GET_MOVEMENTS";
 
 export const POST_USER_DATA = "POST_USER_DATA";
 export const POST_USER = "POST_USER";
@@ -330,3 +331,16 @@ export function getCities(value) {
     });
   };
 }
+
+export const getMovements = (token) => async (dispatch) => {
+  const config = {
+    headers: {
+      Authorization: token,
+    },
+  };
+  const response = await axios.get(
+    "https://h-bank.herokuapp.com/user/movements",
+    config
+  );
+  dispatch({ type: GET_MOVEMENTS, payload: response.data });
+};
