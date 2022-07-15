@@ -11,17 +11,18 @@ import { LinearGradient } from "expo-linear-gradient";
 import { Divider } from "@rneui/themed";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { useDispatch, useSelector } from "react-redux";
-import { sellCryptos } from "../../redux/actions";
+const axios = require("axios");
 
 var { height } = Dimensions.get("window");
 
-export default function InvestorSell({ route }) {
+export default function InvestorSell({ route, navigation }) {
   const { id, ticket, price } = route.params;
   const [value, setValue] = React.useState("");
 
   //token
   const dispatch = useDispatch();
   const token = useSelector((state) => state.logIn.token);
+  console.log("Estos son los params", route.params);
   return (
     <KeyboardAwareScrollView style={styles.container}>
       <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
@@ -80,8 +81,32 @@ export default function InvestorSell({ route }) {
 
         <Button
           title="Continuar"
-          onPress={() => {
-            dispatch(sellCryptos(id, price, value, token));
+          onPress={async () => {
+            const response = await axios.post(
+              "https://h-bank.herokuapp.com/crypto/sell",
+              {
+                amount: value,
+                crypto: id,
+                price,
+              },
+              {
+                headers: {
+                  Authorization: token,
+                },
+              }
+            );
+            console.log("Esta es la respuesta en sell", response.data);
+            if (response.data.msg === "Crypto Vendida") {
+              navigation.navigate("SuccessSell", {
+                success: 1,
+              });
+            } else if (
+              response.data.msg === "No se encontro la crypto, corrobora datos"
+            ) {
+              navigation.navigate("SuccessSell", {
+                success: 2,
+              });
+            }
           }}
         />
       </LinearGradient>

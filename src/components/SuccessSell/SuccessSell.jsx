@@ -1,11 +1,11 @@
 import { StyleSheet, Text, View, Image } from "react-native";
 import React, { useEffect } from "react";
 import { LinearGradient } from "expo-linear-gradient";
-import Constants from "expo-constants";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserDetail, renderScreen } from "../../redux/actions";
+import Constants from "expo-constants";
 
-export default function SuccessBuy({ route, navigation }) {
+export default function SuccessSell({ route, navigation }) {
   const { success } = route.params;
   const dispatch = useDispatch();
   const log = useSelector((state) => state.logIn.token);
@@ -28,7 +28,7 @@ export default function SuccessBuy({ route, navigation }) {
           colors={["#126492", "#140152"]}
           style={styles.background}
         >
-          <Text style={styles.textMain}>Compra exitosa</Text>
+          <Text style={styles.textMain}>Venta exitosa</Text>
           <Image
             style={styles.imgSuccess}
             source={require("../../imgs/Check.png")}
@@ -45,7 +45,7 @@ export default function SuccessBuy({ route, navigation }) {
           colors={["#126492", "#140152"]}
           style={styles.background}
         >
-          <Text style={styles.textMain}>Saldo insuficiente</Text>
+          <Text style={styles.textMain}>Venta rechazada</Text>
           <Image
             style={styles.imgSuccess}
             source={require("../../imgs/error.png")}

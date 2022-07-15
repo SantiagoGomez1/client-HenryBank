@@ -23,6 +23,10 @@ import InvestorBuyGeneral from "./src/components/InvestorBuyGeneral/InvestorBuyG
 import InvestorSell from "./src/components/InvestorSell/InvestorSell";
 import InvestorDetail from "./src/components/InvestorDetail/InvestorDetail";
 import SuccessBuy from "./src/components/SuccessBuy/SuccessBuy";
+import Configs from "./src/components/Configs/Configs";
+import Description from "./src/components/Description/Description";
+import Help from "./src/components/Help/Help";
+import SuccessSell from "./src/components/SuccessSell/SuccessSell";
 
 export default function App() {
   const Stack = createStackNavigator();
@@ -57,6 +61,10 @@ export default function App() {
           <Stack.Screen name="InvestorSell" component={InvestorSell} />
           <Stack.Screen name="InvestorDetail" component={InvestorDetail} />
           <Stack.Screen name="SuccessBuy" component={SuccessBuy} />
+          <Stack.Screen name="SuccessSell" component={SuccessSell} />
+          <Stack.Screen name="Configs" component={Configs} />
+          <Stack.Screen name="Description" component={Description} />
+          <Stack.Screen name="Help" component={Help} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

@@ -12,8 +12,11 @@ export const USER_TRANSFER_ALIAS = "USER_TRANSFER_ALIAS";
 
 export const GET_NEWS = "GET_NEWS";
 export const SET_TRANSFER = "SET_TRANSFER";
+
 export const SET_TRANSFER_ALIAS = "SET_TRANSFER_ALIAS";
 export const PUT_TRANSFER = "PUT_TRANSFER";
+export const GET_MOVEMENTS = "GET_MOVEMENTS";
+
 
 export const POST_USER_DATA = "POST_USER_DATA";
 export const POST_USER = "POST_USER";
@@ -27,6 +30,7 @@ export const GET_ALL_USERS = "GET_ALL_USERS";
 export const SELL_CRYPTOS = "SELL_CRYPTOS";
 export const PRICES_CHARTS = "PRICES_CHARTS";
 export const RECHANGE = "RECHANGE";
+export const GET_BALANCE = "GET_BALANCE";
 
 export const GET_COUNTRIES = "GET_COUNTRIES";
 export const GET_CITIES = "GET_CITIES";
@@ -38,6 +42,7 @@ export const logIn = (form) => async (dispatch) => {
   const payload = await response.data;
   return dispatch({ type: LOG_IN, payload });
 };
+
 
 //------------------------------------------------------------------------------------------------//
 
@@ -227,13 +232,13 @@ export const getNews = () => (dispatch) => {
     });
 };
 
+
 //------------------------------------------------------------------------------------------------//
 
 export const userTransfer = (payload) => {
   console.log("CBU",payload)
   return { type: USER_TRANSFER, payload: payload };
 };
-
 
 
 //------------------------------------------------------------------------------------------------//
@@ -246,6 +251,7 @@ export const userTransferAlias = (payload) => {
 
 
 //------------------------------------------------------------------------------------------------//
+
 
 export const sellCryptos = (id, price, value, token) => async (dispatch) => {
   const config = {
@@ -304,6 +310,11 @@ export const setTransferAlias = (token, alias) => async (dispatch) => {
 //------------------------------------------------------------------------------------------------//
 
 export const pricesCharts = (id, token) => async (dispatch) => {
+  const config = {
+    headers: {
+      Authorization: token,
+    },
+  };
   const response = await axios.get(
     `https://h-bank.herokuapp.com/crypto/prices/${id}`,
     config
@@ -328,6 +339,22 @@ export const rechange = (amount, token) => async (dispatch) => {
   return dispatch({ type: RECHANGE, payload });
 };
 
+
+//------------------------------------------------------------------------------------------------//
+
+export const getBalance = (token) => async (dispatch) => {
+  const config = {
+    headers: {
+      Authorization: token,
+    },
+  };
+  const response = await axios.get(
+    "https://h-bank.herokuapp.com/crypto/balance",
+    config
+  );
+  dispatch({ type: GET_BALANCE, payload: response.data });
+};
+
 //------------------------------------------------------------------------------------------------//
 
 export const putTransfer = (token, amount) => async (dispatch) => {
@@ -344,10 +371,15 @@ export const putTransfer = (token, amount) => async (dispatch) => {
     config
   );
   dispatch({ type: PUT_TRANSFER, payload: response.data });
+
   // console.log("FINALIZADO")
 };
 
 //------------------------------------------------------------------------------------------------//
+
+
+};
+
 
 export function getCountries() {
   return async function (dispatch) {
@@ -369,7 +401,10 @@ export function getCountries() {
   };
 }
 
+
 //------------------------------------------------------------------------------------------------//
+
+
 
 export function getCities(value) {
   return async function (dispatch) {
@@ -391,4 +426,22 @@ export function getCities(value) {
   };
 }
 
+
 //------------------------------------------------------------------------------------------------//
+
+export const getMovements = (token) => async (dispatch) => {
+  const config = {
+    headers: {
+      Authorization: token,
+    },
+  };
+  const response = await axios.get(
+    "https://h-bank.herokuapp.com/user/movements",
+    config
+  );
+  dispatch({ type: GET_MOVEMENTS, payload: response.data });
+};
+
+
+//------------------------------------------------------------------------------------------------//
+

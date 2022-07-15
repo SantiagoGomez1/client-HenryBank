@@ -32,7 +32,7 @@ export default function Charts({ id }) {
           data={arrayChart}
           padding={{ left: 40, bottom: 20, right: 20, top: 20 }}
           xDomain={{ min: 0, max: 30 }}
-          yDomain={{ min: 10000, max: 28000 }}
+          yDomain={{ min: 0, max: id === "bitcoin" ? 28000 : 5000 }}
         >
           <VerticalAxis
             tickCount={11}

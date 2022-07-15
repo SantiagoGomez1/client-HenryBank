@@ -11,18 +11,21 @@ import {
   GET_COIN_ID,
   GET_USER_DETAIL,
   GET_NEWS,
+  PRICES_CHARTS,
+  GET_BALANCE,
   USER_TRANSFER,
   GET_ALL_USERS,
   GET_MY_USER,
   PUT_TRANSFER,
   SELL_CRYPTOS,
-  PRICES_CHARTS,
   RECHANGE,
   GET_COUNTRIES,
   GET_CITIES,
   SET_TRANSFER,
   SET_TRANSFER_ALIAS,
   USER_TRANSFER_ALIAS,
+  GET_MOVEMENTS,
+
 } from "../actions/index";
 
 const initialState = {
@@ -41,8 +44,10 @@ const initialState = {
   userTransfer: {},
   putTransfer: {},
   charts: [],
+  balance: [],
   countries: [],
   cities: [],
+  movements: {},
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -145,6 +150,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
       };
+    case GET_BALANCE:
+      return {
+        ...state,
+        balance: action.payload,
+      };
     case GET_COUNTRIES:
       return {
         ...state,
@@ -175,6 +185,12 @@ const rootReducer = (state = initialState, action) => {
           ...state,
           userTransfer: action.payload,
         };
+    case GET_MOVEMENTS:
+      return {
+        ...state,
+        movements: action.payload,
+      };
+
     default:
       return state;
   }
