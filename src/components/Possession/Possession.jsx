@@ -5,10 +5,11 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import React, { useEffect } from "react";
+import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
 import { getBalance } from "../../redux/actions";
+import { useFocusEffect } from "@react-navigation/native";
 
 export default function Possession() {
   const navigation = useNavigation();
@@ -16,11 +17,12 @@ export default function Possession() {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.logIn.token);
   const balance = useSelector((state) => state.balance);
-  useEffect(() => {
-    dispatch(getBalance(token));
-  }, []);
 
-  console.log(balance);
+  useFocusEffect(
+    React.useCallback(() => {
+      dispatch(getBalance(token));
+    }, [])
+  );
   return (
     <ScrollView style={styles.card}>
       <View>
