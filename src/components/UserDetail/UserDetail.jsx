@@ -11,8 +11,8 @@ const DetailUser = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const log = useSelector((state) => state.logIn.token);
-  const goHome = () => {
-    navigation.navigate("HomeRoutes");
+  const goBack = () => {
+    navigation.navigate("Configs");
   };
   useEffect(() => {
     dispatch(getUserDetail(log));
@@ -20,7 +20,7 @@ const DetailUser = () => {
   return (
     <View style={styles.container}>
       <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
-        <TouchableOpacity style={styles.back} onPress={() => goHome()}>
+        <TouchableOpacity style={styles.back} onPress={() => goBack()}>
           <Text style={styles.btn}>{"<"}</Text>
         </TouchableOpacity>
         <Text style={styles.textPerfil}>Perfil</Text>
@@ -66,10 +66,6 @@ const styles = StyleSheet.create({
     padding: 15,
     margin: 5,
     width: 300,
-    borderWidth: 1,
-    borderStyle: "solid",
-    borderColor: "rgba(255, 255, 255, 0.5)",
-    backgroundColor: "rgba(255, 255, 255, 0.3)",
   },
   background: {
     flex: 1,
@@ -104,7 +100,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     padding: 2,
     margin: 4,
-    backgroundColor: "#140152",
+    backgroundColor: "rgba(255, 255, 255, 0.3)",
     borderRadius: 8,
   },
   textPerfil: {
@@ -115,7 +111,7 @@ const styles = StyleSheet.create({
   },
   btn: {
     fontSize: 40,
-    color: "#fff",
+    color: "aqua",
   },
   back: {
     position: "absolute",

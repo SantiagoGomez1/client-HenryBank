@@ -1,7 +1,6 @@
 import React from "react";
 
 import { View, Text, Image, StyleSheet } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
 import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/native";
 import { useSelector } from "react-redux";
@@ -12,21 +11,19 @@ import Constants from "expo-constants";
 const UserCardHome = () => {
   const user = useSelector((state) => state.userDetail);
   const navigation = useNavigation();
-  const onClick = () => {
-    navigation.navigate("User Detail");
+  const goDrawer = () => {
+    navigation.navigate("Configs");
   };
   return (
     <View style={styles.container}>
       <View style={{ flexDirection: "row" }}>
         <View>
           <LinearGradient colors={["#126492", "#140152"]} style={styles.image}>
-            <TouchableOpacity onPress={() => onClick()}>
-              <Image
-                onAccessibilityTap={() => onClick()}
-                style={styles.image}
-                source={{ uri: `${user.image}` }}
-              />
-            </TouchableOpacity>
+            <Image
+              onAccessibilityTap={() => onClick()}
+              style={styles.image}
+              source={{ uri: `${user.image}` }}
+            />
           </LinearGradient>
         </View>
         <View style={styles.data}>
@@ -40,10 +37,10 @@ const UserCardHome = () => {
       </View>
       <View style={{ justifyContent: "center" }}>
         <IconButton
-          icon="menu"
+          icon="account"
           color="white"
           size={20}
-          onPress={() => console.log("uy")}
+          onPress={() => goDrawer()}
         />
       </View>
     </View>
