@@ -50,7 +50,6 @@ export default function SuccessBuy({ route, navigation }) {
             style={styles.imgSuccess}
             source={require("../../imgs/error.png")}
           ></Image>
-          <Text style={styles.textSecondaty}>¡Gracias!</Text>
         </LinearGradient>
       </View>
     );
