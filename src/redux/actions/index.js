@@ -9,14 +9,12 @@ export const RENDER_SCREEN = "RENDER_SCREEN";
 export const USER_TRANSFER = "USER_TRANSFER";
 export const USER_TRANSFER_ALIAS = "USER_TRANSFER_ALIAS";
 
-
 export const GET_NEWS = "GET_NEWS";
 export const SET_TRANSFER = "SET_TRANSFER";
 
 export const SET_TRANSFER_ALIAS = "SET_TRANSFER_ALIAS";
 export const PUT_TRANSFER = "PUT_TRANSFER";
 export const GET_MOVEMENTS = "GET_MOVEMENTS";
-
 
 export const POST_USER_DATA = "POST_USER_DATA";
 export const POST_USER = "POST_USER";
@@ -35,6 +33,8 @@ export const GET_BALANCE = "GET_BALANCE";
 export const GET_COUNTRIES = "GET_COUNTRIES";
 export const GET_CITIES = "GET_CITIES";
 
+export const CLEAR_LOGIN = "CLEAR_LOGIN";
+
 //------------------------------------------------------------------------------------------------//
 
 export const logIn = (form) => async (dispatch) => {
@@ -42,7 +42,6 @@ export const logIn = (form) => async (dispatch) => {
   const payload = await response.data;
   return dispatch({ type: LOG_IN, payload });
 };
-
 
 //------------------------------------------------------------------------------------------------//
 
@@ -232,26 +231,21 @@ export const getNews = () => (dispatch) => {
     });
 };
 
-
 //------------------------------------------------------------------------------------------------//
 
 export const userTransfer = (payload) => {
-  console.log("CBU",payload)
+  console.log("CBU", payload);
   return { type: USER_TRANSFER, payload: payload };
 };
 
-
 //------------------------------------------------------------------------------------------------//
 
-
 export const userTransferAlias = (payload) => {
-  console.log("ALIAS",payload)
+  console.log("ALIAS", payload);
   return { type: USER_TRANSFER_ALIAS, payload: payload };
 };
 
-
 //------------------------------------------------------------------------------------------------//
-
 
 export const sellCryptos = (id, price, value, token) => async (dispatch) => {
   const config = {
@@ -339,7 +333,6 @@ export const rechange = (amount, token) => async (dispatch) => {
   return dispatch({ type: RECHANGE, payload });
 };
 
-
 //------------------------------------------------------------------------------------------------//
 
 export const getBalance = (token) => async (dispatch) => {
@@ -377,8 +370,6 @@ export const putTransfer = (token, amount) => async (dispatch) => {
 
 //------------------------------------------------------------------------------------------------//
 
-
-
 export function getCountries() {
   return async function (dispatch) {
     const config = {
@@ -399,10 +390,7 @@ export function getCountries() {
   };
 }
 
-
 //------------------------------------------------------------------------------------------------//
-
-
 
 export function getCities(value) {
   return async function (dispatch) {
@@ -424,7 +412,6 @@ export function getCities(value) {
   };
 }
 
-
 //------------------------------------------------------------------------------------------------//
 
 export const getMovements = (token) => async (dispatch) => {
@@ -440,6 +427,10 @@ export const getMovements = (token) => async (dispatch) => {
   dispatch({ type: GET_MOVEMENTS, payload: response.data });
 };
 
-
 //------------------------------------------------------------------------------------------------//
 
+export const cleanLogIn = (payload) => {
+  return { type: CLEAR_LOGIN, payload };
+};
+
+//------------------------------------------------------------------------------------------------//

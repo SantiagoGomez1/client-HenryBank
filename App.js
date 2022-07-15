@@ -18,7 +18,7 @@ import SuccessPlazoFijo from "./src/components/SucessPlazoFijo/SuccessPlazoFijo"
 import UserDetail from "./src/components/UserDetail/UserDetail";
 import DetailCoinsInvestorBuy from "./src/components/DetailCoinsInvestorBuy/DetailCoinsInvestorBuy";
 import InvestorBuy from "./src/components/InvestorBuy/InvestorBuy";
-import Confirmation from "./src/components/SuccessLogIn/SuccessLogIn";
+import Confirmation from "./src/components/Confirmation/Confirmation";
 import InvestorBuyGeneral from "./src/components/InvestorBuyGeneral/InvestorBuyGeneral";
 import InvestorSell from "./src/components/InvestorSell/InvestorSell";
 import InvestorDetail from "./src/components/InvestorDetail/InvestorDetail";

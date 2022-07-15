@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, StyleSheet, Image } from "react-native";
+import { Text, StyleSheet, Image, ActivityIndicator, View } from "react-native";
 import { useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
@@ -8,7 +8,16 @@ import Constants from "expo-constants";
 const Confirmation = () => {
   const navigation = useNavigation();
   const logIn = useSelector((state) => state.logIn);
-  if (logIn.token) {
+  if (!logIn.msg) {
+    return (
+      <LinearGradient colors={["#126492", "#140152"]} style={styles.backgroun2}>
+        <Text style={styles.textMain2}>Henry Bank</Text>
+        <ActivityIndicator size="large" color="#0000ff" />
+        <Text style={styles.textThanks}>Gracias por confiar en nosotros</Text>
+      </LinearGradient>
+    );
+  }
+  if (logIn.msg === "Login correcto") {
     return (
       <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
         <Text style={styles.textMain}>¡Bienvenido!</Text>
@@ -24,7 +33,10 @@ const Confirmation = () => {
       </LinearGradient>
     );
   }
-  if (!logIn.token) {
+  if (
+    logIn.msg === "Contraseña incorrecta" ||
+    logIn.msg === "Usuario no existe"
+  ) {
     return (
       <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
         <Text style={styles.textMain}>Cuenta inexistente</Text>
@@ -54,7 +66,20 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     paddingTop: Constants.statusBarHeight,
   },
+  backgroun2: {
+    flex: 1,
+    paddingTop: Constants.statusBarHeight,
+    width: "100%",
+    alignSelf: "center",
+    justifyContent: "space-around",
+    flexDirection: "column",
+  },
   textMain: {
+    color: "#fff",
+    fontSize: 45,
+    textAlign: "center",
+  },
+  textMain2: {
     color: "#fff",
     fontSize: 45,
     textAlign: "center",
@@ -68,6 +93,11 @@ const styles = StyleSheet.create({
   text0: {
     color: "transparent",
     fontSize: 0.1,
+  },
+  textThanks: {
+    color: "aqua",
+    fontSize: 15,
+    textAlign: "center",
   },
 });
 

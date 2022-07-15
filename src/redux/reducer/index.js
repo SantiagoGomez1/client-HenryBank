@@ -25,7 +25,7 @@ import {
   SET_TRANSFER_ALIAS,
   USER_TRANSFER_ALIAS,
   GET_MOVEMENTS,
-
+  CLEAR_LOGIN,
 } from "../actions/index";
 
 const initialState = {
@@ -180,17 +180,21 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         userTransfer: action.payload,
       };
-      case USER_TRANSFER_ALIAS:
-        return {
-          ...state,
-          userTransfer: action.payload,
-        };
+    case USER_TRANSFER_ALIAS:
+      return {
+        ...state,
+        userTransfer: action.payload,
+      };
     case GET_MOVEMENTS:
       return {
         ...state,
         movements: action.payload,
       };
-
+    case CLEAR_LOGIN:
+      return {
+        ...state,
+        logIn: {},
+      };
     default:
       return state;
   }
