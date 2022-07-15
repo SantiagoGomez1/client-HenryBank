@@ -8,6 +8,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { useSelector } from "react-redux";
+import Constants from "expo-constants";
 
 import CardNews from "../CardNews/CardNews.jsx";
 
@@ -18,8 +19,10 @@ const RenderScreen = () => {
     <View style={styles.container}>
       <Text style={styles.text}>Noticias</Text>
       {!news[0] ? (
-        <View style={{}}>
-          <ActivityIndicator size="large" color="#0000ff" />
+        <View style={styles.backgroun2}>
+          <View></View>
+          <ActivityIndicator size={50} color="#0000ff" />
+          <View></View>
         </View>
       ) : (
         <FlatList
@@ -50,6 +53,14 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     alignItems: "center",
     paddingTop: 20,
+  },
+  backgroun2: {
+    flex: 1,
+    paddingTop: Constants.statusBarHeight,
+    width: "100%",
+    alignSelf: "center",
+    justifyContent: "space-around",
+    flexDirection: "column",
   },
   image: {
     width: 300,
