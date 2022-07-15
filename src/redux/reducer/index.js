@@ -21,7 +21,11 @@ import {
   RECHANGE,
   GET_COUNTRIES,
   GET_CITIES,
+  SET_TRANSFER,
+  SET_TRANSFER_ALIAS,
+  USER_TRANSFER_ALIAS,
   GET_MOVEMENTS,
+
 } from "../actions/index";
 
 const initialState = {
@@ -161,11 +165,32 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         cities: action.payload.map((el) => el.state_name),
       };
+    case SET_TRANSFER:
+      return {
+        ...state,
+        putTransfer: action.payload,
+      };
+    case SET_TRANSFER_ALIAS:
+      return {
+        ...state,
+        putTransfer: action.payload,
+      };
+    case USER_TRANSFER:
+      return {
+        ...state,
+        userTransfer: action.payload,
+      };
+      case USER_TRANSFER_ALIAS:
+        return {
+          ...state,
+          userTransfer: action.payload,
+        };
     case GET_MOVEMENTS:
       return {
         ...state,
         movements: action.payload,
       };
+
     default:
       return state;
   }

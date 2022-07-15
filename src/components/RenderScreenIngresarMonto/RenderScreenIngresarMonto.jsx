@@ -1,12 +1,9 @@
 import React, { useState } from "react";
 
 import { View, Text, StyleSheet, TextInput, Button } from "react-native";
-
-import { useNavigation } from "@react-navigation/native";
-
-import { rechange } from "../../redux/actions";
-
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigation } from "@react-navigation/native";
+import { rechange } from "../../redux/actions";
 
 const RenderScreenIngresarMonto = () => {
   const [input, setInput] = useState({
@@ -36,7 +33,7 @@ const RenderScreenIngresarMonto = () => {
       isValid = false;
     }
     if (input.amount > 100000) {
-      setError("");
+      setError("El monto maximo son 100.000$");
       isValid = false;
     }
     return isValid;
@@ -55,7 +52,6 @@ const RenderScreenIngresarMonto = () => {
       <Text style={styles.text}>Ingresar Dinero</Text>
       <View style={styles.containerAmount}>
         <Text style={styles.subText}>Ingresar monto...</Text>
-        <Text style={styles.subText}>MAXIMO $100000</Text>
         <TextInput
           style={styles.input}
           placeholder="$00,00"
@@ -66,6 +62,7 @@ const RenderScreenIngresarMonto = () => {
         />
       </View>
       <View style={{ paddingBottom: 40 }}>
+        {error ? <Text style={{ color: "red" }}>{error}</Text> : null}
         <Button title="Confirmar" onPress={() => onSubmit()}></Button>
       </View>
     </View>

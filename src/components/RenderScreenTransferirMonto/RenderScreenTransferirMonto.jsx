@@ -11,10 +11,10 @@ const RenderScreenTransferirMonto = () => {
   const token = useSelector((state) => state.logIn.token);
   const user = useSelector((state) => state.userTransfer);
   const myUser = useSelector((state) => state.myUser);
-
+  console.log(myUser.balance)
   const [params, setParams] = useState({ amount: 0 });
   const [errors, setErrors] = useState(true);
-  
+
   const dispatch = useDispatch();
 
   const handleOnChange = (e, type) => {
@@ -22,20 +22,22 @@ const RenderScreenTransferirMonto = () => {
   };
 
   const handleSubmitTransfer = () => {
-    if (params.amount === 0) {
+    if (Number(params.amount) === 0) {
       setErrors(false);
       setTimeout(() => {
         setErrors(true);
       }, 1000);
-    } else if (params.amount > myUser.balance) {
-      setErrors(false);
-      setTimeout(() => {
-        setErrors(true);
-      }, 1000);
-    } else {
-      dispatch(putTransfer(token, params));
-      navigation.navigate("SuccessOperacion");
+      return;
     }
+    if (Number(params.amount) > Number(myUser.balance)) {
+      setErrors(false);
+      setTimeout(() => {
+        setErrors(true);
+      }, 1000);
+      return;
+    }
+    dispatch(putTransfer(token, params));
+    navigation.navigate("SuccessOperacion");
   };
 
   const navigation = useNavigation();
