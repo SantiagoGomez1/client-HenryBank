@@ -1,10 +1,10 @@
 import React from "react";
 
 import { View, Text, StyleSheet, TextInput, Button } from "react-native";
-
+import { renderScreen } from "../../redux/actions";
 import { useDispatch } from "react-redux";
 
-import { renderScreen } from "../../redux/actions";
+import StripeApp from "../StripeApp/StripeApp.jsx";
 
 const RenderScreenIngresar = () => {
   const dispatch = useDispatch();
@@ -15,7 +15,9 @@ const RenderScreenIngresar = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Ingresar Dinero</Text>
-      <View style={{ paddingTop: 30 }}>
+
+      <StripeApp />
+      {/* <View style={{ paddingTop: 30 }}>
         <TextInput
           placeholder="Numero de Tarjeta..."
           placeholderTextColor={"gray"}
@@ -40,12 +42,13 @@ const RenderScreenIngresar = () => {
           placeholderTextColor={"gray"}
           keyboardType="number-pad"
           style={styles.inputCode}
-        />
-        <View style={styles.btn}>
-          <Button title="Siguiente" onPress={() => setScreen(6)}></Button>
-        </View>
+        /> */}
+
+      <View style={styles.btn}>
+        <Button title="Siguiente" onPress={() => setScreen(6)}></Button>
       </View>
     </View>
+    // </View>
   );
 };
 
