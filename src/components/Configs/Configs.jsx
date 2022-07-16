@@ -31,6 +31,9 @@ const Configs = () => {
   const goHelp = () => {
     navigation.navigate("Help");
   };
+  const goAdmin = () => {
+    navigation.navigate("Admin Routes");
+  };
 
   useEffect(() => {
     dispatch(getUserDetail(log));
@@ -57,6 +60,9 @@ const Configs = () => {
         </TouchableOpacity>
         <TouchableOpacity style={styles.cont} onPress={() => goHelp()}>
           <Text style={styles.text}>- Ayuda</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.cont} onPress={() => goAdmin()}>
+          <Text style={styles.text}>- Modo admin</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.container2}>
