@@ -64,8 +64,6 @@ const RenderScreenTransferir = () => {
     setParamsAlias({ ...paramsAlias, [type]: e.nativeEvent.text });
   };
 
-  console.log(paramsAlias)
-
   const searchTransferAlias = () => {
     if (!paramsAlias.alias.length) {
       setErrors("Debes rellenar este campo.");

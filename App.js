@@ -1,11 +1,17 @@
 import "react-native-gesture-handler";
 import React from "react";
 
+import { LogBox } from "react-native";
+LogBox.ignoreLogs(["new NativeEventEmitter"]); // Ignore log notification by message
+LogBox.ignoreAllLogs(); //Ignore all log notifications
+
 import { Provider } from "react-redux";
 import store from "./src/redux/store/index";
 
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
+import { StripeProvider } from "@stripe/stripe-react-native";
+// const { KEY_PUBLIC_STRIPE } = process.env;
 
 import LogIn from "./src/components/Login/LogIn.jsx";
 import HomeRoutes from "./src/components/HomeRoutes/HomeRoutes";
@@ -33,44 +39,55 @@ import AdminUserDetail from "./src/components/AdminUserDetail/AdminUserDetail";
 export default function App() {
   const Stack = createStackNavigator();
   return (
-    <Provider store={store}>
-      <NavigationContainer>
-        <Stack.Navigator
-          initialRouteName="Log In"
-          screenOptions={{
-            headerShown: false,
-          }}
-        >
-          <Stack.Screen name="Log In" component={LogIn} />
-          <Stack.Screen name="Confirmation" component={Confirmation} />
-          <Stack.Screen name="RegisterA" component={RegisterA} />
-          <Stack.Screen name="RegisterB" component={RegisterB} />
-          <Stack.Screen name="RegisterC" component={RegisterC} />
-          <Stack.Screen name="Success" component={Success} />
-          <Stack.Screen name="SuccessOperacion" component={SuccessOperacion} />
-          <Stack.Screen name="SuccessPlazoFijo" component={SuccessPlazoFijo} />
-          <Stack.Screen name="HomeRoutes" component={HomeRoutes} />
-          <Stack.Screen name="User Detail" component={UserDetail} />
-          <Stack.Screen name="InvestorBuy" component={InvestorBuy} />
-          <Stack.Screen
-            name="DetailCoinsInvestorBuy"
-            component={DetailCoinsInvestorBuy}
-          />
-          <Stack.Screen
-            name="InvestorBuyGeneral"
-            component={InvestorBuyGeneral}
-          />
-          <Stack.Screen name="InvestorSell" component={InvestorSell} />
-          <Stack.Screen name="InvestorDetail" component={InvestorDetail} />
-          <Stack.Screen name="SuccessBuy" component={SuccessBuy} />
-          <Stack.Screen name="SuccessSell" component={SuccessSell} />
-          <Stack.Screen name="Configs" component={Configs} />
-          <Stack.Screen name="Description" component={Description} />
-          <Stack.Screen name="Help" component={Help} />
-          <Stack.Screen name="Admin Routes" component={AdminRoutes} />
-          <Stack.Screen name="AdminUserDetail" component={AdminUserDetail} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </Provider>
+    <StripeProvider
+      publishableKey="pk_test_51LLqmtH8Bu4sbaZfApMWp5L2CIdiRgngXX5gNt6Kkk4PXMTfTr8k8dpGErzxGOr5LpLNG97omPRLZxUthHKz59jW00I72zp6zd"
+      merchantIdentifier="merchant.identifier"
+    >
+      <Provider store={store}>
+        <NavigationContainer>
+          <Stack.Navigator
+            initialRouteName="Log In"
+            screenOptions={{
+              headerShown: false,
+            }}
+          >
+            <Stack.Screen name="Log In" component={LogIn} />
+            <Stack.Screen name="Confirmation" component={Confirmation} />
+            <Stack.Screen name="RegisterA" component={RegisterA} />
+            <Stack.Screen name="RegisterB" component={RegisterB} />
+            <Stack.Screen name="RegisterC" component={RegisterC} />
+            <Stack.Screen name="Success" component={Success} />
+            <Stack.Screen
+              name="SuccessOperacion"
+              component={SuccessOperacion}
+            />
+            <Stack.Screen
+              name="SuccessPlazoFijo"
+              component={SuccessPlazoFijo}
+            />
+            <Stack.Screen name="HomeRoutes" component={HomeRoutes} />
+            <Stack.Screen name="User Detail" component={UserDetail} />
+            <Stack.Screen name="InvestorBuy" component={InvestorBuy} />
+            <Stack.Screen
+              name="DetailCoinsInvestorBuy"
+              component={DetailCoinsInvestorBuy}
+            />
+            <Stack.Screen
+              name="InvestorBuyGeneral"
+              component={InvestorBuyGeneral}
+            />
+            <Stack.Screen name="InvestorSell" component={InvestorSell} />
+            <Stack.Screen name="InvestorDetail" component={InvestorDetail} />
+            <Stack.Screen name="SuccessBuy" component={SuccessBuy} />
+            <Stack.Screen name="SuccessSell" component={SuccessSell} />
+            <Stack.Screen name="Configs" component={Configs} />
+            <Stack.Screen name="Description" component={Description} />
+            <Stack.Screen name="Help" component={Help} />
+            <Stack.Screen name="Admin Routes" component={AdminRoutes} />
+            <Stack.Screen name="AdminUserDetail" component={AdminUserDetail} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </Provider>
+    </StripeProvider>
   );
 }
