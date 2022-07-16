@@ -67,132 +67,174 @@ export const dataa = [
       },
     ],
     movements:
-{
-  "recharges": [
-      {
-          "idOp": "529be36d-174a-4129-aec9-49769ae8c91d",
-          "image-icon-paper": "plus",
-          "amount": "+10000",
-          "date": "14/6/2022",
-          "hour": "23:42:51"
-      },
-      {
-          "idOp": "8c597f0f-7c59-4025-b8cb-cadee79734ca",
-          "image-icon-paper": "plus",
-          "amount": "+80125",
-          "date": "14/6/2022",
-          "hour": "23:49:6"
-      }
-  ],
-  "transactionsReceived": [
-      {
-          "idOp": "cd2673d1-75a2-43ba-89fe-0a0c62369c12",
-          "image-icon-paper": "transfer-down",
-          "amount": "+1239",
-          "date": "14/6/2022",
-          "hour": "23:53:4",
-          "accountOrigin": {
-              "cub": "8916461009058174658977",
-              "alias": "pedro.henrybank",
-              "name": "Pedro",
-              "lastName": "Picapiedra"
-          }
-      },
-      {
-          "idOp": "4d09f6f7-7df5-4149-af2c-0e7801907771",
-          "image-icon-paper": "transfer-down",
-          "amount": "+1239",
-          "date": "14/6/2022",
-          "hour": "23:53:58",
-          "accountOrigin": {
-              "cub": "8916461009058174658977",
-              "alias": "pedro.henrybank",
-              "name": "Pedro",
-              "lastName": "Picapiedra"
-          }
-      }
-  ],
-  "transactionsSent": [
-      {
-          "idOp": "fb8baff8-6f6c-4c14-9e02-c9aa507c53ce",
-          "image-icon-paper": "transfer-up",
-          "amount": "-200",
-          "date": "14/6/2022",
-          "hour": "23:49:18",
-          "accountDestiny": {
-              "cub": "0112929937902179307118",
-              "alias": "pablo.henrybank",
-              "name": "Pablo",
-              "lastName": "Picapiedra"
-          }
-      },
-      {
-          "idOp": "cd2673d1-75a2-43ba-89fe-0a0c62369c12",
-          "image-icon-paper": "transfer-up",
-          "amount": "-1239",
-          "date": "14/6/2022",
-          "hour": "23:53:4",
-          "accountDestiny": {
-              "cub": "8916461009058174658977",
-              "alias": "pedro.henrybank",
-              "name": "Pedro",
-              "lastName": "Picapiedra"
-          }
-      },
-  ],
-  "buyCrypto": [
-      {
-          "id": 1,
-          "image": {
-              "thumb": "https://assets.coingecko.com/coins/images/17385/thumb/Tether_full_logo_dm.png?1627537298",
-              "small": "https://assets.coingecko.com/coins/images/17385/small/Tether_full_logo_dm.png?1627537298",
-              "large": "https://assets.coingecko.com/coins/images/17385/large/Tether_full_logo_dm.png?1627537298"
+    {
+      "recharges": [
+          {
+              "idOp": "56a7b306-7a25-4c6f-855c-c00cf2ee197d",
+              "image-icon-paper": "plus-circle-outline",
+              "amount": "+80125",
+              "date": "15/7/2022",
+              "hour": "19:25:17"
           },
-          "name": "tether-eurt",
+          {
+              "idOp": "100dfb2b-0d80-40fd-bbeb-40d2c75f35d3",
+              "image-icon-paper": "plus-circle-outline",
+              "amount": "+125",
+              "date": "15/7/2022",
+              "hour": "19:26:10"
+          }
+      ],
+      "transactionsReceived": [
+          {
+              "idOp": "e684b93f-4caa-4020-8f5e-90cfcd18c2b5",
+              "image-icon-paper": "arrow-right-bold-circle-outline",
+              "amount": "+1000",
+              "date": "15/7/2022",
+              "hour": "19:26:19",
+              "accountOrigin": {
+                  "cub": "2062978342105074575922",
+                  "alias": "max.henrybank",
+                  "name": "Maxi",
+                  "lastName": "Henry"
+              }
+          },
+          {
+              "idOp": "12e496e4-d3c2-4c57-b707-60bb94b923c3",
+              "image-icon-paper": "arrow-right-bold-circle-outline",
+              "amount": "+125",
+              "date": "15/7/2022",
+              "hour": "19:27:4",
+              "accountOrigin": {
+                  "cub": "2656963117137294745888",
+                  "alias": "pedro.henrybank",
+                  "name": "Pedro",
+                  "lastName": "Picapiedra"
+              }
+          },          
+          {
+              "idOp": "45f42b32-1718-44bc-9d7a-a93fba3ad2d7",
+              "image-icon-paper": "arrow-right-bold-circle-outline",
+              "amount": "+100",
+              "date": "15/7/2022",
+              "hour": "19:34:6",
+              "accountOrigin": {
+                  "cub": "7292795404641973481232",
+                  "alias": "prueba.henrybank",
+                  "name": "Santiago",
+                  "lastName": "Gomez"
+              }
+          }
+      ],
+      "transactionsSent": [
+          {
+              "idOp": "12e496e4-d3c2-4c57-b757-60bb94b923c3",
+              "image-icon-paper": "arrow-left-bold-circle-outline",
+              "amount": "-125",
+              "date": "15/7/2022",
+              "hour": "19:27:4",
+              "accountDestiny": {
+                  "cub": "2656963117137294745888",
+                  "alias": "pedro.henrybank",
+                  "name": "Pedro",
+                  "lastName": "Picapiedra"
+              }
+          },
+          {
+              "idOp": "80d9ef8c-0d87-4dee-aa2c-b228497f2781",
+              "image-icon-paper": "arrow-left-bold-circle-outline",
+              "amount": "-689",
+              "date": "15/7/2022",
+              "hour": "19:29:24",
+              "accountDestiny": {
+                  "cub": "2062978342105074575922",
+                  "alias": "max.henrybank",
+                  "name": "Maxi",
+                  "lastName": "Henry"
+              }
+          }
+      ],
+      "buyCrypto": [
+          {
+              "id": 11,
+              "image-icon-paper": "arrow-left-bold-circle-outline",
+              "image": {
+                  "thumb": "https://assets.coingecko.com/coins/images/1/thumb/bitcoin.png?1547033579",
+                  "small": "https://assets.coingecko.com/coins/images/1/small/bitcoin.png?1547033579",
+                  "large": "https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579"
+              },
+              "name": "bitcoin",
+              "amount": "-10000",
+              "date": "15/7/2022",
+              "hour": "19:32:36"
+          },
+          {
+              "id": 13,
+              "image-icon-paper": "arrow-left-bold-circle-outline",
+              "image": {
+                  "thumb": "https://assets.coingecko.com/coins/images/4713/thumb/matic-token-icon.png?1624446912",
+                  "small": "https://assets.coingecko.com/coins/images/4713/small/matic-token-icon.png?1624446912",
+                  "large": "https://assets.coingecko.com/coins/images/4713/large/matic-token-icon.png?1624446912"
+              },
+              "name": "matic-network",
+              "amount": "-10000",
+              "date": "15/7/2022",
+              "hour": "19:33:43"
+          },
+      ],
+      "sellCrypto": [
+          {
+            "id": 1,
+            "image-icon-paper": "arrow-left-bold-circle-outline",
+            "image": {
+                "thumb": "https://assets.coingecko.com/coins/images/1/thumb/bitcoin.png?1547033579",
+                "small": "https://assets.coingecko.com/coins/images/1/small/bitcoin.png?1547033579",
+                "large": "https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579"
+            },
+            "name": "bitcoin",
+            "amount": "-10000",
+            "date": "15/7/2022",
+            "hour": "19:32:36"
+          },
+          {
+          "id": 3,
+          "image-icon-paper": "arrow-left-bold-circle-outline",
+          "image": {
+              "thumb": "https://assets.coingecko.com/coins/images/4713/thumb/matic-token-icon.png?1624446912",
+              "small": "https://assets.coingecko.com/coins/images/4713/small/matic-token-icon.png?1624446912",
+              "large": "https://assets.coingecko.com/coins/images/4713/large/matic-token-icon.png?1624446912"
+          },
+          "name": "matic-network",
           "amount": "-10000",
-          "date": "14/6/2022",
-          "hour": "22:37:3"
-      },
-      {
-          "id": 22,
-          "image": {
-              "thumb": "https://assets.coingecko.com/coins/images/1/thumb/bitcoin.png?1547033579",
-              "small": "https://assets.coingecko.com/coins/images/1/small/bitcoin.png?1547033579",
-              "large": "https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579"
+          "date": "15/7/2022",
+          "hour": "19:33:43"
           },
-          "name": "bitcoin",
-          "amount": "-100000",
-          "date": "14/6/2022",
-          "hour": "23:36:4"
-      }
-  ],
-  "sellCrypto": [
-      {
-          "id": 5,
-          "image": {
-              "thumb": "https://assets.coingecko.com/coins/images/325/thumb/Tether-logo.png?1598003707",
-              "small": "https://assets.coingecko.com/coins/images/325/small/Tether-logo.png?1598003707",
-              "large": "https://assets.coingecko.com/coins/images/325/large/Tether-logo.png?1598003707"
+      ],
+      "pendingLockedStake": [
+          {
+              "idOp": 61,
+              "image-icon-paper": "arrow-left-bold-circle-outline",
+              "amount": "-700",
+              "date": "15/7/2022",
+              "hour": "19:25:42"
           },
-          "name": "tether",
-          "amount": "+2498.8075",
-          "date": "14/6/2022",
-          "hour": "22:43:32"
-      },      
-      {
-          "id": 21,
-          "image": {
-              "thumb": "https://assets.coingecko.com/coins/images/325/thumb/Tether-logo.png?1598003707",
-              "small": "https://assets.coingecko.com/coins/images/325/small/Tether-logo.png?1598003707",
-              "large": "https://assets.coingecko.com/coins/images/325/large/Tether-logo.png?1598003707"
-          },
-          "name": "tether",
-          "amount": "+2498.8075",
-          "date": "14/6/2022",
-          "hour": "23:14:8"
-      }
-  ]
-}
+          {
+              "idOp": 65,
+              "image-icon-paper": "arrow-left-bold-circle-outline",
+              "amount": "-666",
+              "date": "15/7/2022",
+              "hour": "19:35:4"
+          }
+      ],
+      "finalizedLockedStake": [
+          {
+              "idOp": 62,
+              "image-icon-paper": "arrow-right-bold-circle-outline",
+              "amount": "+80160",
+              "date": "15/7/2022",
+              "hour": "19:32"
+          }
+      ]
+  }
   },
   {
     id: 4,
