@@ -1,7 +1,16 @@
 import React, { useState } from "react";
-
-import { View, Text, StyleSheet, TextInput, Button, Alert } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  Button,
+  Alert,
+  ActionSheetIOS,
+} from "react-native";
 import { CardField, useConfirmPayment } from "@stripe/stripe-react-native";
+import axios from "axios";
 
 const API_URL = "https://h-bank.herokuapp.com/user/recharge";
 
@@ -10,19 +19,31 @@ const StripeApp = () => {
   const [cardDetails, setCardDetails] = useState();
   const { confirmPayment, loading } = useConfirmPayment();
 
+  const dispatch = useDispatch();
+  const log = useSelector((state) => state.logIn.token);
+
   const fetchPaymentIntentClientSecret = async () => {
-    const response = await fetch(`${API_URL}/create-payment-intent`, {
+    /* const response = await fetch(`${API_URL}/create-payment-intent`, {
       method: "POST",
       body: { amount: "2000" },
       headers: {
         "Content-Type": "application/json",
       },
     });
-    const { clientSecret, error } = await response.json();
+    const { clientSecret, error } = await response.json(); */
+    const config = {
+      headers: {
+        Authorization: log,
+      },
+    };
+    const response = await axios.post(API_URL, { amount: "1000" }, config);
+    const { clientSecret, error } = await response.data;
+    console.log("Esta es la respuesta del back", response.data);
     return { clientSecret, error };
   };
 
   const handlePayPress = async () => {
+    console.log("Estas son las credenciales", cardDetails);
     //1.Gather the customer's billing information (e.g., email)
     if (!cardDetails?.complete || !email) {
       Alert.alert("Please enter Complete card details and Email");
