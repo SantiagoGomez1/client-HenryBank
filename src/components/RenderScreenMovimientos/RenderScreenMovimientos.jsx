@@ -141,7 +141,7 @@ const RenderScreenMovimientos = () => {
       }
         console.log('vacio', key)      
   }
-  console.log('array movimientos', movimientos)
+  // console.log('array movimientos', movimientos)
 
   useEffect(() => {
     dispatch(getMovements(token));

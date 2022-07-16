@@ -26,6 +26,7 @@ import {
   USER_TRANSFER_ALIAS,
   GET_MOVEMENTS,
   CLEAR_LOGIN,
+  POST_LOCKED_STAKE,
 } from "../actions/index";
 
 const initialState = {
@@ -48,6 +49,7 @@ const initialState = {
   countries: [],
   cities: [],
   movements: {},
+  lockedStake: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -194,6 +196,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         logIn: {},
+      };
+    case POST_LOCKED_STAKE:
+      return {
+        ...state,
+        lockedStake: action.payload,
       };
     default:
       return state;

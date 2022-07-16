@@ -1,38 +1,72 @@
-import React from "react";
-
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { View, Text, StyleSheet, Button, TextInput } from "react-native";
+import { Input, Icon } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
+
+import { lockedStake } from "../../redux/actions";
 
 const RenderScreenPlazoFijo = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const token = useSelector((state) => state.logIn.token);
+
+  const [mount, setMount] = useState(0);
+  
+  const goSuccessPlazoFijo = () => {
+    navigation.navigate("SuccessPlazoFijo");
+  };
+  const handleOnChange = (e, type) => {
+    setMount({ ...mount, [type]: e.nativeEvent.text });
+  };
+  const createLockedStake = () => {
+    // if (!validateData()) {
+    //   return;
+    // }
+    dispatch(lockedStake(token, mount));
+    goSuccessPlazoFijo();    
+  };
+
+
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Plazo Fijo</Text>
       <Text style={styles.subText}>Monto...</Text>
       <TextInput
         style={styles.input}
-        placeholder="00,00$"
+        placeholder="$ 00,00"
         placeholderTextColor="white"
         keyboardType="number-pad"
+        onChange={(e) => handleOnChange(e, "mountLockedStake")}
       />
+      {/* <Input
+        // containerStyle={styles.input}
+        style={styles.input}
+        placeholder="$ 00,00"
+        placeholderTextColor="white"
+        label="Ingrese Monto..."
+        onChange={(e) => handleOnChange(e, "confirmEmail")}
+        // errorMessage={errorConfirmEmail}
+      /> */}
       <View style={styles.containerBoxes}>
         <View style={styles.box}>
-          <Text style={styles.descText}>Moneda</Text>
+          <Text style={styles.descText}>Moneda: AR$</Text>
         </View>
         <View style={styles.containerBox}>
           <View style={styles.box1}>
-            <Text style={styles.descText}>Tiempo de Plazo</Text>
+            <Text style={styles.descText}>Tiempo de Plazo: 30 días</Text>
           </View>
           <View style={styles.box2}>
-            <Text style={styles.descText}>%</Text>
+            <Text style={styles.descText}>53 % TNA</Text>
           </View>
         </View>
       </View>
       <View style={styles.containerButton}>
-        <Button
-          title="Confirmar"
-          onPress={() => navigation.navigate("SuccessPlazoFijo")}
-        ></Button>
+      <Button
+        style={styles.btn}
+        title="Confirmar"
+        onPress={() => createLockedStake()}
+      ></Button>
       </View>
     </View>
   );
@@ -61,7 +95,7 @@ const styles = StyleSheet.create({
   descText: {
     color: "white",
     fontSize: 13,
-    paddingLeft: 10,
+    // paddingLeft: 10,
   },
   input: {
     textAlign: "center",
@@ -83,6 +117,7 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
   },
   box: {
+    paddingLeft: '7%',
     color: "white",
     paddingTop: 15,
     backgroundColor: "rgba(25, 23, 61, 0.5)",
@@ -95,6 +130,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
   box1: {
+    paddingLeft: '3%',
     color: "white",
     paddingTop: 15,
     backgroundColor: "rgba(25, 23, 61, 0.5)",
@@ -107,6 +143,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
   box2: {
+    paddingLeft: '10%',    
     color: "white",
     paddingTop: 15,
     backgroundColor: "rgba(25, 23, 61, 0.5)",
