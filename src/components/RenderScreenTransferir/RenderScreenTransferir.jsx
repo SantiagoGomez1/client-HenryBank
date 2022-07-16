@@ -10,9 +10,9 @@ import {
   userTransferAlias,
 } from "../../redux/actions/index";
 import { useDispatch, useSelector } from "react-redux";
+import { DropAliasCBU } from "./DropAliasCBU.jsx";
 
 import UserCardTransferencia from "../UserCardTransferencia/UserCardTransferencia";
-import { DropAliasCBU } from "./DropAliasCBU.jsx";
 
 const RenderScreenTransferir = () => {
   const user = useSelector((state) => state.userTransfer);
@@ -24,6 +24,7 @@ const RenderScreenTransferir = () => {
   const [errors, setErrors] = useState("");
   const [render, setRender] = useState("");
   const [next, setNext] = useState(false);
+
 
   const dispatch = useDispatch();
 
