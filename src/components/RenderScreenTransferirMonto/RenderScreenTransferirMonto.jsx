@@ -2,20 +2,28 @@ import React, { useState } from "react";
 
 import { View, Text, StyleSheet, Button, TextInput } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
-import { putTransfer } from "../../redux/actions/index";
+import { useFocusEffect } from "@react-navigation/native";
 import { useNavigation } from "@react-navigation/native";
+import { getMyUser, putTransfer } from "../../redux/actions/index";
 
 import UserCardTransferencia from "../UserCardTransferencia/UserCardTransferencia";
 
 const RenderScreenTransferirMonto = () => {
+  const [params, setParams] = useState({ amount: 0 });
+  const [errors, setErrors] = useState(true);
+  
   const token = useSelector((state) => state.logIn.token);
   const user = useSelector((state) => state.userTransfer);
   const myUser = useSelector((state) => state.myUser);
-  console.log(myUser.balance);
-  const [params, setParams] = useState({ amount: 0 });
-  const [errors, setErrors] = useState(true);
-
   const dispatch = useDispatch();
+
+  
+  useFocusEffect(
+    React.useCallback(() => {
+      dispatch(getMyUser(token));
+    }, [])
+  );
+
 
   const handleOnChange = (e, type) => {
     setParams({ ...params, [type]: e.nativeEvent.text });
