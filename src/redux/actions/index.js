@@ -29,6 +29,7 @@ export const SELL_CRYPTOS = "SELL_CRYPTOS";
 export const PRICES_CHARTS = "PRICES_CHARTS";
 export const RECHANGE = "RECHANGE";
 export const GET_BALANCE = "GET_BALANCE";
+export const POST_LOCKED_STAKE = "POST_LOCKED_STAKE";
 
 export const GET_COUNTRIES = "GET_COUNTRIES";
 export const GET_CITIES = "GET_CITIES";
@@ -375,7 +376,7 @@ export function getCountries() {
     const config = {
       headers: {
         Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJlbWFudWVsanVyaUBnbWFpbC5jb20iLCJhcGlfdG9rZW4iOiIxcnlqUGkyajZhWXJvbWZYY3JPcl9RQzhfeXQ1TzRMTFRQbXFGUFN4bnN0dEtZSE84Z1EzU2g4SmE5SlpJUmVGanZrIn0sImV4cCI6MTY1Nzg1MTIzMX0.WyBzjkGg03VD-kyTc4HMyoskEM5LvqLQ8pQ-L98ovzE",
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJlbWFudWVsanVyaUBnbWFpbC5jb20iLCJhcGlfdG9rZW4iOiIxcnlqUGkyajZhWXJvbWZYY3JPcl9RQzhfeXQ1TzRMTFRQbXFGUFN4bnN0dEtZSE84Z1EzU2g4SmE5SlpJUmVGanZrIn0sImV4cCI6MTY1ODA4NDAwMX0.vf_U1tm8yzLLXzfIe-34gU3JLeQ4rdDuguxO_3yXbMg",
       },
     };
     const res = await axios.get(
@@ -397,7 +398,7 @@ export function getCities(value) {
     const config = {
       headers: {
         Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJlbWFudWVsanVyaUBnbWFpbC5jb20iLCJhcGlfdG9rZW4iOiIxcnlqUGkyajZhWXJvbWZYY3JPcl9RQzhfeXQ1TzRMTFRQbXFGUFN4bnN0dEtZSE84Z1EzU2g4SmE5SlpJUmVGanZrIn0sImV4cCI6MTY1Nzg1MTIzMX0.WyBzjkGg03VD-kyTc4HMyoskEM5LvqLQ8pQ-L98ovzE",
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJlbWFudWVsanVyaUBnbWFpbC5jb20iLCJhcGlfdG9rZW4iOiIxcnlqUGkyajZhWXJvbWZYY3JPcl9RQzhfeXQ1TzRMTFRQbXFGUFN4bnN0dEtZSE84Z1EzU2g4SmE5SlpJUmVGanZrIn0sImV4cCI6MTY1ODA4NDAwMX0.vf_U1tm8yzLLXzfIe-34gU3JLeQ4rdDuguxO_3yXbMg",
       },
     };
     const res = await axios.get(
@@ -431,6 +432,27 @@ export const getMovements = (token) => async (dispatch) => {
 
 export const cleanLogIn = (payload) => {
   return { type: CLEAR_LOGIN, payload };
+};
+
+//------------------------------------------------------------------------------------------------//
+
+export const lockedStake = (token, mount) => async (dispatch) => {  
+  const info = {
+    roi: "5%",
+    parking: "5 minutes",
+    deposit: mount.mountLockedStake,
+  };
+  const config = {
+    headers: {
+      Authorization: token,
+    },
+  };
+  const response = await axios.post(
+    "https://h-bank.herokuapp.com/lockedStake",
+    info,
+    config,
+  );  
+  dispatch({ type: POST_LOCKED_STAKE, payload: response.data });
 };
 
 //------------------------------------------------------------------------------------------------//
