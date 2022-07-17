@@ -17,7 +17,8 @@ export default function Possession() {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.logIn.token);
   const balance = useSelector((state) => state.balance);
-
+  const lockedStake = useSelector((state) => state.movements.pendingLockedStake);
+  
   useFocusEffect(
     React.useCallback(() => {
       dispatch(getBalance(token));
@@ -93,19 +94,27 @@ export default function Possession() {
         </View>
       </View>
 
-      <TouchableOpacity
-        style={styles.subCard}
-        onPress={() => {
-          console.log("touchable3");
-        }}
-      >
-        <View style={styles.caract}>
-          <Text style={{ color: "white" }}>$480.000</Text>
-          <Text style={{ color: "white" }}>53%</Text>
-          <Text style={{ color: "white" }}>30</Text>
-          <Text style={{ color: "white" }}>$21.200</Text>
-        </View>
-      </TouchableOpacity>
+      {lockedStake.length > 0 &&
+        lockedStake.map((item, index) => (
+          <View key={index}>
+            <TouchableOpacity
+              style={styles.subCard}
+              onPress={() => {
+                navigation.navigate("Detalle PF", {
+                  id: item.name,
+                  amount: item.amount,
+                });                
+              }}
+            >
+              <View style={styles.caract}>
+                <Text style={{ color: "white" }}>$ {item.amount.substring(1)}</Text>
+                <Text style={{ color: "white" }}>53%</Text>
+                <Text style={{ color: "white" }}>30</Text>
+                <Text style={{ color: "green" }}>$ {(item.amount.substring(1) * 1.05).toFixed(2)}</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+        ))}
     </ScrollView>
   );
 }
