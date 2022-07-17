@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, Button, FlatList, Image } from "react-native";
-import Constants from "expo-constants";
 import { LinearGradient } from "expo-linear-gradient";
 import AdminUserCard from "../AdminUserCard/AdminUserCard";
 import { Input } from "react-native-elements";
@@ -46,30 +45,33 @@ const AdminHome = () => {
             ></Button>
           </View>
         </View>
-      </View>
-      <View>
-        <FlatList
-          data={users}
-          renderItem={({ item }) => (
-            <View style={styles.container3}>
-              <View style={{ alignSelf: "center" }}>
-                <Image style={styles.image} source={{ uri: `${item.image}` }} />
+        <View>
+          <FlatList
+            data={users}
+            renderItem={({ item }) => (
+              <View style={styles.container3}>
+                <View style={{ alignSelf: "center" }}>
+                  <Image
+                    style={styles.image}
+                    source={{ uri: `${item.image}` }}
+                  />
+                </View>
+                <View style={{ alignSelf: "center" }}>
+                  <Text style={styles.textMain}>
+                    {item.name} {item.lastName}
+                  </Text>
+                  <Text style={styles.text}>{item.cbu}</Text>
+                  <Text style={styles.text}>{item.email}</Text>
+                </View>
+                <View style={{ justifyContent: "center" }}>
+                  <Text onPress={() => onClick()} style={styles.got}>
+                    :
+                  </Text>
+                </View>
               </View>
-              <View style={{ alignSelf: "center" }}>
-                <Text style={styles.textMain}>
-                  {item.name} {item.lastName}
-                </Text>
-                <Text style={styles.text}>{item.cbu}</Text>
-                <Text style={styles.text}>{item.email}</Text>
-              </View>
-              <View style={{ justifyContent: "center" }}>
-                <Text onPress={() => onClick()} style={styles.got}>
-                  :
-                </Text>
-              </View>
-            </View>
-          )}
-        />
+            )}
+          />
+        </View>
       </View>
     </LinearGradient>
   );
@@ -78,8 +80,7 @@ const AdminHome = () => {
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    justifyContent: "space-between",
-    paddingTop: Constants.statusBarHeight,
+    justifyContent: "flex-start",
   },
   container: {
     marginBottom: 20,
