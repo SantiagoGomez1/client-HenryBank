@@ -1,18 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, StyleSheet, Button, FlatList, Image } from "react-native";
 import Constants from "expo-constants";
 import { LinearGradient } from "expo-linear-gradient";
 import AdminUserCard from "../AdminUserCard/AdminUserCard";
 import { Input } from "react-native-elements";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
+import { searchUser } from "../../redux/actions";
 
 const AdminHome = () => {
-  const users = useSelector((state) => state.allUsers);
-  console.log(users);
+  const users = useSelector((state) => state.allUsersSearch);
+  const dispatch = useDispatch();
   const navigation = useNavigation();
+  const token = useSelector((state) => state.logIn.token);
+  const [input, setInput] = useState({
+    user: "",
+  });
   const onClick = () => {
     navigation.navigate("AdminUserDetail");
+  };
+  const handleOnChange = (e, type) => {
+    setInput({ ...input, [type]: e.nativeEvent.text });
+  };
+
+  const onSumbit = () => {
+    dispatch(searchUser(token, input));
   };
   return (
     <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
@@ -24,9 +36,14 @@ const AdminHome = () => {
           <Input
             containerStyle={styles.input}
             placeholder="estebanquito.henrybank"
+            onChange={(e) => handleOnChange(e, "user")}
           ></Input>
           <View style={styles.btn}>
-            <Button title="Buscar" color="transparent"></Button>
+            <Button
+              title="Buscar"
+              color="transparent"
+              onPress={() => onSumbit()}
+            ></Button>
           </View>
         </View>
       </View>
