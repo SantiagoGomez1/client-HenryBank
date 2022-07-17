@@ -35,6 +35,7 @@ export const GET_COUNTRIES = "GET_COUNTRIES";
 export const GET_CITIES = "GET_CITIES";
 
 export const CLEAR_LOGIN = "CLEAR_LOGIN";
+export const SEARCH_USER = "SEARCH_USER";
 
 //------------------------------------------------------------------------------------------------//
 
@@ -436,7 +437,7 @@ export const cleanLogIn = (payload) => {
 
 //------------------------------------------------------------------------------------------------//
 
-export const lockedStake = (token, mount) => async (dispatch) => {  
+export const lockedStake = (token, mount) => async (dispatch) => {
   const info = {
     roi: "5%",
     parking: "5 minutes",
@@ -450,9 +451,24 @@ export const lockedStake = (token, mount) => async (dispatch) => {
   const response = await axios.post(
     "https://h-bank.herokuapp.com/lockedStake",
     info,
-    config,
-  );  
+    config
+  );
   dispatch({ type: POST_LOCKED_STAKE, payload: response.data });
+};
+
+//------------------------------------------------------------------------------------------------//
+
+export const searchUser = (token, input) => async (dispatch) => {
+  console.log(input);
+  const config = {
+    headers: {
+      Authorization: token,
+    },
+  };
+  const response = await axios.get("https://h-bank.herokuapp.com/user", config);
+  const info = response.data;
+  console.log(info);
+  dispatch({ type: SEARCH_USER, payload: info, input: input.user });
 };
 
 //------------------------------------------------------------------------------------------------//

@@ -27,6 +27,7 @@ import {
   GET_MOVEMENTS,
   CLEAR_LOGIN,
   POST_LOCKED_STAKE,
+  SEARCH_USER,
 } from "../actions/index";
 
 const initialState = {
@@ -50,6 +51,7 @@ const initialState = {
   cities: [],
   movements: {},
   lockedStake: [],
+  allUsersSearch: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -133,6 +135,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         allUsers: action.payload,
+        allUsersSearch: action.payload,
       };
     case PUT_TRANSFER:
       return {
@@ -201,6 +204,15 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         lockedStake: action.payload,
+      };
+    case SEARCH_USER:
+      let array = action.payload;
+      const info = array.filter((e) =>
+        e.alias.toLowerCase().includes(action.input.toLowerCase())
+      );
+      return {
+        ...state,
+        allUsersSearch: info,
       };
     default:
       return state;
