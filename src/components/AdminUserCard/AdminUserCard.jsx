@@ -2,9 +2,14 @@ import React from "react";
 import { View, Text, Image, StyleSheet } from "react-native";
 import { useSelector } from "react-redux";
 import Constants from "expo-constants";
+import { useNavigation } from "@react-navigation/native";
 
 const AdminUserCard = () => {
   const user = useSelector((state) => state.userDetail);
+  const navigation = useNavigation();
+  const onClick = () => {
+    navigation.navigate("HomeRoutes");
+  };
   return (
     <View style={styles.container}>
       <View style={{ flexDirection: "row" }}>
@@ -24,6 +29,11 @@ const AdminUserCard = () => {
           </Text>
         </View>
       </View>
+      <View>
+        <Text style={styles.btn} onPress={() => onClick()}>
+          Volver
+        </Text>
+      </View>
     </View>
   );
 };
@@ -33,7 +43,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 25,
     flexDirection: "row",
     justifyContent: "space-between",
-    paddingTop: Constants.statusBarHeight + 5,
+    paddingTop: Constants.statusBarHeight + 10,
   },
   image: {
     width: 40,
@@ -42,6 +52,12 @@ const styles = StyleSheet.create({
   },
   data: {
     paddingLeft: 10,
+  },
+  btn: {
+    color: "aqua",
+    fontWeight: "bold",
+    fontSize: 15,
+    textAlign: "center",
   },
 });
 

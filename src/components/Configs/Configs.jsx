@@ -61,9 +61,11 @@ const Configs = () => {
         <TouchableOpacity style={styles.cont} onPress={() => goHelp()}>
           <Text style={styles.text}>- Ayuda</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.cont} onPress={() => goAdmin()}>
-          <Text style={styles.text}>- Modo admin</Text>
-        </TouchableOpacity>
+        {user.email === "prueba@gmail.com" ? (
+          <TouchableOpacity style={styles.cont} onPress={() => goAdmin()}>
+            <Text style={styles.text}>- Modo admin</Text>
+          </TouchableOpacity>
+        ) : null}
       </View>
       <View style={styles.container2}>
         <TouchableOpacity onPress={() => goClose()}>
