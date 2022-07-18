@@ -377,7 +377,7 @@ export function getCountries() {
     const config = {
       headers: {
         Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJlbWFudWVsanVyaUBnbWFpbC5jb20iLCJhcGlfdG9rZW4iOiIxcnlqUGkyajZhWXJvbWZYY3JPcl9RQzhfeXQ1TzRMTFRQbXFGUFN4bnN0dEtZSE84Z1EzU2g4SmE5SlpJUmVGanZrIn0sImV4cCI6MTY1ODA4NDAwMX0.vf_U1tm8yzLLXzfIe-34gU3JLeQ4rdDuguxO_3yXbMg",
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJlbWFudWVsanVyaUBnbWFpbC5jb20iLCJhcGlfdG9rZW4iOiIxcnlqUGkyajZhWXJvbWZYY3JPcl9RQzhfeXQ1TzRMTFRQbXFGUFN4bnN0dEtZSE84Z1EzU2g4SmE5SlpJUmVGanZrIn0sImV4cCI6MTY1ODI0MTM4OX0.q8NONbd-3J9tarfWf6HfxXUY60hTztOm6oc-1m0lceo",
       },
     };
     const res = await axios.get(
@@ -399,7 +399,7 @@ export function getCities(value) {
     const config = {
       headers: {
         Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJlbWFudWVsanVyaUBnbWFpbC5jb20iLCJhcGlfdG9rZW4iOiIxcnlqUGkyajZhWXJvbWZYY3JPcl9RQzhfeXQ1TzRMTFRQbXFGUFN4bnN0dEtZSE84Z1EzU2g4SmE5SlpJUmVGanZrIn0sImV4cCI6MTY1ODA4NDAwMX0.vf_U1tm8yzLLXzfIe-34gU3JLeQ4rdDuguxO_3yXbMg",
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJlbWFudWVsanVyaUBnbWFpbC5jb20iLCJhcGlfdG9rZW4iOiIxcnlqUGkyajZhWXJvbWZYY3JPcl9RQzhfeXQ1TzRMTFRQbXFGUFN4bnN0dEtZSE84Z1EzU2g4SmE5SlpJUmVGanZrIn0sImV4cCI6MTY1ODI0MTM4OX0.q8NONbd-3J9tarfWf6HfxXUY60hTztOm6oc-1m0lceo",
       },
     };
     const res = await axios.get(
