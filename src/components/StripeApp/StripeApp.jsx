@@ -1,111 +1,111 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  View,
-  Text,
-  StyleSheet,
-  TextInput,
-  Button,
-  Alert,
-  ActionSheetIOS,
-} from "react-native";
+import { useSelector, useDispatch } from "react-redux";
+import { View, Text, StyleSheet, TextInput, Button, Alert } from "react-native";
 import { CardField, useConfirmPayment } from "@stripe/stripe-react-native";
 import axios from "axios";
+import { useNavigation } from "@react-navigation/native";
 
 const API_URL = "https://h-bank.herokuapp.com/user/recharge";
 
 const StripeApp = () => {
-  const [email, setEmail] = useState();
-  const [cardDetails, setCardDetails] = useState();
+  const dispatch = useDispatch();
+  const navigation = useNavigation();
+
+  const setScreen = (screen) => {
+    dispatch(renderScreen(screen));
+  };
+  const token = useSelector((state) => state.logIn.token);
+
+  const [input, setInput] = useState({
+    amount: 0,
+  });
+
+  const [errors, setError] = useState("");
+
   const { confirmPayment, loading } = useConfirmPayment();
 
-  const dispatch = useDispatch();
-  const log = useSelector((state) => state.logIn.token);
+  const config = {
+    headers: {
+      Authorization: token,
+    },
+  };
+  const handleOnChange = (e) => {
+    setInput(e.nativeEvent.text);
+  };
 
-  const fetchPaymentIntentClientSecret = async () => {
-    /* const response = await fetch(`${API_URL}/create-payment-intent`, {
-      method: "POST",
-      body: { amount: "2000" },
-      headers: {
-        "Content-Type": "application/json",
+  async function handlePayPress() {
+    const response = await axios.post(
+      API_URL,
+      {
+        amount: input,
+        paymentMethodType: "card",
+        currency: "ars",
       },
+      config
+    );
+    const { clientSecret } = await response.data;
+    const { error, paymentIntent } = await confirmPayment(clientSecret, {
+      type: "Card",
+      billingDetails: { estado: "ok" },
     });
-    const { clientSecret, error } = await response.json(); */
-    const config = {
-      headers: {
-        Authorization: log,
-      },
-    };
-    const response = await axios.post(API_URL, { amount: "1000" }, config);
-    const { clientSecret, error } = await response.data;
-    console.log("Esta es la respuesta del back", response.data);
-    return { clientSecret, error };
-  };
 
-  const handlePayPress = async () => {
-    console.log("Estas son las credenciales", cardDetails);
-    //1.Gather the customer's billing information (e.g., email)
-    if (!cardDetails?.complete || !email) {
-      Alert.alert("Please enter Complete card details and Email");
-      return;
+    if (error) {
+      Alert.alert(`Error code: ${error.code}`, error.message);
+    } else if (paymentIntent) {
+      /* Alert.alert(`Success`, `Payment successful: ${paymentIntent.id}`); */
+      navigation.navigate("SuccessOperacion");
     }
-    const billingDetails = {
-      email: email,
-    };
-    //2.Fetch the intent client secret from the backend
-    try {
-      const { clientSecret, error } = await fetchPaymentIntentClientSecret();
-      //2. confirm the payment
-      if (error) {
-        console.log("Unable to process payment");
-      } else {
-        const { paymentIntent, error } = await confirmPayment(clientSecret, {
-          type: "Card",
-          billingDetails: billingDetails,
-        });
-        if (error) {
-          alert(`Payment Confirmation Error ${error.message}`);
-        } else if (paymentIntent) {
-          alert("Payment Successful");
-          console.log("Payment successful ", paymentIntent);
-        }
-      }
-    } catch (e) {
-      console.log(e);
-    }
-    //3.Confirm the payment with the card details
-  };
+  }
+
+  // const validateData = () => {
+  //   setError("");
+  //   let isValid = true;
+  //   if (input.amount.length === 0) {
+  //     setError("");
+  //     isValid = false;
+  //   }
+  //   if (input.amount === 0) {
+  //     setError("");
+  //     isValid = false;
+  //   }
+  //   if (input.amount > 100000) {
+  //     setError("El monto maximo son $100.000");
+  //     isValid = false;
+  //   }
+  //   return isValid;
+  // };
 
   return (
     <View style={styles.container}>
-      <TextInput
-        autoCapitalize="none"
-        placeholder="E-mail"
-        keyboardType="email-address"
-        onChange={(value) => setEmail(value.nativeEvent.text)}
-        style={styles.input}
-      />
+      <View style={styles.containerAmount}>
+        <Text style={styles.subText}>Ingresar monto...</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="$00,00"
+          placeholderTextColor="white"
+          onChange={(e) => handleOnChange(e)}
+          keyboardType="number-pad"
+          errorMessage={errors}
+        />
+      </View>
+
       <CardField
-        postalCodeEnabled={true}
+        postalCodeEnabled={false}
         placeholder={{
           number: "4242 4242 4242 4242",
         }}
         cardStyle={styles.card}
         style={styles.cardContainer}
-        onCardChange={(cardDetails) => {
-          setCardDetails(cardDetails);
-        }}
       />
-      <Button onPress={handlePayPress} title="Pay" disabled={loading} />
+      <View style={{ paddingBottom: 40 }}>
+        {errors ? <Text style={{ color: "red" }}>{errors}</Text> : null}
+        <Button onPress={handlePayPress} title="Pay" disable={loading} />
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-  },
   input: {
     backgroundColor: "#efefefef",
     borderRadius: 8,

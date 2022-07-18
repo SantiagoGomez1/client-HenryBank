@@ -44,9 +44,9 @@ const RenderScreenIngresar = () => {
           style={styles.inputCode}
         /> */}
 
-      <View style={styles.btn}>
+{/*       <View style={styles.btn}>
         <Button title="Siguiente" onPress={() => setScreen(6)}></Button>
-      </View>
+      </View> */}
     </View>
     // </View>
   );
