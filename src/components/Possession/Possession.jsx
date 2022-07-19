@@ -26,6 +26,7 @@ export default function Possession() {
     }, [])
     );
 
+    console.log("Este es el balance", balance)
   return (
     <ScrollView style={styles.card}>
       <View>
@@ -49,6 +50,7 @@ export default function Possession() {
 
       {balance.length > 0 &&
         balance.map((item, index) => (
+          item.balance !== "0" &&
           <View key={index}>
             <TouchableOpacity
               style={styles.subCard}

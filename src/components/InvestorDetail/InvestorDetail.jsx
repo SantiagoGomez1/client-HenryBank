@@ -11,11 +11,14 @@ import { LinearGradient } from "expo-linear-gradient";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { Divider } from "@rneui/themed";
 import Charts from "../Charts/Charts";
+import { useSelector } from "react-redux";
+const axios = require("axios");
 
 var { height } = Dimensions.get("window");
 
 export default function InvestorDetail({ route, navigation }) {
   const { id, ticket, cantidad, precio } = route.params;
+  const token = useSelector((state) => state.logIn.token);
 
   return (
     <KeyboardAwareScrollView style={styles.container}>
@@ -127,6 +130,35 @@ export default function InvestorDetail({ route, navigation }) {
               })
             }
           />
+          <Button
+          title="Vender todo"
+          onPress={async () => {
+            const response = await axios.post(
+              "https://h-bank.herokuapp.com/crypto/sell",
+              {
+                amount: cantidad,
+                crypto: id,
+                price: precio,
+              },
+              {
+                headers: {
+                  Authorization: token,
+                },
+              }
+            );
+            if (response.data.msg === "Crypto Vendida") {
+              navigation.navigate("SuccessSell", {
+                success: 1,
+              });
+            } else if (
+              response.data.msg === "No se encontro la crypto, corrobora datos"
+            ) {
+              navigation.navigate("SuccessSell", {
+                success: 2,
+              });
+            }
+          }}
+        />
           <Button
             title="Comprar más"
             onPress={() =>
