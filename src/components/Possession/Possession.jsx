@@ -8,7 +8,7 @@ import {
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
-import { getBalance } from "../../redux/actions";
+import { getBalance, getMovements } from "../../redux/actions";
 import { useFocusEffect } from "@react-navigation/native";
 
 export default function Possession() {
@@ -22,8 +22,10 @@ export default function Possession() {
   useFocusEffect(
     React.useCallback(() => {
       dispatch(getBalance(token));
+      dispatch(getMovements(token));      
     }, [])
-  );
+    );
+
   return (
     <ScrollView style={styles.card}>
       <View>
@@ -94,7 +96,8 @@ export default function Possession() {
         </View>
       </View>
 
-      {lockedStake.length > 0 &&
+      {      
+        !lockedStake ? null :
         lockedStake.map((item, index) => (
           <View key={index}>
             <TouchableOpacity
@@ -114,7 +117,9 @@ export default function Possession() {
               </View>
             </TouchableOpacity>
           </View>
-        ))}
+        ))        
+        }
+
     </ScrollView>
   );
 }
