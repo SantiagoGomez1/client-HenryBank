@@ -11,7 +11,8 @@ const RenderScreenPlazoFijo = () => {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.logIn.token);
 
-  const [mount, setMount] = useState(0);
+  const [mount, setMount] = useState([]);  
+  const [errorMount, setErrorMount] = useState("");  
   
   const goSuccessPlazoFijo = () => {
     navigation.navigate("SuccessPlazoFijo");
@@ -19,35 +20,40 @@ const RenderScreenPlazoFijo = () => {
   const handleOnChange = (e, type) => {
     setMount({ ...mount, [type]: e.nativeEvent.text });
   };
+
   const createLockedStake = () => {
-    // if (!validateData()) {
-    //   return;
-    // }
+    if (!validateData()) {
+      return;
+    }
     dispatch(lockedStake(token, mount));
     goSuccessPlazoFijo();    
   };
 
+  const validateData = () => {
+    setErrorMount("");
+    let isValid = true;
+
+    if ((Number(mount.mountLockedStake) < 1000)) {
+      setErrorMount("Debes ingresar un monto mayor a $1.000");
+      isValid = false;
+    }
+    return isValid;
+  };
 
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Plazo Fijo</Text>
-      <Text style={styles.subText}>Monto...</Text>
-      <TextInput
+      <Text style={styles.subText}>Monto mínimo $1.000</Text>
+      <Input
         style={styles.input}
+        // containerStyle={styles.input}
         placeholder="$ 00,00"
         placeholderTextColor="white"
         keyboardType="number-pad"
+        // label="Monto mínimo $1.000"
         onChange={(e) => handleOnChange(e, "mountLockedStake")}
+        errorMessage={errorMount}
       />
-      {/* <Input
-        // containerStyle={styles.input}
-        style={styles.input}
-        placeholder="$ 00,00"
-        placeholderTextColor="white"
-        label="Ingrese Monto..."
-        onChange={(e) => handleOnChange(e, "confirmEmail")}
-        // errorMessage={errorConfirmEmail}
-      /> */}
       <View style={styles.containerBoxes}>
         <View style={styles.box}>
           <Text style={styles.descText}>Moneda: AR$</Text>
