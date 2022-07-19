@@ -78,7 +78,6 @@ const StripeApp = () => {
   return (
     <View style={styles.container}>
       <View style={styles.containerAmount}>
-        <Text style={styles.subText}>Ingresar monto...</Text>
         <TextInput
           style={styles.input}
           placeholder="$00,00"
@@ -99,19 +98,23 @@ const StripeApp = () => {
       />
       <View style={{ paddingBottom: 40 }}>
         {errors ? <Text style={{ color: "red" }}>{errors}</Text> : null}
-        <Button onPress={handlePayPress} title="Pay" disable={loading} />
+        <Button onPress={handlePayPress} title="Confirmar" disable={loading} />
       </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  containerAmount: {
+    paddingVertical: 45,
+  },
   input: {
-    backgroundColor: "#efefefef",
-    borderRadius: 8,
-    fontSize: 20,
-    height: 50,
-    padding: 10,
+    textAlign: "center",
+    color: "white",
+    fontSize: 40,
+    fontWeight: "bold",
+    width: 300,
+    height: 80,
   },
   card: {
     backgroundColor: "#efefefef",
