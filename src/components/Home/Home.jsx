@@ -1,10 +1,11 @@
 import React from "react";
 
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text, Dimensions } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useDispatch, useSelector } from "react-redux";
 import { TouchableOpacity } from "react-native";
 import { renderScreen } from "../../redux/actions";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 import UserCardHome from "../UserCardHome/UserCardHome.jsx";
 import UserCapital from "../UserCapital/UserCapital.jsx";
@@ -18,6 +19,8 @@ import RenderScreenPlazoFijo from "../RenderScreenPlazoFijo/RenderScreenPlazoFij
 import RenderScreenInvestor from "../RenderScreenInvestor/RenderScreenInvestor.jsx";
 import RenderScreenIngresar from "../RenderScreenIngresar/RenderScreenIngresar.jsx";
 
+var { height } = Dimensions.get("window");
+
 const Home = () => {
   let screen = useSelector((state) => state.renderScreen);
   const dispatch = useDispatch();
@@ -27,7 +30,7 @@ const Home = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <KeyboardAwareScrollView style={styles.container}>
       <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
         <UserCardHome />
         <View
@@ -68,7 +71,7 @@ const Home = () => {
 
         <View></View>
       </LinearGradient>
-    </View>
+    </KeyboardAwareScrollView>
   );
 };
 
@@ -79,6 +82,7 @@ const styles = StyleSheet.create({
   background: {
     justifyContent: "space-between",
     flex: 1,
+    height: (height - 50)
   },
 });
 
