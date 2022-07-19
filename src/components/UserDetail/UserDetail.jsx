@@ -38,7 +38,6 @@ const DetailUser = () => {
             <Text style={styles.textMain2}>Datos Bancarios</Text>
             <Text style={styles.textSecondary}>Alias: {user.alias}</Text>
             <Text style={styles.textSecondary}>CBU: {user.cbu}</Text>
-            <Text style={styles.textSecondary}>Balance: {user.balance}</Text>
           </View>
         </View>
         <TouchableOpacity>

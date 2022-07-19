@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Button, View, Image, StyleSheet, Text, Dimensions } from "react-native";
+import {
+  Button,
+  View,
+  Image,
+  StyleSheet,
+  Text,
+  Dimensions,
+} from "react-native";
 import { Input, Icon } from "react-native-elements";
 import { LinearGradient } from "expo-linear-gradient";
 import Constants from "expo-constants";
@@ -107,6 +114,7 @@ const LogIn = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "#140152",
   },
   background: {
     flex: 1,
@@ -115,7 +123,7 @@ const styles = StyleSheet.create({
     width: "100%",
     justifyContent: "space-around",
     paddingTop: Constants.statusBarHeight,
-    height: height
+    height: height,
   },
   image: {
     width: 200,

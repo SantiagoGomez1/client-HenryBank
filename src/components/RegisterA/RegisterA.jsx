@@ -94,64 +94,63 @@ export default function RegisterA() {
 
   return (
     <KeyboardAwareScrollView style={styles.container}>
+      <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
+        <Text style={styles.tittle}>Regístrate</Text>
+        <Input
+          containerStyle={styles.input}
+          placeholder="soyhenry@gmail.com"
+          label="E-mail"
+          onChange={(e) => handleOnChange(e, "email")}
+          errorMessage={errorEmail}
+        />
+        <Input
+          containerStyle={styles.input}
+          placeholder="soyhenry@gmail.com"
+          label="Confirmar E-mail"
+          onChange={(e) => handleOnChange(e, "confirmEmail")}
+          errorMessage={errorConfirmEmail}
+        />
+        <Input
+          containerStyle={styles.input}
+          placeholder="8 digitos"
+          label="Contraseña"
+          password={true}
+          secureTextEntry={!showPassword}
+          onChange={(e) => handleOnChange(e, "password")}
+          errorMessage={errorPassword}
+          rightIcon={
+            <Icon
+              type="material-community"
+              name={showPassword ? "eye-off-outline" : "eye-outline"}
+              iconStyle={styles.icon}
+              onPress={() => setShowPassword(!showPassword)}
+            />
+          }
+        />
+        <Input
+          containerStyle={styles.input}
+          placeholder="8 digitos"
+          label="Confirmar Contraseña"
+          password={true}
+          secureTextEntry={!showPassword}
+          onChange={(e) => handleOnChange(e, "confirmPassword")}
+          errorMessage={errorConfirPassword}
+          rightIcon={
+            <Icon
+              type="material-community"
+              name={showPassword ? "eye-off-outline" : "eye-outline"}
+              iconStyle={styles.icon}
+              onPress={() => setShowPassword(!showPassword)}
+            />
+          }
+        />
 
-    <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
-      <Text style={styles.tittle}>Regístrate</Text>
-      <Input
-        containerStyle={styles.input}
-        placeholder="soyhenry@gmail.com"
-        label="E-mail"
-        onChange={(e) => handleOnChange(e, "email")}
-        errorMessage={errorEmail}
-      />
-      <Input
-        containerStyle={styles.input}
-        placeholder="soyhenry@gmail.com"
-        label="Confirmar E-mail"
-        onChange={(e) => handleOnChange(e, "confirmEmail")}
-        errorMessage={errorConfirmEmail}
-      />
-      <Input
-        containerStyle={styles.input}
-        placeholder="8 digitos"
-        label="Contraseña"
-        password={true}
-        secureTextEntry={!showPassword}
-        onChange={(e) => handleOnChange(e, "password")}
-        errorMessage={errorPassword}
-        rightIcon={
-          <Icon
-            type="material-community"
-            name={showPassword ? "eye-off-outline" : "eye-outline"}
-            iconStyle={styles.icon}
-            onPress={() => setShowPassword(!showPassword)}
-          />
-        }
-      />
-      <Input
-        containerStyle={styles.input}
-        placeholder="8 digitos"
-        label="Confirmar Contraseña"
-        password={true}
-        secureTextEntry={!showPassword}
-        onChange={(e) => handleOnChange(e, "confirmPassword")}
-        errorMessage={errorConfirPassword}
-        rightIcon={
-          <Icon
-            type="material-community"
-            name={showPassword ? "eye-off-outline" : "eye-outline"}
-            iconStyle={styles.icon}
-            onPress={() => setShowPassword(!showPassword)}
-          />
-        }
-      />
-
-      <Button
-        style={styles.btn}
-        title="Siguiente"
-        onPress={() => registerUser()}
-      ></Button>
-    </LinearGradient>
+        <Button
+          style={styles.btn}
+          title="Siguiente"
+          onPress={() => registerUser()}
+        ></Button>
+      </LinearGradient>
     </KeyboardAwareScrollView>
   );
 }
@@ -159,6 +158,7 @@ export default function RegisterA() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "#140152",
   },
   background: {
     flex: 1,
@@ -167,7 +167,7 @@ const styles = StyleSheet.create({
     width: "100%",
     justifyContent: "space-around",
     paddingTop: Constants.statusBarHeight,
-    height: height
+    height: height,
   },
   input: {
     backgroundColor: "white",
