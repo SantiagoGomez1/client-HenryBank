@@ -78,6 +78,7 @@ const Home = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "#140152",
   },
   background: {
     justifyContent: "space-between",
