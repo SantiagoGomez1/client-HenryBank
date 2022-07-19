@@ -41,7 +41,16 @@ const Home = () => {
           }}
         >
           <TouchableOpacity onPress={() => setScreen(0)}>
-            <Text style={{ color: "#fff" }}>¡NOTICIAS!</Text>
+            <Text
+              style={{
+                color: "#140152",
+                backgroundColor: "aqua",
+                padding: 5,
+                borderRadius: 50,
+              }}
+            >
+              ¡NOTICIAS!
+            </Text>
           </TouchableOpacity>
           <UserCapital />
         </View>

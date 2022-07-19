@@ -6,11 +6,14 @@ import Constants from "expo-constants";
 import { TouchableOpacity } from "react-native";
 import { getUserDetail } from "../../redux/actions";
 import { useNavigation } from "@react-navigation/native";
+import { useClipboard } from "@react-native-community/hooks";
 
 const Configs = () => {
   const navigation = useNavigation();
 
   const user = useSelector((state) => state.userDetail);
+
+  const [copy, setCopy] = useClipboard();
 
   const dispatch = useDispatch();
 
@@ -60,6 +63,18 @@ const Configs = () => {
         </TouchableOpacity>
         <TouchableOpacity style={styles.cont} onPress={() => goHelp()}>
           <Text style={styles.text}>- Ayuda</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.cont}
+          onPress={() => setCopy(`${user.cbu}`)}
+        >
+          <Text style={styles.text}>- Copiar CBU</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.cont}
+          onPress={() => setCopy(`${user.alias}`)}
+        >
+          <Text style={styles.text}>- Copiar alias</Text>
         </TouchableOpacity>
         {user.email === "prueba@gmail.com" ? (
           <TouchableOpacity style={styles.cont} onPress={() => goAdmin()}>
