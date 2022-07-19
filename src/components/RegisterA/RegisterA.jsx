@@ -1,13 +1,16 @@
 import React, { useState } from "react";
-import { Button, StyleSheet, Text } from "react-native";
+import { Button, StyleSheet, Text, Dimensions } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
 import Constants from "expo-constants";
 import { Input, Icon } from "react-native-elements";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 import { postUser, getUsers } from "../../redux/actions";
+
+var { height } = Dimensions.get("window");
 
 export default function RegisterA() {
   const dispatch = useDispatch();
@@ -90,6 +93,8 @@ export default function RegisterA() {
   };
 
   return (
+    <KeyboardAwareScrollView style={styles.container}>
+
     <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
       <Text style={styles.tittle}>Regístrate</Text>
       <Input
@@ -147,6 +152,7 @@ export default function RegisterA() {
         onPress={() => registerUser()}
       ></Button>
     </LinearGradient>
+    </KeyboardAwareScrollView>
   );
 }
 
@@ -161,6 +167,7 @@ const styles = StyleSheet.create({
     width: "100%",
     justifyContent: "space-around",
     paddingTop: Constants.statusBarHeight,
+    height: height
   },
   input: {
     backgroundColor: "white",
