@@ -51,7 +51,7 @@ export default function InvestorBuyGeneral({ route, navigation }) {
               Precio de mercado: USD $ {price.toFixed(4)}
             </Text>
             <Text style={{ color: "white", fontSize: 16 }}>
-              Precio de mercado: AR $ {(price * 127.82).toFixed(4)}
+              Precio de mercado: AR $ {(price * 300).toFixed(4)}
             </Text>
           </View>
           <Text style={{ color: "white", fontSize: 20, marginLeft: 14 }}>

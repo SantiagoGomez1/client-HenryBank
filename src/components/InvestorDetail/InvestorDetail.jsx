@@ -11,7 +11,8 @@ import { LinearGradient } from "expo-linear-gradient";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { Divider } from "@rneui/themed";
 import Charts from "../Charts/Charts";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getCoinId } from "../../redux/actions";
 const axios = require("axios");
 
 var { height } = Dimensions.get("window");
@@ -19,6 +20,17 @@ var { height } = Dimensions.get("window");
 export default function InvestorDetail({ route, navigation }) {
   const { id, ticket, cantidad, precio } = route.params;
   const token = useSelector((state) => state.logIn.token);
+  const data = useSelector((state) => state.coinDetail);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getCoinId(id));
+  }, []);
+
+  function efficiency(viInvestor, vfInvestor) {
+    return ((vfInvestor - viInvestor) / viInvestor) * 100
+  }
 
   return (
     <KeyboardAwareScrollView style={styles.container}>
@@ -52,13 +64,16 @@ export default function InvestorDetail({ route, navigation }) {
             >
               AR$
             </Text>
-            <Text style={{ color: "white", fontSize: 25 }}>{parseInt(cantidad).toFixed(4)}</Text>
+            <Text style={{ color: "white", fontSize: 25 }}>{((((efficiency(precio, data.current_price)) * (precio * cantidad)) + (precio * cantidad)) * 300).toFixed(4)}</Text>
           </View>
-          <Text style={{ color: "white", fontSize: 20 }}>¡Estás ganando!</Text>
+          { efficiency(precio, data.current_price) > 0 ? <Text style={{ color: "#00FF00", fontSize: 20 }}>¡Estas ganando!</Text> : <Text style={{ color: "red", fontSize: 20 }}>Ganacias/perdidas</Text>}
           <View>
-            <Text style={{ color: "green", fontSize: 20 }}>
-              24,56% AR$ 45.208,5
+            {
+              data && 
+            <Text style={{ color: "white", fontSize: 20 }}>
+              {efficiency(precio, data.current_price).toFixed(4)}% AR$ {(((efficiency(precio, data.current_price)) * (precio * cantidad)) * 300).toFixed(4)}
             </Text>
+            }
             <Divider inset={true} insetType="right" />
           </View>
           <View
@@ -69,7 +84,7 @@ export default function InvestorDetail({ route, navigation }) {
             }}
           >
             <Text style={{ color: "white", fontSize: 20 }}>PPC</Text>
-            <Text style={{ color: "white", fontSize: 20 }}>AR$ 7.236,26</Text>
+            <Text style={{ color: "white", fontSize: 20 }}>AR$ {(precio * 300).toFixed(4)}</Text>
           </View>
         </View>
 

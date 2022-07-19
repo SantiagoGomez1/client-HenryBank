@@ -26,7 +26,6 @@ export default function Possession() {
     }, [])
     );
 
-    console.log("Este es el balance", balance)
   return (
     <ScrollView style={styles.card}>
       <View>
