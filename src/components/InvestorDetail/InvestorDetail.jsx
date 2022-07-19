@@ -52,7 +52,7 @@ export default function InvestorDetail({ route, navigation }) {
             >
               AR$
             </Text>
-            <Text style={{ color: "white", fontSize: 25 }}>{cantidad}</Text>
+            <Text style={{ color: "white", fontSize: 25 }}>{parseInt(cantidad).toFixed(4)}</Text>
           </View>
           <Text style={{ color: "white", fontSize: 20 }}>¡Estás ganando!</Text>
           <View>
@@ -93,7 +93,7 @@ export default function InvestorDetail({ route, navigation }) {
             Cantidad:{" "}
           </Text>
           <Text style={{ color: "white", fontSize: 16, marginRight: 10 }}>
-            {cantidad}
+            {parseInt(cantidad).toFixed(4)}
           </Text>
         </View>
 
@@ -127,6 +127,7 @@ export default function InvestorDetail({ route, navigation }) {
                 id,
                 ticket,
                 price: precio,
+                amount: cantidad,
               })
             }
           />

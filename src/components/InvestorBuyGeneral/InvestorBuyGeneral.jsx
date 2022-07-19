@@ -23,6 +23,7 @@ export default function InvestorBuyGeneral({ route, navigation }) {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.logIn.token);
   const buyDetail = useSelector((state) => state.buyDetail);
+  const saldo = useSelector((state) => state.userDetail.balance);
   return (
     <KeyboardAwareScrollView style={styles.container}>
       <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
@@ -47,10 +48,10 @@ export default function InvestorBuyGeneral({ route, navigation }) {
           <Divider inset={true} insetType="middle" />
           <View style={styles.subCard}>
             <Text style={{ color: "white", fontSize: 16 }}>
-              Precio de mercado: USD$ {price}
+              Precio de mercado: USD $ {price.toFixed(4)}
             </Text>
             <Text style={{ color: "white", fontSize: 16 }}>
-              Precio de mercado: AR$ {(price * 127.82).toFixed(2)}
+              Precio de mercado: AR $ {(price * 127.82).toFixed(4)}
             </Text>
           </View>
           <Text style={{ color: "white", fontSize: 20, marginLeft: 14 }}>
@@ -61,7 +62,7 @@ export default function InvestorBuyGeneral({ route, navigation }) {
         <View style={styles.card}>
           <View style={{ display: "flex", alignItems: "center" }}>
             <Text style={{ color: "white", fontSize: 16 }}>
-              Montos disponibles
+              Montos disponibles: $ {saldo}
             </Text>
           </View>
           <View style={{ alignItems: "center", paddingBottom: 20 }}>

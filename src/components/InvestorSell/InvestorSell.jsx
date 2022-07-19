@@ -16,7 +16,7 @@ const axios = require("axios");
 var { height } = Dimensions.get("window");
 
 export default function InvestorSell({ route, navigation }) {
-  const { id, ticket, price } = route.params;
+  const { id, ticket, price, amount } = route.params;
   const [value, setValue] = React.useState("");
 
   //token
@@ -58,7 +58,7 @@ export default function InvestorSell({ route, navigation }) {
         <View style={styles.card}>
           <View style={{ display: "flex", alignItems: "center" }}>
             <Text style={{ color: "white", fontSize: 16 }}>
-              Acciones disponibles
+              Acciones disponibles: {parseInt(amount).toFixed(4)}
             </Text>
           </View>
           <View style={{ alignItems: "center", paddingBottom: 20 }}>
