@@ -100,7 +100,14 @@ export default function InvestorBuyGeneral({ route, navigation }) {
                   },
                 }
               );
-              if (response.data.msg === "Crypto Comprada") {
+              console.log("Esta es la respuesta de continuar",response.data)
+              if (response.data.msg === "Nueva Crypto Comprada") {
+                console.log("Entro en el primer if")
+                navigation.navigate("SuccessBuy", {
+                  success: 1,
+                });
+              } else if (response.data.msg === "Crypto Comprada") {
+                console.log("Entro en el segundo if")
                 navigation.navigate("SuccessBuy", {
                   success: 1,
                 });
