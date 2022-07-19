@@ -3,22 +3,26 @@ import { View, Text, StyleSheet, Button, ScrollView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
 import { Input, Icon } from "react-native-elements";
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 import { postUserData, postUserDataCard } from "../../redux/actions";
-import {DropdownComponentGender, DropdownComponentNationality, DropdownComponentCity} from './Dropdown'
+import {
+  DropdownComponentGender,
+  DropdownComponentNationality,
+  DropdownComponentCity,
+} from "./Dropdown";
 
 import Constants from "expo-constants";
 
 const RegisterB = () => {
   const dispatch = useDispatch();
-  const userMP = useSelector(state => state.userMP)  
+  const userMP = useSelector((state) => state.userMP);
   const navigation = useNavigation();
   const goRegisterC = () => {
     navigation.navigate("RegisterC");
-  };  
-  
+  };
+
   const [formData, setFormData] = useState({
     name: "",
     lastName: "",
@@ -29,7 +33,7 @@ const RegisterB = () => {
     nationality: "",
     address: "",
   });
-  
+
   //----------------------States Picker-Date----------------------//
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const showDatePicker = () => {
@@ -48,25 +52,25 @@ const RegisterB = () => {
     setFormData({ ...formData, [type]: e.nativeEvent.text });
   };
 
-  const handleConfirm = (date) => {    
-    const year = JSON.stringify(date).substring(1,5)
-    const months = JSON.stringify(date).substring(6,8)
-    const days = JSON.stringify(date).substring(9,11)
-    var dates = `${days}/${months}/${year}`
+  const handleConfirm = (date) => {
+    const year = JSON.stringify(date).substring(1, 5);
+    const months = JSON.stringify(date).substring(6, 8);
+    const days = JSON.stringify(date).substring(9, 11);
+    var dates = `${days}/${months}/${year}`;
     // console.log('Fecha', dates);
     setFormData({ ...formData, dateOfBirth: dates });
-    hideDatePicker();  
+    hideDatePicker();
   };
 
-  const handleGender = (props) => {    
+  const handleGender = (props) => {
     setFormData({ ...formData, gender: props });
   };
 
-  const handleNationality = (props) => {    
+  const handleNationality = (props) => {
     setFormData({ ...formData, nationality: props });
   };
 
-  const handleCity = (props) => {    
+  const handleCity = (props) => {
     setFormData({ ...formData, city: props });
   };
 
@@ -75,8 +79,8 @@ const RegisterB = () => {
     if (!validateData()) {
       return;
     }
-    dispatch(postUserData(formData, userMP))
-    dispatch(postUserDataCard(formData, userMP))
+    dispatch(postUserData(formData, userMP));
+    dispatch(postUserDataCard(formData, userMP));
     goRegisterC();
   };
 
@@ -165,10 +169,8 @@ const RegisterB = () => {
           defaultValue={formData.gender}
         /> */}
 
-        <DropdownComponentGender
-          setGender={handleGender}
-        />
-        
+        <DropdownComponentGender setGender={handleGender} />
+
         <Input
           containerStyle={styles.input}
           placeholder="22/04/1995"
@@ -185,14 +187,14 @@ const RegisterB = () => {
               onPress={() => showDatePicker()}
             />
           }
-        />    
-          <DateTimePickerModal
-            isVisible={isDatePickerVisible}
-            mode="date"
-            onConfirm={handleConfirm}
-            onCancel={hideDatePicker}
-          />       
-        
+        />
+        <DateTimePickerModal
+          isVisible={isDatePickerVisible}
+          mode="date"
+          onConfirm={handleConfirm}
+          onCancel={hideDatePicker}
+        />
+
         {/* <Input
           containerStyle={styles.input}
           placeholder="Argentina"
@@ -201,10 +203,8 @@ const RegisterB = () => {
           // errorMessage={errorEmail}
           defaultValue={formData.nationality}
         /> */}
-        
-        <DropdownComponentNationality
-          setNationality={handleNationality}
-        />
+
+        <DropdownComponentNationality setNationality={handleNationality} />
 
         {/* <Input
           containerStyle={styles.input}
@@ -215,9 +215,7 @@ const RegisterB = () => {
           defaultValue={formData.city}
         /> */}
 
-        <DropdownComponentCity
-          setCity={handleCity}
-        />
+        <DropdownComponentCity setCity={handleCity} />
 
         <Input
           containerStyle={styles.input}
