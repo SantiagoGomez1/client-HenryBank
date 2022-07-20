@@ -35,6 +35,7 @@ import Help from "./src/components/Help/Help";
 import SuccessSell from "./src/components/SuccessSell/SuccessSell";
 import AdminRoutes from "./src/components/AdminRoutes/AdminRoutes";
 import AdminUserDetail from "./src/components/AdminUserDetail/AdminUserDetail";
+import ForgotPassword from "./src/components/ForgotPasword/ForgotPassword";
 
 export default function App() {
   const Stack = createStackNavigator();
@@ -85,6 +86,7 @@ export default function App() {
             <Stack.Screen name="Help" component={Help} />
             <Stack.Screen name="Admin Routes" component={AdminRoutes} />
             <Stack.Screen name="AdminUserDetail" component={AdminUserDetail} />
+            <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>
