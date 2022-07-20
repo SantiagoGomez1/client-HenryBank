@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     width: 350,
     borderRadius: 8,
     paddingTop: 20,
-    justifyContent: "space-around",
+    justifyContent: "space-between",
   },
   text: {
     color: "white",
@@ -54,9 +54,14 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 20,
     textAlign: "center",
-
+    margin: 5,
   },
-
+  text3: {
+    color: "grey",
+    fontSize: 15,
+    fontWeight: "bold",
+    textAlign: "center",
+  },
   btn2: {
     alignSelf: "center",
     paddingBottom: 20,

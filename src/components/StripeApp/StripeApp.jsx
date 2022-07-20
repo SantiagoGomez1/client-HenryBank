@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { View, Text, StyleSheet, TextInput, Button, Alert } from "react-native";
 import { CardField, useConfirmPayment } from "@stripe/stripe-react-native";
 import axios from "axios";
@@ -15,15 +15,20 @@ const StripeApp = () => {
     amount: 0,
   });
 
-  const [errorMoney, setErrorMoney] = useState(0);
+  const [errorMoney, setErrorMoney] = useState("");
   const validateData = () => {
     let isValid = true;
+    setErrorMoney("");
 
-    if (input.amount <= 100) {
+    if (input.amount < 100) {
       setErrorMoney("Deberia ingresar al menos $100.00");
       isValid = false;
     }
     if (input.amount === 0) {
+      setErrorMoney("Deberia ingresar un monto");
+      isValid = false;
+    }
+    if (!input.amount.length) {
       setErrorMoney("Deberia ingresar un monto");
       isValid = false;
     }
@@ -38,18 +43,18 @@ const StripeApp = () => {
       Authorization: token,
     },
   };
-  const handleOnChange = (e) => {
-    setInput(e.nativeEvent.text);
+  const handleOnChange = (e, type) => {
+    setInput({ ...input.amount, [type]: e.nativeEvent.text });
   };
 
   async function handlePayPress() {
     if (!validateData()) {
-      return console.log("hola");
+      return;
     } else {
       const response = await axios.post(
         API_URL,
         {
-          amount: input,
+          amount: Number(input.amount),
           paymentMethodType: "card",
           currency: "ars",
         },
@@ -74,9 +79,10 @@ const StripeApp = () => {
         style={styles.input}
         placeholder="$100,00"
         placeholderTextColor="white"
-        onChange={(e) => handleOnChange(e)}
+        onChange={(e) => handleOnChange(e, "amount")}
         keyboardType="number-pad"
         errorMessage={errorMoney}
+        defaultValue={input.amount}
       />
       <CardField
         postalCodeEnabled={false}
