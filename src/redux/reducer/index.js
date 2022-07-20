@@ -28,6 +28,8 @@ import {
   CLEAR_LOGIN,
   POST_LOCKED_STAKE,
   SEARCH_USER,
+  FORGOT_A,
+  FORGOT_PASSWORD,
 } from "../actions/index";
 
 const initialState = {
@@ -52,6 +54,8 @@ const initialState = {
   movements: {},
   lockedStake: [],
   allUsersSearch: [],
+  forgotA: [],
+  forgotPassword: {},
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -213,6 +217,16 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         allUsersSearch: info,
+      };
+    case FORGOT_A:
+      return {
+        ...state,
+        forgotA: action.payload,
+      };
+    case FORGOT_PASSWORD:
+      return {
+        ...state,
+        forgotPassword: action.payload,
       };
     default:
       return state;
