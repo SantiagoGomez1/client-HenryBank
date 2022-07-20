@@ -37,6 +37,9 @@ export const GET_CITIES = "GET_CITIES";
 export const CLEAR_LOGIN = "CLEAR_LOGIN";
 export const SEARCH_USER = "SEARCH_USER";
 
+export const FORGOT_A = "FORGOT_A";
+export const FORGOT_PASSWORD = "FORGOT_PASSWORD";
+
 //------------------------------------------------------------------------------------------------//
 
 export const logIn = (form) => async (dispatch) => {
@@ -469,6 +472,31 @@ export const searchUser = (token, input) => async (dispatch) => {
   const info = response.data;
   console.log(info);
   dispatch({ type: SEARCH_USER, payload: info, input: input.user });
+};
+
+//------------------------------------------------------------------------------------------------//
+
+export const forgotPassword =
+  (email, identity, password) => async (dispatch) => {
+    const data = {
+      email: email,
+      identity: identity,
+      password: password,
+    };
+    console.log(data);
+    const response = await axios.put(
+      "https://h-bank.herokuapp.com/forgetPassword",
+      data
+    );
+    const info = response.data;
+    console.log(response.data);
+    dispatch({ type: FORGOT_PASSWORD, payload: info });
+  };
+
+//------------------------------------------------------------------------------------------------//
+
+export const forgotA = (payload) => {
+  return { type: FORGOT_A, payload };
 };
 
 //------------------------------------------------------------------------------------------------//

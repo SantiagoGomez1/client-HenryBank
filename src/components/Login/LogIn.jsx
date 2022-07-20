@@ -23,7 +23,7 @@ const LogIn = () => {
   const navigation = useNavigation();
 
   const goForgotPassword = () => {
-    navigation.navigate("ForgotPassword");
+    navigation.navigate("ForgotPasswordA");
   };
 
   useEffect(() => {
