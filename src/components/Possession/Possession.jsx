@@ -26,6 +26,7 @@ export default function Possession() {
     }, [])
     );
 
+    console.log("Este es el balance",balance)
   return (
     <ScrollView style={styles.card}>
       <View>
@@ -65,7 +66,7 @@ export default function Possession() {
               <View style={styles.caract}>
                 <Text style={{ color: "white" }}>{item.name}</Text>
                 <Text style={{ color: "white" }}>
-                  {parseInt(item.balance).toFixed(2)}
+                  {parseInt(item.balance).toFixed(4)}
                 </Text>
                 <Text style={{ color: "green" }}>8.79%</Text>
                 <Text style={{ color: "white" }}>

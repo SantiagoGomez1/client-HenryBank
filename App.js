@@ -38,6 +38,7 @@ import AdminUserDetail from "./src/components/AdminUserDetail/AdminUserDetail";
 import ForgotPasswordA from "./src/components/ForgotPasswordA/ForgotPasswordA";
 import ForgotPasswordB from "./src/components/ForgotPasswordB/ForgotPasswordB";
 import ForgotPasswordConfirm from "./src/components/ForgotPasswordConfirm/ForgotPasswordConfirm";
+import NewCreditCard from "./src/components/NewCreditCard/NewCreditCard";
 
 export default function App() {
   const Stack = createStackNavigator();
@@ -94,6 +95,7 @@ export default function App() {
               name="ForgotPasswordConfirm"
               component={ForgotPasswordConfirm}
             />
+            <Stack.Screen name="NewCreditCard" component={NewCreditCard} />
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>
