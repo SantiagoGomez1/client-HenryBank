@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { View, Text, StyleSheet, TextInput, Button, Alert } from "react-native";
+import { View, Text, StyleSheet, TextInput, Button } from "react-native";
 import { CardField, useConfirmPayment } from "@stripe/stripe-react-native";
 import axios from "axios";
 import { useNavigation } from "@react-navigation/native";
@@ -16,6 +16,7 @@ const StripeApp = () => {
   });
 
   const [errorMoney, setErrorMoney] = useState("");
+  const [errorNumber, setErrorNumer] = useState("");
   const validateData = () => {
     let isValid = true;
     setErrorMoney("");
@@ -67,7 +68,7 @@ const StripeApp = () => {
       });
 
       if (error) {
-        Alert.alert(`Error code: ${error.code}`, error.message);
+        return setErrorNumer(`Error code: ${error.code}`, error.message);
       } else if (paymentIntent) {
         navigation.navigate("SuccessOperacion");
       }
@@ -75,15 +76,19 @@ const StripeApp = () => {
   }
   return (
     <View style={styles.container}>
-      <TextInput
-        style={styles.input}
-        placeholder="$100,00"
-        placeholderTextColor="white"
-        onChange={(e) => handleOnChange(e, "amount")}
-        keyboardType="number-pad"
-        errorMessage={errorMoney}
-        defaultValue={input.amount}
-      />
+      <View style={{ flexDirection: "row", alignSelf: "center" }}>
+        <Text style={styles.input}>$</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="100"
+          placeholderTextColor="white"
+          onChange={(e) => handleOnChange(e, "amount")}
+          keyboardType="number-pad"
+          errorMessage={errorMoney}
+          defaultValue={input.amount}
+        />
+      </View>
+      {errorMoney ? <Text style={{ color: "red" }}>{errorMoney}</Text> : null}
       <CardField
         postalCodeEnabled={false}
         placeholder={{
@@ -92,8 +97,13 @@ const StripeApp = () => {
         cardStyle={styles.card}
         style={styles.cardContainer}
       />
-      {errorMoney ? <Text style={{ color: "red" }}>{errorMoney}</Text> : null}
-      <Button onPress={handlePayPress} title="Confirmar" disable={loading} />
+      {errorNumber ? <Text style={{ color: "red" }}>{errorNumber}</Text> : null}
+      <Button
+        style={styles.btn}
+        onPress={handlePayPress}
+        title="Confirmar"
+        disable={loading}
+      />
     </View>
   );
 };
@@ -101,7 +111,7 @@ const StripeApp = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "space-around",
+    justifyContent: "space-evenly",
   },
   input: {
     textAlign: "center",
@@ -116,6 +126,9 @@ const styles = StyleSheet.create({
     height: 50,
     width: 300,
     borderRadius: 8,
+  },
+  btn: {
+    color: "#140152",
   },
 });
 
