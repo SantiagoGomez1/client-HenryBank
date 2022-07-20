@@ -22,6 +22,10 @@ const LogIn = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
 
+  const goForgotPassword = () => {
+    navigation.navigate("ForgotPassword");
+  };
+
   useEffect(() => {
     dispatch(cleanLogIn());
   });
@@ -105,7 +109,9 @@ const LogIn = () => {
             onPress={() => navigation.navigate("RegisterA")}
           ></Button>
         </View>
-        <Text style={styles.text}>¿Olvidaste la contraseña?</Text>
+        <Text style={styles.text} onPress={() => goForgotPassword()}>
+          ¿Olvidaste la contraseña?
+        </Text>
       </LinearGradient>
     </KeyboardAwareScrollView>
   );

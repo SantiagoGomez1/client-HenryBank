@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
-import { Text, View, StyleSheet, Image } from "react-native";
+import { Text, View, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import { LinearGradient } from "expo-linear-gradient";
 import Constants from "expo-constants";
-import { TouchableOpacity } from "react-native";
 import { getUserDetail } from "../../redux/actions";
 import { useNavigation } from "@react-navigation/native";
 import { useClipboard } from "@react-native-community/hooks";
