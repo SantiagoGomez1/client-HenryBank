@@ -16,19 +16,20 @@ const RenderScreenMovimientos = () => {
   // console.log('estados movements', (mov))
 
   var movimientos = [];
-
+  
   for(const key in mov){
-      if(mov[key].length !== 0 && key === 'recharges'){
+    if(mov[key].length !== 0 && key === 'recharges'){
         // console.log('las key', key, mov[key])
           mov[key].forEach(element => {  
           let id = element.idOp        
-          let date = element.date
+          let date = element.date.split('/').reverse().join('/')
           let amount = element.amount
           let hour = element.hour
 
-          let obj = Object.create({id, date, amount})
+          let obj = Object.create({id, date, amount, hour})
           obj.id = id;
-          obj.date = date;
+          obj.date = date +' '+ hour;
+          obj.hour = hour;
           obj.amount = amount;
           obj.name = 'Recarga';
           obj.icon = 'plus-circle-outline';
@@ -41,13 +42,14 @@ const RenderScreenMovimientos = () => {
       }else if(mov[key].length !== 0 && key === 'transactionsReceived'){        
           mov[key].forEach(element => {  
           let id = element.idOp        
-          let date = element.date
+          let date = element.date.split('/').reverse().join('/')
           let amount = element.amount
           let hour = element.hour
 
-          let obj = Object.create({id, date, amount})
+          let obj = Object.create({id, date, amount, hour})
           obj.id = id;
-          obj.date = date;
+          obj.date = date +' '+ hour;
+          obj.hour = hour;
           obj.amount = amount;
           obj.name = 'Trasnferencia Recibida';
           obj.icon = 'arrow-right-circle-outline';
@@ -57,13 +59,14 @@ const RenderScreenMovimientos = () => {
       }else if(mov[key].length !== 0 && key === 'transactionsSent'){        
           mov[key].forEach(element => {  
           let id = element.idOp        
-          let date = element.date
+          let date = element.date.split('/').reverse().join('/')
           let amount = element.amount
           let hour = element.hour
 
-          let obj = Object.create({id, date, amount})
+          let obj = Object.create({id, date, amount, hour})
           obj.id = id;
-          obj.date = date;
+          obj.date = date +' '+ hour;
+          obj.hour = hour;
           obj.amount = amount;
           obj.name = 'Trasnferencia Enviada';
           obj.icon = 'arrow-left-circle-outline';
@@ -73,15 +76,16 @@ const RenderScreenMovimientos = () => {
       }else if(mov[key].length !== 0 && key === 'buyCrypto'){        
           mov[key].forEach(element => {  
           let id = element.id        
-          let date = element.date
+          let date = element.date.split('/').reverse().join('/')
           let amount = element.amount
           let name = element.name
           let hour = element.hour
           let image = element.image.thumb
 
-          let obj = Object.create({id, date, amount, name})
+          let obj = Object.create({id, date, amount, name, hour})
           obj.id = id;
-          obj.date = date;
+          obj.date = date +' '+ hour;
+          obj.hour = hour;
           obj.amount = amount;
           obj.name = name;
           obj.icon = 'arrow-left-circle-outline';
@@ -91,15 +95,16 @@ const RenderScreenMovimientos = () => {
       }else if(mov[key].length !== 0 && key === 'sellCrypto'){        
           mov[key].forEach(element => {  
             let id = element.id       
-            let date = element.date
+            let date = element.date.split('/').reverse().join('/')
             let amount = element.amount
             let name = element.name
             let hour = element.hour
             let image = element.image.thumb
   
-            let obj = Object.create({id, date, amount, name})
+            let obj = Object.create({id, date, amount, name, hour})
             obj.id = id;
-            obj.date = date;
+            obj.date = date +' '+ hour;
+            obj.hour = hour;
             obj.amount = amount;
             obj.name = name;
             obj.icon = 'arrow-right-circle-outline';              
@@ -109,13 +114,14 @@ const RenderScreenMovimientos = () => {
       }else if(mov[key].length !== 0 && key === 'pendingLockedStake'){        
           mov[key].forEach(element => {  
           let id = element.idOp        
-          let date = element.date
+          let date = element.date.split('/').reverse().join('/')
           let amount = element.amount
           let hour = element.hour
 
-          let obj = Object.create({id, date, amount})
+          let obj = Object.create({id, date, amount, hour})
           obj.id = id;
-          obj.date = date;
+          obj.date = date +' '+ hour;
+          obj.hour = hour;
           obj.amount = amount;
           obj.name = 'Constitución Plazo Fijo';
           obj.icon = 'arrow-left-circle-outline';              
@@ -125,13 +131,14 @@ const RenderScreenMovimientos = () => {
       }else if(mov[key].length !== 0 && key === 'finalizedLockedStake'){        
           mov[key].forEach(element => {  
           let id = element.idOp        
-          let date = element.date
+          let date = element.date.split('/').reverse().join('/')
           let amount = element.amount
           let hour = element.hour
 
-          let obj = Object.create({id, date, amount})
+          let obj = Object.create({id, date, amount, hour})
           obj.id = id;
-          obj.date = date;
+          obj.date = date +' '+ hour;
+          obj.hour = hour;
           obj.amount = amount;
           obj.name = 'Vencimiento Plazo Fijo';
           obj.icon = 'arrow-right-circle-outline';
@@ -139,9 +146,10 @@ const RenderScreenMovimientos = () => {
           movimientos.push(obj)          
         });
       }
-        console.log('vacio', key)      
+        // console.log('vacio', key)      
   }
-  // console.log('array movimientos', movimientos)
+  
+  let movementsSort = movimientos.sort((a, b) => new Date(a.date) - new Date(b.date));  
 
   useEffect(() => {
     dispatch(getMovements(token));
@@ -158,7 +166,7 @@ const RenderScreenMovimientos = () => {
         />
       </View>
       <FlatList
-        data={movimientos}
+        data={movementsSort}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <UserCardMovimientos
@@ -166,7 +174,7 @@ const RenderScreenMovimientos = () => {
             image={item.icon}
             name={item.name}
             amount={item.amount}
-            date={item.date}
+            date={item.date.substring(0,10).trim().split('/').reverse().join('/') /* +' '+item.hour */}
           />
         )}
       />
