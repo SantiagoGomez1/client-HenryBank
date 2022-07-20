@@ -20,7 +20,7 @@ const StripeApp = () => {
   const validateData = () => {
     let isValid = true;
     setErrorMoney("");
-
+    setErrorNumer("");
     if (input.amount < 100) {
       setErrorMoney("Deberia ingresar al menos $100.00");
       isValid = false;
@@ -88,7 +88,9 @@ const StripeApp = () => {
           defaultValue={input.amount}
         />
       </View>
-      {errorMoney ? <Text style={{ color: "red" }}>{errorMoney}</Text> : null}
+      <View style={{ alignSelf: "center" }}>
+        {errorMoney ? <Text style={{ color: "red" }}>{errorMoney}</Text> : null}
+      </View>
       <CardField
         postalCodeEnabled={false}
         placeholder={{
@@ -97,7 +99,13 @@ const StripeApp = () => {
         cardStyle={styles.card}
         style={styles.cardContainer}
       />
-      {errorNumber ? <Text style={{ color: "red" }}>{errorNumber}</Text> : null}
+      <View style={{ alignSelf: "center" }}>
+        {errorNumber ? (
+          <Text style={{ color: "red", textAlign: "center" }}>
+            {errorNumber}
+          </Text>
+        ) : null}
+      </View>
       <Button
         style={styles.btn}
         onPress={handlePayPress}
