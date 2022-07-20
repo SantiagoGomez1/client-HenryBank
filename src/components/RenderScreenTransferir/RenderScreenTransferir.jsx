@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { View, Text, StyleSheet, Button, ScrollView } from "react-native";
+import { View, Text, StyleSheet, Button } from "react-native";
 import { Input, Icon } from "react-native-elements";
 import {
   renderScreen,
@@ -11,7 +11,7 @@ import {
 } from "../../redux/actions/index";
 
 import { useDispatch, useSelector } from "react-redux";
-import { DropAliasCBU } from "./DropAliasCBU.jsx";
+import Switch from "./Switch.jsx";
 
 import UserCardTransferencia from "../UserCardTransferencia/UserCardTransferencia";
 
@@ -27,10 +27,6 @@ const RenderScreenTransferir = () => {
   const [next, setNext] = useState(false);
 
   const dispatch = useDispatch();
-
-  const setIdent = (value) => {
-    setRender(value);
-  };
 
   const setScreen = (screen) => {
     dispatch(renderScreen(screen));
@@ -78,60 +74,60 @@ const RenderScreenTransferir = () => {
   };
 
   return (
-      <View style={styles.container}>
-        <Text style={styles.text}>Transferencia</Text>
-        <DropAliasCBU setIdent={setIdent} />
-        {render === "CBU" ? (
-          <Input
-            placeholder="Numero de CBU"
-            placeholderTextColor={"gray"}
-            keyboardType="number-pad"
-            errorMessage={errors}
-            onChange={(e) => handleOnChange(e, "cbu")}
-            style={styles.input}
-            rightIcon={
-              <Icon
-                name="search"
-                color={"white"}
-                size={30}
-                onPress={() => searchTransfer()}
-              />
-            }
-          />
-        ) : (
-          <Input
-            placeholder="Alias"
-            placeholderTextColor={"gray"}
-            errorMessage={errors}
-            onChange={(e) => handleOnChangeAlias(e, "alias")}
-            style={styles.input}
-            rightIcon={
-              <Icon
-                name="search"
-                color={"white"}
-                size={30}
-                onPress={() => searchTransferAlias()}
-              />
-            }
-          />
-        )}
+    <View style={styles.container}>
+      <Text style={styles.text}>Transferencia</Text>
+      <Switch setRender={setRender} />
+      {render === "CBU" ? (
+        <Input
+          placeholder="Numero de CBU"
+          placeholderTextColor={"gray"}
+          keyboardType="number-pad"
+          errorMessage={errors}
+          onChange={(e) => handleOnChange(e, "cbu")}
+          style={styles.input}
+          rightIcon={
+            <Icon
+              name="search"
+              color={"white"}
+              size={30}
+              onPress={() => searchTransfer()}
+            />
+          }
+        />
+      ) : (
+        <Input
+          placeholder="Alias"
+          placeholderTextColor={"gray"}
+          errorMessage={errors}
+          onChange={(e) => handleOnChangeAlias(e, "alias")}
+          style={styles.input}
+          rightIcon={
+            <Icon
+              name="search"
+              color={"white"}
+              size={30}
+              onPress={() => searchTransferAlias()}
+            />
+          }
+        />
+      )}
 
-        {!next ? null : <UserCardTransferencia data={user} />}
-        <View>
-          {!next ? (
-            <Button title="Siguiente" color={"gray"} />
-          ) : (
-            <Button title="Siguiente" onPress={() => setScreen(7)} />
-          )}
-        </View>
+      {!next ? null : <UserCardTransferencia data={user} />}
+      <View>
+        {!next ? (
+          <Button title="Siguiente" color={"gray"} />
+        ) : (
+          <Button title="Siguiente" onPress={() => setScreen(7)} />
+        )}
       </View>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent:'space-around',
-    alignItems:'center',
+    justifyContent: "space-around",
+    alignItems: "center",
     borderWidth: 1,
     borderColor: "white",
     height: 450,
@@ -140,15 +136,13 @@ const styles = StyleSheet.create({
   },
   input: {
     backgroundColor: "rgba(25, 23, 61, 0.5)",
-    // borderWidth: 1,
-    // borderStyle: "solid",
-    // borderColor: "rgba(255, 255, 255, 0.5)",
     color: "white",
     borderRadius: 20,
     paddingLeft: 10,
     margin: 5,
     width: 170,
     height: 55,
+    textDecorationColor:'transparent'
   },
   containerInput: {
     alignSelf: "flex-start",
