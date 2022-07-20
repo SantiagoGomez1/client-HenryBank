@@ -16,17 +16,14 @@ const RenderScreen = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Inversiones</Text>
-      <Text style={styles.text3}>
-        Tu apartado en el cual tus inversiones son fáciles
-      </Text>
-      <Text style={styles.text2}>¿Necesitas obtener un plazo fijo?</Text>
+      <Text style={styles.text2}>¿Querés constituir un plazo fijo?</Text>
       <View style={styles.btn}>
         <Button
           title="¡Entra aquí y obtenlo!"
           onPress={() => setScreen(5)}
         ></Button>
       </View>
-      <Text style={styles.text2}>¿Querés comprar cripto o divisas?</Text>
+      <Text style={styles.text2}>¿Querés comprar crypto?</Text>
       <View style={styles.btn2}>
         <Button
           title="¡Entra aquí y comprá!"
