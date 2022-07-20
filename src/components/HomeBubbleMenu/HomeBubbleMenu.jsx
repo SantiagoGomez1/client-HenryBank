@@ -57,7 +57,7 @@ const HomeBubbleMenu = () => {
         <Text style={styles.text}>Transferir</Text>
       </View>
       <View>
-        {press === 3 ? (
+        {press === 3 || press === 8 ? (
           <IconButton
             style={styles.btnPress}
             icon="sync"
