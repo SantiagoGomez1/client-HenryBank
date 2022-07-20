@@ -149,7 +149,7 @@ const RenderScreenMovimientos = () => {
         // console.log('vacio', key)      
   }
   
-  let movementsSort = movimientos.sort((a, b) => new Date(a.date) - new Date(b.date));  
+  let movementsSort = movimientos.sort((a, b) => new Date(b.date) - new Date(a.date));  
 
   useEffect(() => {
     dispatch(getMovements(token));
