@@ -108,7 +108,7 @@ export default function InvestorDetail({ route, navigation }) {
             Cantidad:{" "}
           </Text>
           <Text style={{ color: "white", fontSize: 16, marginRight: 10 }}>
-            {parseInt(cantidad).toFixed(4)}
+            {parseInt(cantidad).toFixed(8)}
           </Text>
         </View>
 
