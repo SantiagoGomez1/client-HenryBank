@@ -50,6 +50,15 @@ const ForgotPasswordB = () => {
       setErrorConfirmPassword("Tu contraseña debe ser igual en ambos campos");
       isValid = false;
     }
+    if (!formData.password.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/)) {
+      setErrorPassword(
+        "Deberia tener al menos una minuscula, una mayuscula y un número"
+      );
+      setErrorConfirmPassword(
+        "Deberia tener al menos una minuscula, una mayuscula y un número"
+      );
+      isValid = false;
+    }
 
     return isValid;
   };

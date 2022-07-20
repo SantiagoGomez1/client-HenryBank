@@ -30,6 +30,7 @@ import {
   SEARCH_USER,
   FORGOT_A,
   FORGOT_PASSWORD,
+  CLEAR_FORGOT,
 } from "../actions/index";
 
 const initialState = {
@@ -227,6 +228,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         forgotPassword: action.payload,
+      };
+    case CLEAR_FORGOT:
+      return {
+        ...state,
+        forgotPassword: [],
       };
     default:
       return state;

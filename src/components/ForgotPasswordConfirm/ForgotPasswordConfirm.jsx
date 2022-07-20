@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Text, StyleSheet, Image, ActivityIndicator, View } from "react-native";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
+import { clearForgot } from "../../redux/actions";
 import Constants from "expo-constants";
 
 const ForgotPasswordConfirm = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
   const msg = useSelector((state) => state.forgotPassword);
   console.log(msg);
   if (!msg.length) {
@@ -15,6 +17,23 @@ const ForgotPasswordConfirm = () => {
         <View></View>
         <ActivityIndicator size={50} color="#0000ff" />
         <View></View>
+      </LinearGradient>
+    );
+  }
+  if (msg === "el usuario no existe") {
+    return (
+      <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
+        <Text style={styles.textMain}>¡Datos incorrectos!</Text>
+        <Image
+          style={styles.imgS}
+          source={require("../../imgs/error.png")}
+        ></Image>
+        <Text style={styles.text0}>
+          {setTimeout(() => {
+            navigation.navigate("Log In");
+            return dispatch(clearForgot());
+          }, 1500)}
+        </Text>
       </LinearGradient>
     );
   }
@@ -29,6 +48,7 @@ const ForgotPasswordConfirm = () => {
         <Text style={styles.text0}>
           {setTimeout(() => {
             navigation.navigate("Log In");
+            return dispatch(clearForgot());
           }, 1500)}
         </Text>
       </LinearGradient>

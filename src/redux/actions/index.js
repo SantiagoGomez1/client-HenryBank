@@ -34,6 +34,7 @@ export const POST_LOCKED_STAKE = "POST_LOCKED_STAKE";
 export const GET_COUNTRIES = "GET_COUNTRIES";
 export const GET_CITIES = "GET_CITIES";
 
+export const CLEAR_FORGOT = "CLEAR_FORGOT";
 export const CLEAR_LOGIN = "CLEAR_LOGIN";
 export const SEARCH_USER = "SEARCH_USER";
 
@@ -500,3 +501,10 @@ export const forgotA = (payload) => {
 };
 
 //------------------------------------------------------------------------------------------------//
+
+export const clearForgot = (payload) => {
+  return {
+    type: CLEAR_FORGOT,
+    payload,
+  };
+};
