@@ -9,7 +9,7 @@ const ForgotPasswordConfirm = () => {
   const navigation = useNavigation();
   const msg = useSelector((state) => state.forgotPassword);
   console.log(msg);
-  if (!msg) {
+  if (!msg.length) {
     return (
       <LinearGradient colors={["#126492", "#140152"]} style={styles.backgroun2}>
         <View></View>

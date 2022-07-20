@@ -14,7 +14,7 @@ const Wallet = () => {
     <View style={styles.container}>
       <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
         <UserCardHome />
-        <WalletTotal money={150000} />
+        <WalletTotal />
         <CarouselImages
           activeSlide={activeSlide}
           setActiveSlide={setActiveSlide}
