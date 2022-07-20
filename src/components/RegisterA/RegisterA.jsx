@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, StyleSheet, Text, Dimensions } from "react-native";
+import { Button, StyleSheet, Text, Dimensions, Alert } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
 import Constants from "expo-constants";
@@ -63,7 +63,8 @@ export default function RegisterA() {
       isValid = false;
     }
     if (getAllUsers?.find((u) => u.email === formData.email)) {
-      setErrorEmail("Este E-mail ya está asociado a una cuenta");
+      Alert.alert("Este E-mail ya está asociado a una cuenta");
+      navigation.navigate("Log In");
       isValid = false;
     }
     if (!validateEmail(formData.confirmEmail)) {

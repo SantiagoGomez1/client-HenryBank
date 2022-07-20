@@ -8,7 +8,7 @@ const UserCapital = () => {
   const saldo = useSelector((state) => state.userDetail.balance);
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>{`$${saldo}`}</Text>
+      <Text style={styles.text}>{`$${Math.floor(saldo)}`}</Text>
       <Text style={{ color: "gray", textAlign: "center" }}>
         Saldo Disponible
       </Text>

@@ -28,10 +28,12 @@ export default function WalletTotal() {
           />
         )}
       </View>
-      {dropdown && <Text style={{ color: "white" }}>{"ARG: " + money}</Text>}
+      {dropdown && (
+        <Text style={{ color: "white" }}>{"ARG: " + Math.floor(money)}</Text>
+      )}
       {dropdown && (
         <Text style={{ color: "white" }}>
-          {"DOL: " + (money / conversion).toFixed(2)}
+          {"DOL: " + Math.floor((money / conversion).toFixed(2))}
         </Text>
       )}
     </View>
