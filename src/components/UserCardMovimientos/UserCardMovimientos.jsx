@@ -1,43 +1,52 @@
 import React from "react";
 
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 import { Icon } from "@rneui/themed";
 
+import { useDispatch } from "react-redux";
+import { renderScreen } from "../../redux/actions/index";
 
 const CardUserMovimientos = ({ id, image, name, amount, date }) => {
+  const dispatch = useDispatch();
+  const setScreen = (screen) => {
+    dispatch(renderScreen(screen));
+  };
   return (
-    <View style={styles.container}>
-      <View style={styles.subContainer}>
-        <View style={styles.borde}>
-          {/* <Image style={styles.img} source={{ uri: `${image}` }} /> */}
-          <Icon
-          name={image}
-          type='material-community'          
-          size={35}
-          color={amount<0 ? 'red' : '#00FF00'} />
+    <TouchableOpacity onPress={() => setScreen(8)}>
+      <View style={styles.container}>
+        <View style={styles.subContainer}>
+          <View style={styles.borde}>
+            {/* <Image style={styles.img} source={{ uri: `${image}` }} /> */}
+            <Icon
+              name={image}
+              type="material-community"
+              size={35}
+              color={amount < 0 ? "red" : "#00FF00"}
+            />
+          </View>
+          <View style={styles.data}>
+            <Text style={styles.text}>{name}</Text>
+            <Text style={{ color: "white" }}>{date}</Text>
+          </View>
         </View>
-        <View style={styles.data}>
-          <Text style={styles.text}>{name}</Text>
-          <Text style={{ color: "white" }}>{date}</Text>
+        <View>
+          <Text style={styles.textAmount}>$ {amount}</Text>
         </View>
       </View>
-      <View>
-        <Text style={styles.textAmount}>$ {amount}</Text>
-      </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    padding: 10,    
-    justifyContent: 'space-between',  
+    padding: 10,
+    justifyContent: "space-between",
   },
   subContainer: {
     flexDirection: "row",
-    paddingRight:25,
-    alignItems: 'center',
+    paddingRight: 25,
+    alignItems: "center",
   },
   img: {
     width: 38,
@@ -45,23 +54,23 @@ const styles = StyleSheet.create({
   },
   borde: {
     alignItems: "center",
-    justifyContent: "center",    
+    justifyContent: "center",
     // borderWidth: 1,
     borderColor: "white",
     borderRadius: 50,
     // backgroundColor: "white",
     width: 40,
-    height: 40,    
+    height: 40,
   },
   text: {
     color: "white",
     fontWeight: "bold",
   },
   textAmount: {
-    alignItems: 'center',
+    alignItems: "center",
     paddingLeft: 10,
     color: "white",
-    paddingTop:15,
+    paddingTop: 15,
     backgroundColor: "rgba(25, 23, 61, 0.5)",
     borderWidth: 1,
     borderStyle: "solid",

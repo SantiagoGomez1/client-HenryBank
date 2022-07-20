@@ -11,6 +11,7 @@ import UserCardHome from "../UserCardHome/UserCardHome.jsx";
 import UserCapital from "../UserCapital/UserCapital.jsx";
 import HomeBubbleMenu from "../HomeBubbleMenu/HomeBubbleMenu.jsx";
 import RenderScreen from "../RenderScreen/RenderScreen.jsx";
+import RenderScreenMovimientosDetail from "../RenderScreenMovimientosDetail/RenderScreenMovimientosDetail";
 import RenderScreenTransferirMonto from "../RenderScreenTransferirMonto/RenderScreenTransferirMonto.jsx";
 import RenderScreenIngresarMonto from "../RenderScreenIngresarMonto/RenderScreenIngresarMonto.jsx";
 import RenderScreenMovimientos from "../RenderScreenMovimientos/RenderScreenMovimientos.jsx";
@@ -73,6 +74,8 @@ const Home = () => {
             <RenderScreenIngresarMonto />
           ) : screen === 7 ? (
             <RenderScreenTransferirMonto />
+          ) : screen === 8 ? (
+            <RenderScreenMovimientosDetail />
           ) : (
             <RenderScreen />
           )}
@@ -92,7 +95,7 @@ const styles = StyleSheet.create({
   background: {
     justifyContent: "space-between",
     flex: 1,
-    height: (height - 50)
+    height: height - 50,
   },
 });
 
