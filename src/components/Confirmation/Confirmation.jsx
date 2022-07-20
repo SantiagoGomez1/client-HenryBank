@@ -39,7 +39,9 @@ const Confirmation = () => {
   ) {
     return (
       <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
-        <Text style={styles.textMain}>Cuenta inexistente</Text>
+        <Text style={styles.textMain}>
+          La contraseña no coincide con el mail
+        </Text>
         <Image
           style={styles.imgS}
           source={require("../../imgs/error.png")}
