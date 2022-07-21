@@ -44,8 +44,8 @@ const Home = () => {
           <TouchableOpacity onPress={() => setScreen(0)}>
             <Text
               style={{
-                color: "#140152",
-                backgroundColor: "aqua",
+                color: "white",
+                backgroundColor: "purple",
                 padding: 5,
                 borderRadius: 50,
               }}

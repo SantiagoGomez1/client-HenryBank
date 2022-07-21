@@ -20,6 +20,7 @@ const RenderScreen = () => {
       <View style={styles.btn}>
         <Button
           title="¡Entra aquí y obtenlo!"
+          color={"purple"}
           onPress={() => setScreen(5)}
         ></Button>
       </View>
@@ -27,6 +28,7 @@ const RenderScreen = () => {
       <View style={styles.btn2}>
         <Button
           title="¡Entra aquí y comprá!"
+          color={"purple"}
           onPress={() => navigation.navigate("InvestorBuy")}
         />
       </View>

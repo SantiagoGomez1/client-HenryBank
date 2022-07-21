@@ -27,9 +27,19 @@ const UserCardHome = () => {
           </LinearGradient>
         </View>
         <View style={styles.data}>
-          <Text style={{ color: "white", fontWeight: "bold" }}>
-            Bienvenido/a
-          </Text>
+          {user.gender === "Masculino" ? (
+            <Text style={{ color: "white", fontWeight: "bold" }}>
+              Bienvenido !
+            </Text>
+          ) : user.gender === "Femenino" ? (
+            <Text style={{ color: "white", fontWeight: "bold" }}>
+              Bienvenida !
+            </Text>
+          ) : (
+            <Text style={{ color: "white", fontWeight: "bold" }}>
+              Bienvenidx !
+            </Text>
+          )}
           <Text style={{ color: "gray" }}>
             {user.name} {user.lastName}
           </Text>
