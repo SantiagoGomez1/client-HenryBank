@@ -376,13 +376,35 @@ export const putTransfer = (token, amount) => async (dispatch) => {
 };
 
 //------------------------------------------------------------------------------------------------//
+var authToken = []
+var tokencio = ['Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJoZW5yeWJhbmsucHJveWVjdEBnbWFpbC5jb20iLCJhcGlfdG9rZW4iOiJqOXhfY2x5N2MwMkx1NFRScjNmbmoxNFUtNjFwMU8tTlZ4eTdYSHRuMWhQaDRzV2hEUjZsbG5mb2k5NGJYSkNTM0hVIn0sImV4cCI6MTY1ODUyNTA2NH0.dykJNJzKi49vwAIfLAwVgq1JYHYeeOOKeEHyDAKS7Mc',]
+export function getAuthoToken() {
+  // console.log('authToken', authToken)
+  return async function () {
+    const config = {
+      headers: {
+        "Accept": "application/json",
+        "api-token": "j9x_cly7c02Lu4TRr3fnj14U-61p1O-NVxy7XHtn1hPh4sWhDR6llnfoi94bXJCS3HU",
+        "user-email": "henrybank.proyect@gmail.com"
+      },
+    };
+    const res = await axios.get(
+      "https://www.universal-tutorial.com/api/getaccesstoken",
+      config
+    );
+    // console.log("res", res.data);
+    authToken.push('Bearer '+Object.values(res.data)[0])
+    // console.log('authToken', authToken[0])
+  };
+}
 
 export function getCountries() {
   return async function (dispatch) {
     const config = {
-      headers: {
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJlbWFudWVsanVyaUBnbWFpbC5jb20iLCJhcGlfdG9rZW4iOiIxcnlqUGkyajZhWXJvbWZYY3JPcl9RQzhfeXQ1TzRMTFRQbXFGUFN4bnN0dEtZSE84Z1EzU2g4SmE5SlpJUmVGanZrIn0sImV4cCI6MTY1ODI0MTM4OX0.q8NONbd-3J9tarfWf6HfxXUY60hTztOm6oc-1m0lceo",
+      headers: {        
+        Authorization:                
+        tokencio[0],
+        // authToken[0],
       },
     };
     const res = await axios.get(
@@ -403,8 +425,9 @@ export function getCities(value) {
   return async function (dispatch) {
     const config = {
       headers: {
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJlbWFudWVsanVyaUBnbWFpbC5jb20iLCJhcGlfdG9rZW4iOiIxcnlqUGkyajZhWXJvbWZYY3JPcl9RQzhfeXQ1TzRMTFRQbXFGUFN4bnN0dEtZSE84Z1EzU2g4SmE5SlpJUmVGanZrIn0sImV4cCI6MTY1ODI0MTM4OX0.q8NONbd-3J9tarfWf6HfxXUY60hTztOm6oc-1m0lceo",
+        Authorization:               
+        tokencio[0],
+        // authToken[0],
       },
     };
     const res = await axios.get(
