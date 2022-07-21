@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TouchableOpacity, View, Dimensions } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View, Dimensions, Alert } from 'react-native'
 import React, { useEffect } from 'react'
 import { CreditCardInput } from "react-native-credit-card-input";
 import { LinearGradient } from "expo-linear-gradient";
@@ -21,10 +21,6 @@ export default function NewCreditCard() {
         setBolTarjeta(formData.valid)
     }
 
-    function onFocus(field) {
-        console.log("focus", field)
-    }
-
     function asociarTarjeta(){
         
         if(bolTarjeta){
@@ -38,8 +34,9 @@ export default function NewCreditCard() {
             saveTarjetas(result).then((res) => {
                 console.log(res)
             })
+            navigation.goBack()
         }else {
-            console.log("Debes llenar todos los campos")
+            console.log("Debe llenar todos los campos")
         } 
     }
 
@@ -72,7 +69,6 @@ export default function NewCreditCard() {
         placeholderColor={"darkgray"}
         placeholders={{ number: "1234 5678 1234 5678", name: "NOMBRE COMPLETO", expiry: "MM/YY", cvc: "CVC"}}
         labels={{ number: "NÚMERO DE TARJETA", expiry: "EXPIRA", name: "NOMBRE COMPLETO", cvc: "CVC/CCV"}}
-        onFocus={onFocus}
         onChange={onChange}
       />
         </View>
@@ -82,10 +78,9 @@ export default function NewCreditCard() {
             backgroundColor: "red",
             borderRadius: 60
         }}>
-            <TouchableOpacity onPress={() => {
+            <TouchableOpacity onPress={() => {bolTarjeta ?   
                 asociarTarjeta()
-                navigation.goBack()
-            }}>
+                : Alert.alert("Debe llenar todos los campos")}}>
                 <Text style={{
                     textAlign: 'center',
                     fontSize: 17,
