@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { View, Text, StyleSheet, TextInput, Button } from "react-native";
+import { View, Text, StyleSheet, TextInput, Button, Alert } from "react-native";
 import { CardField, useConfirmPayment } from "@stripe/stripe-react-native";
 import axios from "axios";
 import { useNavigation } from "@react-navigation/native";
@@ -11,6 +11,7 @@ const StripeApp = () => {
   const navigation = useNavigation();
   const token = useSelector((state) => state.logIn.token);
 
+  const [cardDetails, setCardDetails] = useState();
   const [input, setInput] = useState({
     amount: 0,
   });
@@ -49,7 +50,8 @@ const StripeApp = () => {
   };
 
   async function handlePayPress() {
-    if (!validateData()) {
+    if (!validateData() || !cardDetails?.complete) {
+      Alert.alert("Por favor complete todos los campos")
       return;
     } else {
       const response = await axios.post(
@@ -98,6 +100,9 @@ const StripeApp = () => {
         }}
         cardStyle={styles.card}
         style={styles.cardContainer}
+        onCardChange={cardDetails => {
+          setCardDetails(cardDetails);
+        }}
       />
       <View style={{ alignSelf: "center" }}>
         {errorNumber ? (
