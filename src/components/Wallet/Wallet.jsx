@@ -16,7 +16,7 @@ const Wallet = () => {
         <WalletTotal />
         <View style={styles.card}>
 
-        <CreditCards />
+          <CreditCards />
         </View>
       </LinearGradient>
     </View>

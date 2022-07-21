@@ -28,19 +28,19 @@ export default function CreditCards() {
   
   return (
     <View style={{ display: "flex", justifyContent: "space-around"}}>
-      <ScrollView>
+      <ScrollView style={{ height: 400 }}>
 
       {tarjetas.length > 0 &&
         tarjetas.map((item, index) => (
-          <View key={index}>
+          <View key={index}  style={styles.subCard}>
             <Text style={{
               color: "white",
               fontSize: 15,
-            }}>{item.name}</Text>
+            }}>Nombre: {item.name}</Text>
             <Text style={{
               color: "white",
               fontSize: 15,
-            }}>{item.number}</Text>
+            }}>Numero: {item.number}</Text>
           </View>
         ))}
       </ScrollView>
@@ -68,5 +68,13 @@ export default function CreditCards() {
 }
 
 const styles = StyleSheet.create({
-  
+  subCard: {
+    backgroundColor: "rgba(25, 23, 61, 0.5)",
+    borderWidth: 1,
+    borderStyle: "solid",
+    borderColor: "rgba(255, 255, 255, 0.5)",
+    margin: 10,
+    borderRadius: 8,
+    padding: 10,
+  },
 })
