@@ -55,7 +55,7 @@ const RenderScreenMovimientos = () => {
         obj.date = date + " " + hour;
         obj.hour = hour;
         obj.amount = amount;
-        obj.name = "Trasnferencia Recibida";
+        obj.name = "Transferencia Recibida";
         obj.icon = "arrow-right-circle-outline";
 
         movimientos.push(obj);
@@ -72,7 +72,7 @@ const RenderScreenMovimientos = () => {
         obj.date = date + " " + hour;
         obj.hour = hour;
         obj.amount = amount;
-        obj.name = "Trasnferencia Enviada";
+        obj.name = "Transferencia Enviada";
         obj.icon = "arrow-left-circle-outline";
 
         movimientos.push(obj);
