@@ -14,6 +14,7 @@ import {
 } from "./Dropdown";
 
 import Constants from "expo-constants";
+import ImagePicker from '../ImagePicker/ImagePicker.jsx'
 
 const RegisterB = () => {
   const dispatch = useDispatch();
@@ -132,6 +133,8 @@ const RegisterB = () => {
     <ScrollView style={styles.container}>
       <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
         <Text style={styles.textMain}>Regístrate</Text>
+
+        <ImagePicker />
 
         <Input
           containerStyle={styles.input}
