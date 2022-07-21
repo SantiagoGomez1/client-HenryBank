@@ -77,15 +77,13 @@ const StripeApp = () => {
   return (
     <View style={styles.container}>
       <View style={{ flexDirection: "row", alignSelf: "center" }}>
-        <Text style={styles.input}>$</Text>
         <TextInput
           style={styles.input}
-          placeholder="100"
+          placeholder="$00,00"
           placeholderTextColor="white"
           onChange={(e) => handleOnChange(e, "amount")}
           keyboardType="number-pad"
           errorMessage={errorMoney}
-          defaultValue={input.amount}
         />
       </View>
       <View style={{ alignSelf: "center" }}>
@@ -110,6 +108,7 @@ const StripeApp = () => {
         style={styles.btn}
         onPress={handlePayPress}
         title="Confirmar"
+        color={'purple'}
         disable={loading}
       />
     </View>
@@ -126,6 +125,8 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 40,
     fontWeight: "bold",
+    width: 300,
+    height: 80,
   },
   card: {
     backgroundColor: "#efefefef",

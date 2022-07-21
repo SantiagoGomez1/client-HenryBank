@@ -77,24 +77,7 @@ const RenderScreenTransferir = () => {
     <View style={styles.container}>
       <Text style={styles.text}>Transferencia</Text>
       <Switch setRender={setRender} />
-      {render === "CBU" ? (
-        <Input
-          placeholder="Numero de CBU"
-          placeholderTextColor={"gray"}
-          keyboardType="number-pad"
-          errorMessage={errors}
-          onChange={(e) => handleOnChange(e, "cbu")}
-          style={styles.input}
-          rightIcon={
-            <Icon
-              name="search"
-              color={"white"}
-              size={30}
-              onPress={() => searchTransfer()}
-            />
-          }
-        />
-      ) : (
+      {render === "Alias" ? (
         <Input
           placeholder="Alias"
           placeholderTextColor={"gray"}
@@ -110,6 +93,23 @@ const RenderScreenTransferir = () => {
             />
           }
         />
+      ) : (
+        <Input
+          placeholder="Número de CBU"
+          placeholderTextColor={"gray"}
+          keyboardType="number-pad"
+          errorMessage={errors}
+          onChange={(e) => handleOnChange(e, "cbu")}
+          style={styles.input}
+          rightIcon={
+            <Icon
+              name="search"
+              color={"white"}
+              size={30}
+              onPress={() => searchTransfer()}
+            />
+          }
+        />
       )}
 
       {!next ? null : <UserCardTransferencia data={user} />}
@@ -117,7 +117,11 @@ const RenderScreenTransferir = () => {
         {!next ? (
           <Button title="Siguiente" color={"gray"} />
         ) : (
-          <Button title="Siguiente" onPress={() => setScreen(7)} />
+          <Button
+            title="Siguiente"
+            color={"purple"}
+            onPress={() => setScreen(7)}
+          />
         )}
       </View>
     </View>
@@ -130,6 +134,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderWidth: 1,
     borderColor: "white",
+    borderRadius: 8,
     height: 450,
     width: 350,
     paddingTop: 20,
@@ -142,7 +147,7 @@ const styles = StyleSheet.create({
     margin: 5,
     width: 170,
     height: 55,
-    textDecorationColor:'transparent'
+    textDecorationColor: "transparent",
   },
   containerInput: {
     alignSelf: "flex-start",
