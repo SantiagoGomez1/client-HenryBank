@@ -26,8 +26,8 @@ const RenderScreenMovimientosDetail = () => {
           let hour = element.hour
           let name = element.name
           let names = key === 'recharges' ? 'Recarga' : 
-                    key === 'transactionsReceived' ? 'Trasnferencia Recibida' :
-                    key === 'transactionsSent' ? 'Trasnferencia Enviada' :
+                    key === 'transactionsReceived' ? 'Transferencia Recibida' :
+                    key === 'transactionsSent' ? 'Transferencia Enviada' :
                     key === 'buyCrypto' ? 'Crypto '+name :
                     key === 'sellCrypto' ?'Crypto '+name :
                     key === 'pendingLockedStake' ? 'Constitución Plazo Fijo' :
