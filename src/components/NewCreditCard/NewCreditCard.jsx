@@ -5,6 +5,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { getTarjetas, saveTarjetas } from '../CreditCardAsyncStorage/CreditCardAsyncStorage'
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import Constants from "expo-constants";
+import { useNavigation } from '@react-navigation/native'
 
 var { height } = Dimensions.get("window");
 
@@ -12,6 +13,7 @@ export default function NewCreditCard() {
     const [data, setData] = React.useState({})
     const [bolTarjeta, setBolTarjeta] = React.useState(false)
     const [tarjetas, setTarjetas] = React.useState([])
+    const navigation = useNavigation()
 
     function onChange(formData) {
         console.log(JSON.stringify(formData, null, " "))
@@ -80,7 +82,10 @@ export default function NewCreditCard() {
             backgroundColor: "red",
             borderRadius: 60
         }}>
-            <TouchableOpacity onPress={() => asociarTarjeta()}>
+            <TouchableOpacity onPress={() => {
+                asociarTarjeta()
+                navigation.goBack()
+            }}>
                 <Text style={{
                     textAlign: 'center',
                     fontSize: 17,
