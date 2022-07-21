@@ -1,19 +1,83 @@
 import React from "react";
+import { View, Text, StyleSheet, Button, FlatList } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import { Icon } from "@rneui/themed";
 
-import { View, Text, StyleSheet, Button } from "react-native";
-import { useDispatch } from "react-redux";
 import { renderScreen } from "../../redux/actions";
+
 const RenderScreenMovimientosDetail = () => {
   const dispatch = useDispatch();
+  const movements = useSelector((state) => state.movements);
+  const detailMovements = useSelector((state) => state.detailMovements);
 
   const setScreen = (screen) => {
     dispatch(renderScreen(screen));
   };
 
+  let mov = [];
+
+  for(const key in movements){    
+      movements[key].forEach(element => {
+        if(element.id === detailMovements || element.idOp === detailMovements){
+          console.log('ok')
+          let id = element.idOp || element.id
+          let date = element.date
+          let amount = element.amount
+          let hour = element.hour
+          let name = element.name
+          let names = key === 'recharges' ? 'Recarga' : 
+                    key === 'transactionsReceived' ? 'Trasnferencia Recibida' :
+                    key === 'transactionsSent' ? 'Trasnferencia Enviada' :
+                    key === 'buyCrypto' ? 'Crypto '+name :
+                    key === 'sellCrypto' ?'Crypto '+name :
+                    key === 'pendingLockedStake' ? 'Constitución Plazo Fijo' :
+                    key === 'finalizedLockedStake' ? 'Vencimiento Plazo Fijo' : ''
+
+          let fromName = key === 'transactionsReceived' ? 'De: '+element.accountOrigin.name :
+                    key === 'transactionsSent' ? 'Para: '+element.accountDestiny.name :''
+
+          let fromCbu = key === 'transactionsReceived' ? 'CBU: '+element.accountOrigin.cub :
+                    key === 'transactionsSent' ? 'CBU: '+element.accountDestiny.cub :''
+  
+          let obj = Object.create({id, date, amount, hour, names})
+          obj.id = id;
+          obj.date = date;
+          obj.hour = hour;
+          obj.amount = amount;
+          obj.name = name;
+          obj.fromName = fromName;
+          obj.fromCbu = fromCbu;
+          obj.icon = 'plus-circle-outline';              
+          
+          mov.push(obj)
+          }
+      });
+    }
+
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Noticias</Text>
+      <Text style={styles.detail}>Detalles</Text>
+
       <Button title="ATRAS" onPress={() => setScreen(3)} />
+
+      <View style={styles.container}>       
+          <View>
+            <Icon
+              name={'information-variant'}
+              type="material-community"
+              size={65}
+              color={mov[0].amount < 0 ? "red" : "#00FF00"}
+            />
+          </View>
+          <View >
+            <Text style={styles.text}>{mov[0].names}</Text>
+            <Text style={styles.text}>Fecha: {mov[0].date}</Text>
+            <Text style={styles.text}>Hora: {mov[0].hour}</Text>
+            <Text style={styles.text}>$ {Number(mov[0].amount).toFixed(4)}</Text>
+            <Text style={styles.text}>{mov[0].fromName}</Text>
+            <Text style={styles.text}>{mov[0].fromCbu}</Text>
+          </View>
+      </View>
     </View>
   );
 };
@@ -30,8 +94,15 @@ const styles = StyleSheet.create({
   },
   text: {
     color: "white",
-    fontSize: 30,
+    fontSize: 20,
     fontWeight: "bold",
+    margin: 3,
+  },
+  detail: {
+    color: "white",
+    fontSize: 50,
+    fontWeight: "bold",
+    marginBottom: 10,
   },
 });
 
