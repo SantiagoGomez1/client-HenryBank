@@ -17,7 +17,9 @@ export default function Possession() {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.logIn.token);
   const balance = useSelector((state) => state.balance);
-  const lockedStake = useSelector((state) => state.movements.pendingLockedStake);
+  const lockedStakeP = useSelector((state) => state.movements.pendingLockedStake);
+  const lockedStakeF = useSelector((state) => state.movements.finalizedLockedStake);
+  console.log('lockedStake', lockedStakeP.length)
   
   useFocusEffect(
     React.useCallback(() => {
@@ -26,7 +28,7 @@ export default function Possession() {
     }, [])
     );
 
-    console.log("Este es el balance",balance)
+    // console.log("Este es el balance",balance)
   return (
     <ScrollView style={styles.card}>
       <View>
@@ -99,8 +101,9 @@ export default function Possession() {
       </View>
 
       {      
-        !lockedStake ? null :
-        lockedStake.map((item, index) => (
+        !lockedStakeP ? null :
+        (lockedStakeP.length === lockedStakeF.length)? null :
+        lockedStakeP.map((item, index) => (
           <View key={index}>
             <TouchableOpacity
               style={styles.subCard}
@@ -115,7 +118,7 @@ export default function Possession() {
                 <Text style={{ color: "white" }}>$ {item.amount.substring(1)}</Text>
                 <Text style={{ color: "white" }}>53%</Text>
                 <Text style={{ color: "white" }}>30</Text>
-                <Text style={{ color: "green" }}>$ {(item.amount.substring(1) * 1.05).toFixed(2)}</Text>
+                <Text style={{ color: "green" }}>$ {(item.amount.substring(1) * 1.05).toFixed(2)}*</Text>
               </View>
             </TouchableOpacity>
           </View>
