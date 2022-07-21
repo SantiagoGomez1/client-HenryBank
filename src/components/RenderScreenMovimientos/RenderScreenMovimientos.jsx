@@ -1,155 +1,180 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {View, TextInput, FlatList, Text, StyleSheet, Image} from "react-native";
+import { View, FlatList, Text, StyleSheet } from "react-native";
 
+import { Input, Icon } from "react-native-elements";
 import { getMovements } from "../../redux/actions";
-
+import Switch from "./Switch.jsx";
 import UserCardMovimientos from "../UserCardMovimientos/UserCardMovimientos.jsx";
 
 const RenderScreenMovimientos = () => {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user);
   const token = useSelector((state) => state.logIn.token);
-  // const mov = useSelector((state) => state.user.movements);
   const mov = useSelector((state) => state.movements);
+  const [typee, setTypee] = useState({ typee: "" });
+  const [render, setRender] = useState("INGRESOS");
+  console.log(render);
+  console.log(typee);
 
-  // console.log('estados movements', (mov))
+  const handleType = (e, type) => {
+    setTypee({ ...typee, [type]: e.nativeEvent.text });
+  };
 
   var movimientos = [];
-  
-  for(const key in mov){
-    if(mov[key].length !== 0 && key === 'recharges'){
-        // console.log('las key', key, mov[key])
-          mov[key].forEach(element => {  
-          let id = element.idOp        
-          let date = element.date.split('/').reverse().join('/')
-          let amount = element.amount
-          let hour = element.hour
 
-          let obj = Object.create({id, date, amount, hour})
-          obj.id = id;
-          obj.date = date +' '+ hour;
-          obj.hour = hour;
-          obj.amount = amount;
-          obj.name = 'Recarga';
-          obj.icon = 'plus-circle-outline';
-              
-          // console.log('obj create', obj)
-          movimientos.push(obj)
-          // console.log('array movimientos', movimientos)
-        });
+  for (const key in mov) {
+    if (mov[key].length !== 0 && key === "recharges") {
+      // console.log('las key', key, mov[key])
+      mov[key].forEach((element) => {
+        let id = element.idOp;
+        let date = element.date.split("/").reverse().join("/");
+        let amount = element.amount;
+        let hour = element.hour;
 
-      }else if(mov[key].length !== 0 && key === 'transactionsReceived'){        
-          mov[key].forEach(element => {  
-          let id = element.idOp        
-          let date = element.date.split('/').reverse().join('/')
-          let amount = element.amount
-          let hour = element.hour
+        let obj = Object.create({ id, date, amount, hour });
+        obj.id = id;
+        obj.date = date + " " + hour;
+        obj.hour = hour;
+        obj.amount = amount;
+        obj.name = "Recarga";
+        obj.icon = "plus-circle-outline";
 
-          let obj = Object.create({id, date, amount, hour})
-          obj.id = id;
-          obj.date = date +' '+ hour;
-          obj.hour = hour;
-          obj.amount = amount;
-          obj.name = 'Trasnferencia Recibida';
-          obj.icon = 'arrow-right-circle-outline';
+        // console.log('obj create', obj)
+        movimientos.push(obj);
+        // console.log('array movimientos', movimientos)
+      });
+    } else if (mov[key].length !== 0 && key === "transactionsReceived") {
+      mov[key].forEach((element) => {
+        let id = element.idOp;
+        let date = element.date.split("/").reverse().join("/");
+        let amount = element.amount;
+        let hour = element.hour;
 
-          movimientos.push(obj)          
-        });
-      }else if(mov[key].length !== 0 && key === 'transactionsSent'){        
-          mov[key].forEach(element => {  
-          let id = element.idOp        
-          let date = element.date.split('/').reverse().join('/')
-          let amount = element.amount
-          let hour = element.hour
+        let obj = Object.create({ id, date, amount, hour });
+        obj.id = id;
+        obj.date = date + " " + hour;
+        obj.hour = hour;
+        obj.amount = amount;
+        obj.name = "Trasnferencia Recibida";
+        obj.icon = "arrow-right-circle-outline";
 
-          let obj = Object.create({id, date, amount, hour})
-          obj.id = id;
-          obj.date = date +' '+ hour;
-          obj.hour = hour;
-          obj.amount = amount;
-          obj.name = 'Trasnferencia Enviada';
-          obj.icon = 'arrow-left-circle-outline';
+        movimientos.push(obj);
+      });
+    } else if (mov[key].length !== 0 && key === "transactionsSent") {
+      mov[key].forEach((element) => {
+        let id = element.idOp;
+        let date = element.date.split("/").reverse().join("/");
+        let amount = element.amount;
+        let hour = element.hour;
 
-          movimientos.push(obj)          
-        });
-      }else if(mov[key].length !== 0 && key === 'buyCrypto'){        
-          mov[key].forEach(element => {  
-          let id = element.id        
-          let date = element.date.split('/').reverse().join('/')
-          let amount = element.amount
-          let name = element.name
-          let hour = element.hour
-          let image = element.image.thumb
+        let obj = Object.create({ id, date, amount, hour });
+        obj.id = id;
+        obj.date = date + " " + hour;
+        obj.hour = hour;
+        obj.amount = amount;
+        obj.name = "Trasnferencia Enviada";
+        obj.icon = "arrow-left-circle-outline";
 
-          let obj = Object.create({id, date, amount, name, hour})
-          obj.id = id;
-          obj.date = date +' '+ hour;
-          obj.hour = hour;
-          obj.amount = amount;
-          obj.name = name;
-          obj.icon = 'arrow-left-circle-outline';
+        movimientos.push(obj);
+      });
+    } else if (mov[key].length !== 0 && key === "buyCrypto") {
+      mov[key].forEach((element) => {
+        let id = element.id;
+        let date = element.date.split("/").reverse().join("/");
+        let amount = element.amount;
+        let name = element.name;
+        let hour = element.hour;
+        let image = element.image.thumb;
 
-          movimientos.push(obj)          
-        });
-      }else if(mov[key].length !== 0 && key === 'sellCrypto'){        
-          mov[key].forEach(element => {  
-            let id = element.id       
-            let date = element.date.split('/').reverse().join('/')
-            let amount = element.amount
-            let name = element.name
-            let hour = element.hour
-            let image = element.image.thumb
-  
-            let obj = Object.create({id, date, amount, name, hour})
-            obj.id = id;
-            obj.date = date +' '+ hour;
-            obj.hour = hour;
-            obj.amount = amount;
-            obj.name = name;
-            obj.icon = 'arrow-right-circle-outline';              
-          
-          movimientos.push(obj)          
-        });
-      }else if(mov[key].length !== 0 && key === 'pendingLockedStake'){        
-          mov[key].forEach(element => {  
-          let id = element.idOp        
-          let date = element.date.split('/').reverse().join('/')
-          let amount = element.amount
-          let hour = element.hour
+        let obj = Object.create({ id, date, amount, name, hour });
+        obj.id = id;
+        obj.date = date + " " + hour;
+        obj.hour = hour;
+        obj.amount = amount;
+        obj.name = name;
+        obj.icon = "arrow-left-circle-outline";
 
-          let obj = Object.create({id, date, amount, hour})
-          obj.id = id;
-          obj.date = date +' '+ hour;
-          obj.hour = hour;
-          obj.amount = amount;
-          obj.name = 'Constitución Plazo Fijo';
-          obj.icon = 'arrow-left-circle-outline';              
-          
-          movimientos.push(obj)          
-        });
-      }else if(mov[key].length !== 0 && key === 'finalizedLockedStake'){        
-          mov[key].forEach(element => {  
-          let id = element.idOp        
-          let date = element.date.split('/').reverse().join('/')
-          let amount = element.amount
-          let hour = element.hour
+        movimientos.push(obj);
+      });
+    } else if (mov[key].length !== 0 && key === "sellCrypto") {
+      mov[key].forEach((element) => {
+        let id = element.id;
+        let date = element.date.split("/").reverse().join("/");
+        let amount = element.amount;
+        let name = element.name;
+        let hour = element.hour;
+        let image = element.image.thumb;
 
-          let obj = Object.create({id, date, amount, hour})
-          obj.id = id;
-          obj.date = date +' '+ hour;
-          obj.hour = hour;
-          obj.amount = amount;
-          obj.name = 'Vencimiento Plazo Fijo';
-          obj.icon = 'arrow-right-circle-outline';
-                    
-          movimientos.push(obj)          
-        });
-      }
-        // console.log('vacio', key)      
+        let obj = Object.create({ id, date, amount, name, hour });
+        obj.id = id;
+        obj.date = date + " " + hour;
+        obj.hour = hour;
+        obj.amount = amount;
+        obj.name = name;
+        obj.icon = "arrow-right-circle-outline";
+
+        movimientos.push(obj);
+      });
+    } else if (mov[key].length !== 0 && key === "pendingLockedStake") {
+      mov[key].forEach((element) => {
+        let id = element.idOp;
+        let date = element.date.split("/").reverse().join("/");
+        let amount = element.amount;
+        let hour = element.hour;
+
+        let obj = Object.create({ id, date, amount, hour });
+        obj.id = id;
+        obj.date = date + " " + hour;
+        obj.hour = hour;
+        obj.amount = amount;
+        obj.name = "Constitución Plazo Fijo";
+        obj.icon = "arrow-left-circle-outline";
+
+        movimientos.push(obj);
+      });
+    } else if (mov[key].length !== 0 && key === "finalizedLockedStake") {
+      mov[key].forEach((element) => {
+        let id = element.idOp;
+        let date = element.date.split("/").reverse().join("/");
+        let amount = element.amount;
+        let hour = element.hour;
+
+        let obj = Object.create({ id, date, amount, hour });
+        obj.id = id;
+        obj.date = date + " " + hour;
+        obj.hour = hour;
+        obj.amount = amount;
+        obj.name = "Vencimiento Plazo Fijo";
+        obj.icon = "arrow-right-circle-outline";
+
+        movimientos.push(obj);
+      });
+    }
+    // console.log('vacio', key)
   }
-  
-  let movementsSort = movimientos.sort((a, b) => new Date(b.date) - new Date(a.date));  
+
+  let movementsSort = movimientos.sort(
+    (a, b) => new Date(b.date) - new Date(a.date)
+  );
+  // console.log(movementsSort);
+  let filteredIngresos = movementsSort.filter((e) => e.amount.includes("+"));
+  let filteredEgresos = movementsSort.filter((e) => e.amount.includes("-"));
+  console.log(filteredIngresos);
+  console.log(filteredEgresos);
+  let filtertedIngresosType = movementsSort
+    .filter((e) => e.amount.includes("+"))
+    .filter((e) => e.name.toLowerCase().includes(typee.typee.toLowerCase()));
+  let filtertedEgresosType = movementsSort
+    .filter((e) => e.amount.includes("-"))
+    .filter((e) => e.name.toLowerCase().includes(typee.typee.toLowerCase()));
+  const searchForType = () => {
+    if (render === "INGRESOS") {
+      setRender("INGRESOStype");
+    }
+    if (render === "EGRESOS") {
+      setRender("EGRESOStype");
+    }
+  };
 
   useEffect(() => {
     dispatch(getMovements(token));
@@ -158,26 +183,108 @@ const RenderScreenMovimientos = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Movimientos</Text>
-      <View>
-        <TextInput
-          style={styles.input}
-          placeholder="Search..."
+      <View style={{ flexDirection: "row", alignSelf: "center" }}>
+        <Input
+          placeholder="Recarga"
           placeholderTextColor={"gray"}
+          onChange={(e) => handleType(e, "typee")}
+          style={styles.input}
+          rightIcon={
+            <Icon
+              name="search"
+              color={"white"}
+              size={30}
+              onPress={() => searchForType()}
+            />
+          }
         />
       </View>
-      <FlatList
-        data={movementsSort}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <UserCardMovimientos
-            id={item.id}
-            image={item.icon}
-            name={item.name}
-            amount={item.amount}
-            date={item.date.substring(0,10).trim().split('/').reverse().join('/') /* +' '+item.hour */}
-          />
-        )}
-      />
+      <Switch setRender={setRender} />
+      {render === "INGRESOS" ? (
+        <FlatList
+          data={filteredIngresos}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => (
+            <UserCardMovimientos
+              id={item.id}
+              image={item.icon}
+              name={item.name}
+              amount={item.amount}
+              date={
+                item.date
+                  .substring(0, 10)
+                  .trim()
+                  .split("/")
+                  .reverse()
+                  .join("/") /* +' '+item.hour */
+              }
+            />
+          )}
+        />
+      ) : render === "EGRESOS" ? (
+        <FlatList
+          data={filteredEgresos}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => (
+            <UserCardMovimientos
+              id={item.id}
+              image={item.icon}
+              name={item.name}
+              amount={item.amount}
+              date={
+                item.date
+                  .substring(0, 10)
+                  .trim()
+                  .split("/")
+                  .reverse()
+                  .join("/") /* +' '+item.hour */
+              }
+            />
+          )}
+        />
+      ) : render === "EGRESOStype" ? (
+        <FlatList
+          data={filtertedEgresosType}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => (
+            <UserCardMovimientos
+              id={item.id}
+              image={item.icon}
+              name={item.name}
+              amount={item.amount}
+              date={
+                item.date
+                  .substring(0, 10)
+                  .trim()
+                  .split("/")
+                  .reverse()
+                  .join("/") /* +' '+item.hour */
+              }
+            />
+          )}
+        />
+      ) : render === "INGRESOStype" ? (
+        <FlatList
+          data={filtertedIngresosType}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => (
+            <UserCardMovimientos
+              id={item.id}
+              image={item.icon}
+              name={item.name}
+              amount={item.amount}
+              date={
+                item.date
+                  .substring(0, 10)
+                  .trim()
+                  .split("/")
+                  .reverse()
+                  .join("/") /* +' '+item.hour */
+              }
+            />
+          )}
+        />
+      ) : null}
     </View>
   );
 };

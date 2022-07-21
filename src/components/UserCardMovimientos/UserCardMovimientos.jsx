@@ -6,26 +6,30 @@ import { useDispatch } from "react-redux";
 import { renderScreen, detailMovements } from "../../redux/actions/index";
 
 const CardUserMovimientos = ({ id, image, name, amount, date }) => {
-  
   const dispatch = useDispatch();
   const setScreen = (screen) => {
     dispatch(renderScreen(screen));
   };
 
-  const [idState, setIdState] = useState(id)
+  const [idState, setIdState] = useState(id);
 
-  const sendId = ()=>{
-    setIdState(id) 
-    setScreen(8)
+  const sendId = () => {
+    setIdState(id);
+    setScreen(8);
     dispatch(detailMovements(idState));
-  }
+  };
 
   return (
     <TouchableOpacity onPress={() => sendId()}>
       <View style={styles.container}>
-        <View style={styles.subContainer}>
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
           <View style={styles.borde}>
-            {/* <Image style={styles.img} source={{ uri: `${image}` }} /> */}
             <Icon
               name={image}
               type="material-community"
@@ -39,11 +43,11 @@ const CardUserMovimientos = ({ id, image, name, amount, date }) => {
           </View>
         </View>
         <View>
-          <Text style={styles.textAmount}>$ {amount}</Text>
+          <Text style={styles.textAmount}>${amount}</Text>
         </View>
-      </View>      
+      </View>
     </TouchableOpacity>
-  );  
+  );
 };
 
 const styles = StyleSheet.create({
@@ -54,8 +58,7 @@ const styles = StyleSheet.create({
   },
   subContainer: {
     flexDirection: "row",
-    paddingRight: 25,
-    alignItems: "center",
+    justifyContent: "flex-start",
   },
   img: {
     width: 38,
@@ -63,11 +66,8 @@ const styles = StyleSheet.create({
   },
   borde: {
     alignItems: "center",
-    justifyContent: "center",
-    // borderWidth: 1,
     borderColor: "white",
     borderRadius: 50,
-    // backgroundColor: "white",
     width: 40,
     height: 40,
   },
@@ -76,15 +76,14 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   textAmount: {
-    alignItems: "center",
-    paddingLeft: 10,
+    justifyContent: "center",
+    textAlign: "center",
+    padding: 15,
     color: "white",
-    paddingTop: 15,
     backgroundColor: "rgba(25, 23, 61, 0.5)",
     borderWidth: 1,
     borderStyle: "solid",
     borderColor: "rgba(255, 255, 255, 0.5)",
-    width: 80,
     height: 50,
     margin: 10,
     borderRadius: 20,
