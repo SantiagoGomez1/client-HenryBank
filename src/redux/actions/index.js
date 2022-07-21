@@ -15,6 +15,7 @@ export const SET_TRANSFER = "SET_TRANSFER";
 export const SET_TRANSFER_ALIAS = "SET_TRANSFER_ALIAS";
 export const PUT_TRANSFER = "PUT_TRANSFER";
 export const GET_MOVEMENTS = "GET_MOVEMENTS";
+export const DETAIL_MOVEMENTS = "DETAIL_MOVEMENTS";
 
 export const POST_USER_DATA = "POST_USER_DATA";
 export const POST_USER = "POST_USER";
@@ -435,6 +436,12 @@ export const getMovements = (token) => async (dispatch) => {
 
 //------------------------------------------------------------------------------------------------//
 
+export const detailMovements = (payload) => {
+  return { type: DETAIL_MOVEMENTS, payload };
+};
+
+//------------------------------------------------------------------------------------------------//
+
 export const cleanLogIn = (payload) => {
   return { type: CLEAR_LOGIN, payload };
 };
@@ -508,3 +515,4 @@ export const clearForgot = (payload) => {
     payload,
   };
 };
+

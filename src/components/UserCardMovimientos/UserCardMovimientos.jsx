@@ -1,18 +1,27 @@
-import React from "react";
-
+import React, { useState } from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 import { Icon } from "@rneui/themed";
-
 import { useDispatch } from "react-redux";
-import { renderScreen } from "../../redux/actions/index";
+
+import { renderScreen, detailMovements } from "../../redux/actions/index";
 
 const CardUserMovimientos = ({ id, image, name, amount, date }) => {
+  
   const dispatch = useDispatch();
   const setScreen = (screen) => {
     dispatch(renderScreen(screen));
   };
+
+  const [idState, setIdState] = useState(id)
+
+  const sendId = ()=>{
+    setIdState(id) 
+    setScreen(8)
+    dispatch(detailMovements(idState));
+  }
+
   return (
-    <TouchableOpacity onPress={() => setScreen(8)}>
+    <TouchableOpacity onPress={() => sendId()}>
       <View style={styles.container}>
         <View style={styles.subContainer}>
           <View style={styles.borde}>
@@ -32,9 +41,9 @@ const CardUserMovimientos = ({ id, image, name, amount, date }) => {
         <View>
           <Text style={styles.textAmount}>$ {amount}</Text>
         </View>
-      </View>
+      </View>      
     </TouchableOpacity>
-  );
+  );  
 };
 
 const styles = StyleSheet.create({

@@ -25,6 +25,7 @@ import {
   SET_TRANSFER_ALIAS,
   USER_TRANSFER_ALIAS,
   GET_MOVEMENTS,
+  DETAIL_MOVEMENTS,
   CLEAR_LOGIN,
   POST_LOCKED_STAKE,
   SEARCH_USER,
@@ -53,6 +54,7 @@ const initialState = {
   countries: [],
   cities: [],
   movements: {},
+  detailMovements: [],
   lockedStake: [],
   allUsersSearch: [],
   forgotA: [],
@@ -199,6 +201,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         movements: action.payload,
+      };
+    case DETAIL_MOVEMENTS:
+      return {
+        ...state,
+        detailMovements: action.payload,
       };
     case CLEAR_LOGIN:
       return {
