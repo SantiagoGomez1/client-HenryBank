@@ -19,7 +19,7 @@ export default function Possession() {
   const balance = useSelector((state) => state.balance);
   const lockedStakeP = useSelector((state) => state.movements.pendingLockedStake);
   const lockedStakeF = useSelector((state) => state.movements.finalizedLockedStake);
-  console.log('lockedStake', lockedStakeP.length)
+  // console.log('lockedStake', lockedStakeP.length)
   
   useFocusEffect(
     React.useCallback(() => {

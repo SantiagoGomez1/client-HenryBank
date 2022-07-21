@@ -5,7 +5,7 @@ import { Dropdown } from 'react-native-element-dropdown';
 import {useDispatch, useSelector} from 'react-redux';
 import { useEffect } from "react";
 
-import { getCountries, getCities } from "../../redux/actions";
+import { getCountries, getCities, getAuthoToken } from "../../redux/actions";
 
 //----------------------------Gender----------------------------//
   const data = [
@@ -79,7 +79,8 @@ export function DropdownComponentNationality ({setNationality}){
   const [isFocus, setIsFocus] = useState(false);
     
   useEffect(() => {        
-    dispatch(getCountries());    
+    // dispatch(getAuthoToken());       
+    dispatch(getCountries());
   }, []);
   
   useEffect(() => {    
