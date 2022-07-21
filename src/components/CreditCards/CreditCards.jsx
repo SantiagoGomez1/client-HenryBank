@@ -30,7 +30,7 @@ export default function CreditCards() {
     <View style={{ display: "flex", justifyContent: "space-around"}}>
       <ScrollView style={{ height: 400 }}>
 
-      {tarjetas.length > 0 &&
+      {tarjetas?.length > 0 &&
         tarjetas.map((item, index) => (
           <View key={index}  style={styles.subCard}>
             <Text style={{
