@@ -33,8 +33,8 @@ const RenderScreenMovimientosDetail = () => {
                     key === 'pendingLockedStake' ? 'Constitución Plazo Fijo' :
                     key === 'finalizedLockedStake' ? 'Vencimiento Plazo Fijo' : ''
 
-          let fromName = key === 'transactionsReceived' ? 'De: '+element.accountOrigin.name :
-                    key === 'transactionsSent' ? 'Para: '+element.accountDestiny.name :''
+          let fromName = key === 'transactionsReceived' ? 'De: '+element.accountOrigin.name +' '+ element.accountOrigin.lastName :
+                    key === 'transactionsSent' ? 'Para: '+element.accountDestiny.name +' '+element.accountDestiny.lastName :''
 
           let fromCbu = key === 'transactionsReceived' ? 'CBU: '+element.accountOrigin.cub :
                     key === 'transactionsSent' ? 'CBU: '+element.accountDestiny.cub :''
@@ -60,7 +60,7 @@ const RenderScreenMovimientosDetail = () => {
 
       <Button title="ATRAS" onPress={() => setScreen(3)} />
 
-      <View style={styles.container}>       
+      <View>       
           <View>
             <Icon
               name={'information-variant'}
@@ -73,7 +73,7 @@ const RenderScreenMovimientosDetail = () => {
             <Text style={styles.text}>{mov[0].names}</Text>
             <Text style={styles.text}>Fecha: {mov[0].date}</Text>
             <Text style={styles.text}>Hora: {mov[0].hour}</Text>
-            <Text style={styles.text}>$ {Number(mov[0].amount).toFixed(4)}</Text>
+            <Text style={[styles.text, {color:Number(mov[0].amount) < 0 ? "red" : "#00FF00"}]}>$ {Number(mov[0].amount).toFixed(2)}</Text>
             <Text style={styles.text}>{mov[0].fromName}</Text>
             <Text style={styles.text}>{mov[0].fromCbu}</Text>
           </View>
