@@ -40,7 +40,7 @@ export default function CreditCards() {
             <Text style={{
               color: "white",
               fontSize: 15,
-            }}>Numero: {item.number}</Text>
+            }}>Numero: **** **** **** {item.number.slice(15)}</Text>
           </View>
         ))}
       </ScrollView>
