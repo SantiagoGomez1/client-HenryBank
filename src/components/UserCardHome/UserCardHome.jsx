@@ -29,15 +29,15 @@ const UserCardHome = () => {
         <View style={styles.data}>
           {user.gender === "Masculino" ? (
             <Text style={{ color: "white", fontWeight: "bold" }}>
-              Bienvenido !
+              ¡Bienvenido!
             </Text>
           ) : user.gender === "Femenino" ? (
             <Text style={{ color: "white", fontWeight: "bold" }}>
-              Bienvenida !
+              ¡Bienvenida!
             </Text>
           ) : (
             <Text style={{ color: "white", fontWeight: "bold" }}>
-              Bienvenidx !
+              ¡Bienvenidx!
             </Text>
           )}
           <Text style={{ color: "gray" }}>
