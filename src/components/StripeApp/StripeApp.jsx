@@ -51,7 +51,7 @@ const StripeApp = () => {
 
   async function handlePayPress() {
     if (!validateData() || !cardDetails?.complete) {
-      Alert.alert("Por favor complete todos los campos")
+      Alert.alert("Por favor complete todos los campos");
       return;
     } else {
       const response = await axios.post(
@@ -78,11 +78,18 @@ const StripeApp = () => {
   }
   return (
     <View style={styles.container}>
-      <View style={{ flexDirection: "row", alignSelf: "center" }}>
+      <View
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+          alignSelf: "center",
+        }}
+      >
+        <Text style={{ color: "white", fontSize: 40 }}>$</Text>
         <TextInput
           style={styles.input}
-          placeholder="$00,00"
-          placeholderTextColor="white"
+          placeholder="00,00"
+          placeholderTextColor="grey"
           onChange={(e) => handleOnChange(e, "amount")}
           keyboardType="number-pad"
           errorMessage={errorMoney}
@@ -98,7 +105,7 @@ const StripeApp = () => {
         }}
         cardStyle={styles.card}
         style={styles.cardContainer}
-        onCardChange={cardDetails => {
+        onCardChange={(cardDetails) => {
           setCardDetails(cardDetails);
         }}
       />
@@ -113,7 +120,7 @@ const StripeApp = () => {
         style={styles.btn}
         onPress={handlePayPress}
         title="Confirmar"
-        color={'purple'}
+        color={"purple"}
         disable={loading}
       />
     </View>
@@ -130,7 +137,7 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 40,
     fontWeight: "bold",
-    width: 300,
+    width: 150,
     height: 80,
   },
   card: {
