@@ -8,13 +8,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
-import { postUser, getUsers } from "../../redux/actions";
+import { postUser, getUsers, getAuthoToken } from "../../redux/actions";
 
 var { height } = Dimensions.get("window");
 
 export default function RegisterA() {
   const dispatch = useDispatch();
-
+  dispatch(getAuthoToken());
   useEffect(() => {
     dispatch(getUsers());
   }, [dispatch]);
