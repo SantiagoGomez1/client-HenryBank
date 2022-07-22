@@ -101,7 +101,7 @@ const StripeApp = () => {
         <TextInput
           style={styles.input}
           placeholder="00,00"
-          placeholderTextColor="grey"
+          placeholderTextColor="white"
           onChange={(e) => handleOnChange(e, "amount")}
           keyboardType="number-pad"
           errorMessage={errorMoney}

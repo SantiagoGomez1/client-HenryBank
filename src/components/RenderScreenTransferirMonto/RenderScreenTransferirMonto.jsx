@@ -26,20 +26,9 @@ const RenderScreenTransferirMonto = () => {
   const handleOnChange = (e, type) => {
     setParams({ ...params, [type]: e.nativeEvent.text });
   };
-  const validar = () => {
-    Alert.alert(
-      "Transferir dinero",
-      `¿Seguro quieres ingresar $${params.amount}?`,
-      [
-        {
-          text: "Cancelar",
-        },
-        { text: "Si", onPress: () => handleSubmitTransfer() },
-      ]
-    );
-  };
 
-  const handleSubmitTransfer = () => {
+
+  const validar = () => {
     if (Number(params.amount) === 0) {
       setErrors(false);
       setTimeout(() => {
@@ -54,6 +43,19 @@ const RenderScreenTransferirMonto = () => {
       }, 1000);
       return;
     }
+    Alert.alert(
+      "Transferir dinero",
+      `¿Seguro quieres transferir $${params.amount}?`,
+      [
+        {
+          text: "Cancelar",
+        },
+        { text: "Si", onPress: () => handleSubmitTransfer() },
+      ]
+    );
+  };
+
+  const handleSubmitTransfer = () => {
     dispatch(putTransfer(token, params));
     navigation.navigate("SuccessOperacion");
   };
@@ -76,7 +78,7 @@ const RenderScreenTransferirMonto = () => {
             <TextInput
               style={styles.inputError}
               placeholder="00,00"
-              placeholderTextColor="grey"
+              placeholderTextColor="red"
               keyboardType="number-pad"
               onChange={(e) => handleOnChange(e, "amount")}
             />
@@ -84,7 +86,7 @@ const RenderScreenTransferirMonto = () => {
             <TextInput
               style={styles.input}
               placeholder="00,00"
-              placeholderTextColor="grey"
+              placeholderTextColor="white"
               keyboardType="number-pad"
               onChange={(e) => handleOnChange(e, "amount")}
             />
