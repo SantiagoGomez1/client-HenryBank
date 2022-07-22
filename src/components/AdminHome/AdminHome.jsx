@@ -1,8 +1,16 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, Button, FlatList, Image } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Button,
+  FlatList,
+  Image,
+  ScrollView,
+} from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import AdminUserCard from "../AdminUserCard/AdminUserCard";
-import { Input } from "react-native-elements";
+import { Input, Icon } from "react-native-elements";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import { searchUser } from "../../redux/actions";
@@ -15,8 +23,8 @@ const AdminHome = () => {
   const [input, setInput] = useState({
     user: "",
   });
-  const onClick = () => {
-    navigation.navigate("AdminUserDetail");
+  const onClick = (item) => {
+    navigation.navigate("AdminUserDetail", { info: item });
   };
   const handleOnChange = (e, type) => {
     setInput({ ...input, [type]: e.nativeEvent.text });
@@ -27,9 +35,9 @@ const AdminHome = () => {
   };
   return (
     <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
-      <View>
+      <ScrollView>
         <View style={styles.container}>
-          <AdminUserCard />
+          <AdminUserCard ruta={"Configs"} />
         </View>
         <View style={styles.container2}>
           <Input
@@ -40,7 +48,7 @@ const AdminHome = () => {
           <View style={styles.btn}>
             <Button
               title="Buscar"
-              color="transparent"
+              color="purple"
               onPress={() => onSumbit()}
             ></Button>
           </View>
@@ -64,15 +72,20 @@ const AdminHome = () => {
                   <Text style={styles.text}>{item.email}</Text>
                 </View>
                 <View style={{ justifyContent: "center" }}>
-                  <Text onPress={() => onClick()} style={styles.got}>
-                    :
-                  </Text>
+                  <Icon
+                    onPress={() => onClick(item)}
+                    style={styles.got}
+                    name="account-cog-outline"
+                    type="material-community"
+                    color={"purple"}
+                    size={30}
+                  />
                 </View>
               </View>
             )}
           />
         </View>
-      </View>
+      </ScrollView>
     </LinearGradient>
   );
 };

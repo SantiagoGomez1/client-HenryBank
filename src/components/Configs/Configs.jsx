@@ -106,18 +106,6 @@ const Configs = () => {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.cont}
-          onPress={() => setCopy(`${user.cbu}`)}
-        >
-          <Icon
-            name="content-copy"
-            type="material-community"
-            color={"purple"}
-            size={30}
-          />
-          <Text style={styles.text}>Copiar CBU</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.cont}
           onPress={() => setCopy(`${user.alias}`)}
         >
           <Icon
@@ -126,11 +114,28 @@ const Configs = () => {
             color={"purple"}
             size={30}
           />
-          <Text style={styles.text}>Copiar alias</Text>
+          <Text style={styles.text}>{user.alias}</Text>
         </TouchableOpacity>
-        {user.email === "prueba@gmail.com" ? (
+        <TouchableOpacity
+          style={styles.cont}
+          onPress={() => setCopy(`${user.cbu}`)}
+        >
+          <Icon
+            name="content-copy"
+            type="material-community"
+            color={"purple"}
+            size={30}
+          />
+          <Text style={styles.text}>{user.cbu}</Text>
+        </TouchableOpacity>
+        {user.role === "admin" ? (
           <TouchableOpacity style={styles.cont} onPress={() => goAdmin()}>
-            <Icon name="search" color={"white"} size={30} />
+            <Icon
+              name="account-lock-outline"
+              type="material-community"
+              color={"purple"}
+              size={30}
+            />
             <Text style={styles.text}>Modo admin</Text>
           </TouchableOpacity>
         ) : null}
