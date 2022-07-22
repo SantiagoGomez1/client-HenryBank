@@ -1,13 +1,25 @@
 import React, { useEffect } from "react";
-import { Text, View, StyleSheet, Image, TouchableOpacity } from "react-native";
+import {
+  Text,
+  View,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  Alert,
+} from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import { LinearGradient } from "expo-linear-gradient";
 import Constants from "expo-constants";
+import { Icon } from "react-native-elements";
 import { getUserDetail } from "../../redux/actions";
 import { useNavigation } from "@react-navigation/native";
 import { useClipboard } from "@react-native-community/hooks";
 
 const Configs = () => {
+  function capitalizarPrimeraLetra(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
+
   const navigation = useNavigation();
 
   const user = useSelector((state) => state.userDetail);
@@ -24,9 +36,13 @@ const Configs = () => {
   const goPersonal = () => {
     navigation.navigate("User Detail");
   };
-  const goClose = () => {
-    navigation.navigate("Log In");
-  };
+  const goClose = () =>
+    Alert.alert("Cerrar sesión", "¿Seguro quieres desloguearte?", [
+      {
+        text: "Cancelar",
+      },
+      { text: "Si", onPress: () => navigation.navigate("Log In") },
+    ]);
   const goDescription = () => {
     navigation.navigate("Description");
   };
@@ -43,46 +59,84 @@ const Configs = () => {
 
   return (
     <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
-      <TouchableOpacity style={styles.back} onPress={() => goHome()}>
-        <Text style={styles.btn}>{"<"}</Text>
-      </TouchableOpacity>
+      <View style={styles.back}>
+        <Icon
+          name="arrow-left"
+          type="material-community"
+          color={"white"}
+          size={30}
+          onPress={() => goHome()}
+        />
+      </View>
       <Text style={styles.textPerfil}>Configuración de usuario</Text>
       <View>
         <Image style={styles.imgUser} source={{ uri: user.image }}></Image>
         <Text style={styles.textMain}>
-          {user.name} {user.lastName}
+          {capitalizarPrimeraLetra(user.name)}{" "}
+          {capitalizarPrimeraLetra(user.lastName)}
         </Text>
       </View>
       <View style={styles.container2}>
         <TouchableOpacity style={styles.cont} onPress={() => goPersonal()}>
-          <Text style={styles.text}>- Datos personales</Text>
+          <Icon
+            name="account-outline"
+            type="material-community"
+            color={"purple"}
+            size={30}
+          />
+          <Text style={styles.text}>Datos personales</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.cont} onPress={() => goDescription()}>
-          <Text style={styles.text}>- ¿Qué es Henry Bank?</Text>
+          <Icon
+            name="help-network-outline"
+            type="material-community"
+            color={"purple"}
+            size={30}
+          />
+          <Text style={styles.text}>¿Qué es Henry Bank?</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.cont} onPress={() => goHelp()}>
-          <Text style={styles.text}>- Ayuda</Text>
+          <Icon
+            name="chat-question-outline"
+            type="material-community"
+            color={"purple"}
+            size={30}
+          />
+          <Text style={styles.text}>Ayuda</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.cont}
           onPress={() => setCopy(`${user.cbu}`)}
         >
-          <Text style={styles.text}>- Copiar CBU</Text>
+          <Icon
+            name="content-copy"
+            type="material-community"
+            color={"purple"}
+            size={30}
+          />
+          <Text style={styles.text}>Copiar CBU</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.cont}
           onPress={() => setCopy(`${user.alias}`)}
         >
-          <Text style={styles.text}>- Copiar alias</Text>
+          <Icon
+            name="content-copy"
+            type="material-community"
+            color={"purple"}
+            size={30}
+          />
+          <Text style={styles.text}>Copiar alias</Text>
         </TouchableOpacity>
         {user.email === "prueba@gmail.com" ? (
           <TouchableOpacity style={styles.cont} onPress={() => goAdmin()}>
-            <Text style={styles.text}>- Modo admin</Text>
+            <Icon name="search" color={"white"} size={30} />
+            <Text style={styles.text}>Modo admin</Text>
           </TouchableOpacity>
         ) : null}
       </View>
       <View style={styles.container2}>
-        <TouchableOpacity onPress={() => goClose()}>
+        <TouchableOpacity onPress={goClose}>
           <Text style={styles.closeSesion}>Cerrar sesión</Text>
         </TouchableOpacity>
       </View>
@@ -99,6 +153,7 @@ const styles = StyleSheet.create({
   },
   cont: {
     flexDirection: "row",
+    alignItems: "center",
   },
   background: {
     flex: 1,
@@ -145,7 +200,7 @@ const styles = StyleSheet.create({
   back: {
     position: "absolute",
     left: 0,
-    margin: 10,
+    margin: 5,
   },
   closeSesion: {
     color: "aqua",

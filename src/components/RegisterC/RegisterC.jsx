@@ -3,10 +3,10 @@ import { View, Button, Text, StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/native";
 import Constants from "expo-constants";
-import {useSelector} from 'react-redux';
+import { useSelector } from "react-redux";
 
 const RegisterC = () => {
-  const userData = useSelector(state => state.userData)
+  const userData = useSelector((state) => state.userData);
   // console.log('esto es userData', userData)
   const navigation = useNavigation();
   const goHome = () => {
@@ -19,21 +19,44 @@ const RegisterC = () => {
         <View>
           <View style={styles.datos}>
             <Text style={styles.main2}>DATOS PERSONALES</Text>
-            <Text style={styles.textSecondary}>Nombre: <Text style={styles.textTertiary}>{userData.name}</Text></Text>            
-            <Text style={styles.textSecondary}>Apellido: <Text style={styles.textTertiary}>{userData.lastName}</Text></Text>            
-            <Text style={styles.textSecondary}>Cedula de identidad/D.N.I: <Text style={styles.textTertiary}>{userData.identity}</Text></Text>            
-            <Text style={styles.textSecondary}>Fecha de nacimiento: <Text style={styles.textTertiary}>{userData.dateOfBirth}</Text></Text>            
-            <Text style={styles.textSecondary}>Ciudad: <Text style={styles.textTertiary}>{userData.city}</Text></Text>            
-            <Text style={styles.textSecondary}>Nacionalidad: <Text style={styles.textTertiary}>{userData.nationality}</Text></Text>            
-            <Text style={styles.textSecondary}>Domicilio: <Text style={styles.textTertiary}>{userData.address}</Text></Text>            
-            
+            <Text style={styles.textSecondary}>
+              Nombre: <Text style={styles.textTertiary}>{userData.name}</Text>
+            </Text>
+            <Text style={styles.textSecondary}>
+              Apellido:{" "}
+              <Text style={styles.textTertiary}>{userData.lastName}</Text>
+            </Text>
+            <Text style={styles.textSecondary}>
+              Cedula de identidad/D.N.I:{" "}
+              <Text style={styles.textTertiary}>{userData.identity}</Text>
+            </Text>
+            <Text style={styles.textSecondary}>
+              Fecha de nacimiento:{" "}
+              <Text style={styles.textTertiary}>{userData.dateOfBirth}</Text>
+            </Text>
+            <Text style={styles.textSecondary}>
+              Ciudad: <Text style={styles.textTertiary}>{userData.city}</Text>
+            </Text>
+            <Text style={styles.textSecondary}>
+              Nacionalidad:{" "}
+              <Text style={styles.textTertiary}>{userData.nationality}</Text>
+            </Text>
+            <Text style={styles.textSecondary}>
+              Domicilio:{" "}
+              <Text style={styles.textTertiary}>{userData.address}</Text>
+            </Text>
+
             {/* <Text style={styles.main2}>DATOS DE LA CUENTA</Text>            
             <Text style={styles.textSecondary}>E-mail: <Text style={styles.textTertiary}>{userData.email}</Text></Text>            
             <Text style={styles.textSecondary}>Contraseña: <Text style={styles.textTertiary}>{userData.password}</Text></Text>             */}
           </View>
         </View>
         <View style={styles.btn}>
-          <Button title="Siguiente" onPress={() => goHome()}></Button>
+          <Button
+            title="Siguiente"
+            color={"purple"}
+            onPress={() => goHome()}
+          ></Button>
         </View>
       </LinearGradient>
     </View>
@@ -76,7 +99,7 @@ const styles = StyleSheet.create({
   textTertiary: {
     color: "#fff",
     fontSize: 15,
-    color: 'black',
+    color: "black",
   },
   btn: {
     alignSelf: "center",

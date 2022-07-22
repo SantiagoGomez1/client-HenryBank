@@ -77,9 +77,9 @@ export function DropdownComponentNationality ({setNationality}){
 
   const [value, setValue] = useState([]);
   const [isFocus, setIsFocus] = useState(false);
-    
-  useEffect(() => {        
-    dispatch(getCountries());    
+  
+  useEffect(() => {
+    dispatch(getCountries());
   }, []);
   
   useEffect(() => {    

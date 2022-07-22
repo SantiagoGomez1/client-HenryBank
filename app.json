@@ -17,6 +17,14 @@
     "assetBundlePatterns": [
       "**/*"
     ],
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "La app necesita acceso a tu cámara para tomarte una foto."
+        }
+      ]
+    ],
     "ios": {
       "supportsTablet": true
     },

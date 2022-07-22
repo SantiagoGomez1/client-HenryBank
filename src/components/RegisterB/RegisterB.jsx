@@ -14,6 +14,7 @@ import {
 } from "./Dropdown";
 
 import Constants from "expo-constants";
+import ImagePicker from "../ImagePicker/ImagePicker.jsx";
 
 const RegisterB = () => {
   const dispatch = useDispatch();
@@ -133,6 +134,8 @@ const RegisterB = () => {
       <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
         <Text style={styles.textMain}>Regístrate</Text>
 
+        <ImagePicker />
+
         <Input
           containerStyle={styles.input}
           placeholder="Ingresa tu nombre"
@@ -228,6 +231,7 @@ const RegisterB = () => {
         <View style={styles.btn}>
           <Button
             title="Siguiente"
+            color={"purple"}
             onPress={() => registerUserPerData()}
           ></Button>
         </View>

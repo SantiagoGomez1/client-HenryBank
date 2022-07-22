@@ -4,7 +4,7 @@ import { View, Text, Image, StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/native";
 import { useSelector } from "react-redux";
-import { IconButton } from "react-native-paper";
+import { Icon } from "react-native-elements";
 
 import Constants from "expo-constants";
 
@@ -29,15 +29,15 @@ const UserCardHome = () => {
         <View style={styles.data}>
           {user.gender === "Masculino" ? (
             <Text style={{ color: "white", fontWeight: "bold" }}>
-              Bienvenido !
+              ¡Bienvenido!
             </Text>
           ) : user.gender === "Femenino" ? (
             <Text style={{ color: "white", fontWeight: "bold" }}>
-              Bienvenida !
+              ¡Bienvenida!
             </Text>
           ) : (
             <Text style={{ color: "white", fontWeight: "bold" }}>
-              Bienvenidx !
+              ¡Bienvenidx!
             </Text>
           )}
           <Text style={{ color: "gray" }}>
@@ -46,9 +46,10 @@ const UserCardHome = () => {
         </View>
       </View>
       <View style={{ justifyContent: "center" }}>
-        <IconButton
-          icon="account"
-          color="white"
+        <Icon
+          name="cog-outline"
+          type="material-community"
+          color={"white"}
           size={20}
           onPress={() => goDrawer()}
         />

@@ -8,13 +8,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
-import { postUser, getUsers } from "../../redux/actions";
+import { postUser, getUsers, getAuthoToken } from "../../redux/actions";
 
 var { height } = Dimensions.get("window");
 
 export default function RegisterA() {
   const dispatch = useDispatch();
-
+  dispatch(getAuthoToken());
   useEffect(() => {
     dispatch(getUsers());
   }, [dispatch]);
@@ -76,6 +76,15 @@ export default function RegisterA() {
       setErrorConfirmEmail("Los E-mails  no coinciden");
       isValid = false;
     }
+    if (!validatePassword(formData.password || formData.confirmPassword)) {
+      setErrorPassword(
+        "La contraseña debe tener por lo menos 8 carácteres, con una mayúscula, una minúscula y un número"
+      );
+      setErrorConfirmPassword(
+        "La contraseña debe tener por lo menos 8 carácteres, con una mayúscula, una minúscula y un número"
+      );
+      isValid = false;
+    }
     if (formData.password.length < 8) {
       setErrorPassword("Debes ingresar una contraseña de 8 carácteres");
       isValid = false;
@@ -84,7 +93,11 @@ export default function RegisterA() {
       setErrorConfirmPassword("Debes ingresar una contraseña de 8 carácteres");
       isValid = false;
     }
-    if (formData.password !== formData.confirmPassword) {
+    if (
+      formData.password &&
+      formData.confirmPassword &&
+      formData.password !== formData.confirmPassword
+    ) {
       setErrorPassword("Las contraseñas no coinciden");
       setErrorConfirmPassword("Las contraseñas no coinciden");
       isValid = false;
@@ -148,6 +161,7 @@ export default function RegisterA() {
 
         <Button
           style={styles.btn}
+          color={"purple"}
           title="Siguiente"
           onPress={() => registerUser()}
         ></Button>
@@ -198,4 +212,9 @@ const validateEmail = function (email) {
   const re =
     /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(email);
+};
+
+const validatePassword = function (password) {
+  const re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
+  return re.test(password);
 };

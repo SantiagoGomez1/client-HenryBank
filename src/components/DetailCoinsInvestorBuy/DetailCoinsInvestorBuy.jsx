@@ -65,6 +65,7 @@ export default function DetailCoinsInvestorBuy({ route, navigation }) {
           <View style={styles.btn}>
             <Button
               title="Comprar"
+              color={"purple"}
               onPress={() =>
                 navigation.navigate("InvestorBuyGeneral", {
                   id: route.params.id,

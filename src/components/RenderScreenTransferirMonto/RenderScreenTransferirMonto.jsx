@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { View, Text, StyleSheet, Button, TextInput } from "react-native";
+import { View, Text, StyleSheet, Button, TextInput, Alert } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import { useFocusEffect } from "@react-navigation/native";
 import { useNavigation } from "@react-navigation/native";
@@ -11,22 +11,32 @@ import UserCardTransferencia from "../UserCardTransferencia/UserCardTransferenci
 const RenderScreenTransferirMonto = () => {
   const [params, setParams] = useState({ amount: 0 });
   const [errors, setErrors] = useState(true);
-  
+
   const token = useSelector((state) => state.logIn.token);
   const user = useSelector((state) => state.userTransfer);
   const myUser = useSelector((state) => state.myUser);
   const dispatch = useDispatch();
 
-  
   useFocusEffect(
     React.useCallback(() => {
       dispatch(getMyUser(token));
     }, [])
   );
 
-
   const handleOnChange = (e, type) => {
     setParams({ ...params, [type]: e.nativeEvent.text });
+  };
+  const validar = () => {
+    Alert.alert(
+      "Transferir dinero",
+      `¿Seguro quieres ingresar $${params.amount}?`,
+      [
+        {
+          text: "Cancelar",
+        },
+        { text: "Si", onPress: () => handleSubmitTransfer() },
+      ]
+    );
   };
 
   const handleSubmitTransfer = () => {
@@ -54,27 +64,36 @@ const RenderScreenTransferirMonto = () => {
       <Text style={styles.text}>Transferencia</Text>
       <View style={{ alignItems: "center" }}>
         <Text style={styles.subText}>Monto...</Text>
-        {!errors ? (
-          <TextInput
-            style={styles.inputError}
-            placeholder="00,00$"
-            placeholderTextColor="red"
-            keyboardType="number-pad"
-            onChange={(e) => handleOnChange(e, "amount")}
-          />
-        ) : (
-          <TextInput
-            style={styles.input}
-            placeholder="00,00$"
-            placeholderTextColor="white"
-            keyboardType="number-pad"
-            onChange={(e) => handleOnChange(e, "amount")}
-          />
-        )}
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            alignSelf: "center",
+          }}
+        >
+          <Text style={{ color: "white", fontSize: 40 }}>$</Text>
+          {!errors ? (
+            <TextInput
+              style={styles.inputError}
+              placeholder="00,00"
+              placeholderTextColor="grey"
+              keyboardType="number-pad"
+              onChange={(e) => handleOnChange(e, "amount")}
+            />
+          ) : (
+            <TextInput
+              style={styles.input}
+              placeholder="00,00"
+              placeholderTextColor="grey"
+              keyboardType="number-pad"
+              onChange={(e) => handleOnChange(e, "amount")}
+            />
+          )}
+        </View>
       </View>
       <UserCardTransferencia data={user} />
       <View>
-        <Button title="Enviar" onPress={() => handleSubmitTransfer()} />
+        <Button title="Enviar" onPress={() => validar()} />
       </View>
     </View>
   );
@@ -106,7 +125,7 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 40,
     fontWeight: "bold",
-    width: 300,
+    width: 150,
     height: 80,
   },
   inputError: {
@@ -114,7 +133,7 @@ const styles = StyleSheet.create({
     color: "red",
     fontSize: 40,
     fontWeight: "bold",
-    width: 300,
+    width: 150,
     height: 80,
   },
 });

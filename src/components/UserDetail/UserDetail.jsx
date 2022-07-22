@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderStyle: "solid",
     borderColor: "rgba(255, 255, 255, 0.5)",
-    backgroundColor: "rgba(255, 255, 255, 0.3)",
+    backgroundColor: "#140152",
   },
   background: {
     flex: 1,
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     padding: 2,
     margin: 4,
-    backgroundColor: "#140152",
+    backgroundColor: "rgba(255, 255, 255, 0.3)",
     borderRadius: 8,
   },
   textPerfil: {
