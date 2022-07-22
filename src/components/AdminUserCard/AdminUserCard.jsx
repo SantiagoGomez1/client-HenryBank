@@ -4,22 +4,18 @@ import { useSelector } from "react-redux";
 import Constants from "expo-constants";
 import { useNavigation } from "@react-navigation/native";
 
-const AdminUserCard = () => {
+const AdminUserCard = ({ ruta }) => {
   const user = useSelector((state) => state.userDetail);
   const navigation = useNavigation();
   const onClick = () => {
-    navigation.navigate("HomeRoutes");
+    navigation.navigate(`${ruta}`);
   };
   return (
     <View style={styles.container}>
       <View style={{ flexDirection: "row" }}>
         <View>
           <View style={styles.image}>
-            <Image
-              onAccessibilityTap={() => onClick()}
-              style={styles.image}
-              source={{ uri: `${user.image}` }}
-            />
+            <Image style={styles.image} source={{ uri: `${user.image}` }} />
           </View>
         </View>
         <View style={styles.data}>
