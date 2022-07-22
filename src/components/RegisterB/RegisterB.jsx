@@ -14,7 +14,7 @@ import {
 } from "./Dropdown";
 
 import Constants from "expo-constants";
-import ImagePicker from '../ImagePicker/ImagePicker.jsx'
+import ImagePicker from "../ImagePicker/ImagePicker.jsx";
 
 const RegisterB = () => {
   const dispatch = useDispatch();
@@ -231,6 +231,7 @@ const RegisterB = () => {
         <View style={styles.btn}>
           <Button
             title="Siguiente"
+            color={"purple"}
             onPress={() => registerUserPerData()}
           ></Button>
         </View>

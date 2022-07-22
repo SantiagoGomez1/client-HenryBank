@@ -91,7 +91,11 @@ const ForgotPasswordB = () => {
           onChange={(e) => handleOnChange(e, "confirmPassword")}
           errorMessage={errorConfirmPassword}
         />
-        <Button title="Enviar" onPress={() => onSumbit()}></Button>
+        <Button
+          title="Enviar"
+          color={"purple"}
+          onPress={() => onSumbit()}
+        ></Button>
         <Text style={styles.text2}>
           Debes ingresar ambas contraseñas iguales y esta pasara a ser su nueva
           contraseña

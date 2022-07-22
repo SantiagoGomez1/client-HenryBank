@@ -77,8 +77,12 @@ export default function RegisterA() {
       isValid = false;
     }
     if (!validatePassword(formData.password || formData.confirmPassword)) {
-      setErrorPassword("La contraseña debe tener por lo menos 8 carácteres, con una mayúscula, una minúscula y un número");
-      setErrorConfirmPassword("La contraseña debe tener por lo menos 8 carácteres, con una mayúscula, una minúscula y un número");
+      setErrorPassword(
+        "La contraseña debe tener por lo menos 8 carácteres, con una mayúscula, una minúscula y un número"
+      );
+      setErrorConfirmPassword(
+        "La contraseña debe tener por lo menos 8 carácteres, con una mayúscula, una minúscula y un número"
+      );
       isValid = false;
     }
     if (formData.password.length < 8) {
@@ -89,7 +93,11 @@ export default function RegisterA() {
       setErrorConfirmPassword("Debes ingresar una contraseña de 8 carácteres");
       isValid = false;
     }
-    if (formData.password && formData.confirmPassword && formData.password !== formData.confirmPassword) {
+    if (
+      formData.password &&
+      formData.confirmPassword &&
+      formData.password !== formData.confirmPassword
+    ) {
       setErrorPassword("Las contraseñas no coinciden");
       setErrorConfirmPassword("Las contraseñas no coinciden");
       isValid = false;
@@ -153,6 +161,7 @@ export default function RegisterA() {
 
         <Button
           style={styles.btn}
+          color={"purple"}
           title="Siguiente"
           onPress={() => registerUser()}
         ></Button>
@@ -206,8 +215,6 @@ const validateEmail = function (email) {
 };
 
 const validatePassword = function (password) {
-  const re =
-  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
+  const re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
   return re.test(password);
-  
 };

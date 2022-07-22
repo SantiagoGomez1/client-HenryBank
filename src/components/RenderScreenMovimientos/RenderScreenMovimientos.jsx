@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { View, FlatList, Text, StyleSheet } from "react-native";
+import { View, FlatList, Text, StyleSheet, Image } from "react-native";
 
 import { Input, Icon } from "react-native-elements";
 import { getMovements } from "../../redux/actions";
@@ -13,8 +13,6 @@ const RenderScreenMovimientos = () => {
   const mov = useSelector((state) => state.movements);
   const [typee, setTypee] = useState({ typee: "" });
   const [render, setRender] = useState("INGRESOS");
-  console.log(render);
-  console.log(typee);
 
   const handleType = (e, type) => {
     setTypee({ ...typee, [type]: e.nativeEvent.text });
@@ -167,6 +165,8 @@ const RenderScreenMovimientos = () => {
   let filtertedEgresosType = movementsSort
     .filter((e) => e.amount.includes("-"))
     .filter((e) => e.name.toLowerCase().includes(typee.typee.toLowerCase()));
+  console.log(filtertedIngresosType);
+  console.log(filtertedEgresosType);
   const searchForType = () => {
     if (render === "INGRESOS") {
       setRender("INGRESOStype");
@@ -200,7 +200,17 @@ const RenderScreenMovimientos = () => {
         />
       </View>
       <Switch setRender={setRender} />
-      {render === "INGRESOS" ? (
+      {!filteredEgresos[0] && !filteredIngresos[0] ? (
+        <View style={styles.cont}>
+          <Image
+            style={styles.imgSuccess}
+            source={require("../../imgs/javimilei.png")}
+          ></Image>
+          <Text style={styles.text2}>
+            ¡Todavía no tienes movimientos en tu cuenta!
+          </Text>
+        </View>
+      ) : render === "INGRESOS" ? (
         <FlatList
           data={filteredIngresos}
           keyExtractor={(item) => item.id}
@@ -316,6 +326,21 @@ const styles = StyleSheet.create({
     margin: 10,
     borderRadius: 20,
   },
+  text2: {
+    color: "white",
+    fontSize: 20,
+    fontWeight: "bold",
+    textAlign: "center",
+    padding: 5,
+  },
+  imgSuccess: {
+    height: 100,
+    width: 100,
+    alignSelf: "center",
+    padding: 5,
+    borderRadius: 50,
+  },
+  cont: { paddingTop: 30 },
 });
 
 export default RenderScreenMovimientos;

@@ -32,6 +32,7 @@ const RenderScreen = () => {
           onPress={() => navigation.navigate("InvestorBuy")}
         />
       </View>
+      <Text></Text>
     </View>
   );
 };

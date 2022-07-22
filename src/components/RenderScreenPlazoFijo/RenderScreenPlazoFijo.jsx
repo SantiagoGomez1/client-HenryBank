@@ -11,9 +11,9 @@ const RenderScreenPlazoFijo = () => {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.logIn.token);
 
-  const [mount, setMount] = useState([]);  
-  const [errorMount, setErrorMount] = useState("");  
-  
+  const [mount, setMount] = useState([]);
+  const [errorMount, setErrorMount] = useState("");
+
   const goSuccessPlazoFijo = () => {
     navigation.navigate("SuccessPlazoFijo");
   };
@@ -26,14 +26,14 @@ const RenderScreenPlazoFijo = () => {
       return;
     }
     dispatch(lockedStake(token, mount));
-    goSuccessPlazoFijo();    
+    goSuccessPlazoFijo();
   };
 
   const validateData = () => {
     setErrorMount("");
     let isValid = true;
 
-    if ((Number(mount.mountLockedStake) < 1000)) {
+    if (Number(mount.mountLockedStake) < 1000) {
       setErrorMount("Debes ingresar un monto mayor a $1.000");
       isValid = false;
     }
@@ -68,11 +68,12 @@ const RenderScreenPlazoFijo = () => {
         </View>
       </View>
       <View style={styles.containerButton}>
-      <Button
-        style={styles.btn}
-        title="Confirmar"
-        onPress={() => createLockedStake()}
-      ></Button>
+        <Button
+          style={styles.btn}
+          title="Confirmar"
+          color={"purple"}
+          onPress={() => createLockedStake()}
+        ></Button>
       </View>
     </View>
   );
@@ -123,7 +124,7 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
   },
   box: {
-    paddingLeft: '7%',
+    paddingLeft: "7%",
     color: "white",
     paddingTop: 15,
     backgroundColor: "rgba(25, 23, 61, 0.5)",
@@ -136,7 +137,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
   box1: {
-    paddingLeft: '3%',
+    paddingLeft: "3%",
     color: "white",
     paddingTop: 15,
     backgroundColor: "rgba(25, 23, 61, 0.5)",
@@ -149,7 +150,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
   box2: {
-    paddingLeft: '10%',    
+    paddingLeft: "10%",
     color: "white",
     paddingTop: 15,
     backgroundColor: "rgba(25, 23, 61, 0.5)",
