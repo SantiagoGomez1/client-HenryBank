@@ -49,6 +49,18 @@ const StripeApp = () => {
     setInput({ ...input.amount, [type]: e.nativeEvent.text });
   };
 
+  const validar = () => {
+    Alert.alert(
+      "Ingresar dinero",
+      `¿Seguro quieres ingresar $${input.amount}?`,
+      [
+        {
+          text: "Cancelar",
+        },
+        { text: "Si", onPress: () => handlePayPress() },
+      ]
+    );
+  };
   async function handlePayPress() {
     if (!validateData() || !cardDetails?.complete) {
       Alert.alert("Por favor complete todos los campos");
@@ -118,7 +130,7 @@ const StripeApp = () => {
       </View>
       <Button
         style={styles.btn}
-        onPress={handlePayPress}
+        onPress={validar}
         title="Confirmar"
         color={"purple"}
         disable={loading}

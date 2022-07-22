@@ -87,7 +87,11 @@ const ForgotPasswordA = () => {
           onChange={(e) => handleOnChange(e, "identity")}
           errorMessage={errorIdentity}
         />
-        <Button title="Enviar" onPress={() => onSumbit()}></Button>
+        <Button
+          title="Enviar"
+          color={"purple"}
+          onPress={() => onSumbit()}
+        ></Button>
         <Text style={styles.text2}>
           Denes ingresar ambos datos correctamente de tu cuenta para poder
           ingresar una nueva contraseña

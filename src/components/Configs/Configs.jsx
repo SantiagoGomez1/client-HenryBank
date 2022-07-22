@@ -1,5 +1,12 @@
 import React, { useEffect } from "react";
-import { Text, View, StyleSheet, Image, TouchableOpacity } from "react-native";
+import {
+  Text,
+  View,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  Alert,
+} from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import { LinearGradient } from "expo-linear-gradient";
 import Constants from "expo-constants";
@@ -29,9 +36,13 @@ const Configs = () => {
   const goPersonal = () => {
     navigation.navigate("User Detail");
   };
-  const goClose = () => {
-    navigation.navigate("Log In");
-  };
+  const goClose = () =>
+    Alert.alert("Cerrar sesión", "¿Seguro quieres desloguearte?", [
+      {
+        text: "Cancelar",
+      },
+      { text: "Si", onPress: () => navigation.navigate("Log In") },
+    ]);
   const goDescription = () => {
     navigation.navigate("Description");
   };
@@ -70,7 +81,7 @@ const Configs = () => {
           <Icon
             name="account-outline"
             type="material-community"
-            color={"white"}
+            color={"purple"}
             size={30}
           />
           <Text style={styles.text}>Datos personales</Text>
@@ -79,7 +90,7 @@ const Configs = () => {
           <Icon
             name="help-network-outline"
             type="material-community"
-            color={"white"}
+            color={"purple"}
             size={30}
           />
           <Text style={styles.text}>¿Qué es Henry Bank?</Text>
@@ -88,7 +99,7 @@ const Configs = () => {
           <Icon
             name="chat-question-outline"
             type="material-community"
-            color={"white"}
+            color={"purple"}
             size={30}
           />
           <Text style={styles.text}>Ayuda</Text>
@@ -100,7 +111,7 @@ const Configs = () => {
           <Icon
             name="content-copy"
             type="material-community"
-            color={"white"}
+            color={"purple"}
             size={30}
           />
           <Text style={styles.text}>Copiar CBU</Text>
@@ -112,7 +123,7 @@ const Configs = () => {
           <Icon
             name="content-copy"
             type="material-community"
-            color={"white"}
+            color={"purple"}
             size={30}
           />
           <Text style={styles.text}>Copiar alias</Text>
@@ -125,7 +136,7 @@ const Configs = () => {
         ) : null}
       </View>
       <View style={styles.container2}>
-        <TouchableOpacity onPress={() => goClose()}>
+        <TouchableOpacity onPress={goClose}>
           <Text style={styles.closeSesion}>Cerrar sesión</Text>
         </TouchableOpacity>
       </View>

@@ -102,7 +102,11 @@ const LogIn = () => {
         />
 
         <View style={styles.btn}>
-          <Button title="Log In" onPress={() => registerUser()}></Button>
+          <Button
+            title="Log In"
+            color={"purple"}
+            onPress={() => registerUser()}
+          ></Button>
           <Button
             title="Registrarse"
             color="trasparent"
