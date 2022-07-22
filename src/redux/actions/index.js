@@ -403,8 +403,8 @@ export function getCountries() {
     const config = {
       headers: {        
         Authorization:                
-        tokencio[0],
-        // authToken[0],
+        // tokencio[0],
+        authToken[0],
       },
     };
     const res = await axios.get(
@@ -426,8 +426,8 @@ export function getCities(value) {
     const config = {
       headers: {
         Authorization:               
-        tokencio[0],
-        // authToken[0],
+        // tokencio[0],
+        authToken[0],
       },
     };
     const res = await axios.get(
