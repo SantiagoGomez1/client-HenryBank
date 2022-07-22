@@ -29,7 +29,7 @@ export default function InvestorDetail({ route, navigation }) {
   }, []);
 
   function efficiency(viInvestor, vfInvestor) {
-    return ((vfInvestor - viInvestor) / viInvestor) * 100
+    return ((vfInvestor - viInvestor) / viInvestor) * 100;
   }
 
   return (
@@ -64,16 +64,34 @@ export default function InvestorDetail({ route, navigation }) {
             >
               AR$
             </Text>
-            <Text style={{ color: "white", fontSize: 25 }}>{((((efficiency(precio, data.current_price)) * (precio * cantidad)) + (precio * cantidad)) * 300).toFixed(4)}</Text>
-          </View>
-          { efficiency(precio, data.current_price) > 0 ? <Text style={{ color: "#00FF00", fontSize: 20 }}>¡Estas ganando!</Text> : <Text style={{ color: "red", fontSize: 20 }}>Ganacias/perdidas</Text>}
-          <View>
-            {
-              data && 
-            <Text style={{ color: "white", fontSize: 20 }}>
-              {efficiency(precio, data.current_price).toFixed(4)}% AR$ {(((efficiency(precio, data.current_price)) * (precio * cantidad)) * 300).toFixed(4)}
+            <Text style={{ color: "white", fontSize: 25 }}>
+              {(
+                (efficiency(precio, data.current_price) * (precio * cantidad) +
+                  precio * cantidad) *
+                300
+              ).toFixed(4)}
             </Text>
-            }
+          </View>
+          {efficiency(precio, data.current_price) > 0 ? (
+            <Text style={{ color: "#00FF00", fontSize: 20 }}>
+              ¡Estas ganando!
+            </Text>
+          ) : (
+            <Text style={{ color: "red", fontSize: 20 }}>
+              Ganacias/perdidas
+            </Text>
+          )}
+          <View>
+            {data && (
+              <Text style={{ color: "white", fontSize: 20 }}>
+                {efficiency(precio, data.current_price).toFixed(4)}% AR${" "}
+                {(
+                  efficiency(precio, data.current_price) *
+                  (precio * cantidad) *
+                  300
+                ).toFixed(4)}
+              </Text>
+            )}
             <Divider inset={true} insetType="right" />
           </View>
           <View
@@ -84,7 +102,9 @@ export default function InvestorDetail({ route, navigation }) {
             }}
           >
             <Text style={{ color: "white", fontSize: 20 }}>PPC</Text>
-            <Text style={{ color: "white", fontSize: 20 }}>AR$ {(precio * 300).toFixed(4)}</Text>
+            <Text style={{ color: "white", fontSize: 20 }}>
+              AR$ {(precio * 300).toFixed(4)}
+            </Text>
           </View>
         </View>
 
@@ -108,7 +128,7 @@ export default function InvestorDetail({ route, navigation }) {
             Cantidad:{" "}
           </Text>
           <Text style={{ color: "white", fontSize: 16, marginRight: 10 }}>
-            {parseInt(cantidad).toFixed(8)}
+            {parseFloat(cantidad).toFixed(8)}
           </Text>
         </View>
 
@@ -147,34 +167,35 @@ export default function InvestorDetail({ route, navigation }) {
             }
           />
           <Button
-          title="Vender todo"
-          onPress={async () => {
-            const response = await axios.post(
-              "https://h-bank.herokuapp.com/crypto/sell",
-              {
-                amount: cantidad,
-                crypto: id,
-                price: precio,
-              },
-              {
-                headers: {
-                  Authorization: token,
+            title="Vender todo"
+            onPress={async () => {
+              const response = await axios.post(
+                "https://h-bank.herokuapp.com/crypto/sell",
+                {
+                  amount: cantidad,
+                  crypto: id,
+                  price: precio,
                 },
+                {
+                  headers: {
+                    Authorization: token,
+                  },
+                }
+              );
+              if (response.data.msg === "Crypto Vendida") {
+                navigation.navigate("SuccessSell", {
+                  success: 1,
+                });
+              } else if (
+                response.data.msg ===
+                "No se encontro la crypto, corrobora datos"
+              ) {
+                navigation.navigate("SuccessSell", {
+                  success: 2,
+                });
               }
-            );
-            if (response.data.msg === "Crypto Vendida") {
-              navigation.navigate("SuccessSell", {
-                success: 1,
-              });
-            } else if (
-              response.data.msg === "No se encontro la crypto, corrobora datos"
-            ) {
-              navigation.navigate("SuccessSell", {
-                success: 2,
-              });
-            }
-          }}
-        />
+            }}
+          />
           <Button
             title="Comprar más"
             onPress={() =>
