@@ -5,7 +5,7 @@ import { IconButton } from "react-native-paper";
 
 import * as ImagePickerExpo from "expo-image-picker";
 
-const ImagePicker = () => {
+const ImagePicker = ({setFormData, formData}) => {
   const [image, setImage] = useState(
     "https://www.seekpng.com/png/full/847-8474751_download-empty-profile.png"
   );
@@ -25,7 +25,6 @@ const ImagePicker = () => {
       };
       handleUpload(newFile);
     }
-    console.log(result);
   };
 
   const pickFromCamera = async () => {
@@ -41,7 +40,6 @@ const ImagePicker = () => {
       };
       handleUpload(newFile);
     }
-    console.log(pickerResult);
   };
 
   const handleUpload = (image) => {
@@ -57,6 +55,7 @@ const ImagePicker = () => {
       .then((res) => res.json())
       .then((data) => {
         setImage(data.url);
+        setFormData({ ...formData, image: data.url });
       });
   };
 

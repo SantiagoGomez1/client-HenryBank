@@ -26,6 +26,7 @@ const RegisterB = () => {
 
   const [formData, setFormData] = useState({
     name: "",
+    image:"",
     lastName: "",
     identity: "",
     gender: "",
@@ -34,7 +35,6 @@ const RegisterB = () => {
     nationality: "",
     address: "",
   });
-
   //----------------------States Picker-Date----------------------//
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const showDatePicker = () => {
@@ -128,13 +128,13 @@ const RegisterB = () => {
       /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/;
     return re.test(dateOfBirth);
   };
-
+  console.log("llego la img",formData.image)
   return (
     <ScrollView style={styles.container}>
       <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
         <Text style={styles.textMain}>Regístrate</Text>
 
-        <ImagePicker />
+        <ImagePicker setFormData={setFormData} formData={formData}/>
 
         <Input
           containerStyle={styles.input}
