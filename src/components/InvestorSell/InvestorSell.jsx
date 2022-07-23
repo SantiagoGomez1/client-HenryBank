@@ -96,13 +96,11 @@ export default function InvestorSell({ route, navigation }) {
               }
             );
             console.log("Esta es la respuesta en sell", response.data);
-            if (response.data.msg === "Crypto Vendida") {
+            if (response.data.msg === "HenryBank Crypto Vendida") {
               navigation.navigate("SuccessSell", {
                 success: 1,
               });
-            } else if (
-              response.data.msg === "No se encontro la crypto, corrobora datos"
-            ) {
+            } else if (response.data.msg === "Balance de crypto insuficiente") {
               navigation.navigate("SuccessSell", {
                 success: 2,
               });
