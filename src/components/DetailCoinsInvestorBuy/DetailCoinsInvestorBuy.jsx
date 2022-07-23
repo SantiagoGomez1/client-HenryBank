@@ -37,25 +37,25 @@ export default function DetailCoinsInvestorBuy({ route, navigation }) {
               {data.current_price} $
             </Text>
             <Text style={{ color: "white", fontSize: 18 }}>
-              Porcentaje de cambio de precio 1 año
+              Porcentaje cambio de precio 1 año
             </Text>
             <Text style={{ color: "white", fontSize: 18 }}>
               {data.price_change_percentage_1y} %
             </Text>
             <Text style={{ color: "white", fontSize: 18 }}>
-              Porcentaje de cambio de precio 30 dias
+              Porcentaje cambio de precio 30 dias
             </Text>
             <Text style={{ color: "white", fontSize: 18 }}>
               {data.price_change_percentage_30d} %
             </Text>
             <Text style={{ color: "white", fontSize: 18 }}>
-              Porcentaje de cambio de precio 7 días
+              Porcentaje cambio de precio 7 días
             </Text>
             <Text style={{ color: "white", fontSize: 18 }}>
               {data.price_change_percentage_7d} %
             </Text>
             <Text style={{ color: "white", fontSize: 18 }}>
-              Porcentaje de cambio de precio 24 años
+              Porcentaje cambio de precio 24 horas
             </Text>
             <Text style={{ color: "white", fontSize: 18 }}>
               {data.price_change_percentage_24h} %
@@ -94,6 +94,7 @@ const styles = StyleSheet.create({
     width: 150,
     height: 150,
     alignSelf: "center",
+    marginTop: 50,
   },
   card: {
     backgroundColor: "transparent",
@@ -108,5 +109,14 @@ const styles = StyleSheet.create({
   },
   btn: {
     alignSelf: "center",
+  },
+  textSecondary: {
+    color: "#fff",
+    fontSize: 18,
+    textAlign: "center",
+    padding: 2,
+    margin: 4,
+    backgroundColor: "rgba(255, 255, 255, 0.3)",
+    borderRadius: 8,
   },
 });
