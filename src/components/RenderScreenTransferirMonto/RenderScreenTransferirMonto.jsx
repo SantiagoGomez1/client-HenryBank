@@ -4,9 +4,10 @@ import { View, Text, StyleSheet, Button, TextInput, Alert } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import { useFocusEffect } from "@react-navigation/native";
 import { useNavigation } from "@react-navigation/native";
-import { getMyUser, putTransfer } from "../../redux/actions/index";
+import { getMyUser, putTransfer, contactsSelected } from "../../redux/actions/index";
 
 import UserCardTransferencia from "../UserCardTransferencia/UserCardTransferencia";
+import UserCardContacto from "../RenderScreenTransferir/UserCardContacto.jsx";
 
 const RenderScreenTransferirMonto = () => {
   const [params, setParams] = useState({ amount: 0 });
@@ -15,11 +16,13 @@ const RenderScreenTransferirMonto = () => {
   const token = useSelector((state) => state.logIn.token);
   const user = useSelector((state) => state.userTransfer);
   const myUser = useSelector((state) => state.myUser);
+  const contactsSelected = useSelector((state) => state.addContacts);
+  console.log('contactsSelected', contactsSelected)
   const dispatch = useDispatch();
 
   useFocusEffect(
     React.useCallback(() => {
-      dispatch(getMyUser(token));
+      dispatch(getMyUser(token));      
     }, [])
   );
 
@@ -94,6 +97,7 @@ const RenderScreenTransferirMonto = () => {
         </View>
       </View>
       <UserCardTransferencia data={user} />
+      {/* <UserCardContacto data={contactsSelected}/> */}
       <View>
         <Button title="Enviar" onPress={() => validar()} />
       </View>

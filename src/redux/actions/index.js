@@ -44,6 +44,7 @@ export const FORGOT_PASSWORD = "FORGOT_PASSWORD";
 
 export const POST_CONTACTS = "POST_CONTACTS";
 export const GET_CONTACTS = "GET_CONTACTS";
+export const CONTACT_SELECT = "CONTACT_SELECT";
 
 //------------------------------------------------------------------------------------------------//
 
@@ -290,7 +291,7 @@ export const setTransfer = (token, cbu) => async (dispatch) => {
     cbu,
     config
   );
-  console.log(response.data, "CORRECTO");
+  // console.log(response.data, "CORRECTO");
   dispatch({ type: SET_TRANSFER, payload: response.data });
 };
 
@@ -307,7 +308,7 @@ export const setTransferAlias = (token, alias) => async (dispatch) => {
     alias,
     config
   );
-  console.log(response.data, "CORRECTO");
+  // console.log(response.data, "CORRECTO");
   dispatch({ type: SET_TRANSFER_ALIAS, payload: response.data });
 };
 
@@ -545,7 +546,6 @@ export const clearForgot = (payload) => {
 //------------------------------------------------------------------------------------------------//
 
 export const postContacts = (payload, token) => {  
-  console.log('token', token)
   return async function (dispatch) {
     const posteo = {
       id: payload.id,
@@ -566,7 +566,7 @@ export const postContacts = (payload, token) => {
       posteo,
       config
     );
-    console.log("Aca hay una respuesta ADD", add);
+    // console.log("Aca hay una respuesta ADD", add);
     return dispatch({
       type: POST_CONTACTS,
       payload: add.data,
@@ -576,7 +576,7 @@ export const postContacts = (payload, token) => {
 
 //------------------------------------------------------------------------------------------------//
 
-export const getContacts = (token) => async (dispatch) => {
+export const getContacts = (token) => async (dispatch) => {  
   const config = {
     headers: {
       Authorization: token,
@@ -587,6 +587,13 @@ export const getContacts = (token) => async (dispatch) => {
     config
   );
   dispatch({ type: GET_CONTACTS, payload: response.data });
+};
+
+//------------------------------------------------------------------------------------------------//
+
+export const getContactsSelected = (payload) => {
+  console.log("CONTACT_SELECT", payload);
+  return { type: CONTACT_SELECT, payload: payload };
 };
 
 //------------------------------------------------------------------------------------------------//

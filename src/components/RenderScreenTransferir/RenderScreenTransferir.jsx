@@ -12,10 +12,11 @@ import {
 
 import { useDispatch, useSelector } from "react-redux";
 import Switch from "./Switch.jsx";
+import ContactsDialog from './ContactsDialog.jsx'
 
 import UserCardTransferencia from "../UserCardTransferencia/UserCardTransferencia";
 
-const RenderScreenTransferir = () => {
+const RenderScreenTransferir = ({}) => {
   const user = useSelector((state) => state.userTransfer);
   const users = useSelector((state) => state.allUsers);
   const token = useSelector((state) => state.logIn.token);
@@ -76,6 +77,9 @@ const RenderScreenTransferir = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Transferencia</Text>
+      
+      <ContactsDialog/>
+      
       <Switch setRender={setRender} />
       {render === "Alias" ? (
         <Input
