@@ -42,6 +42,9 @@ export const SEARCH_USER = "SEARCH_USER";
 export const FORGOT_A = "FORGOT_A";
 export const FORGOT_PASSWORD = "FORGOT_PASSWORD";
 
+export const POST_CONTACTS = "POST_CONTACTS";
+export const GET_CONTACTS = "GET_CONTACTS";
+
 //------------------------------------------------------------------------------------------------//
 
 export const logIn = (form) => async (dispatch) => {
@@ -539,3 +542,65 @@ export const clearForgot = (payload) => {
   };
 };
 
+//------------------------------------------------------------------------------------------------//
+
+export const postContacts = (payload, token) => {  
+  console.log('token', token)
+  return async function (dispatch) {
+    const posteo = {
+      id: payload.id,
+      image: payload.image,
+      name: payload.name,
+      lastName: payload.lastName,
+      email: payload.email,
+      cbu: payload.cbu,
+      alias: payload.alias,
+    };
+    const config = {
+      headers: {
+        Authorization: token,
+      },
+    };
+    const add = await axios.post(
+      "https://h-bank.herokuapp.com/contacts",
+      posteo,
+      config
+    );
+    console.log("Aca hay una respuesta ADD", add);
+    return dispatch({
+      type: POST_CONTACTS,
+      payload: add.data,
+    });
+  };
+};
+
+//------------------------------------------------------------------------------------------------//
+
+export const getContacts = (token) => async (dispatch) => {
+  const config = {
+    headers: {
+      Authorization: token,
+    },
+  };
+  const response = await axios.get(
+    "https://h-bank.herokuapp.com/contacts",
+    config
+  );
+  dispatch({ type: GET_CONTACTS, payload: response.data });
+};
+
+//------------------------------------------------------------------------------------------------//
+
+export const deleteContacts = (id, token) => async (dispatch) => {
+  const config = {
+    headers: {
+      Authorization: token,
+    },
+  };
+  const response = await axios.delete(
+    `https://h-bank.herokuapp.com/contacts/:${id}`,
+    config
+  );  
+};
+
+//------------------------------------------------------------------------------------------------//

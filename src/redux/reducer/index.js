@@ -32,6 +32,8 @@ import {
   FORGOT_A,
   FORGOT_PASSWORD,
   CLEAR_FORGOT,
+  POST_CONTACTS,
+  GET_CONTACTS,
 } from "../actions/index";
 
 const initialState = {
@@ -59,6 +61,8 @@ const initialState = {
   allUsersSearch: [],
   forgotA: [],
   forgotPassword: {},
+  addContacts: [],
+  contacts: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -241,6 +245,16 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         forgotPassword: [],
       };
+    case POST_CONTACTS:
+      return {
+        ...state,
+        addContacts: action.payload,
+      };
+    case GET_CONTACTS:
+      return {
+        ...state,
+        contacts: action.payload,
+      }
     default:
       return state;
   }

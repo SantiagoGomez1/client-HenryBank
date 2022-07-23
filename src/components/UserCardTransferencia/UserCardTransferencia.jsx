@@ -1,11 +1,42 @@
-import React from "react";
-
+import React, { useState } from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import { Icon } from "@rneui/themed";
 
-import { useSelector } from "react-redux";
+import {postContacts} from "../../redux/actions/index";
+import { createIconSetFromFontello } from "react-native-vector-icons";
 
 const UserCardTransferencia = ({data}) => {
+  console.log('data', data)
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
+  const token = useSelector((state) => state.logIn.token);
+  
+  const [contacts, setContacts] = useState({
+    id: '',
+    image: '',
+    name: '',
+    lastName: '',
+    email: '',
+    cbu: '',
+    alias: '',
+  });
+  
+  const addContact = () => {    
+    console.log('conctacto agregado')
+    setContacts({...contacts, 
+      id: data.id,
+      image: data.image,
+      name: data.name,
+      lastName: data.lastName,
+      email: data.email,
+      cbu: data.cbu,
+      alias: data.alias,
+    })
+    // dispatch(postContacts(contacts, token))
+    console.log('contacts', contacts)    
+  };
+  
   return (
     <View style={styles.container}>
       <Image
@@ -14,9 +45,21 @@ const UserCardTransferencia = ({data}) => {
         source={{ uri: `${user.image}` }}
       />
       <View style={styles.containerData}>
+        <Icon
+          style={{          
+            paddingVertical: 1,
+            paddingRight: 2,
+            flexDirection: 'row-reverse',               
+          }}
+          name={'card-account-details-star-outline'}
+          type="material-community"
+          size={35}
+          color={'purple'}        
+          onPress={() => addContact()}
+        />
         <Text style={styles.text}>{data.name} {data.lastName}</Text>
         <Text style={styles.textCBU}>CBU: {data.cbu}</Text>
-      </View>
+      </View >
     </View>
   );
 };
@@ -35,7 +78,7 @@ const styles = StyleSheet.create({
     width:300
   },
   containerData:{
-    paddingLeft:10
+    paddingLeft:10,
   },
   image: {
     width: 70,
