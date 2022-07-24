@@ -36,7 +36,7 @@ const RenderScreenTransferir = ({}) => {
   const handleOnChange = (e, type) => {
     setParams({ ...params, [type]: e.nativeEvent.text });
   };
-
+  
   const searchTransfer = () => {
     if (!params.cbu.length) {
       setErrors("Debes rellenar este campo.");
@@ -77,7 +77,7 @@ const RenderScreenTransferir = ({}) => {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Transferencia</Text>
-      
+            
       <ContactsDialog/>
       
       <Switch setRender={setRender} />

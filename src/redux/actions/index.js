@@ -591,8 +591,7 @@ export const getContacts = (token) => async (dispatch) => {
 
 //------------------------------------------------------------------------------------------------//
 
-export const getContactsSelected = (payload) => {
-  console.log("CONTACT_SELECT", payload);
+export const getContactsSelected = (payload) => {  
   return { type: CONTACT_SELECT, payload: payload };
 };
 

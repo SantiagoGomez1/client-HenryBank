@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {Button, Dialog, ListItem, Avatar, Icon} from '@rneui/themed';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
-import { getContacts, renderScreen, getContactsSelected } from "../../redux/actions/index";
+import { getContacts, renderScreen, getContactsSelected, setTransfer } from "../../redux/actions/index";
 import UserCardContacto from "./UserCardContacto.jsx";
 
 const Dialogs = () => {
@@ -24,7 +24,6 @@ const Dialogs = () => {
     setVisible6(!visible6);
   };
 
-
   const handleChange = (name, id, image, cbu, alias) => {
     toggleDialog6()
     setContactsAdded({...contactsSelected,
@@ -40,12 +39,13 @@ const Dialogs = () => {
 
   useEffect(() => {
     dispatch(getContacts(token));
-    dispatch(getContactsSelected(contactsSelected));
   }, []);
-
+  
   useEffect(() => {
     !contactsSelected.id ? null :
     dispatch(renderScreen(7))
+    dispatch(getContactsSelected(contactsSelected));    
+    dispatch(setTransfer(token, contactsSelected));
   }, [contactsSelected]);  
 
   return (

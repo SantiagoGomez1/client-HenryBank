@@ -17,7 +17,9 @@ const RenderScreenTransferirMonto = () => {
   const user = useSelector((state) => state.userTransfer);
   const myUser = useSelector((state) => state.myUser);
   const contactsSelected = useSelector((state) => state.addContacts);
-  console.log('contactsSelected', contactsSelected)
+
+  // console.log('contactsSelected transferir monto', contactsSelected)  
+
   const dispatch = useDispatch();
 
   useFocusEffect(
@@ -96,8 +98,12 @@ const RenderScreenTransferirMonto = () => {
           )}
         </View>
       </View>
+      {
+      !contactsSelected.id ? 
       <UserCardTransferencia data={user} />
-      {/* <UserCardContacto data={contactsSelected}/> */}
+      :
+      <UserCardContacto data={contactsSelected}/>
+      }
       <View>
         <Button title="Enviar" onPress={() => validar()} />
       </View>
