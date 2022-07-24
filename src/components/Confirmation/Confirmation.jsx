@@ -33,15 +33,27 @@ const Confirmation = () => {
       </LinearGradient>
     );
   }
-  if (
-    logIn.msg === "Contraseña incorrecta" ||
-    logIn.msg === "Usuario no existe"
-  ) {
+  if (logIn.msg === "Contraseña incorrecta") {
     return (
       <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
         <Text style={styles.textMain}>
           La contraseña no coincide con el mail
         </Text>
+        <Image
+          style={styles.imgS}
+          source={require("../../imgs/error.png")}
+        ></Image>
+        <Text style={styles.text0}>
+          {setTimeout(() => {
+            navigation.navigate("Log In");
+          }, 1500)}
+        </Text>
+      </LinearGradient>
+    );
+  } else if (logIn.msg === "Usuario no existe") {
+    return (
+      <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
+        <Text style={styles.textMain}>Usuario inexistente</Text>
         <Image
           style={styles.imgS}
           source={require("../../imgs/error.png")}
