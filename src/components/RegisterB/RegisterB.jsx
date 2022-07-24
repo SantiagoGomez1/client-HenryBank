@@ -31,7 +31,7 @@ const RegisterB = () => {
   // GOOGLE INFO USER
 
   const route = useRoute();
-  const { user } = route.params;
+  // const { user } = route.params;
 
   const [formData, setFormData] = useState({
     name: '',

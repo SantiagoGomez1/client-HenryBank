@@ -115,7 +115,7 @@ export const getUser = () => {
 
 //------------------------------------------------------------------------------------------------//
 
-export const postUserData = (payload, userMP) => {
+export const postUserData = (payload, userMP) => {  
   return async function (dispatch) {
     const posteo = {
       name: payload.name,
@@ -128,6 +128,7 @@ export const postUserData = (payload, userMP) => {
       address: payload.address,
       email: userMP.email,
       password: userMP.password,
+      image: payload.image,
     };
     console.log("Aca hay un posteo", posteo);
     const created = await axios.post(
@@ -143,7 +144,7 @@ export const postUserData = (payload, userMP) => {
 
 //------------------------------------------------------------------------------------------------//
 
-export const postUserDataCard = (payload, userMP) => {
+export const postUserDataCard = (payload, userMP) => {  
   return async function (dispatch) {
     const posteo2 = {
       name: payload.name,
@@ -156,6 +157,7 @@ export const postUserDataCard = (payload, userMP) => {
       address: payload.address,
       email: userMP.email,
       password: userMP.password,
+      image: payload.image,
     };
     console.log("Aca hay un posteo2", posteo2);
     return dispatch({
