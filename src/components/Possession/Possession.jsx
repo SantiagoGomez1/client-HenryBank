@@ -32,9 +32,9 @@ export default function Possession() {
     }, [])
   );
 
-  console.log("Este es el balance", balance);
+  /* console.log("Este es el balance", balance); */
   return (
-    <ScrollView style={styles.card}>
+    <View style={styles.card}>
       <View>
         <View style={{ display: "flex", alignItems: "center" }}>
           <Text
@@ -52,36 +52,41 @@ export default function Possession() {
           <Text style={{ color: "white" }}>Valorizado</Text>
         </View>
       </View>
-
-      {balance.length > 0 &&
-        balance.map(
-          (item, index) =>
-            item.balance !== "0" && (
-              <View key={index}>
-                <TouchableOpacity
-                  style={styles.subCard}
-                  onPress={() => {
-                    navigation.navigate("InvestorDetail", {
-                      id: item.name,
-                      ticket: item.name,
-                      cantidad: item.balance,
-                      precio: item.buyPrice,
-                    });
-                  }}
-                >
-                  <View style={styles.caract}>
-                    <Text style={{ color: "white" }}>{item.name}</Text>
-                    <Text style={{ color: "white" }}>
-                      {parseFloat(item.balance).toFixed(4)}
-                    </Text>
-                    <Text style={{ color: "white" }}>
-                      {parseFloat(item.buyPrice).toFixed(2)}
-                    </Text>
-                  </View>
-                </TouchableOpacity>
-              </View>
-            )
-        )}
+      <ScrollView
+        style={{
+          height: 80,
+        }}
+      >
+        {balance.length > 0 &&
+          balance.map(
+            (item, index) =>
+              item.balance !== "0" && (
+                <View key={index}>
+                  <TouchableOpacity
+                    style={styles.subCard}
+                    onPress={() => {
+                      navigation.navigate("InvestorDetail", {
+                        id: item.name,
+                        ticket: item.name,
+                        cantidad: item.balance,
+                        precio: item.buyPrice,
+                      });
+                    }}
+                  >
+                    <View style={styles.caract}>
+                      <Text style={{ color: "white" }}>{item.name}</Text>
+                      <Text style={{ color: "white" }}>
+                        {parseFloat(item.balance).toFixed(4)}
+                      </Text>
+                      <Text style={{ color: "white" }}>
+                        {parseFloat(item.buyPrice).toFixed(2)}
+                      </Text>
+                    </View>
+                  </TouchableOpacity>
+                </View>
+              )
+          )}
+      </ScrollView>
 
       {/* Segunda seccion */}
 
@@ -103,36 +108,41 @@ export default function Possession() {
           <Text style={{ color: "white" }}>Ganacias</Text>
         </View>
       </View>
-
-      {!lockedStakeP
-        ? null
-        : lockedStakeP.length === lockedStakeF.length
-        ? null
-        : lockedStakeP.map((item, index) => (
-            <View key={index}>
-              <TouchableOpacity
-                style={styles.subCard}
-                onPress={() => {
-                  navigation.navigate("Detalle PF", {
-                    id: item.name,
-                    amount: item.amount,
-                  });
-                }}
-              >
-                <View style={styles.caract}>
-                  <Text style={{ color: "white" }}>
-                    $ {item.amount.substring(1)}
-                  </Text>
-                  <Text style={{ color: "white" }}>53%</Text>
-                  <Text style={{ color: "white" }}>30</Text>
-                  <Text style={{ color: "green" }}>
-                    $ {(item.amount.substring(1) * 1.05).toFixed(2)}*
-                  </Text>
-                </View>
-              </TouchableOpacity>
-            </View>
-          ))}
-    </ScrollView>
+      <ScrollView
+        style={{
+          height: 80,
+        }}
+      >
+        {!lockedStakeP
+          ? null
+          : lockedStakeP.length === lockedStakeF.length
+          ? null
+          : lockedStakeP.map((item, index) => (
+              <View key={index}>
+                <TouchableOpacity
+                  style={styles.subCard}
+                  onPress={() => {
+                    navigation.navigate("Detalle PF", {
+                      id: item.name,
+                      amount: item.amount,
+                    });
+                  }}
+                >
+                  <View style={styles.caract}>
+                    <Text style={{ color: "white" }}>
+                      $ {item.amount.substring(1)}
+                    </Text>
+                    <Text style={{ color: "white" }}>53%</Text>
+                    <Text style={{ color: "white" }}>30</Text>
+                    <Text style={{ color: "green" }}>
+                      $ {(item.amount.substring(1) * 1.05).toFixed(2)}*
+                    </Text>
+                  </View>
+                </TouchableOpacity>
+              </View>
+            ))}
+      </ScrollView>
+    </View>
   );
 }
 
@@ -145,7 +155,7 @@ const styles = StyleSheet.create({
     margin: 10,
     borderRadius: 8,
     padding: 10,
-    height: 400,
+    height: 450,
   },
   subCard: {
     backgroundColor: "rgba(25, 23, 61, 0.5)",

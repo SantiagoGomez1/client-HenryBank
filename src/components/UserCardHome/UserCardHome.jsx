@@ -47,10 +47,10 @@ const UserCardHome = () => {
       </View>
       <View style={{ justifyContent: "center" }}>
         <Icon
-          name="cog-outline"
+          name="account-circle-outline"
           type="material-community"
           color={"white"}
-          size={20}
+          size={30}
           onPress={() => goDrawer()}
         />
       </View>

@@ -46,6 +46,8 @@ export const POST_CONTACTS = "POST_CONTACTS";
 export const GET_CONTACTS = "GET_CONTACTS";
 export const CONTACT_SELECT = "CONTACT_SELECT";
 
+export const USER_TO_ADMIN = "USER_TO_ADMIN";
+
 //------------------------------------------------------------------------------------------------//
 
 export const logIn = (form) => async (dispatch) => {
@@ -380,16 +382,19 @@ export const putTransfer = (token, amount) => async (dispatch) => {
 };
 
 //------------------------------------------------------------------------------------------------//
-var authToken = []
-var tokencio = ['Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJoZW5yeWJhbmsucHJveWVjdEBnbWFpbC5jb20iLCJhcGlfdG9rZW4iOiJqOXhfY2x5N2MwMkx1NFRScjNmbmoxNFUtNjFwMU8tTlZ4eTdYSHRuMWhQaDRzV2hEUjZsbG5mb2k5NGJYSkNTM0hVIn0sImV4cCI6MTY1ODUyNTA2NH0.dykJNJzKi49vwAIfLAwVgq1JYHYeeOOKeEHyDAKS7Mc',]
+var authToken = [];
+var tokencio = [
+  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJoZW5yeWJhbmsucHJveWVjdEBnbWFpbC5jb20iLCJhcGlfdG9rZW4iOiJqOXhfY2x5N2MwMkx1NFRScjNmbmoxNFUtNjFwMU8tTlZ4eTdYSHRuMWhQaDRzV2hEUjZsbG5mb2k5NGJYSkNTM0hVIn0sImV4cCI6MTY1ODUyNTA2NH0.dykJNJzKi49vwAIfLAwVgq1JYHYeeOOKeEHyDAKS7Mc",
+];
 export function getAuthoToken() {
   // console.log('authToken', authToken)
   return async function () {
     const config = {
       headers: {
-        "Accept": "application/json",
-        "api-token": "j9x_cly7c02Lu4TRr3fnj14U-61p1O-NVxy7XHtn1hPh4sWhDR6llnfoi94bXJCS3HU",
-        "user-email": "henrybank.proyect@gmail.com"
+        Accept: "application/json",
+        "api-token":
+          "j9x_cly7c02Lu4TRr3fnj14U-61p1O-NVxy7XHtn1hPh4sWhDR6llnfoi94bXJCS3HU",
+        "user-email": "henrybank.proyect@gmail.com",
       },
     };
     const res = await axios.get(
@@ -397,7 +402,7 @@ export function getAuthoToken() {
       config
     );
     // console.log("res", res.data);
-    authToken.push('Bearer '+Object.values(res.data)[0])
+    authToken.push("Bearer " + Object.values(res.data)[0]);
     // console.log('authToken', authToken[0])
   };
 }
@@ -405,10 +410,10 @@ export function getAuthoToken() {
 export function getCountries() {
   return async function (dispatch) {
     const config = {
-      headers: {        
-        Authorization:                
-        // tokencio[0],
-        authToken[0],
+      headers: {
+        Authorization:
+          // tokencio[0],
+          authToken[0],
       },
     };
     const res = await axios.get(
@@ -429,9 +434,9 @@ export function getCities(value) {
   return async function (dispatch) {
     const config = {
       headers: {
-        Authorization:               
-        // tokencio[0],
-        authToken[0],
+        Authorization:
+          // tokencio[0],
+          authToken[0],
       },
     };
     const res = await axios.get(
@@ -545,7 +550,7 @@ export const clearForgot = (payload) => {
 
 //------------------------------------------------------------------------------------------------//
 
-export const postContacts = (payload, token) => {  
+export const postContacts = (payload, token) => {
   return async function (dispatch) {
     const posteo = {
       id: payload.id,
@@ -606,7 +611,66 @@ export const deleteContacts = (id, token) => async (dispatch) => {
   const response = await axios.delete(
     `https://h-bank.herokuapp.com/contacts/:${id}`,
     config
-  );  
+  );
 };
 
 //------------------------------------------------------------------------------------------------//
+
+export const banUser = (email, token) => async (dispatch) => {
+  const config = {
+    headers: {
+      Authorization: token,
+    },
+  };
+  const response = await axios.put(
+    `https://h-bank.herokuapp.com/admin/disabledUser`,
+    email,
+    config
+  );
+};
+
+//------------------------------------------------------------------------------------------------//
+
+export const disbanUser = (email, token) => async (dispatch) => {
+  const config = {
+    headers: {
+      Authorization: token,
+    },
+  };
+  const response = await axios.put(
+    `https://h-bank.herokuapp.com/admin/enableUser`,
+    email,
+    config
+  );
+};
+
+//------------------------------------------------------------------------------------------------//
+
+export const userToAdmin = (email, token) => async (dispatch) => {
+  const config = {
+    headers: {
+      Authorization: token,
+    },
+  };
+  const response = await axios.put(
+    `https://h-bank.herokuapp.com/admin/userToAdmin`,
+    email,
+    config
+  );
+  dispatch({ type: USER_TO_ADMIN, payload: response.data });
+};
+
+//------------------------------------------------------------------------------------------------//
+
+export const adminToUser = (email, token) => async (dispatch) => {
+  const config = {
+    headers: {
+      Authorization: token,
+    },
+  };
+  const response = await axios.put(
+    `https://h-bank.herokuapp.com/admin/AdminToUser`,
+    email,
+    config
+  );
+};

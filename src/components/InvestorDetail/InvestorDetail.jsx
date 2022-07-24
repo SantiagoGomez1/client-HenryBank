@@ -32,6 +32,7 @@ export default function InvestorDetail({ route, navigation }) {
     return ((vfInvestor - viInvestor) / viInvestor) * 100;
   }
 
+  console.log("Este es el precio", typeof precio);
   return (
     <KeyboardAwareScrollView style={styles.container}>
       <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
@@ -182,13 +183,14 @@ export default function InvestorDetail({ route, navigation }) {
                   },
                 }
               );
-              if (response.data.msg === "Crypto Vendida") {
+              console.log("Vendiendo", response.data);
+              if (response.data.msg === "HenryBank Crypto Vendida") {
+                console.log("Entrando");
                 navigation.navigate("SuccessSell", {
                   success: 1,
                 });
               } else if (
-                response.data.msg ===
-                "No se encontro la crypto, corrobora datos"
+                response.data.msg === "Balance de crypto insuficiente"
               ) {
                 navigation.navigate("SuccessSell", {
                   success: 2,
@@ -202,7 +204,7 @@ export default function InvestorDetail({ route, navigation }) {
               navigation.navigate("InvestorBuyGeneral", {
                 id,
                 ticket,
-                price: precio,
+                price: parseFloat(precio),
               })
             }
           />
