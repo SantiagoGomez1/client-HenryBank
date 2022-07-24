@@ -14,7 +14,7 @@ import { Icon } from "react-native-elements";
 import { getUserDetail } from "../../redux/actions";
 import { useNavigation } from "@react-navigation/native";
 import { useClipboard } from "@react-native-community/hooks";
-
+import UpdateImage from "../UpdateImage/UpdateImage";
 const Configs = () => {
   function capitalizarPrimeraLetra(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
@@ -70,7 +70,8 @@ const Configs = () => {
       </View>
       <Text style={styles.textPerfil}>Configuración de usuario</Text>
       <View>
-        <Image style={styles.imgUser} source={{ uri: user.image }}></Image>
+        {/* <Image style={styles.imgUser} source={{ uri: user.image }}></Image> */}
+       <UpdateImage />
         <Text style={styles.textMain}>
           {capitalizarPrimeraLetra(user.name)}{" "}
           {capitalizarPrimeraLetra(user.lastName)}
