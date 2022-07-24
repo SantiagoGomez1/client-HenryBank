@@ -6,15 +6,76 @@ import {
   Image,
   TouchableOpacity,
   ScrollView,
+  Alert,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useRoute } from "@react-navigation/native";
 import AdminUserCard from "../AdminUserCard/AdminUserCard";
+import {
+  banUser,
+  disbanUser,
+  userToAdmin,
+  adminToUser,
+} from "../../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
 
 const AdminUserDetail = () => {
   const route = useRoute();
   const { info } = route.params;
   console.log(info);
+  const token = useSelector((state) => state.logIn.token);
+  const dispatch = useDispatch();
+
+  const ban = (email) => {
+    Alert.alert(
+      "Ban",
+      `¿Seguro quieres banear a ${info.name} ${info.lastName}?`,
+      [
+        {
+          text: "Cancelar",
+        },
+        { text: "Si", onPress: () => dispatch(banUser(email, token)) },
+      ]
+    );
+  };
+  const disban = (email) => {
+    Alert.alert(
+      "Ban",
+      `¿Seguro quieres desbanear a ${info.name} ${info.lastName}?`,
+      [
+        {
+          text: "Cancelar",
+        },
+        { text: "Si", onPress: () => dispatch(disbanUser(email, token)) },
+      ]
+    );
+  };
+  const admintoUser = (email) => {
+    Alert.alert(
+      "Change Role",
+      `¿Seguro quieres convertir en admin a ${info.name} ${info.lastName}?`,
+      [
+        {
+          text: "Cancelar",
+        },
+        { text: "Si", onPress: () => dispatch(adminToUser(email, token)) },
+      ]
+    );
+  };
+
+  const usertoAdmin = (email) => {
+    Alert.alert(
+      "Change Role",
+      `¿Seguro quieres convertir en admin a ${info.name} ${info.lastName}?`,
+      [
+        {
+          text: "Cancelar",
+        },
+        { text: "Si", onPress: () => dispatch(userToAdmin(email, token)) },
+      ]
+    );
+  };
+
   return (
     <ScrollView style={{ flex: 1 }}>
       <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
@@ -43,18 +104,30 @@ const AdminUserDetail = () => {
             </TouchableOpacity>
           </View>
           <View style={styles.containerOpciones}>
-            <TouchableOpacity style={styles.touchable}>
+            <TouchableOpacity
+              style={styles.touchable}
+              onPress={() => ban(info.email)}
+            >
               <Text style={styles.textSecondary}>Banear</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.touchable}>
+            <TouchableOpacity
+              style={styles.touchable}
+              onPress={() => disban(info.email)}
+            >
               <Text style={styles.textSecondary}>Desbanear</Text>
             </TouchableOpacity>
           </View>
           <View style={styles.containerOpciones}>
-            <TouchableOpacity style={styles.touchable}>
+            <TouchableOpacity
+              style={styles.touchable}
+              onPress={() => usertoAdmin(info.email)}
+            >
               <Text style={styles.textSecondary}>Hacer admin</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.touchable}>
+            <TouchableOpacity
+              style={styles.touchable}
+              onPress={() => admintoUser(info.email)}
+            >
               <Text style={styles.textSecondary}>Hacer usuario</Text>
             </TouchableOpacity>
           </View>

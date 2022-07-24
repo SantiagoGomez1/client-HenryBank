@@ -34,6 +34,7 @@ import {
   CLEAR_FORGOT,
   POST_CONTACTS,
   GET_CONTACTS,
+  USER_TO_ADMIN,
 } from "../actions/index";
 
 const initialState = {
@@ -166,6 +167,10 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
       };
+    case USER_TO_ADMIN:
+      return {
+        ...state,
+      };
     case GET_BALANCE:
       return {
         ...state,
@@ -254,7 +259,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         contacts: action.payload,
-      }
+      };
     default:
       return state;
   }
