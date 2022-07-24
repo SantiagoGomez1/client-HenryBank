@@ -1,16 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { Icon } from "@rneui/themed";
+import { Icon, Button } from "@rneui/themed";
 
 import {postContacts} from "../../redux/actions/index";
-import { createIconSetFromFontello } from "react-native-vector-icons";
 
 const UserCardTransferencia = ({data}) => {
-  console.log('data', data)
-  const dispatch = useDispatch();
-  const user = useSelector((state) => state.user);
-  const token = useSelector((state) => state.logIn.token);
+  // console.log('esta es la data', data)
+  const dispatch = useDispatch();  
+  const token = useSelector((state) => state.logIn.token);  
   
   const [contacts, setContacts] = useState({
     id: '',
@@ -20,10 +18,9 @@ const UserCardTransferencia = ({data}) => {
     email: '',
     cbu: '',
     alias: '',
-  });
-  
-  const addContact = () => {    
-    console.log('conctacto agregado')
+  });  
+
+  const  addContact = () => {    
     setContacts({...contacts, 
       id: data.id,
       image: data.image,
@@ -32,17 +29,21 @@ const UserCardTransferencia = ({data}) => {
       email: data.email,
       cbu: data.cbu,
       alias: data.alias,
-    })
-    // dispatch(postContacts(contacts, token))
-    console.log('contacts', contacts)    
+    })        
+    // console.log('contacts act', contacts)        
   };
+
+  useEffect(() => {
+    !contacts.id ? null :
+    dispatch(postContacts(contacts, token));
+  }, [contacts]);  
   
   return (
     <View style={styles.container}>
       <Image
         onAccessibilityTap={() => onClick()}
         style={styles.image}
-        source={{ uri: `${user.image}` }}
+        source={{ uri: `${data.image}` }}
       />
       <View style={styles.containerData}>
         <Icon

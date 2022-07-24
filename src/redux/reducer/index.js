@@ -34,6 +34,7 @@ import {
   CLEAR_FORGOT,
   POST_CONTACTS,
   GET_CONTACTS,
+  CONTACT_SELECT,
   USER_TO_ADMIN,
 } from "../actions/index";
 
@@ -250,7 +251,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         forgotPassword: [],
       };
-    case POST_CONTACTS:
+    case CONTACT_SELECT:
       return {
         ...state,
         addContacts: action.payload,
