@@ -35,7 +35,6 @@ import {
   POST_CONTACTS,
   GET_CONTACTS,
   CONTACT_SELECT,
-  USER_TO_ADMIN,
 } from "../actions/index";
 
 const initialState = {
@@ -165,10 +164,6 @@ const rootReducer = (state = initialState, action) => {
         charts: action.payload,
       };
     case RECHANGE:
-      return {
-        ...state,
-      };
-    case USER_TO_ADMIN:
       return {
         ...state,
       };

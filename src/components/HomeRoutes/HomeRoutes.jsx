@@ -19,6 +19,7 @@ import MaterialCommunityIcons from "react-native-vector-icons/Ionicons";
 import Home from "../Home/Home.jsx";
 import Wallet from "../Wallet/Wallet.jsx";
 import Investor from "../Investor/Investor.jsx";
+import Banned from "../Banned/Banned";
 
 const HomeRoutes = () => {
   const Tab = createBottomTabNavigator();
@@ -36,6 +37,12 @@ const HomeRoutes = () => {
     dispatch(getNews());
     dispatch(getUserDetail(log));
   }, [dispatch]);
+
+  const user = useSelector((state) => state.userDetail);
+
+  if (user.state === "disabled") {
+    return <Banned />;
+  }
 
   return (
     <Tab.Navigator

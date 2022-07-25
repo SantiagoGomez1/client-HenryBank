@@ -17,6 +17,10 @@ import { searchUser } from "../../redux/actions";
 
 const AdminHome = () => {
   const users = useSelector((state) => state.allUsersSearch);
+  const user = useSelector((state) => state.userDetail);
+  const filtered = users.filter(
+    (u) => u.email !== user.email && u.email !== "enanoloco@henrry.com"
+  );
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const token = useSelector((state) => state.logIn.token);
@@ -33,6 +37,23 @@ const AdminHome = () => {
   const onSumbit = () => {
     dispatch(searchUser(token, input));
   };
+
+  if (!filtered[0]) {
+    return (
+      <LinearGradient
+        colors={["#126492", "#140152"]}
+        style={styles.background2}
+      >
+        <Text style={styles.text2}>
+          ¡No hay usuarios los cuales administrar!
+        </Text>
+        <Image
+          style={styles.img}
+          source={require("../../imgs/error.png")}
+        ></Image>
+      </LinearGradient>
+    );
+  }
   return (
     <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
       <ScrollView>
@@ -55,7 +76,7 @@ const AdminHome = () => {
         </View>
         <View>
           <FlatList
-            data={users}
+            data={filtered}
             renderItem={({ item }) => (
               <View style={styles.container3}>
                 <View style={{ alignSelf: "center" }}>
@@ -95,6 +116,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "flex-start",
   },
+  background2: {
+    justifyContent: "space-evenly",
+    flex: 1,
+  },
   container: {
     marginBottom: 20,
   },
@@ -110,6 +135,12 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(255, 255, 255, 0.3)",
     margin: 10,
     borderRadius: 50,
+  },
+  text2: {
+    color: "#fff",
+    fontSize: 30,
+    textAlign: "center",
+    fontWeight: "bold",
   },
   input: {
     width: "70%",
@@ -133,6 +164,12 @@ const styles = StyleSheet.create({
   got: {
     color: "#fff",
     fontSize: 30,
+  },
+  img: {
+    height: 300,
+    width: 300,
+    alignSelf: "center",
+    padding: 5,
   },
 });
 
