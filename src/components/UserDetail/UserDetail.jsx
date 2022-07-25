@@ -1,5 +1,11 @@
 import React, { useEffect } from "react";
-import { View, StyleSheet, Text, Image, TouchableOpacity } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  BackHandler,
+} from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
@@ -17,6 +23,20 @@ const DetailUser = () => {
   useEffect(() => {
     dispatch(getUserDetail(log));
   }, []);
+
+  React.useEffect(() => {
+    function handleBackButton() {
+      navigation.navigate("Configs");
+      return true;
+    }
+
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      handleBackButton
+    );
+
+    return () => backHandler.remove();
+  }, [navigation]);
   return (
     <View style={styles.container}>
       <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
