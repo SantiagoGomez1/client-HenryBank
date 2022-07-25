@@ -3,7 +3,7 @@ import {
   Dimensions,
   StyleSheet,
   Text,
-  TextInput,
+  BackHandler,
   View,
 } from "react-native";
 import React, { useEffect } from "react";
@@ -32,7 +32,19 @@ export default function InvestorDetail({ route, navigation }) {
     return ((vfInvestor - viInvestor) / viInvestor) * 100;
   }
 
-  console.log("Este es el precio", typeof precio);
+  React.useEffect(() => {
+    function handleBackButton() {
+      navigation.navigate("Investor");
+      return true;
+    }
+
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      handleBackButton
+    );
+
+    return () => backHandler.remove();
+  }, [navigation]);
   return (
     <KeyboardAwareScrollView style={styles.container}>
       <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>

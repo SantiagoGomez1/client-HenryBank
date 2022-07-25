@@ -609,14 +609,15 @@ export const getContactsSelected = payload => {
 
 //------------------------------------------------------------------------------------------------//
 
-export const deleteContacts = (id, token) => async dispatch => {
+
+export const deleteContacts = (id, token) => async () => {  
   const config = {
     headers: {
       Authorization: token,
     },
   };
   const response = await axios.delete(
-    `https://h-bank.herokuapp.com/contacts/:${id}`,
+    `https://h-bank.herokuapp.com/contacts/${id}`,
     config
   );
 };
