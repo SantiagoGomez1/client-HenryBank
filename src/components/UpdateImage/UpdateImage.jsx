@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import { View, Image, StyleSheet } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
+import { getMyUser } from "../../redux/actions";
 import { IconButton } from "react-native-paper";
 import axios from "axios";
 
@@ -9,10 +10,9 @@ import * as ImagePickerExpo from "expo-image-picker";
 
 const UpdateImage = () => {
   const token = useSelector((state) => state.logIn.token);
+  const myUser = useSelector((state) => state.myUser);
 
-  const [image, setImage] = useState(
-    "https://www.seekpng.com/png/full/847-8474751_download-empty-profile.png"
-  );
+  const [image, setImage] = useState(myUser.image);
 
   const pickImage = async () => {
     let result = await ImagePickerExpo.launchImageLibraryAsync({
@@ -59,23 +59,31 @@ const UpdateImage = () => {
       .then((res) => res.json())
       .then((data) => {
         setImage(data.url);
+        update(data.url);
       });
   };
 
-  const config = {
-    headers: {
-      Authorization: token,
-    },
+  const update = async (image) => {
+    const config = {
+      headers: {
+        Authorization: token,
+      },
+    };
+    const img = {
+      image: image,
+    };
+    const response = await axios.put(
+      "https://h-bank.herokuapp.com/user/profileImage",
+      img,
+      config
+    );
   };
-  const img = {
-    image: image,
-  };
-
-  axios.put("https://h-bank.herokuapp.com/user/recharge", img, config);
 
   return (
     <View>
-      <View style={{ flexDirection: "row", alignSelf: "center", paddingLeft:50 }}>
+      <View
+        style={{ flexDirection: "row", alignSelf: "center", paddingLeft: 50 }}
+      >
         <Image
           style={{
             alignSelf: "center",
@@ -85,7 +93,7 @@ const UpdateImage = () => {
           }}
           source={{ uri: image }}
         />
-        <View style={{justifyContent:'space-evenly'}}>
+        <View style={{ justifyContent: "space-evenly" }}>
           <IconButton
             style={styles.btn}
             icon="camera-burst"

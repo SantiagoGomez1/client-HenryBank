@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, Button, TextInput, Alert } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import { useFocusEffect } from "@react-navigation/native";
 import { useNavigation } from "@react-navigation/native";
-import { getMyUser, putTransfer, contactsSelected } from "../../redux/actions/index";
+import { getMyUser, putTransfer } from "../../redux/actions/index";
 
 import UserCardTransferencia from "../UserCardTransferencia/UserCardTransferencia";
 import UserCardContacto from "../RenderScreenTransferir/UserCardContacto.jsx";
@@ -17,8 +17,6 @@ const RenderScreenTransferirMonto = () => {
   const user = useSelector((state) => state.userTransfer);
   const myUser = useSelector((state) => state.myUser);
   const contactsSelected = useSelector((state) => state.addContacts);
-
-  // console.log('contactsSelected transferir monto', contactsSelected)  
 
   const dispatch = useDispatch();
 
