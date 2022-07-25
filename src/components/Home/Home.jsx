@@ -26,6 +26,7 @@ var { height } = Dimensions.get("window");
 const Home = () => {
   const screen = useSelector((state) => state.renderScreen);
   const token = useSelector((state) => state.logIn.token);
+
   const dispatch = useDispatch();
 
   const setScreen = (screen) => {

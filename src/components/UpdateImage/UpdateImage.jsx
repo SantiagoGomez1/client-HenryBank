@@ -77,6 +77,7 @@ const UpdateImage = () => {
       img,
       config
     );
+    console.log(response.data)
   };
 
   return (

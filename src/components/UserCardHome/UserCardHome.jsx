@@ -9,7 +9,7 @@ import { Icon } from "react-native-elements";
 import Constants from "expo-constants";
 
 const UserCardHome = () => {
-  const user = useSelector((state) => state.userDetail);
+  const user = useSelector((state) => state.myUser);
   const navigation = useNavigation();
   const goDrawer = () => {
     navigation.navigate("Configs");
