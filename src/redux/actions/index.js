@@ -46,6 +46,10 @@ export const POST_CONTACTS = "POST_CONTACTS";
 export const GET_CONTACTS = "GET_CONTACTS";
 export const CONTACT_SELECT = "CONTACT_SELECT";
 
+export const GET_CRYPTOS_HISTORIAL = "GET_CRYPTOS_HISTORIAL";
+export const GET_LOCKEDSTAKE_HISTORIAL = "GET_LOCKEDSTAKE_HISTORIAL";
+export const GET_TRANSACTIONS_HISTORIAL = "GET_TRANSACTIONS_HISTORIAL";
+
 //------------------------------------------------------------------------------------------------//
 
 export const logIn = (form) => async (dispatch) => {
@@ -686,4 +690,52 @@ export const adminToUser = (email, token) => async (dispatch) => {
     info,
     config
   );
+};
+
+//------------------------------------------------------------------------------------------------//
+
+export const getCryptosHistorial = (email, token) => async (dispatch) => {
+  console.log(email, token);
+  const config = {
+    headers: {
+      Authorization: token,
+    },
+  };
+  const response = await axios.get(
+    `https://h-bank.herokuapp.com/admin/cryptos?email=${email}`,
+    config
+  );
+  dispatch({ type: GET_CRYPTOS_HISTORIAL, payload: response.data });
+};
+
+//------------------------------------------------------------------------------------------------//
+
+export const getLockedStakeHistorial = (email, token) => async (dispatch) => {
+  console.log(email, token);
+  const config = {
+    headers: {
+      Authorization: token,
+    },
+  };
+  const response = await axios.get(
+    `https://h-bank.herokuapp.com/admin/lockedStake?email=${email}`,
+    config
+  );
+  dispatch({ type: GET_LOCKEDSTAKE_HISTORIAL, payload: response.data });
+};
+
+//------------------------------------------------------------------------------------------------//
+
+export const getTransactionsHistorial = (email, token) => async (dispatch) => {
+  console.log(email, token);
+  const config = {
+    headers: {
+      Authorization: token,
+    },
+  };
+  const response = await axios.get(
+    `https://h-bank.herokuapp.com/admin/transactions?email=${email}`,
+    config
+  );
+  dispatch({ type: GET_TRANSACTIONS_HISTORIAL, payload: response.data });
 };

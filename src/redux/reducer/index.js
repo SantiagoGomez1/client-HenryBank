@@ -35,6 +35,9 @@ import {
   POST_CONTACTS,
   GET_CONTACTS,
   CONTACT_SELECT,
+  GET_CRYPTOS_HISTORIAL,
+  GET_LOCKEDSTAKE_HISTORIAL,
+  GET_TRANSACTIONS_HISTORIAL,
 } from "../actions/index";
 
 const initialState = {
@@ -64,6 +67,7 @@ const initialState = {
   forgotPassword: {},
   addContacts: [],
   contacts: [],
+  historial: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -255,6 +259,21 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         contacts: action.payload,
+      };
+    case GET_CRYPTOS_HISTORIAL:
+      return {
+        ...state,
+        historial: action.payload,
+      };
+    case GET_LOCKEDSTAKE_HISTORIAL:
+      return {
+        ...state,
+        historial: action.payload,
+      };
+    case GET_TRANSACTIONS_HISTORIAL:
+      return {
+        ...state,
+        historial: action.payload,
       };
     default:
       return state;
