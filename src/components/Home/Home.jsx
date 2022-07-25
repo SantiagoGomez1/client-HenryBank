@@ -1,7 +1,13 @@
 import React from "react";
 
-
-import { View, StyleSheet, Text, Dimensions, BackHandler } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Text,
+  Dimensions,
+  BackHandler,
+  Alert,
+} from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { useNavigation } from "@react-navigation/native";
@@ -26,7 +32,6 @@ import RenderScreenIngresar from "../RenderScreenIngresar/RenderScreenIngresar.j
 var { height } = Dimensions.get("window");
 
 const Home = () => {
-
   const navigation = useNavigation();
   const screen = useSelector((state) => state.renderScreen);
   const token = useSelector((state) => state.logIn.token);
