@@ -1,11 +1,12 @@
 import React from "react";
 
-import { View, StyleSheet, Text, Dimensions } from "react-native";
+import { View, StyleSheet, Text, Dimensions, BackHandler } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useDispatch, useSelector } from "react-redux";
 import { TouchableOpacity } from "react-native";
 import { renderScreen } from "../../redux/actions";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { useNavigation } from "@react-navigation/native";
 
 import UserCardHome from "../UserCardHome/UserCardHome.jsx";
 import UserCapital from "../UserCapital/UserCapital.jsx";
@@ -23,12 +24,33 @@ import RenderScreenIngresar from "../RenderScreenIngresar/RenderScreenIngresar.j
 var { height } = Dimensions.get("window");
 
 const Home = () => {
+  const navigation = useNavigation();
   let screen = useSelector((state) => state.renderScreen);
   const dispatch = useDispatch();
 
   const setScreen = (screen) => {
     dispatch(renderScreen(screen));
   };
+
+  function isSelectionModeEnabled() {
+    navigation.popToTop();
+    return true;
+  }
+
+  React.useEffect(() => {
+    function handleBackButton() {
+      navigation.navigate("Home");
+      dispatch(renderScreen(0));
+      return true;
+    }
+
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      handleBackButton
+    );
+
+    return () => backHandler.remove();
+  }, [navigation]);
 
   return (
     <KeyboardAwareScrollView style={styles.container}>
