@@ -63,6 +63,7 @@ const AdminHome = () => {
         <View style={styles.container2}>
           <Input
             containerStyle={styles.input}
+            style={styles.colorInput}
             placeholder="estebanquito.henrybank"
             onChange={(e) => handleOnChange(e, "user")}
           ></Input>
@@ -144,6 +145,9 @@ const styles = StyleSheet.create({
   },
   input: {
     width: "70%",
+  },
+  colorInput: {
+    color: "white",
   },
   btn: {
     height: "auto",

@@ -4,7 +4,6 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/Ionicons";
 
 import AdminHome from "../AdminHome/AdminHome";
-import AdminActions from "../AdminActions/AdminActions";
 
 const AdminRoutes = () => {
   const Tab = createBottomTabNavigator();
