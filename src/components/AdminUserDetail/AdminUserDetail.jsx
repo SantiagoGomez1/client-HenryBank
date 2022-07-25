@@ -11,7 +11,6 @@ import {
 import { LinearGradient } from "expo-linear-gradient";
 import { useRoute } from "@react-navigation/native";
 import AdminUserCard from "../AdminUserCard/AdminUserCard";
-import { useNavigation } from "@react-navigation/native";
 import {
   banUser,
   disbanUser,
@@ -21,33 +20,11 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 
 const AdminUserDetail = () => {
-  const navigation = useNavigation();
   const route = useRoute();
   const { info } = route.params;
+  console.log(info);
   const token = useSelector((state) => state.logIn.token);
   const dispatch = useDispatch();
-
-  const goCrypto = (email) => {
-    navigation.navigate("AdminMovements", {
-      email: email,
-      type: "Cryptos",
-      name: `${info.name} ${info.lastName}`,
-    });
-  };
-  const goPlazos = (email) => {
-    navigation.navigate("AdminMovements", {
-      email: email,
-      type: "Plazos fijos",
-      name: `${info.name} ${info.lastName}`,
-    });
-  };
-  const goTransacciones = (email) => {
-    navigation.navigate("AdminMovements", {
-      email: email,
-      type: "Transacciones",
-      name: `${info.name} ${info.lastName}`,
-    });
-  };
 
   const ban = (email) => {
     Alert.alert(
@@ -122,22 +99,13 @@ const AdminUserDetail = () => {
                 marginTop: 15,
               }}
             >
-              <TouchableOpacity
-                style={styles.touchable}
-                onPress={() => goCrypto(info.email)}
-              >
+              <TouchableOpacity style={styles.touchable}>
                 <Text style={styles.textSecondary}>Cryptos</Text>
               </TouchableOpacity>
-              <TouchableOpacity
-                style={styles.touchable}
-                onPress={() => goPlazos(info.email)}
-              >
+              <TouchableOpacity style={styles.touchable}>
                 <Text style={styles.textSecondary}>Plazos fijos</Text>
               </TouchableOpacity>
-              <TouchableOpacity
-                style={styles.touchable}
-                onPress={() => goTransacciones(info.email)}
-              >
+              <TouchableOpacity style={styles.touchable}>
                 <Text style={styles.textSecondary}>Transacciones</Text>
               </TouchableOpacity>
             </View>
