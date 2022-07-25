@@ -1,50 +1,55 @@
-const axios = require('axios');
-import { dataa } from '../../../response';
 
-export const GET_USERS = 'GET_USERS';
-export const GET_USER = 'GET_USER';
-export const GET_MY_USER = 'GET_MY_USER';
-export const LOG_IN = 'LOG_IN';
-export const RENDER_SCREEN = 'RENDER_SCREEN';
-export const USER_TRANSFER = 'USER_TRANSFER';
-export const USER_TRANSFER_ALIAS = 'USER_TRANSFER_ALIAS';
+const axios = require("axios");
+import { dataa } from "../../../response";
 
-export const GET_NEWS = 'GET_NEWS';
-export const SET_TRANSFER = 'SET_TRANSFER';
+export const GET_USERS = "GET_USERS";
+export const GET_USER = "GET_USER";
+export const GET_MY_USER = "GET_MY_USER";
+export const LOG_IN = "LOG_IN";
+export const RENDER_SCREEN = "RENDER_SCREEN";
+export const USER_TRANSFER = "USER_TRANSFER";
+export const USER_TRANSFER_ALIAS = "USER_TRANSFER_ALIAS";
 
-export const SET_TRANSFER_ALIAS = 'SET_TRANSFER_ALIAS';
-export const PUT_TRANSFER = 'PUT_TRANSFER';
-export const GET_MOVEMENTS = 'GET_MOVEMENTS';
-export const DETAIL_MOVEMENTS = 'DETAIL_MOVEMENTS';
+export const GET_NEWS = "GET_NEWS";
+export const SET_TRANSFER = "SET_TRANSFER";
 
-export const POST_USER_DATA = 'POST_USER_DATA';
-export const POST_USER = 'POST_USER';
-export const POST_USER_RENDER = 'POST_USER_RENDER';
+export const SET_TRANSFER_ALIAS = "SET_TRANSFER_ALIAS";
+export const PUT_TRANSFER = "PUT_TRANSFER";
+export const GET_MOVEMENTS = "GET_MOVEMENTS";
+export const DETAIL_MOVEMENTS = "DETAIL_MOVEMENTS";
 
-export const GET_COINS = 'GET_COINS';
-export const SEARCH_COINS = 'SEARCH_COINS';
-export const GET_COIN_ID = 'GET_COIN_ID';
-export const GET_USER_DETAIL = 'GET_USER_DETAIL';
-export const GET_ALL_USERS = 'GET_ALL_USERS';
-export const SELL_CRYPTOS = 'SELL_CRYPTOS';
-export const PRICES_CHARTS = 'PRICES_CHARTS';
-export const RECHANGE = 'RECHANGE';
-export const GET_BALANCE = 'GET_BALANCE';
-export const POST_LOCKED_STAKE = 'POST_LOCKED_STAKE';
+export const POST_USER_DATA = "POST_USER_DATA";
+export const POST_USER = "POST_USER";
+export const POST_USER_RENDER = "POST_USER_RENDER";
 
-export const GET_COUNTRIES = 'GET_COUNTRIES';
-export const GET_CITIES = 'GET_CITIES';
+export const GET_COINS = "GET_COINS";
+export const SEARCH_COINS = "SEARCH_COINS";
+export const GET_COIN_ID = "GET_COIN_ID";
+export const GET_USER_DETAIL = "GET_USER_DETAIL";
+export const GET_ALL_USERS = "GET_ALL_USERS";
+export const SELL_CRYPTOS = "SELL_CRYPTOS";
+export const PRICES_CHARTS = "PRICES_CHARTS";
+export const RECHANGE = "RECHANGE";
+export const GET_BALANCE = "GET_BALANCE";
+export const POST_LOCKED_STAKE = "POST_LOCKED_STAKE";
 
-export const CLEAR_FORGOT = 'CLEAR_FORGOT';
-export const CLEAR_LOGIN = 'CLEAR_LOGIN';
-export const SEARCH_USER = 'SEARCH_USER';
+export const GET_COUNTRIES = "GET_COUNTRIES";
+export const GET_CITIES = "GET_CITIES";
 
-export const FORGOT_A = 'FORGOT_A';
-export const FORGOT_PASSWORD = 'FORGOT_PASSWORD';
+export const CLEAR_FORGOT = "CLEAR_FORGOT";
+export const CLEAR_LOGIN = "CLEAR_LOGIN";
+export const SEARCH_USER = "SEARCH_USER";
 
-export const POST_CONTACTS = 'POST_CONTACTS';
-export const GET_CONTACTS = 'GET_CONTACTS';
-export const CONTACT_SELECT = 'CONTACT_SELECT';
+export const FORGOT_A = "FORGOT_A";
+export const FORGOT_PASSWORD = "FORGOT_PASSWORD";
+
+export const POST_CONTACTS = "POST_CONTACTS";
+export const GET_CONTACTS = "GET_CONTACTS";
+export const CONTACT_SELECT = "CONTACT_SELECT";
+
+export const GET_CRYPTOS_HISTORIAL = "GET_CRYPTOS_HISTORIAL";
+export const GET_LOCKEDSTAKE_HISTORIAL = "GET_LOCKEDSTAKE_HISTORIAL";
+export const GET_TRANSACTIONS_HISTORIAL = "GET_TRANSACTIONS_HISTORIAL";
 
 //------------------------------------------------------------------------------------------------//
 
@@ -694,4 +699,52 @@ export const adminToUser = (email, token) => async dispatch => {
     info,
     config
   );
+};
+
+//------------------------------------------------------------------------------------------------//
+
+export const getCryptosHistorial = (email, token) => async (dispatch) => {
+  console.log(email, token);
+  const config = {
+    headers: {
+      Authorization: token,
+    },
+  };
+  const response = await axios.get(
+    `https://h-bank.herokuapp.com/admin/cryptos?email=${email}`,
+    config
+  );
+  dispatch({ type: GET_CRYPTOS_HISTORIAL, payload: response.data });
+};
+
+//------------------------------------------------------------------------------------------------//
+
+export const getLockedStakeHistorial = (email, token) => async (dispatch) => {
+  console.log(email, token);
+  const config = {
+    headers: {
+      Authorization: token,
+    },
+  };
+  const response = await axios.get(
+    `https://h-bank.herokuapp.com/admin/lockedStake?email=${email}`,
+    config
+  );
+  dispatch({ type: GET_LOCKEDSTAKE_HISTORIAL, payload: response.data });
+};
+
+//------------------------------------------------------------------------------------------------//
+
+export const getTransactionsHistorial = (email, token) => async (dispatch) => {
+  console.log(email, token);
+  const config = {
+    headers: {
+      Authorization: token,
+    },
+  };
+  const response = await axios.get(
+    `https://h-bank.herokuapp.com/admin/transactions?email=${email}`,
+    config
+  );
+  dispatch({ type: GET_TRANSACTIONS_HISTORIAL, payload: response.data });
 };
