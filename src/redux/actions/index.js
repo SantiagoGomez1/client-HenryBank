@@ -46,8 +46,6 @@ export const POST_CONTACTS = "POST_CONTACTS";
 export const GET_CONTACTS = "GET_CONTACTS";
 export const CONTACT_SELECT = "CONTACT_SELECT";
 
-export const USER_TO_ADMIN = "USER_TO_ADMIN";
-
 //------------------------------------------------------------------------------------------------//
 
 export const logIn = (form) => async (dispatch) => {
@@ -115,7 +113,7 @@ export const getUser = () => {
 
 //------------------------------------------------------------------------------------------------//
 
-export const postUserData = (payload, userMP) => {  
+export const postUserData = (payload, userMP) => {
   return async function (dispatch) {
     const posteo = {
       name: payload.name,
@@ -144,7 +142,7 @@ export const postUserData = (payload, userMP) => {
 
 //------------------------------------------------------------------------------------------------//
 
-export const postUserDataCard = (payload, userMP) => {  
+export const postUserDataCard = (payload, userMP) => {
   return async function (dispatch) {
     const posteo2 = {
       name: payload.name,
@@ -583,7 +581,7 @@ export const postContacts = (payload, token) => {
 
 //------------------------------------------------------------------------------------------------//
 
-export const getContacts = (token) => async (dispatch) => {  
+export const getContacts = (token) => async (dispatch) => {
   const config = {
     headers: {
       Authorization: token,
@@ -598,7 +596,7 @@ export const getContacts = (token) => async (dispatch) => {
 
 //------------------------------------------------------------------------------------------------//
 
-export const getContactsSelected = (payload) => {  
+export const getContactsSelected = (payload) => {
   return { type: CONTACT_SELECT, payload: payload };
 };
 
@@ -619,14 +617,17 @@ export const deleteContacts = (id, token) => async (dispatch) => {
 //------------------------------------------------------------------------------------------------//
 
 export const banUser = (email, token) => async (dispatch) => {
+  const info = {
+    email: email,
+  };
   const config = {
     headers: {
       Authorization: token,
     },
   };
-  const response = await axios.put(
+  await axios.put(
     `https://h-bank.herokuapp.com/admin/disabledUser`,
-    email,
+    info,
     config
   );
 };
@@ -634,14 +635,17 @@ export const banUser = (email, token) => async (dispatch) => {
 //------------------------------------------------------------------------------------------------//
 
 export const disbanUser = (email, token) => async (dispatch) => {
+  const info = {
+    email: email,
+  };
   const config = {
     headers: {
       Authorization: token,
     },
   };
-  const response = await axios.put(
+  await axios.put(
     `https://h-bank.herokuapp.com/admin/enableUser`,
-    email,
+    info,
     config
   );
 };
@@ -649,30 +653,37 @@ export const disbanUser = (email, token) => async (dispatch) => {
 //------------------------------------------------------------------------------------------------//
 
 export const userToAdmin = (email, token) => async (dispatch) => {
+  console.log(email, token);
+  const info = {
+    email: email,
+  };
   const config = {
     headers: {
       Authorization: token,
     },
   };
-  const response = await axios.put(
+  await axios.put(
     `https://h-bank.herokuapp.com/admin/userToAdmin`,
-    email,
+    info,
     config
   );
-  dispatch({ type: USER_TO_ADMIN, payload: response.data });
 };
 
 //------------------------------------------------------------------------------------------------//
 
 export const adminToUser = (email, token) => async (dispatch) => {
+  console.log(email, token);
+  const info = {
+    email: email,
+  };
   const config = {
     headers: {
       Authorization: token,
     },
   };
-  const response = await axios.put(
+  await axios.put(
     `https://h-bank.herokuapp.com/admin/AdminToUser`,
-    email,
+    info,
     config
   );
 };

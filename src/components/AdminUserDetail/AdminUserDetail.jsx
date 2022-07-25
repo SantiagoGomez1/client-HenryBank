@@ -91,18 +91,28 @@ const AdminUserDetail = () => {
             <Text style={styles.textSecondary}>{info.email}</Text>
             <Text style={styles.textSecondary}>{info.alias}</Text>
             <Text style={styles.textSecondary}>{info.cbu}</Text>
+            <View
+              style={{
+                alignItems: "center",
+                alignSelf: "center",
+                flexDirection: "column",
+                marginTop: 15,
+              }}
+            >
+              <TouchableOpacity style={styles.touchable}>
+                <Text style={styles.textSecondary}>Cryptos</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.touchable}>
+                <Text style={styles.textSecondary}>Plazos fijos</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.touchable}>
+                <Text style={styles.textSecondary}>Transacciones</Text>
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
         <View style={styles.container}>
           <Text style={styles.titleMain}>Opciones</Text>
-          <View style={styles.containerOpciones}>
-            <TouchableOpacity style={styles.touchable}>
-              <Text style={styles.textSecondary}>Plazos fijos</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.touchable}>
-              <Text style={styles.textSecondary}>Transacciones</Text>
-            </TouchableOpacity>
-          </View>
           <View style={styles.containerOpciones}>
             <TouchableOpacity
               style={styles.touchable}

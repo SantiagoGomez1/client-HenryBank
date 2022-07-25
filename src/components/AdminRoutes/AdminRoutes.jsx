@@ -31,19 +31,6 @@ const AdminRoutes = () => {
           ),
         }}
       />
-      <Tab.Screen
-        name="AdminActions"
-        component={AdminActions}
-        options={{
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons
-              name="stats-chart"
-              color={color}
-              size={size}
-            />
-          ),
-        }}
-      />
     </Tab.Navigator>
   );
 };

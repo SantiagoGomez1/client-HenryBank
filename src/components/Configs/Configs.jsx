@@ -71,7 +71,7 @@ const Configs = () => {
       <Text style={styles.textPerfil}>Configuración de usuario</Text>
       <View>
         {/* <Image style={styles.imgUser} source={{ uri: user.image }}></Image> */}
-       <UpdateImage />
+        <UpdateImage />
         <Text style={styles.textMain}>
           {capitalizarPrimeraLetra(user.name)}{" "}
           {capitalizarPrimeraLetra(user.lastName)}
