@@ -1,8 +1,10 @@
 import React from "react";
 
-import { View, StyleSheet, Text, Dimensions } from "react-native";
+
+import { View, StyleSheet, Text, Dimensions, BackHandler } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { useNavigation } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
@@ -24,6 +26,8 @@ import RenderScreenIngresar from "../RenderScreenIngresar/RenderScreenIngresar.j
 var { height } = Dimensions.get("window");
 
 const Home = () => {
+
+  const navigation = useNavigation();
   const screen = useSelector((state) => state.renderScreen);
   const token = useSelector((state) => state.logIn.token);
   const dispatch = useDispatch();
@@ -31,6 +35,21 @@ const Home = () => {
   const setScreen = (screen) => {
     dispatch(renderScreen(screen));
   };
+
+  React.useEffect(() => {
+    function handleBackButton() {
+      navigation.navigate("Home");
+      dispatch(renderScreen(0));
+      return true;
+    }
+
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      handleBackButton
+    );
+
+    return () => backHandler.remove();
+  }, [navigation]);
 
   useFocusEffect(
     React.useCallback(() => {

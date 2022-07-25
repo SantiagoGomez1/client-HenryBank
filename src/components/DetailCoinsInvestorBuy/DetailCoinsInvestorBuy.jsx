@@ -1,4 +1,11 @@
-import { StyleSheet, Text, View, Image, Button } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  Button,
+  BackHandler,
+} from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,6 +19,20 @@ export default function DetailCoinsInvestorBuy({ route, navigation }) {
   useEffect(() => {
     dispatch(getCoinId(route.params.id));
   }, []);
+
+  React.useEffect(() => {
+    function handleBackButton() {
+      navigation.navigate("InvestorBuy");
+      return true;
+    }
+
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      handleBackButton
+    );
+
+    return () => backHandler.remove();
+  }, [navigation]);
 
   return (
     <View style={styles.container}>
