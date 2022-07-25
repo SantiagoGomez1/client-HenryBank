@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {Button, Dialog, ListItem, Avatar, Icon} from '@rneui/themed';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { useFocusEffect } from "@react-navigation/native";
 
-import { getContacts, renderScreen, getContactsSelected, setTransfer } from "../../redux/actions/index";
+import { getContacts, renderScreen, getContactsSelected, setTransfer, deleteContacts } from "../../redux/actions/index";
 import UserCardContacto from "./UserCardContacto.jsx";
 
 const Dialogs = () => {
@@ -12,7 +13,6 @@ const Dialogs = () => {
   const contacts = useSelector((state) => state.contacts);
 
   const [visible6, setVisible6] = useState(false);
-
   const [contactsSelected, setContactsAdded] = useState({
       name: '',
       cbu: '',
@@ -31,15 +31,17 @@ const Dialogs = () => {
       cbu: cbu,
       id: id,
       image: image,
-    });  
-    // dispatch(renderScreen(7));
+    });      
   };
   
-  // console.log('contactsSelected', contactsSelected)
-
+  const handleDeleteContacts = (id) => {
+    dispatch(deleteContacts(id, token))
+    toggleDialog6()
+  };
+  
   useEffect(() => {
     dispatch(getContacts(token));
-  }, []);
+  }, []);  
   
   useEffect(() => {
     !contactsSelected.id ? null :
@@ -47,18 +49,30 @@ const Dialogs = () => {
     dispatch(getContactsSelected(contactsSelected));    
     dispatch(setTransfer(token, contactsSelected));
   }, [contactsSelected]);  
+  
+  // useFocusEffect(
+  //   React.useCallback(() => {
+  //     !contactsSelected.id ? null :
+  //     dispatch(renderScreen(7))
+  //     dispatch(getContactsSelected(contactsSelected));
+  //     dispatch(setTransfer(token, contactsSelected));
+  //   }, [contactsSelected])
+  // );
 
   return (
     <View>
       <View style={styles.buttonContainer}>
-        <Button
-          buttonStyle={styles.button}
-          title="Contactos"
+        <Icon
+          name={'account-multiple'}
+          type="material-community"
+          size={55}
+          color={'yellow'}          
           onPress={toggleDialog6}
-        >
-          Contactos
-          <Icon name="star" color="yellow" />
-        </Button>
+        />
+        <Text
+          style={styles.label}
+          >Contactos
+        </Text>
 
         {!contactsSelected.id ? null : <UserCardContacto data={contactsSelected} />}
         
@@ -85,6 +99,18 @@ const Dialogs = () => {
               <ListItem.Subtitle>Alias: {el.alias}</ListItem.Subtitle>
               <ListItem.Subtitle>CBU: {el.cbu}</ListItem.Subtitle>
             </ListItem.Content>
+              <Icon
+                style={{          
+                  paddingVertical: 1,
+     
+                  flexDirection: 'row-reverse',               
+                }}
+                name={'account-remove'}
+                type="material-community"
+                size={35}
+                color={'red'}
+                onPress={() => handleDeleteContacts(el.id)}
+              />
           </ListItem>
 
         ))}
@@ -94,10 +120,9 @@ const Dialogs = () => {
 };
 
 const styles = StyleSheet.create({
-  button: {
-    borderRadius: 6,
-    width: 'auto',
-    margin: 20,
+  label: {
+    color: 'white',
+    margin: -10,
   },
   buttonContainer: {
     // margin: -20,

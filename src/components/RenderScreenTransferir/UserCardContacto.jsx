@@ -4,9 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Icon, Button } from "@rneui/themed";
 
 
-const UserCardContacto = ({data}) => {
-  // console.log('esta es la data contactsSelected', data)
-  
+const UserCardContacto = ({data}) => {  
   return (
     <View style={styles.container}>
       <Image
@@ -15,6 +13,17 @@ const UserCardContacto = ({data}) => {
         source={{ uri: `${data.image}` }}
       />
       <View style={styles.containerData}>
+        <Icon
+            style={{          
+              paddingVertical: 1,
+              paddingRight: 2,
+              flexDirection: 'row-reverse',               
+            }}
+            name={'account-check'}
+            type="material-community"
+            size={35}
+            color={'yellow'}
+          />
         <Text style={styles.text}>{data.name} </Text>
         <Text style={styles.textCBU}>CBU: {data.cbu}</Text>
       </View >
