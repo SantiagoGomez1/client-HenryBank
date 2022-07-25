@@ -1,5 +1,11 @@
 import React from "react";
-import { TouchableOpacity, Text, StyleSheet, View } from "react-native";
+import {
+  TouchableOpacity,
+  Text,
+  StyleSheet,
+  View,
+  BackHandler,
+} from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import Constants from "expo-constants";
 import { useNavigation } from "@react-navigation/native";
@@ -10,6 +16,20 @@ const Help = () => {
   const goBack = () => {
     navigation.navigate("Configs");
   };
+
+  React.useEffect(() => {
+    function handleBackButton() {
+      navigation.navigate("Configs");
+      return true;
+    }
+
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      handleBackButton
+    );
+
+    return () => backHandler.remove();
+  }, [navigation]);
   return (
     <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
       <Text style={styles.title}>Ayuda</Text>

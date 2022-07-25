@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, Alert  } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { Icon, Button } from "@rneui/themed";
 
 import {postContacts} from "../../redux/actions/index";
 
-const UserCardTransferencia = ({data}) => {
-  // console.log('esta es la data', data)
+const UserCardTransferencia = ({data}) => {  
   const dispatch = useDispatch();  
-  const token = useSelector((state) => state.logIn.token);  
+  const token = useSelector((state) => state.logIn.token);
+  const contactsAdded = useSelector((state) => state.contacts);
+  let added = false;
+  contactsAdded.find(el => el.name === data.name) ? added = true : added = false;
   
   const [contacts, setContacts] = useState({
     id: '',
@@ -20,7 +22,7 @@ const UserCardTransferencia = ({data}) => {
     alias: '',
   });  
 
-  const  addContact = () => {    
+  const  addContact = () => {      
     setContacts({...contacts, 
       id: data.id,
       image: data.image,
@@ -30,7 +32,11 @@ const UserCardTransferencia = ({data}) => {
       cbu: data.cbu,
       alias: data.alias,
     })        
-    // console.log('contacts act', contacts)        
+    Alert.alert(
+      "Contacto Agregado",
+      'Exitosamente',
+      [{text: "Ok"}]
+    );  
   };
 
   useEffect(() => {
@@ -52,11 +58,11 @@ const UserCardTransferencia = ({data}) => {
             paddingRight: 2,
             flexDirection: 'row-reverse',               
           }}
-          name={'card-account-details-star-outline'}
+          name={added ? 'account-check' : 'account-plus-outline'}
           type="material-community"
           size={35}
-          color={'purple'}        
-          onPress={() => addContact()}
+          color={added ? 'yellow' : 'purple'}        
+          onPress={!added ? () => addContact() : null}
         />
         <Text style={styles.text}>{data.name} {data.lastName}</Text>
         <Text style={styles.textCBU}>CBU: {data.cbu}</Text>

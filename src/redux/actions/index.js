@@ -1,3 +1,4 @@
+
 const axios = require("axios");
 import { dataa } from "../../../response";
 
@@ -52,34 +53,34 @@ export const GET_TRANSACTIONS_HISTORIAL = "GET_TRANSACTIONS_HISTORIAL";
 
 //------------------------------------------------------------------------------------------------//
 
-export const logIn = (form) => async (dispatch) => {
-  const response = await axios.post("https://h-bank.herokuapp.com/login", form);
+export const logIn = form => async dispatch => {
+  const response = await axios.post('https://h-bank.herokuapp.com/login', form);
   const payload = await response.data;
   return dispatch({ type: LOG_IN, payload });
 };
 
 //------------------------------------------------------------------------------------------------//
 
-export const getAllUsers = (token) => async (dispatch) => {
+export const getAllUsers = token => async dispatch => {
   const config = {
     headers: {
       Authorization: token,
     },
   };
-  const response = await axios.get("https://h-bank.herokuapp.com/user", config);
+  const response = await axios.get('https://h-bank.herokuapp.com/user', config);
   dispatch({ type: GET_ALL_USERS, payload: response.data });
 };
 
 //------------------------------------------------------------------------------------------------//
 
-export const getMyUser = (token) => async (dispatch) => {
+export const getMyUser = token => async dispatch => {
   const config = {
     headers: {
       Authorization: token,
     },
   };
   const response = await axios.get(
-    "https://h-bank.herokuapp.com/user/profile",
+    'https://h-bank.herokuapp.com/user/profile',
     config
   );
   dispatch({ type: GET_MY_USER, payload: response.data });
@@ -95,7 +96,7 @@ export function getUsers(token) {
       },
     };
     const res = await axios.get(
-      "https://h-bank.herokuapp.com/userEmail",
+      'https://h-bank.herokuapp.com/userEmail',
       config
     );
 
@@ -119,6 +120,8 @@ export const getUser = () => {
 
 export const postUserData = (payload, userMP) => {
   return async function (dispatch) {
+    let email = userMP.email || payload.email;
+    let password = userMP.password || payload.password;
     const posteo = {
       name: payload.name,
       lastName: payload.lastName,
@@ -128,19 +131,23 @@ export const postUserData = (payload, userMP) => {
       city: payload.city,
       nationality: payload.nationality,
       address: payload.address,
-      email: userMP.email,
-      password: userMP.password,
+      email: email,
+      password: password,
       image: payload.image,
     };
-    console.log("Aca hay un posteo", posteo);
-    const created = await axios.post(
-      "https://h-bank.herokuapp.com/register",
-      posteo
-    );
-    return dispatch({
-      type: "POST_USER_DATA",
-      payload: created.data,
-    });
+    console.log('Aca hay un posteo', posteo);
+    try {
+      const created = await axios.post(
+        'https://h-bank.herokuapp.com/register',
+        posteo
+      );
+      return dispatch({
+        type: 'POST_USER_DATA',
+        payload: created.data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 };
 
@@ -148,6 +155,8 @@ export const postUserData = (payload, userMP) => {
 
 export const postUserDataCard = (payload, userMP) => {
   return async function (dispatch) {
+    let email = userMP.email || payload.email;
+    let password = userMP.password || payload.password;
     const posteo2 = {
       name: payload.name,
       lastName: payload.lastName,
@@ -157,13 +166,13 @@ export const postUserDataCard = (payload, userMP) => {
       city: payload.city,
       nationality: payload.nationality,
       address: payload.address,
-      email: userMP.email,
-      password: userMP.password,
+      email: email,
+      password: password,
       image: payload.image,
     };
-    console.log("Aca hay un posteo2", posteo2);
+    console.log('Aca hay un posteo2', posteo2);
     return dispatch({
-      type: "POST_USER_RENDER",
+      type: 'POST_USER_RENDER',
       payload,
     });
   };
@@ -171,14 +180,14 @@ export const postUserDataCard = (payload, userMP) => {
 
 //------------------------------------------------------------------------------------------------//
 
-export const postUser = (payload) => {
+export const postUser = payload => {
   return async function (dispatch) {
     const post = {
       email: payload.email,
       password: payload.password,
     };
     return dispatch({
-      type: "POST_USER",
+      type: 'POST_USER',
       payload,
     });
   };
@@ -186,7 +195,7 @@ export const postUser = (payload) => {
 
 //------------------------------------------------------------------------------------------------//
 
-export const renderScreen = (payload) => {
+export const renderScreen = payload => {
   return {
     type: RENDER_SCREEN,
     payload,
@@ -195,14 +204,14 @@ export const renderScreen = (payload) => {
 
 //------------------------------------------------------------------------------------------------//
 
-export const getCoins = (token) => async (dispatch) => {
+export const getCoins = token => async dispatch => {
   const config = {
     headers: {
       Authorization: token,
     },
   };
   const response = await axios.get(
-    "https://h-bank.herokuapp.com/crypto",
+    'https://h-bank.herokuapp.com/crypto',
     config
   );
   dispatch({ type: GET_COINS, payload: response.data });
@@ -222,14 +231,14 @@ export function getCoinId(id) {
 
 //------------------------------------------------------------------------------------------------//
 
-export const getUserDetail = (token) => async (dispatch) => {
+export const getUserDetail = token => async dispatch => {
   const config = {
     headers: {
       Authorization: token,
     },
   };
   const response = await axios.get(
-    "https://h-bank.herokuapp.com/user/profile",
+    'https://h-bank.herokuapp.com/user/profile',
     config
   );
   console.log(response.data);
@@ -238,33 +247,33 @@ export const getUserDetail = (token) => async (dispatch) => {
 
 //------------------------------------------------------------------------------------------------//
 
-export const getNews = () => (dispatch) => {
+export const getNews = () => dispatch => {
   return fetch(
-    "https://newsapi.org/v2/top-headlines?country=ar&category=business&apiKey=a09836a597c24e2490cdcbcf5f32fb6c"
+    'https://newsapi.org/v2/top-headlines?country=ar&category=business&apiKey=a09836a597c24e2490cdcbcf5f32fb6c'
   )
-    .then((response) => response.json())
-    .then((news) => {
+    .then(response => response.json())
+    .then(news => {
       dispatch({ type: GET_NEWS, payload: news.articles });
     });
 };
 
 //------------------------------------------------------------------------------------------------//
 
-export const userTransfer = (payload) => {
-  console.log("CBU", payload);
+export const userTransfer = payload => {
+  console.log('CBU', payload);
   return { type: USER_TRANSFER, payload: payload };
 };
 
 //------------------------------------------------------------------------------------------------//
 
-export const userTransferAlias = (payload) => {
-  console.log("ALIAS", payload);
+export const userTransferAlias = payload => {
+  console.log('ALIAS', payload);
   return { type: USER_TRANSFER_ALIAS, payload: payload };
 };
 
 //------------------------------------------------------------------------------------------------//
 
-export const sellCryptos = (id, price, value, token) => async (dispatch) => {
+export const sellCryptos = (id, price, value, token) => async dispatch => {
   const config = {
     headers: {
       Authorization: token,
@@ -276,24 +285,24 @@ export const sellCryptos = (id, price, value, token) => async (dispatch) => {
     price,
   };
   const response = await axios.post(
-    "https://h-bank.herokuapp.com/crypto/sell",
+    'https://h-bank.herokuapp.com/crypto/sell',
     data,
     config
   );
-  console.log("Estado de la venta: ", response.data);
+  console.log('Estado de la venta: ', response.data);
   dispatch({ type: SELL_CRYPTOS, payload: response.data });
 };
 
 //------------------------------------------------------------------------------------------------//
 
-export const setTransfer = (token, cbu) => async (dispatch) => {
+export const setTransfer = (token, cbu) => async dispatch => {
   const config = {
     headers: {
       Authorization: token,
     },
   };
   const response = await axios.post(
-    "https://h-bank.herokuapp.com/search",
+    'https://h-bank.herokuapp.com/search',
     cbu,
     config
   );
@@ -303,14 +312,14 @@ export const setTransfer = (token, cbu) => async (dispatch) => {
 
 //------------------------------------------------------------------------------------------------//
 
-export const setTransferAlias = (token, alias) => async (dispatch) => {
+export const setTransferAlias = (token, alias) => async dispatch => {
   const config = {
     headers: {
       Authorization: token,
     },
   };
   const response = await axios.post(
-    "https://h-bank.herokuapp.com/search",
+    'https://h-bank.herokuapp.com/search',
     alias,
     config
   );
@@ -320,7 +329,7 @@ export const setTransferAlias = (token, alias) => async (dispatch) => {
 
 //------------------------------------------------------------------------------------------------//
 
-export const pricesCharts = (id, token) => async (dispatch) => {
+export const pricesCharts = (id, token) => async dispatch => {
   const config = {
     headers: {
       Authorization: token,
@@ -335,14 +344,14 @@ export const pricesCharts = (id, token) => async (dispatch) => {
 
 //------------------------------------------------------------------------------------------------//
 
-export const rechange = (amount, token) => async (dispatch) => {
+export const rechange = (amount, token) => async dispatch => {
   const config = {
     headers: {
       Authorization: token,
     },
   };
   const response = await axios.post(
-    "https://h-bank.herokuapp.com/user/recharge",
+    'https://h-bank.herokuapp.com/user/recharge',
     amount,
     config
   );
@@ -352,14 +361,14 @@ export const rechange = (amount, token) => async (dispatch) => {
 
 //------------------------------------------------------------------------------------------------//
 
-export const getBalance = (token) => async (dispatch) => {
+export const getBalance = token => async dispatch => {
   const config = {
     headers: {
       Authorization: token,
     },
   };
   const response = await axios.get(
-    "https://h-bank.herokuapp.com/crypto/balance",
+    'https://h-bank.herokuapp.com/crypto/balance',
     config
   );
   dispatch({ type: GET_BALANCE, payload: response.data });
@@ -367,7 +376,7 @@ export const getBalance = (token) => async (dispatch) => {
 
 //------------------------------------------------------------------------------------------------//
 
-export const putTransfer = (token, amount) => async (dispatch) => {
+export const putTransfer = (token, amount) => async dispatch => {
   const config = {
     headers: {
       Authorization: token,
@@ -376,7 +385,7 @@ export const putTransfer = (token, amount) => async (dispatch) => {
   // console.log("TOKEN", token)
   // console.log("AMOUNT", amount)
   const response = await axios.put(
-    "https://h-bank.herokuapp.com/search/tranfer",
+    'https://h-bank.herokuapp.com/search/tranfer',
     amount,
     config
   );
@@ -388,25 +397,25 @@ export const putTransfer = (token, amount) => async (dispatch) => {
 //------------------------------------------------------------------------------------------------//
 var authToken = [];
 var tokencio = [
-  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJoZW5yeWJhbmsucHJveWVjdEBnbWFpbC5jb20iLCJhcGlfdG9rZW4iOiJqOXhfY2x5N2MwMkx1NFRScjNmbmoxNFUtNjFwMU8tTlZ4eTdYSHRuMWhQaDRzV2hEUjZsbG5mb2k5NGJYSkNTM0hVIn0sImV4cCI6MTY1ODUyNTA2NH0.dykJNJzKi49vwAIfLAwVgq1JYHYeeOOKeEHyDAKS7Mc",
+  'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJoZW5yeWJhbmsucHJveWVjdEBnbWFpbC5jb20iLCJhcGlfdG9rZW4iOiJqOXhfY2x5N2MwMkx1NFRScjNmbmoxNFUtNjFwMU8tTlZ4eTdYSHRuMWhQaDRzV2hEUjZsbG5mb2k5NGJYSkNTM0hVIn0sImV4cCI6MTY1ODUyNTA2NH0.dykJNJzKi49vwAIfLAwVgq1JYHYeeOOKeEHyDAKS7Mc',
 ];
 export function getAuthoToken() {
   // console.log('authToken', authToken)
   return async function () {
     const config = {
       headers: {
-        Accept: "application/json",
-        "api-token":
-          "j9x_cly7c02Lu4TRr3fnj14U-61p1O-NVxy7XHtn1hPh4sWhDR6llnfoi94bXJCS3HU",
-        "user-email": "henrybank.proyect@gmail.com",
+        Accept: 'application/json',
+        'api-token':
+          'j9x_cly7c02Lu4TRr3fnj14U-61p1O-NVxy7XHtn1hPh4sWhDR6llnfoi94bXJCS3HU',
+        'user-email': 'henrybank.proyect@gmail.com',
       },
     };
     const res = await axios.get(
-      "https://www.universal-tutorial.com/api/getaccesstoken",
+      'https://www.universal-tutorial.com/api/getaccesstoken',
       config
     );
     // console.log("res", res.data);
-    authToken.push("Bearer " + Object.values(res.data)[0]);
+    authToken.push('Bearer ' + Object.values(res.data)[0]);
     // console.log('authToken', authToken[0])
   };
 }
@@ -421,7 +430,7 @@ export function getCountries() {
       },
     };
     const res = await axios.get(
-      "https://www.universal-tutorial.com/api/countries",
+      'https://www.universal-tutorial.com/api/countries',
       config
     );
     // console.log("esto es la res paises", res.data);
@@ -457,14 +466,14 @@ export function getCities(value) {
 
 //------------------------------------------------------------------------------------------------//
 
-export const getMovements = (token) => async (dispatch) => {
+export const getMovements = token => async dispatch => {
   const config = {
     headers: {
       Authorization: token,
     },
   };
   const response = await axios.get(
-    "https://h-bank.herokuapp.com/user/movements",
+    'https://h-bank.herokuapp.com/user/movements',
     config
   );
   dispatch({ type: GET_MOVEMENTS, payload: response.data });
@@ -472,22 +481,22 @@ export const getMovements = (token) => async (dispatch) => {
 
 //------------------------------------------------------------------------------------------------//
 
-export const detailMovements = (payload) => {
+export const detailMovements = payload => {
   return { type: DETAIL_MOVEMENTS, payload };
 };
 
 //------------------------------------------------------------------------------------------------//
 
-export const cleanLogIn = (payload) => {
+export const cleanLogIn = payload => {
   return { type: CLEAR_LOGIN, payload };
 };
 
 //------------------------------------------------------------------------------------------------//
 
-export const lockedStake = (token, mount) => async (dispatch) => {
+export const lockedStake = (token, mount) => async dispatch => {
   const info = {
-    roi: "5%",
-    parking: "5 minutes",
+    roi: '5%',
+    parking: '5 minutes',
     deposit: mount.mountLockedStake,
   };
   const config = {
@@ -496,7 +505,7 @@ export const lockedStake = (token, mount) => async (dispatch) => {
     },
   };
   const response = await axios.post(
-    "https://h-bank.herokuapp.com/lockedStake",
+    'https://h-bank.herokuapp.com/lockedStake',
     info,
     config
   );
@@ -505,14 +514,14 @@ export const lockedStake = (token, mount) => async (dispatch) => {
 
 //------------------------------------------------------------------------------------------------//
 
-export const searchUser = (token, input) => async (dispatch) => {
+export const searchUser = (token, input) => async dispatch => {
   console.log(input);
   const config = {
     headers: {
       Authorization: token,
     },
   };
-  const response = await axios.get("https://h-bank.herokuapp.com/user", config);
+  const response = await axios.get('https://h-bank.herokuapp.com/user', config);
   const info = response.data;
   console.log(info);
   dispatch({ type: SEARCH_USER, payload: info, input: input.user });
@@ -520,32 +529,31 @@ export const searchUser = (token, input) => async (dispatch) => {
 
 //------------------------------------------------------------------------------------------------//
 
-export const forgotPassword =
-  (email, identity, password) => async (dispatch) => {
-    const data = {
-      email: email,
-      identity: identity,
-      password: password,
-    };
-    console.log(data);
-    const response = await axios.put(
-      "https://h-bank.herokuapp.com/forgetPassword",
-      data
-    );
-    const info = response.data;
-    console.log(response.data);
-    dispatch({ type: FORGOT_PASSWORD, payload: info });
+export const forgotPassword = (email, identity, password) => async dispatch => {
+  const data = {
+    email: email,
+    identity: identity,
+    password: password,
   };
+  console.log(data);
+  const response = await axios.put(
+    'https://h-bank.herokuapp.com/forgetPassword',
+    data
+  );
+  const info = response.data;
+  console.log(response.data);
+  dispatch({ type: FORGOT_PASSWORD, payload: info });
+};
 
 //------------------------------------------------------------------------------------------------//
 
-export const forgotA = (payload) => {
+export const forgotA = payload => {
   return { type: FORGOT_A, payload };
 };
 
 //------------------------------------------------------------------------------------------------//
 
-export const clearForgot = (payload) => {
+export const clearForgot = payload => {
   return {
     type: CLEAR_FORGOT,
     payload,
@@ -571,7 +579,7 @@ export const postContacts = (payload, token) => {
       },
     };
     const add = await axios.post(
-      "https://h-bank.herokuapp.com/contacts",
+      'https://h-bank.herokuapp.com/contacts',
       posteo,
       config
     );
@@ -585,14 +593,14 @@ export const postContacts = (payload, token) => {
 
 //------------------------------------------------------------------------------------------------//
 
-export const getContacts = (token) => async (dispatch) => {
+export const getContacts = token => async dispatch => {
   const config = {
     headers: {
       Authorization: token,
     },
   };
   const response = await axios.get(
-    "https://h-bank.herokuapp.com/contacts",
+    'https://h-bank.herokuapp.com/contacts',
     config
   );
   dispatch({ type: GET_CONTACTS, payload: response.data });
@@ -600,27 +608,28 @@ export const getContacts = (token) => async (dispatch) => {
 
 //------------------------------------------------------------------------------------------------//
 
-export const getContactsSelected = (payload) => {
+export const getContactsSelected = payload => {
   return { type: CONTACT_SELECT, payload: payload };
 };
 
 //------------------------------------------------------------------------------------------------//
 
-export const deleteContacts = (id, token) => async (dispatch) => {
+
+export const deleteContacts = (id, token) => async () => {  
   const config = {
     headers: {
       Authorization: token,
     },
   };
   const response = await axios.delete(
-    `https://h-bank.herokuapp.com/contacts/:${id}`,
+    `https://h-bank.herokuapp.com/contacts/${id}`,
     config
   );
 };
 
 //------------------------------------------------------------------------------------------------//
 
-export const banUser = (email, token) => async (dispatch) => {
+export const banUser = (email, token) => async dispatch => {
   const info = {
     email: email,
   };
@@ -638,7 +647,7 @@ export const banUser = (email, token) => async (dispatch) => {
 
 //------------------------------------------------------------------------------------------------//
 
-export const disbanUser = (email, token) => async (dispatch) => {
+export const disbanUser = (email, token) => async dispatch => {
   const info = {
     email: email,
   };
@@ -656,7 +665,7 @@ export const disbanUser = (email, token) => async (dispatch) => {
 
 //------------------------------------------------------------------------------------------------//
 
-export const userToAdmin = (email, token) => async (dispatch) => {
+export const userToAdmin = (email, token) => async dispatch => {
   console.log(email, token);
   const info = {
     email: email,
@@ -675,7 +684,7 @@ export const userToAdmin = (email, token) => async (dispatch) => {
 
 //------------------------------------------------------------------------------------------------//
 
-export const adminToUser = (email, token) => async (dispatch) => {
+export const adminToUser = (email, token) => async dispatch => {
   console.log(email, token);
   const info = {
     email: email,
