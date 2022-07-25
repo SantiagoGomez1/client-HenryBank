@@ -41,7 +41,7 @@ const Dialogs = () => {
   
   useEffect(() => {
     dispatch(getContacts(token));
-  }, []);  
+  }, [contacts]);  
   
   useEffect(() => {
     !contactsSelected.id ? null :
@@ -50,14 +50,6 @@ const Dialogs = () => {
     dispatch(setTransfer(token, contactsSelected));
   }, [contactsSelected]);  
   
-  // useFocusEffect(
-  //   React.useCallback(() => {
-  //     !contactsSelected.id ? null :
-  //     dispatch(renderScreen(7))
-  //     dispatch(getContactsSelected(contactsSelected));
-  //     dispatch(setTransfer(token, contactsSelected));
-  //   }, [contactsSelected])
-  // );
 
   return (
     <View>
