@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import {
   View,
   Image,
@@ -6,24 +6,25 @@ import {
   Text,
   Dimensions,
   Button,
-} from 'react-native';
-import { Input, Icon } from 'react-native-elements';
-import { LinearGradient } from 'expo-linear-gradient';
-import Constants from 'expo-constants';
-import { logIn, cleanLogIn, getUsers } from '../../redux/actions';
-import { useDispatch, useSelector } from 'react-redux';
+} from "react-native";
+import { Input, Icon } from "react-native-elements";
+import { LinearGradient } from "expo-linear-gradient";
+import Constants from "expo-constants";
+import { logIn, cleanLogIn, getUsers } from "../../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
 import {
   TabRouter,
   useFocusEffect,
   useNavigation,
-} from '@react-navigation/native';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import * as AuthSession from 'expo-auth-session';
-import * as WebBrowser from 'expo-web-browser';
+} from "@react-navigation/native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import * as AuthSession from "expo-auth-session";
+import * as WebBrowser from "expo-web-browser";
+import { CLIENT_ID, REDIRECT_URL } from "@env";
 
 WebBrowser.maybeCompleteAuthSession();
 
-var { height } = Dimensions.get('window');
+var { height } = Dimensions.get("window");
 
 const LogIn = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -31,7 +32,7 @@ const LogIn = () => {
   const navigation = useNavigation();
 
   const goForgotPassword = () => {
-    navigation.navigate('ForgotPasswordA');
+    navigation.navigate("ForgotPasswordA");
   };
 
   useEffect(() => {
@@ -39,12 +40,12 @@ const LogIn = () => {
   }, []);
 
   const [formData, setFormData] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
 
-  const [errorEmail, setErrorEmail] = useState('');
-  const [errorPassword, setErrorPassword] = useState('');
+  const [errorEmail, setErrorEmail] = useState("");
+  const [errorPassword, setErrorPassword] = useState("");
 
   const handleOnChange = (e, type) => {
     setFormData({ ...formData, [type]: e.nativeEvent.text });
@@ -53,26 +54,26 @@ const LogIn = () => {
   const registerUser = () => {
     if (!validateData()) return;
     dispatch(logIn(formData));
-    navigation.navigate('Confirmation');
+    navigation.navigate("Confirmation");
   };
 
-  const registerUserGoogle = userGoogle => {
+  const registerUserGoogle = (userGoogle) => {
     dispatch(logIn(userGoogle));
-    navigation.navigate('Confirmation');
+    navigation.navigate("Confirmation");
   };
 
   const validateData = () => {
-    setErrorEmail('');
-    setErrorPassword('');
+    setErrorEmail("");
+    setErrorPassword("");
     let isValid = true;
 
     if (!validateEmail(formData.email)) {
-      setErrorEmail('Debes ingresar un E-mail válido');
+      setErrorEmail("Debes ingresar un E-mail válido");
       isValid = false;
     }
 
     if (formData.password.length < 8) {
-      setErrorPassword('Contraseña incorrecta');
+      setErrorPassword("Contraseña incorrecta");
       isValid = false;
     }
 
@@ -81,7 +82,7 @@ const LogIn = () => {
 
   // GOOGLE
   const [LogIngoogle, setLogInGoogle] = useState(false);
-  const getAllEmails = useSelector(state => state.users);
+  const getAllEmails = useSelector((state) => state.users);
 
   useFocusEffect(
     React.useCallback(() => {
@@ -90,7 +91,7 @@ const LogIn = () => {
   );
 
   async function loadGoogleInfoUser(token) {
-    let response = await fetch('https://www.googleapis.com/userinfo/v2/me', {
+    let response = await fetch("https://www.googleapis.com/userinfo/v2/me", {
       headers: { Authorization: `Bearer ${token}` },
     });
     const userInfo = await response.json();
@@ -98,14 +99,14 @@ const LogIn = () => {
     if (userInfo.email) {
       console.log(getAllEmails);
       const userFound = (await getAllEmails).find(
-        u => u.email === userInfo.email
+        (u) => u.email === userInfo.email
       );
       if (userFound) {
         const user = await userFound;
         user.password = `googleHENRYBANK${user.email.length * 2}`;
         registerUserGoogle(user);
       } else {
-        navigation.navigate('RegisterB', {
+        navigation.navigate("RegisterB", {
           email: userInfo.email,
           image: userInfo.picture,
         });
@@ -114,11 +115,8 @@ const LogIn = () => {
   }
 
   async function signInGoogle() {
-    const CLIENT_ID =
-      '3723003346-i8mc0vbgp92ik62gae0jieh350vmqegb.apps.googleusercontent.com';
-    const REDIRECT_URL = 'https://auth.expo.io/@maxiwee/HenryBank';
-    const RESPONSE_TYPE = 'token';
-    const SCOPE = encodeURI('profile email');
+    const RESPONSE_TYPE = "token";
+    const SCOPE = encodeURI("profile email");
 
     const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URL}&response_type=${RESPONSE_TYPE}&scope=${SCOPE}`;
     setLogInGoogle(true);
@@ -128,33 +126,33 @@ const LogIn = () => {
 
   return (
     <KeyboardAwareScrollView style={styles.container}>
-      <LinearGradient colors={['#126492', '#140152']} style={styles.background}>
+      <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
         <Image
           style={styles.image}
-          source={require('../../imgs/HenryBank.png')}
+          source={require("../../imgs/HenryBank.png")}
         ></Image>
 
         <Input
           containerStyle={styles.input}
-          placeholder='Soyhenry@gmail.com'
-          label='E-mail'
-          onChange={e => handleOnChange(e, 'email')}
+          placeholder="Soyhenry@gmail.com"
+          label="E-mail"
+          onChange={(e) => handleOnChange(e, "email")}
           errorMessage={errorEmail}
           defaultValue={formData.email}
         ></Input>
         <Input
           containerStyle={styles.input}
-          placeholder='Soyhenry123'
-          label='Contraseña'
+          placeholder="Soyhenry123"
+          label="Contraseña"
           password={true}
           secureTextEntry={!showPassword}
-          onChange={e => handleOnChange(e, 'password')}
+          onChange={(e) => handleOnChange(e, "password")}
           errorMessage={errorPassword}
           defaultValue={formData.password}
           rightIcon={
             <Icon
-              type='material-community'
-              name={showPassword ? 'eye-off-outline' : 'eye-outline'}
+              type="material-community"
+              name={showPassword ? "eye-off-outline" : "eye-outline"}
               iconStyle={styles.icon}
               onPress={() => setShowPassword(!showPassword)}
             />
@@ -164,22 +162,22 @@ const LogIn = () => {
         <View style={styles.btnContainer}>
           <View style={styles.btn}>
             <Button
-              title='GOOGLE'
-              color={'purple'}
+              title="GOOGLE"
+              color={"purple"}
               onPress={() => signInGoogle()}
             ></Button>
           </View>
           <View style={styles.btn}>
             <Button
-              title='Registrarse'
-              color='trasparent'
-              onPress={() => navigation.navigate('RegisterA')}
+              title="Registrarse"
+              color="trasparent"
+              onPress={() => navigation.navigate("RegisterA")}
             ></Button>
           </View>
           <View style={styles.btn}>
             <Button
-              title='Log In'
-              color={'purple'}
+              title="Log In"
+              color={"purple"}
               onPress={() => registerUser()}
             ></Button>
           </View>
@@ -195,14 +193,14 @@ const LogIn = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#140152',
+    backgroundColor: "#140152",
   },
   background: {
     flex: 1,
-    flexDirection: 'column',
-    alignItems: 'center',
-    width: '100%',
-    justifyContent: 'space-around',
+    flexDirection: "column",
+    alignItems: "center",
+    width: "100%",
+    justifyContent: "space-around",
     paddingTop: Constants.statusBarHeight,
     height: height,
   },
@@ -212,26 +210,26 @@ const styles = StyleSheet.create({
     borderRadius: 100,
   },
   input: {
-    backgroundColor: 'white',
+    backgroundColor: "white",
     borderRadius: 25,
     paddingTop: 10,
-    width: '80%',
+    width: "80%",
   },
   icon: {
-    color: '#85929E',
+    color: "#85929E",
   },
   btnContainer: {
-    flexDirection: 'row',
+    flexDirection: "row",
   },
   btn: {
     margin: 5,
   },
   text: {
-    color: '#fff',
+    color: "#fff",
     fontSize: 10,
   },
   passwordHelp: {
-    color: '#fff',
+    color: "#fff",
   },
 });
 
