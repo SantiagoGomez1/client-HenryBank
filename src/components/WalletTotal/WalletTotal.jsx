@@ -31,11 +31,11 @@ export default function WalletTotal() {
       {dropdown && (
         <Text style={{ color: "white" }}>{"ARG: " + Math.floor(money)}</Text>
       )}
-      {dropdown && (
+      {/* {dropdown && (
         <Text style={{ color: "white" }}>
           {"DOL: " + Math.floor((money / conversion).toFixed(2))}
         </Text>
-      )}
+      )} */}
     </View>
   );
 }
