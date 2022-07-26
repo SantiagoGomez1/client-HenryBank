@@ -28,10 +28,30 @@ const RegisterB = () => {
     navigation.navigate('RegisterC');
   };
 
-  // GOOGLE INFO USER
+  // GOOGLE INFO USER //
 
   const route = useRoute();
-  // const { user } = route.params;
+  const user = route.params;
+
+  const LoginOrRegisterGoogle = async () => {
+    let password = `googleHENRYBANK${user.email.length * 2}`;
+    if (user.email) {
+      setFormData({
+        ...formData,
+        image: user.image,
+        email: user.email,
+        password: password,
+      });
+    }
+  };
+
+  useFocusEffect(
+    React.useCallback(() => {
+      LoginOrRegisterGoogle();
+    }, [])
+  );
+
+  // --------------------------------- //
 
   const [formData, setFormData] = useState({
     name: '',
