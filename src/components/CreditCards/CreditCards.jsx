@@ -64,7 +64,7 @@ export default function CreditCards() {
                   fontSize: 15,
                 }}
               >
-                Numero: {item.number}
+                Numero: **** **** **** {item.number.slice(15)}
               </Text>
             </View>
           ))}
