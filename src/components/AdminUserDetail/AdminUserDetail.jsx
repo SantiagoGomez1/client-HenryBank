@@ -12,20 +12,13 @@ import { LinearGradient } from "expo-linear-gradient";
 import { useRoute } from "@react-navigation/native";
 import AdminUserCard from "../AdminUserCard/AdminUserCard";
 import { useNavigation } from "@react-navigation/native";
-import {
-  banUser,
-  disbanUser,
-  userToAdmin,
-  adminToUser,
-} from "../../redux/actions";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 const AdminUserDetail = () => {
   const navigation = useNavigation();
   const route = useRoute();
   const { info } = route.params;
   const token = useSelector((state) => state.logIn.token);
-  const dispatch = useDispatch();
 
   const goCrypto = (email) => {
     navigation.navigate("AdminMovements", {
@@ -57,7 +50,16 @@ const AdminUserDetail = () => {
         {
           text: "Cancelar",
         },
-        { text: "Si", onPress: () => dispatch(banUser(email, token)) },
+        {
+          text: "Si",
+          onPress: () =>
+            navigation.navigate("AdminConfirmation", {
+              email: email,
+              token: token,
+              type: "BN",
+              name: `${info.name} ${info.lastName}`,
+            }),
+        },
       ]
     );
   };
@@ -69,7 +71,16 @@ const AdminUserDetail = () => {
         {
           text: "Cancelar",
         },
-        { text: "Si", onPress: () => dispatch(disbanUser(email, token)) },
+        {
+          text: "Si",
+          onPress: () =>
+            navigation.navigate("AdminConfirmation", {
+              email: email,
+              token: token,
+              type: "DB",
+              name: `${info.name} ${info.lastName}`,
+            }),
+        },
       ]
     );
   };
@@ -81,7 +92,16 @@ const AdminUserDetail = () => {
         {
           text: "Cancelar",
         },
-        { text: "Si", onPress: () => dispatch(adminToUser(email, token)) },
+        {
+          text: "Si",
+          onPress: () =>
+            navigation.navigate("AdminConfirmation", {
+              email: email,
+              token: token,
+              type: "AU",
+              name: `${info.name} ${info.lastName}`,
+            }),
+        },
       ]
     );
   };
@@ -94,7 +114,16 @@ const AdminUserDetail = () => {
         {
           text: "Cancelar",
         },
-        { text: "Si", onPress: () => dispatch(userToAdmin(email, token)) },
+        {
+          text: "Si",
+          onPress: () =>
+            navigation.navigate("AdminConfirmation", {
+              email: email,
+              token: token,
+              type: "UA",
+              name: `${info.name} ${info.lastName}`,
+            }),
+        },
       ]
     );
   };

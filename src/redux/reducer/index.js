@@ -38,6 +38,10 @@ import {
   GET_CRYPTOS_HISTORIAL,
   GET_LOCKEDSTAKE_HISTORIAL,
   GET_TRANSACTIONS_HISTORIAL,
+  USER_TO_ADMIN,
+  ADMIN_TO_USER,
+  BAN_USER,
+  DISBAN_USER,
 } from "../actions/index";
 
 const initialState = {
@@ -68,6 +72,10 @@ const initialState = {
   addContacts: [],
   contacts: [],
   historial: [],
+  userToAdmin: {},
+  adminToUser: {},
+  banUser: {},
+  disbanUser: {},
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -274,6 +282,26 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         historial: action.payload,
+      };
+    case USER_TO_ADMIN:
+      return {
+        ...state,
+        userToAdmin: action.payload,
+      };
+    case ADMIN_TO_USER:
+      return {
+        ...state,
+        adminToUser: action.payload,
+      };
+    case DISBAN_USER:
+      return {
+        ...state,
+        disbanUser: action.payload,
+      };
+    case BAN_USER:
+      return {
+        ...state,
+        banUser: action.payload,
       };
     default:
       return state;
