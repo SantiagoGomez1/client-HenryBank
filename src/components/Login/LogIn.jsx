@@ -6,6 +6,7 @@ import {
   Text,
   Dimensions,
   Button,
+  TouchableOpacity
 } from "react-native";
 import { Input, Icon } from "react-native-elements";
 import { LinearGradient } from "expo-linear-gradient";
@@ -116,7 +117,11 @@ const LogIn = () => {
   //----------------------Envs----------------------
   CLIENT_ID =
     "3723003346-i8mc0vbgp92ik62gae0jieh350vmqegb.apps.googleusercontent.com";
+<<<<<<< HEAD
+  REDIRECT_URL = "https://auth.expo.io/@henrybank/HenryBank";
+=======
   REDIRECT_URL = "https://auth.expo.io/@emanueljuri/HenryBank";
+>>>>>>> 67efeb19f248f01ae000b33bd4c38398a499f9dd
   //----------------------Envs----------------------
   async function signInGoogle() {
     dispatch(getAuthoToken());
@@ -166,11 +171,18 @@ const LogIn = () => {
 
         <View style={styles.btnContainer}>
           <View style={styles.btn}>
-            <Button
-              title="GOOGLE"
-              color={"purple"}
-              onPress={() => signInGoogle()}
-            ></Button>
+              <TouchableOpacity onPress={() => signInGoogle()}>
+              <LinearGradient
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 0 }}
+                colors={["#667eea", "#764ba2"]}
+                style={{ paddingVertical: 10,width:100, borderRadius: 10 }}
+              >
+                <Text style={{ color: "#ffffff", textAlign: "center" }}>
+                  Google
+                </Text>
+              </LinearGradient>
+            </TouchableOpacity>
           </View>
           <View style={styles.btn}>
             <Button
@@ -180,11 +192,18 @@ const LogIn = () => {
             ></Button>
           </View>
           <View style={styles.btn}>
-            <Button
-              title="Log In"
-              color={"purple"}
-              onPress={() => registerUser()}
-            ></Button>
+            <TouchableOpacity onPress={() => registerUser()}>
+              <LinearGradient
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 0 }}
+                colors={["#667eea", "#764ba2"]}
+                style={{ paddingVertical: 10,width:100, borderRadius: 10 }}
+              >
+                <Text style={{ color: "#ffffff", textAlign: "center" }}>
+                  Log In
+                </Text>
+              </LinearGradient>
+            </TouchableOpacity>
           </View>
         </View>
         <Text style={styles.text} onPress={() => goForgotPassword()}>

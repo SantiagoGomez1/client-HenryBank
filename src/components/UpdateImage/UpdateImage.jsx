@@ -125,6 +125,9 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 40,
+    borderStyle: "solid",
+    borderColor: "rgba(255, 255, 255, 0.5)",
+    backgroundColor: "rgba(255, 255, 255, 0.2)",
   },
 });
 

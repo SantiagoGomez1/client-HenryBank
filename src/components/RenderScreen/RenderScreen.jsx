@@ -15,7 +15,7 @@ import CardNews from "../CardNews/CardNews.jsx";
 const RenderScreen = () => {
   let ID = 1;
   const news = useSelector((state) => state.news);
-  console.log(news)
+
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Noticias</Text>

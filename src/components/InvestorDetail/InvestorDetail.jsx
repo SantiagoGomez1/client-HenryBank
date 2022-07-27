@@ -5,6 +5,7 @@ import {
   Text,
   BackHandler,
   View,
+  TouchableOpacity,
 } from "react-native";
 import React, { useEffect } from "react";
 import { LinearGradient } from "expo-linear-gradient";
@@ -149,11 +150,9 @@ export default function InvestorDetail({ route, navigation }) {
             display: "flex",
             flexDirection: "row",
             justifyContent: "space-around",
-            marginBottom: 20,
           }}
         >
-          <Button
-            title="vender"
+          <TouchableOpacity
             onPress={() =>
               navigation.navigate("InvestorSell", {
                 id,
@@ -162,9 +161,24 @@ export default function InvestorDetail({ route, navigation }) {
                 amount: cantidad,
               })
             }
-          />
-          <Button
-            title="Vender todo"
+          >
+            <LinearGradient
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 0 }}
+              colors={["#667eea", "#764ba2"]}
+              style={{
+                paddingVertical: 10,
+                width: 120,
+                borderRadius: 10,
+                marginTop: 10,
+              }}
+            >
+              <Text style={{ color: "#ffffff", textAlign: "center" }}>
+                Vender
+              </Text>
+            </LinearGradient>
+          </TouchableOpacity>
+          <TouchableOpacity
             onPress={async () => {
               const response = await axios.post(
                 "https://h-bank.herokuapp.com/crypto/sell",
@@ -193,9 +207,24 @@ export default function InvestorDetail({ route, navigation }) {
                 });
               }
             }}
-          />
-          <Button
-            title="Comprar más"
+          >
+            <LinearGradient
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 0 }}
+              colors={["#667eea", "#764ba2"]}
+              style={{
+                paddingVertical: 10,
+                width: 120,
+                borderRadius: 10,
+                marginTop: 10,
+              }}
+            >
+              <Text style={{ color: "#ffffff", textAlign: "center" }}>
+                Vender todo
+              </Text>
+            </LinearGradient>
+          </TouchableOpacity>
+          <TouchableOpacity
             onPress={() =>
               navigation.navigate("InvestorBuyGeneral", {
                 id,
@@ -203,7 +232,23 @@ export default function InvestorDetail({ route, navigation }) {
                 price: parseFloat(precio),
               })
             }
-          />
+          >
+            <LinearGradient
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 0 }}
+              colors={["#667eea", "#764ba2"]}
+              style={{
+                paddingVertical: 10,
+                width: 120,
+                borderRadius: 10,
+                marginTop: 10,
+              }}
+            >
+              <Text style={{ color: "#ffffff", textAlign: "center" }}>
+                Comprar más
+              </Text>
+            </LinearGradient>
+          </TouchableOpacity>
         </View>
       </LinearGradient>
     </KeyboardAwareScrollView>
@@ -213,6 +258,7 @@ export default function InvestorDetail({ route, navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "#140152",
   },
   background: {
     flex: 1,
@@ -220,15 +266,15 @@ const styles = StyleSheet.create({
     height: height,
   },
   card: {
-    backgroundColor: "transparent",
     borderWidth: 1,
-    borderStyle: "solid",
-    borderColor: "rgba(255, 255, 255, 0.5)",
     marginHorizontal: 10,
     marginTop: 10,
-    borderRadius: 8,
     padding: 10,
     height: 180,
+    borderRadius: 30,
+    borderStyle: "solid",
+    borderColor: "rgba(255, 255, 255, 0.5)",
+    backgroundColor: "rgba(255, 255, 255, 0.1)",
   },
   input: {
     textAlign: "center",

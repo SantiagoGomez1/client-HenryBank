@@ -1,31 +1,38 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, Button, ScrollView } from 'react-native';
+import React, { useState } from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Button,
+  ScrollView,
+  TouchableOpacity,
+} from "react-native";
 import {
   useFocusEffect,
   useNavigation,
   useRoute,
-} from '@react-navigation/native';
-import { LinearGradient } from 'expo-linear-gradient';
-import { Input, Icon } from 'react-native-elements';
-import { useDispatch, useSelector } from 'react-redux';
-import DateTimePickerModal from 'react-native-modal-datetime-picker';
+} from "@react-navigation/native";
+import { LinearGradient } from "expo-linear-gradient";
+import { Input, Icon } from "react-native-elements";
+import { useDispatch, useSelector } from "react-redux";
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 
-import { postUserData, postUserDataCard } from '../../redux/actions';
+import { postUserData, postUserDataCard } from "../../redux/actions";
 import {
   DropdownComponentGender,
   DropdownComponentNationality,
   DropdownComponentCity,
-} from './Dropdown';
+} from "./Dropdown";
 
-import Constants from 'expo-constants';
-import ImagePicker from '../ImagePicker/ImagePicker.jsx';
+import Constants from "expo-constants";
+import ImagePicker from "../ImagePicker/ImagePicker.jsx";
 
 const RegisterB = () => {
   const dispatch = useDispatch();
-  const userMP = useSelector(state => state.userMP);
+  const userMP = useSelector((state) => state.userMP);
   const navigation = useNavigation();
   const goRegisterC = () => {
-    navigation.navigate('RegisterC');
+    navigation.navigate("RegisterC");
   };
 
   // GOOGLE INFO USER //
@@ -53,15 +60,15 @@ const RegisterB = () => {
   // --------------------------------- //
 
   const [formData, setFormData] = useState({
-    name: '',
-    image: '',
-    lastName: '',
-    identity: '',
-    gender: '',
-    dateOfBirth: '',
-    city: '',
-    nationality: '',
-    address: '',
+    name: "",
+    image: "",
+    lastName: "",
+    identity: "",
+    gender: "",
+    dateOfBirth: "",
+    city: "",
+    nationality: "",
+    address: "",
   });
   //----------------------States Picker-Date----------------------//
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
@@ -72,16 +79,16 @@ const RegisterB = () => {
     setDatePickerVisibility(false);
   };
   //----------------------States Errors----------------------//
-  const [errorName, setErrorName] = useState('');
-  const [errorIdentity, setErrorIdentity] = useState('');
-  const [errorDateOfBirth, setErrorDateOfBirth] = useState('');
+  const [errorName, setErrorName] = useState("");
+  const [errorIdentity, setErrorIdentity] = useState("");
+  const [errorDateOfBirth, setErrorDateOfBirth] = useState("");
   //---------------------------------------------------------//
 
   const handleOnChange = (e, type) => {
     setFormData({ ...formData, [type]: e.nativeEvent.text });
   };
 
-  const handleConfirm = date => {
+  const handleConfirm = (date) => {
     const year = JSON.stringify(date).substring(1, 5);
     const months = JSON.stringify(date).substring(6, 8);
     const days = JSON.stringify(date).substring(9, 11);
@@ -91,15 +98,15 @@ const RegisterB = () => {
     hideDatePicker();
   };
 
-  const handleGender = props => {
+  const handleGender = (props) => {
     setFormData({ ...formData, gender: props });
   };
 
-  const handleNationality = props => {
+  const handleNationality = (props) => {
     setFormData({ ...formData, nationality: props });
   };
 
-  const handleCity = props => {
+  const handleCity = (props) => {
     setFormData({ ...formData, city: props });
   };
 
@@ -115,32 +122,40 @@ const RegisterB = () => {
 
   //----------------------Funtion Validation----------------------//
   const validateData = () => {
-    setErrorName('');
-    setErrorIdentity('');
+    setErrorName("");
+    setErrorIdentity("");
     let isValid = true;
 
     if (!validateName(formData.name)) {
-      !formData.name ? setErrorName('Campo obligatorio') : 
-      setErrorName('Debes ingresar solo letras, con una longitud mínima de tres caracteres');
+      !formData.name
+        ? setErrorName("Campo obligatorio")
+        : setErrorName(
+            "Debes ingresar solo letras, con una longitud mínima de tres caracteres"
+          );
       isValid = false;
     }
     if (!validateName(formData.lastName)) {
-      !formData.name ? setErrorName('Campo obligatorio') : 
-      setErrorName('Debes ingresar solo letras, con una longitud mínima de tres caracteres');
+      !formData.name
+        ? setErrorName("Campo obligatorio")
+        : setErrorName(
+            "Debes ingresar solo letras, con una longitud mínima de tres caracteres"
+          );
       isValid = false;
     }
     if (formData.identity.length < 8) {
-      setErrorIdentity('Debes ingresar un formato válido');
+      setErrorIdentity("Debes ingresar un formato válido");
       isValid = false;
     }
     if (!validateIdentity(formData.identity)) {
-      !formData.identity ? setErrorIdentity('Campo obligatorio') : 
-      setErrorIdentity('Debes ingresar solo números');
+      !formData.identity
+        ? setErrorIdentity("Campo obligatorio")
+        : setErrorIdentity("Debes ingresar solo números");
       isValid = false;
     }
     if (!validateDateOfBirth(formData.dateOfBirth)) {
-      !formData.dateOfBirth ? setErrorDateOfBirth('Campo obligatorio') : 
-      setErrorDateOfBirth('Debes ingresar un formato correcto DD/MM/AAAA');
+      !formData.dateOfBirth
+        ? setErrorDateOfBirth("Campo obligatorio")
+        : setErrorDateOfBirth("Debes ingresar un formato correcto DD/MM/AAAA");
       isValid = false;
     }
 
@@ -163,34 +178,34 @@ const RegisterB = () => {
 
   return (
     <ScrollView style={styles.container}>
-      <LinearGradient colors={['#126492', '#140152']} style={styles.background}>
+      <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
         <Text style={styles.textMain}>Regístrate</Text>
 
         <ImagePicker setFormData={setFormData} formData={formData} imageGoogle={user ? user.image : null} />
 
         <Input
           containerStyle={styles.input}
-          placeholder='Ingresa tu nombre'
-          label='Nombre'
-          onChange={e => handleOnChange(e, 'name')}
+          placeholder="Ingresa tu nombre"
+          label="Nombre"
+          onChange={(e) => handleOnChange(e, "name")}
           errorMessage={errorName}
           defaultValue={formData.name}
         />
 
         <Input
           containerStyle={styles.input}
-          placeholder='Ingresa tu apellido'
-          label='Apellido'
-          onChange={e => handleOnChange(e, 'lastName')}
+          placeholder="Ingresa tu apellido"
+          label="Apellido"
+          onChange={(e) => handleOnChange(e, "lastName")}
           errorMessage={errorName}
           defaultValue={formData.lastName}
         />
 
         <Input
           containerStyle={styles.input}
-          placeholder='Solo números'
-          label='Cedula de Identidad / D.N.I'
-          onChange={e => handleOnChange(e, 'identity')}
+          placeholder="Solo números"
+          label="Cedula de Identidad / D.N.I"
+          onChange={(e) => handleOnChange(e, "identity")}
           errorMessage={errorIdentity}
           defaultValue={formData.identity}
         />
@@ -208,16 +223,16 @@ const RegisterB = () => {
 
         <Input
           containerStyle={styles.input}
-          placeholder='22/04/1995'
-          label='Fecha de Nacimiento'
-          onChange={e => handleOnChange(e, 'dateOfBirth')}
+          placeholder="22/04/1995"
+          label="Fecha de Nacimiento"
+          onChange={(e) => handleOnChange(e, "dateOfBirth")}
           errorMessage={errorDateOfBirth}
           handleConfirm={handleConfirm}
           defaultValue={handleConfirm ? handleConfirm : formData.dateOfBirth}
           rightIcon={
             <Icon
-              type='material-community'
-              name='calendar-account-outline'
+              type="material-community"
+              name="calendar-account-outline"
               iconStyle={styles.icon}
               onPress={() => showDatePicker()}
             />
@@ -225,7 +240,7 @@ const RegisterB = () => {
         />
         <DateTimePickerModal
           isVisible={isDatePickerVisible}
-          mode='date'
+          mode="date"
           onConfirm={handleConfirm}
           onCancel={hideDatePicker}
         />
@@ -254,18 +269,30 @@ const RegisterB = () => {
 
         <Input
           containerStyle={styles.input}
-          placeholder='Cerro Arco 4065'
-          label='Domicilio'
-          onChange={e => handleOnChange(e, 'address')}
+          placeholder="Cerro Arco 4065"
+          label="Domicilio"
+          onChange={(e) => handleOnChange(e, "address")}
           // errorMessage={errorEmail}
           defaultValue={formData.address}
         />
         <View style={styles.btn}>
-          <Button
-            title='Siguiente'
-            color={'purple'}
-            onPress={() => registerUserPerData()}
-          ></Button>
+          <TouchableOpacity onPress={() => registerUserPerData()}>
+            <LinearGradient
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 0 }}
+              colors={["#667eea", "#764ba2"]}
+              style={{
+                paddingVertical: 10,
+                width: 120,
+                borderRadius: 10,
+                marginTop: 10,
+              }}
+            >
+              <Text style={{ color: "#ffffff", textAlign: "center" }}>
+                Siguiente
+              </Text>
+            </LinearGradient>
+          </TouchableOpacity>
         </View>
       </LinearGradient>
     </ScrollView>
@@ -278,28 +305,28 @@ const styles = StyleSheet.create({
   },
   background: {
     flex: 1,
-    flexDirection: 'column',
-    alignItems: 'center',
-    width: '100%',
-    justifyContent: 'space-around',
+    flexDirection: "column",
+    alignItems: "center",
+    width: "100%",
+    justifyContent: "space-around",
     paddingTop: Constants.statusBarHeight,
   },
   textMain: {
-    color: '#fff',
+    color: "#fff",
     fontSize: 45,
   },
   text: {
-    color: '#fff',
+    color: "#fff",
     fontSize: 25,
   },
 
   input: {
-    backgroundColor: 'white',
+    backgroundColor: "white",
     borderRadius: 25,
     margin: 15,
     paddingLeft: 25,
     paddingTop: 15,
-    width: '85%',
+    width: "85%",
   },
   btn: {
     margin: 20,

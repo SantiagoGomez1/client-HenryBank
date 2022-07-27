@@ -76,16 +76,26 @@ const Home = () => {
           }}
         >
           <TouchableOpacity onPress={() => setScreen(0)}>
-            <Text
+            {/* <Text
               style={{
                 color: "white",
-                backgroundColor: "purple",
+                backgroundColor: "#764ba2",
                 padding: 5,
                 borderRadius: 50,
               }}
             >
               ¡NOTICIAS!
+            </Text> */}
+            <LinearGradient
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 0 }}
+            colors={["#667eea", "#764ba2"]}
+            style={{ paddingVertical: 7, width: 100, borderRadius: 8 }}
+          >
+            <Text style={{ color: "#ffffff", textAlign: "center" }}>
+              ¡Noticias!
             </Text>
+          </LinearGradient>
           </TouchableOpacity>
           <UserCapital />
         </View>

@@ -101,6 +101,9 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     borderRadius: 60,
+    borderStyle: "solid",
+    borderColor: "rgba(255, 255, 255, 0.5)",
+    backgroundColor: "rgba(255, 255, 255, 0.2)",
   },
 });
 
