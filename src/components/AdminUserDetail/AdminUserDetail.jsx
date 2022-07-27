@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Text,
   StyleSheet,
@@ -9,16 +9,23 @@ import {
   Alert,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import { useRoute } from "@react-navigation/native";
+import { getAllUsers } from "../../redux/actions";
 import AdminUserCard from "../AdminUserCard/AdminUserCard";
 import { useNavigation } from "@react-navigation/native";
-import { useSelector } from "react-redux";
+import { useRoute } from "@react-navigation/native";
+import { useSelector, useDispatch } from "react-redux";
 
 const AdminUserDetail = () => {
-  const navigation = useNavigation();
   const route = useRoute();
+  const navigation = useNavigation();
+  const dispatch = useDispatch();
   const { info } = route.params;
+  console.log("info", info);
   const token = useSelector((state) => state.logIn.token);
+
+  useEffect(() => {
+    dispatch(getAllUsers(token));
+  }, [dispatch]);
 
   const goCrypto = (email) => {
     navigation.navigate("AdminMovements", {
@@ -107,6 +114,12 @@ const AdminUserDetail = () => {
   };
 
   const usertoAdmin = (email) => {
+    if (info.role === "admin") {
+      Alert.alert(
+        "Usuario a admin",
+        `${info.name} ${info.lastName} ya es administrador`
+      );
+    }
     Alert.alert(
       "Change Role",
       `¿Seguro quieres convertir en admin a ${info.name} ${info.lastName}?`,
@@ -133,11 +146,17 @@ const AdminUserDetail = () => {
       <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
         <AdminUserCard ruta={"AdminHome"} />
         <View style={styles.container}>
-          <Text style={styles.titleMain}>Datos de usuario</Text>
+          <Text style={styles.textMain}>Datos de usuario</Text>
           <Image style={styles.img} source={{ uri: info.image }} />
-          <Text style={styles.textTitle}>
-            {info.name} {info.lastName}
-          </Text>
+          {info.role === "admin" ? (
+            <Text style={styles.textMainAdmin}>
+              {info.name} {info.lastName}
+            </Text>
+          ) : (
+            <Text style={styles.textMain}>
+              {info.name} {info.lastName}
+            </Text>
+          )}
           <View style={{ margin: 10 }}>
             <Text style={styles.textSubtile}>Información bancaria</Text>
             <Text style={styles.textSecondary}>{info.email}</Text>
@@ -173,34 +192,91 @@ const AdminUserDetail = () => {
           </View>
         </View>
         <View style={styles.container}>
-          <Text style={styles.titleMain}>Opciones</Text>
+          <Text style={styles.textMain}>Opciones</Text>
           <View style={styles.containerOpciones}>
-            <TouchableOpacity
-              style={styles.touchable}
-              onPress={() => ban(info.email)}
-            >
-              <Text style={styles.textSecondary}>Banear</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.touchable}
-              onPress={() => disban(info.email)}
-            >
-              <Text style={styles.textSecondary}>Desbanear</Text>
-            </TouchableOpacity>
+            {info.state === "offline" ? (
+              <TouchableOpacity
+                style={styles.touchable}
+                onPress={() =>
+                  Alert.alert(
+                    "Deshabilitar cuenta",
+                    `La cuenta de ${info.name} ${info.lastName} ya esta deshabilitada`
+                  )
+                }
+              >
+                <Text style={styles.textSecondary}>Banear</Text>
+              </TouchableOpacity>
+            ) : (
+              <TouchableOpacity
+                style={styles.touchable}
+                onPress={() => ban(info.email)}
+              >
+                <Text style={styles.textSecondary}>Banear</Text>
+              </TouchableOpacity>
+            )}
+            {info.state === "online" ? (
+              <TouchableOpacity
+                style={styles.touchable}
+                onPress={() =>
+                  Alert.alert(
+                    "Habilitar cuenta",
+                    `La cuenta de ${info.name} ${info.lastName} ya esta habilitada`
+                  )
+                }
+              >
+                <Text style={styles.textSecondary}>Desbanear</Text>
+              </TouchableOpacity>
+            ) : (
+              <TouchableOpacity
+                style={styles.touchable}
+                onPress={() => disban(info.email)}
+              >
+                <Text style={styles.textSecondary}>Desbanear</Text>
+              </TouchableOpacity>
+            )}
           </View>
           <View style={styles.containerOpciones}>
-            <TouchableOpacity
-              style={styles.touchable}
-              onPress={() => usertoAdmin(info.email)}
-            >
-              <Text style={styles.textSecondary}>Hacer admin</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.touchable}
-              onPress={() => admintoUser(info.email)}
-            >
-              <Text style={styles.textSecondary}>Hacer usuario</Text>
-            </TouchableOpacity>
+            {info.role === "admin" ? (
+              <TouchableOpacity
+                style={styles.touchable}
+                onPress={() =>
+                  Alert.alert(
+                    "Hace admin",
+                    `${info.name} ${info.lastName} ya es admin`
+                  )
+                }
+              >
+                <Text style={styles.textSecondary}>Hacer admin</Text>
+              </TouchableOpacity>
+            ) : (
+              <TouchableOpacity
+                style={styles.touchable}
+                onPress={() => usertoAdmin(info.email)}
+              >
+                <Text style={styles.textSecondary}>Hacer admin</Text>
+              </TouchableOpacity>
+            )}
+
+            {info.role === "user" ? (
+              <TouchableOpacity
+                style={styles.touchable}
+                onPress={() =>
+                  Alert.alert(
+                    "Hace usuario",
+                    `${info.name} ${info.lastName} ya es usuario`
+                  )
+                }
+              >
+                <Text style={styles.textSecondary}>Hacer usuario</Text>
+              </TouchableOpacity>
+            ) : (
+              <TouchableOpacity
+                style={styles.touchable}
+                onPress={() => admintoUser(info.email)}
+              >
+                <Text style={styles.textSecondary}>Hacer usuario</Text>
+              </TouchableOpacity>
+            )}
           </View>
         </View>
       </LinearGradient>
@@ -219,8 +295,14 @@ const styles = StyleSheet.create({
     margin: 20,
     borderRadius: 50,
   },
-  titleMain: {
+  textMain: {
     color: "#fff",
+    fontWeight: "bold",
+    fontSize: 30,
+    textAlign: "center",
+  },
+  textMainAdmin: {
+    color: "gold",
     fontWeight: "bold",
     fontSize: 30,
     textAlign: "center",
@@ -242,6 +324,7 @@ const styles = StyleSheet.create({
     height: 200,
     alignSelf: "center",
     margin: 10,
+    borderRadius: 100,
   },
   textSecondary: {
     color: "#fff",
