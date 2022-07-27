@@ -50,9 +50,6 @@ export default function InvestorSell({ route, navigation }) {
               Precio de mercado: AR$ {price}
             </Text>
           </View>
-          <Text style={{ color: "white", fontSize: 20, marginLeft: 14 }}>
-            Plazo: 48hs
-          </Text>
         </View>
 
         <View style={styles.card}>

@@ -144,22 +144,6 @@ export default function InvestorDetail({ route, navigation }) {
             {parseFloat(cantidad).toFixed(8)}
           </Text>
         </View>
-
-        <View
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-between",
-          }}
-        >
-          <Text style={{ color: "white", fontSize: 16, marginLeft: 10 }}>
-            Comprometido:{" "}
-          </Text>
-          <Text style={{ color: "white", fontSize: 16, marginRight: 10 }}>
-            0
-          </Text>
-        </View>
-
         <View
           style={{
             display: "flex",
