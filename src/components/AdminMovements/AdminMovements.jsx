@@ -1,5 +1,13 @@
 import React, { useEffect } from "react";
-import { View, Text, StyleSheet, Image, FlatList, Button } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  FlatList,
+  Button,
+  ScrollView,
+} from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useRoute } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
@@ -46,125 +54,133 @@ const AdminMovements = () => {
         colors={["#126492", "#140152"]}
         style={styles.background2}
       >
-        <Text style={styles.titleMain}>
-          ¡{name} no tiene historial de {type} aun!
-        </Text>
-        <Image
-          style={styles.img}
-          source={require("../../imgs/error.png")}
-        ></Image>
-        <View style={{ alignSelf: "center", marginVertical: 15 }}>
-          <Button
-            title="Volver"
-            color={"purple"}
-            onPress={() => goBack()}
-          ></Button>
-        </View>
+        <ScrollView>
+          <Text style={styles.titleMain}>
+            ¡{name} no tiene historial de {type} aun!
+          </Text>
+          <Image
+            style={styles.img}
+            source={require("../../imgs/error.png")}
+          ></Image>
+          <View style={{ alignSelf: "center", marginVertical: 15 }}>
+            <Button
+              title="Volver"
+              color={"purple"}
+              onPress={() => goBack()}
+            ></Button>
+          </View>
+        </ScrollView>
       </LinearGradient>
     );
   }
   if (type === "Cryptos") {
     return (
       <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
-        <View>
-          <Text style={styles.titleMain}>
-            Historial de {type} de {name}
-          </Text>
-        </View>
-        <View>
-          <FlatList
-            data={historial}
-            renderItem={({ item }) => (
-              <View style={styles.containerInfo}>
-                <Text style={styles.text}>
-                  Tipo de transacción: {item.transactionType}
-                </Text>
-                <Text style={styles.text}>Nombre: {item.nameCrypto}</Text>
-                <Text style={styles.text}>Monto: ${item.amount}</Text>
-                <Text style={styles.text}>Precio: ${item.price}</Text>
-                <Text style={styles.text}>Fecha: {item.date}</Text>
-              </View>
-            )}
-          ></FlatList>
-        </View>
-        <View style={{ alignSelf: "center", marginVertical: 15 }}>
-          <Button
-            title="Volver"
-            color={"purple"}
-            onPress={() => goBack()}
-          ></Button>
-        </View>
+        <ScrollView>
+          <View>
+            <Text style={styles.titleMain}>
+              Historial de {type} de {name}
+            </Text>
+          </View>
+          <View>
+            <FlatList
+              data={historial}
+              renderItem={({ item }) => (
+                <View style={styles.containerInfo}>
+                  <Text style={styles.text}>
+                    Tipo de transacción: {item.transactionType}
+                  </Text>
+                  <Text style={styles.text}>Nombre: {item.nameCrypto}</Text>
+                  <Text style={styles.text}>Monto: ${item.amount}</Text>
+                  <Text style={styles.text}>Precio: ${item.price}</Text>
+                  <Text style={styles.text}>Fecha: {item.date}</Text>
+                </View>
+              )}
+            ></FlatList>
+          </View>
+          <View style={{ alignSelf: "center", marginVertical: 15 }}>
+            <Button
+              title="Volver"
+              color={"purple"}
+              onPress={() => goBack()}
+            ></Button>
+          </View>
+        </ScrollView>
       </LinearGradient>
     );
   }
   if (type === "Plazos fijos") {
     return (
       <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
-        <View>
-          <Text style={styles.titleMain}>
-            Historial de {type} de {name}
-          </Text>
-        </View>
-        <View>
-          <FlatList
-            data={historial}
-            renderItem={({ item }) => (
-              <View style={styles.containerInfo}>
-                <Text style={styles.text}>Desposito: ${item.deposit}</Text>
-                <Text style={styles.text}>Parking: {item.parking}</Text>
-                <Text style={styles.text}>TNA: ${item.roi}</Text>
-                <Text style={styles.text}>
-                  Fecha de inicio: {item.start_date}
-                </Text>
-                <Text style={styles.text}>
-                  Fecha de finalización: {item.end_date}
-                </Text>
-              </View>
-            )}
-          ></FlatList>
-        </View>
-        <View style={{ alignSelf: "center", marginVertical: 15 }}>
-          <Button
-            title="Volver"
-            color={"purple"}
-            onPress={() => goBack()}
-          ></Button>
-        </View>
+        <ScrollView>
+          <View>
+            <Text style={styles.titleMain}>
+              Historial de {type} de {name}
+            </Text>
+          </View>
+          <View>
+            <FlatList
+              data={historial}
+              renderItem={({ item }) => (
+                <View style={styles.containerInfo}>
+                  <Text style={styles.text}>Desposito: ${item.deposit}</Text>
+                  <Text style={styles.text}>Parking: {item.parking}</Text>
+                  <Text style={styles.text}>TNA: ${item.roi}</Text>
+                  <Text style={styles.text}>
+                    Fecha de inicio: {item.start_date}
+                  </Text>
+                  <Text style={styles.text}>
+                    Fecha de finalización: {item.end_date}
+                  </Text>
+                </View>
+              )}
+            ></FlatList>
+          </View>
+          <View style={{ alignSelf: "center", marginVertical: 15 }}>
+            <Button
+              title="Volver"
+              color={"purple"}
+              onPress={() => goBack()}
+            ></Button>
+          </View>
+        </ScrollView>
       </LinearGradient>
     );
   }
   if (type === "Transacciones") {
     return (
       <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
-        <View>
-          <Text style={styles.titleMain}>
-            Historial de {type} de {name}
-          </Text>
-        </View>
-        <View>
-          <FlatList
-            data={historial}
-            renderItem={({ item }) => (
-              <View style={styles.containerInfo}>
-                <Text style={styles.text}>Monto: ${item.amount}</Text>
-                <Text style={styles.text}>
-                  Balance del receptor: ${item.amountDestiny}
-                </Text>
-                <Text style={styles.text}>
-                  Balance del emisor: ${item.amountOrigin}
-                </Text>
-                <Text style={styles.text}>Fecha: {item.date}</Text>
-              </View>
-            )}
-          ></FlatList>
-        </View>
-        <View style={{ alignSelf: "center", marginVertical: 15 }}>
-          <Button
-            title="Volver"
-            color={"purple"}
-            onPress={() => goBack()}
-          ></Button>
-        </View>
+        <ScrollView>
+          <View>
+            <Text style={styles.titleMain}>
+              Historial de {type} de {name}
+            </Text>
+          </View>
+          <View>
+            <FlatList
+              data={historial}
+              renderItem={({ item }) => (
+                <View style={styles.containerInfo}>
+                  <Text style={styles.text}>Monto: ${item.amount}</Text>
+                  <Text style={styles.text}>
+                    Balance del receptor: ${item.amountDestiny}
+                  </Text>
+                  <Text style={styles.text}>
+                    Balance del emisor: ${item.amountOrigin}
+                  </Text>
+                  <Text style={styles.text}>Fecha: {item.date}</Text>
+                </View>
+              )}
+            ></FlatList>
+          </View>
+          <View style={{ alignSelf: "center", marginVertical: 15 }}>
+            <Button
+              title="Volver"
+              color={"purple"}
+              onPress={() => goBack()}
+            ></Button>
+          </View>
+        </ScrollView>
       </LinearGradient>
     );
   }
