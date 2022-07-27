@@ -11,7 +11,7 @@ import {
 import { Input, Icon } from "react-native-elements";
 import { LinearGradient } from "expo-linear-gradient";
 import Constants from "expo-constants";
-import { logIn, cleanLogIn, getUsers } from "../../redux/actions";
+import { logIn, cleanLogIn, getUsers, getAuthoToken } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import {
   TabRouter,
@@ -117,9 +117,14 @@ const LogIn = () => {
   //----------------------Envs----------------------
   CLIENT_ID =
     "3723003346-i8mc0vbgp92ik62gae0jieh350vmqegb.apps.googleusercontent.com";
+<<<<<<< HEAD
   REDIRECT_URL = "https://auth.expo.io/@henrybank/HenryBank";
+=======
+  REDIRECT_URL = "https://auth.expo.io/@emanueljuri/HenryBank";
+>>>>>>> 67efeb19f248f01ae000b33bd4c38398a499f9dd
   //----------------------Envs----------------------
   async function signInGoogle() {
+    dispatch(getAuthoToken());
     const RESPONSE_TYPE = "token";
     const SCOPE = encodeURI("profile email");
 

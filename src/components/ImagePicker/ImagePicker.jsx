@@ -5,8 +5,9 @@ import { IconButton } from "react-native-paper";
 
 import * as ImagePickerExpo from "expo-image-picker";
 
-const ImagePicker = ({setFormData, formData}) => {
+const ImagePicker = ({setFormData, formData, imageGoogle}) => {  
   const [image, setImage] = useState(
+    imageGoogle ? imageGoogle :
     "https://www.seekpng.com/png/full/847-8474751_download-empty-profile.png"
   );
 
@@ -55,7 +56,7 @@ const ImagePicker = ({setFormData, formData}) => {
       .then((res) => res.json())
       .then((data) => {
         setImage(data.url);
-        setFormData({ ...formData, image: data.url });
+        setFormData({ ...formData, image: data.url || imageGoogle});
       });
   };
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -7,19 +7,20 @@ import {
   FlatList,
   Image,
   ScrollView,
+  ActivityIndicator,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import AdminUserCard from "../AdminUserCard/AdminUserCard";
 import { Input, Icon } from "react-native-elements";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
-import { searchUser } from "../../redux/actions";
+import { searchUser, getAllUsers } from "../../redux/actions";
 
 const AdminHome = () => {
   const users = useSelector((state) => state.allUsersSearch);
   const user = useSelector((state) => state.userDetail);
   const filtered = users.filter(
-    (u) => u.email !== user.email && u.email !== "enanoloco@henrry.com"
+    (u) => u.email !== user.email && u.email !== "admin@henrry.com"
   );
   const dispatch = useDispatch();
   const navigation = useNavigation();
@@ -38,6 +39,13 @@ const AdminHome = () => {
     dispatch(searchUser(token, input));
   };
 
+  useEffect(() => {
+    dispatch(getAllUsers(token));
+  }, [dispatch]);
+
+  <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
+    <ActivityIndicator size={50} color="#0000ff" />
+  </LinearGradient>;
   if (!filtered[0]) {
     return (
       <LinearGradient
@@ -51,6 +59,11 @@ const AdminHome = () => {
           style={styles.img}
           source={require("../../imgs/error.png")}
         ></Image>
+        <Text style={{ color: "transparent" }}>
+          {setTimeout(() => {
+            navigation.navigate("Configs");
+          }, 1500)}
+        </Text>
       </LinearGradient>
     );
   }
@@ -87,9 +100,16 @@ const AdminHome = () => {
                   />
                 </View>
                 <View style={{ alignSelf: "center" }}>
-                  <Text style={styles.textMain}>
-                    {item.name} {item.lastName}
-                  </Text>
+                  {item.role === "admin" ? (
+                    <Text style={styles.textMainAdmin}>
+                      {item.name} {item.lastName}
+                    </Text>
+                  ) : (
+                    <Text style={styles.textMain}>
+                      {item.name} {item.lastName}
+                    </Text>
+                  )}
+
                   <Text style={styles.text}>{item.cbu}</Text>
                   <Text style={styles.text}>{item.email}</Text>
                 </View>
@@ -155,9 +175,15 @@ const styles = StyleSheet.create({
   image: {
     width: 70,
     height: 70,
+    borderRadius: 50,
   },
   textMain: {
     color: "#fff",
+    fontWeight: "bold",
+    fontSize: 15,
+  },
+  textMainAdmin: {
+    color: "gold",
     fontWeight: "bold",
     fontSize: 15,
   },
