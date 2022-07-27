@@ -38,7 +38,6 @@ const RegisterB = () => {
     if (user.email) {      
       setFormData({
         ...formData,
-        image: user.image,
         email: user.email,
         password: password,
       });
@@ -167,7 +166,7 @@ const RegisterB = () => {
       <LinearGradient colors={['#126492', '#140152']} style={styles.background}>
         <Text style={styles.textMain}>Regístrate</Text>
 
-        <ImagePicker setFormData={setFormData} formData={formData} imageGoogle={user.image} />
+        <ImagePicker setFormData={setFormData} formData={formData} imageGoogle={user ? user.image : null} />
 
         <Input
           containerStyle={styles.input}
