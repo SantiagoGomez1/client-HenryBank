@@ -121,11 +121,13 @@ const RegisterB = () => {
     let isValid = true;
 
     if (!validateName(formData.name)) {
+      !formData.name ? setErrorName('Campo obligatorio') : 
       setErrorName('Debes ingresar solo letras, con una longitud mínima de tres caracteres');
       isValid = false;
     }
     if (!validateName(formData.lastName)) {
-      setErrorName('Debes ingresar solo letras');
+      !formData.name ? setErrorName('Campo obligatorio') : 
+      setErrorName('Debes ingresar solo letras, con una longitud mínima de tres caracteres');
       isValid = false;
     }
     if (formData.identity.length < 8) {
@@ -133,11 +135,13 @@ const RegisterB = () => {
       isValid = false;
     }
     if (!validateIdentity(formData.identity)) {
+      !formData.identity ? setErrorIdentity('Campo obligatorio') : 
       setErrorIdentity('Debes ingresar solo números');
       isValid = false;
     }
     if (!validateDateOfBirth(formData.dateOfBirth)) {
-      setErrorDateOfBirth('Debes ingresar un formato correcto dd/mm/aaaa');
+      !formData.dateOfBirth ? setErrorDateOfBirth('Campo obligatorio') : 
+      setErrorDateOfBirth('Debes ingresar un formato correcto DD/MM/AAAA');
       isValid = false;
     }
 
