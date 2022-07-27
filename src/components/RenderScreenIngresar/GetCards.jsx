@@ -50,23 +50,37 @@ export default function GetCards() {
     if (!validateData()) {
       Alert.alert("Por favor ingrese un monto");
       return;
-    } else {
-      axios
-        .post(
-          API_URL,
+    } 
+    Alert.alert(
+      "Ingresar dinero",
+      `¿Seguro quieres ingresar $${input.amount}?`,
+      [
+        {
+          text: "Cancelar",
+        },
+        {
+          text: "Si",
+          onPress: () =>
           {
-            amount: Number(input.amount),
-            paymentMethodType: "card",
-            currency: "ars",
-          },
-          {
-            headers: {
-              Authorization: token,
-            },
+            axios
+              .post(
+                API_URL,
+                {
+                  amount: Number(input.amount),
+                  paymentMethodType: "card",
+                  currency: "ars",
+                },
+                {
+                  headers: {
+                    Authorization: token,
+                  },
+                }
+              )
+              .then((res) => navigation.navigate("SuccessOperacion"));
           }
-        )
-        .then((res) => navigation.navigate("SuccessOperacion"));
-    }
+        },
+      ]
+    );
   }
 
   const handleOnChange = (e, type) => {
