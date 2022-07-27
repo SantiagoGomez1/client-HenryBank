@@ -48,7 +48,7 @@ const HomeRoutes = () => {
     <Tab.Navigator
       initialRouteName="home"
       screenOptions={{
-        tabBarActiveTintColor: "aqua",
+        tabBarActiveTintColor: "#764ba3",
         tabBarStyle: {
           backgroundColor: "#140152",
         },

@@ -23,7 +23,7 @@ const RenderScreen = () => {
           <LinearGradient
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 0 }}
-            colors={["#4facfe", "#00f2fe"]}
+            colors={["#667eea", "#764ba2"]}
             style={{ paddingVertical: 10, width: 280, borderRadius: 11 }}
           >
             <Text style={{ color: "#ffffff", textAlign: "center" }}>
@@ -38,7 +38,7 @@ const RenderScreen = () => {
           <LinearGradient
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 0 }}
-            colors={["#4facfe", "#00f2fe"]}
+            colors={["#667eea", "#764ba2"]}
             style={{ paddingVertical: 10, width: 280, borderRadius: 11, }}
           >
             <Text style={{ color: "#ffffff", textAlign: "center" }}>

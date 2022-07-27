@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
     borderWidth: 1,
     borderStyle: "solid",
-    borderColor: "aqua",
+    borderColor: "#764ba2",
     justifyContent: "center",
     width: 70,
     height: 70,

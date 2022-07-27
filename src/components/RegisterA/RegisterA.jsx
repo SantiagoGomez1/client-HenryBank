@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { Button, StyleSheet, Text, Dimensions, Alert } from "react-native";
+import {
+  Button,
+  StyleSheet,
+  Text,
+  Dimensions,
+  Alert,
+  TouchableOpacity,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
 import Constants from "expo-constants";
@@ -158,13 +165,23 @@ export default function RegisterA() {
             />
           }
         />
-
-        <Button
-          style={styles.btn}
-          color={"purple"}
-          title="Siguiente"
-          onPress={() => registerUser()}
-        ></Button>
+        <TouchableOpacity onPress={() => registerUser()}>
+          <LinearGradient
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 0 }}
+            colors={["#667eea", "#764ba2"]}
+            style={{
+              paddingVertical: 10,
+              width: 120,
+              borderRadius: 10,
+              marginTop: 10,
+            }}
+          >
+            <Text style={{ color: "#ffffff", textAlign: "center" }}>
+              Siguiente
+            </Text>
+          </LinearGradient>
+        </TouchableOpacity>
       </LinearGradient>
     </KeyboardAwareScrollView>
   );

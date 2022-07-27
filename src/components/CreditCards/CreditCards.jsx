@@ -3,8 +3,10 @@ import {
   Text,
   View,
   ScrollView,
+  TouchableOpacity
 } from "react-native";
 import React, { useEffect } from "react";
+import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/native";
 import {
   deleteTarjetas,
@@ -40,7 +42,8 @@ export default function CreditCards() {
         style={{
           fontSize: 18,
           color: "white",
-          justifyContent: "center",
+          textAlign:'center',
+          fontWeight:'bold'
         }}
       >
         Tarjetas asociadas
@@ -75,20 +78,30 @@ export default function CreditCards() {
           justifyContent: "space-around",
         }}
       >
-        <Button
-          title="Agregar Nueva tarjeta"
-          color={"purple"}
-          onPress={() => navigation.navigate("NewCreditCard")}
-          style={{ marginVertical: 100 , }}
-        />
-        <Button
-          title="Eliminar tarjetas"
-          onPress={() => borrarTarjetas()}          
-          color={"purple"}
-          containerStyle={{
-            marginTop: 15,              
-          }}
-        />
+          <TouchableOpacity onPress={() => navigation.navigate("NewCreditCard")}>
+              <LinearGradient
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 0 }}
+                colors={["#667eea", "#764ba2"]}
+                style={{ paddingVertical: 10,width:370, borderRadius: 10 }}
+              >
+                <Text style={{ color: "#ffffff", textAlign: "center" }}>
+                  Agregar nueva tarjeta
+                </Text>
+              </LinearGradient>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => borrarTarjetas()}>
+              <LinearGradient
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 0 }}
+                colors={["#667eea", "#764ba2"]}
+                style={{ paddingVertical: 10,width:370, borderRadius: 10,marginTop:10 }}
+              >
+                <Text style={{ color: "#ffffff", textAlign: "center" }}>
+                  Eliminar tarjetas
+                </Text>
+              </LinearGradient>
+            </TouchableOpacity>
       </View>
     </View>
   );

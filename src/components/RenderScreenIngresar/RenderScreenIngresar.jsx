@@ -13,10 +13,10 @@ const RenderScreenIngresar = () => {
         style={{ marginHorizontal: 20 }}
         initial={0}
         onPress={(value) => setRender(value)}
-        textColor={"purple"} //'#7a44cf'
+        textColor={"#764ba2"} //'#7a44cf'
         selectedColor={"white"}
-        buttonColor={"purple"}
-        borderColor={"purple"}
+        buttonColor={"#764ba2"}
+        borderColor={"#764ba2"}
         hasPadding
         options={[
           { label: "Nueva Tarjeta", value: "Nueva Tarjeta" },
