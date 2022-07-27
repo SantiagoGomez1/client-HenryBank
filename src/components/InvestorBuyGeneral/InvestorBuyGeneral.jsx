@@ -41,7 +41,14 @@ export default function InvestorBuyGeneral({ route, navigation }) {
 
         <View style={styles.card}>
           <View style={{ display: "flex" }}>
-            <Text style={{ color: "white", fontSize: 25, marginVertical: 15 }}>
+            <Text
+              style={{
+                color: "white",
+                fontSize: 25,
+                marginVertical: 15,
+                textAlign: "center",
+              }}
+            >
               ¿Cuánto quieres comprar?
             </Text>
           </View>
@@ -68,7 +75,7 @@ export default function InvestorBuyGeneral({ route, navigation }) {
           <View style={{ alignItems: "center", paddingBottom: 20 }}>
             <TextInput
               style={styles.input}
-              placeholder="00,00$"
+              placeholder="$00.00"
               placeholderTextColor="white"
               keyboardType="number-pad"
               value={value}
@@ -101,14 +108,14 @@ export default function InvestorBuyGeneral({ route, navigation }) {
                   },
                 }
               );
-              console.log("Esta es la respuesta de continuar",response.data)
+              console.log("Esta es la respuesta de continuar", response.data);
               if (response.data.msg === "Nueva Crypto Comprada") {
-                console.log("Entro en el primer if")
+                console.log("Entro en el primer if");
                 navigation.navigate("SuccessBuy", {
                   success: 1,
                 });
               } else if (response.data.msg === "Crypto Comprada") {
-                console.log("Entro en el segundo if")
+                console.log("Entro en el segundo if");
                 navigation.navigate("SuccessBuy", {
                   success: 1,
                 });
@@ -136,11 +143,11 @@ const styles = StyleSheet.create({
     height: height,
   },
   card: {
-    backgroundColor: "transparent",
+    backgroundColor: "rgba(255, 255, 255, 0.3)",
     borderWidth: 1,
     borderStyle: "solid",
     borderColor: "rgba(255, 255, 255, 0.5)",
-    marginHorizontal: 10,
+    marginHorizontal: 15,
     marginTop: 10,
     borderRadius: 8,
     padding: 10,
