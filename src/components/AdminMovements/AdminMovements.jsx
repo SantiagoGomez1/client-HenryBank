@@ -82,7 +82,7 @@ const AdminMovements = () => {
                 <Text style={styles.text}>Nombre: {item.nameCrypto}</Text>
                 <Text style={styles.text}>Monto: ${item.amount}</Text>
                 <Text style={styles.text}>Precio: ${item.price}</Text>
-                <Text style={styles.text}>Fecha: {item.date}</Text>
+                <Text style={styles.text}>Fecha: {new Date(item.date).toLocaleDateString('sp-AR')+' '+new Date(item.date).toLocaleTimeString()}</Text>
               </View>
             )}
           ></FlatList>
@@ -114,7 +114,7 @@ const AdminMovements = () => {
                 <Text style={styles.text}>Parking: {item.parking}</Text>
                 <Text style={styles.text}>TNA: ${item.roi}</Text>
                 <Text style={styles.text}>
-                  Fecha de inicio: {item.start_date}
+                  Fecha de inicio: {new Date(item.start_date).toLocaleDateString('sp-AR')+' '+new Date(item.start_date).toLocaleTimeString()}
                 </Text>
                 <Text style={styles.text}>
                   Fecha de finalización: {item.end_date}
@@ -153,7 +153,7 @@ const AdminMovements = () => {
                 <Text style={styles.text}>
                   Balance del emisor: ${item.amountOrigin}
                 </Text>
-                <Text style={styles.text}>Fecha: {item.date}</Text>
+                <Text style={styles.text}>Fecha: {new Date(item.date).toLocaleDateString('sp-AR')+' '+new Date(item.date).toLocaleTimeString()}</Text>
               </View>
             )}
           ></FlatList>
