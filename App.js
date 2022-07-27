@@ -41,6 +41,7 @@ import ForgotPasswordConfirm from "./src/components/ForgotPasswordConfirm/Forgot
 import NewCreditCard from "./src/components/NewCreditCard/NewCreditCard";
 import AdminMovements from "./src/components/AdminMovements/AdminMovements";
 import AdminConfirmation from "./src/components/AdminConfirmation/AdminConfirmation";
+import SuccessIngresar from "./src/components/SuccessIngresar/SuccessIngresar";
 
 export default function App() {
   const Stack = createStackNavigator();
@@ -103,6 +104,7 @@ export default function App() {
               name="AdminConfirmation"
               component={AdminConfirmation}
             />
+            <Stack.Screen name="SuccessIngresar" component={SuccessIngresar} />
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>

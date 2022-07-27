@@ -42,6 +42,7 @@ import {
   ADMIN_TO_USER,
   BAN_USER,
   DISBAN_USER,
+  PAYMENT,
 } from "../actions/index";
 
 const initialState = {
@@ -76,6 +77,7 @@ const initialState = {
   adminToUser: {},
   banUser: {},
   disbanUser: {},
+  payment: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -302,6 +304,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         banUser: action.payload,
+      };
+    case PAYMENT:
+      return {
+        ...state,
+        payment: action.payload,
       };
     default:
       return state;

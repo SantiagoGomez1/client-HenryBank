@@ -4,6 +4,7 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Image,
 } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
@@ -57,7 +58,18 @@ export default function Possession() {
           height: 80,
         }}
       >
-        {balance.length > 0 &&
+        {!balance.length ? (
+          <View style={{ justifyContent: "space-evenly", marginTop: 20 }}>
+            <Image
+              style={styles.imgS}
+              source={require("../../imgs/error.png")}
+            ></Image>
+            <Text style={styles.textoValidation}>
+              ¡No tienes tenencias aun!
+            </Text>
+          </View>
+        ) : (
+          balance.length > 0 &&
           balance.map(
             (item, index) =>
               item.balance !== "0" && (
@@ -85,7 +97,8 @@ export default function Possession() {
                   </TouchableOpacity>
                 </View>
               )
-          )}
+          )
+        )}
       </ScrollView>
 
       {/* Segunda seccion */}
@@ -113,34 +126,52 @@ export default function Possession() {
           height: 80,
         }}
       >
-        {!lockedStakeP
-          ? null
-          : lockedStakeP.length === lockedStakeF.length
-          ? null
-          : lockedStakeP.map((item, index) => (
-              <View key={index}>
-                <TouchableOpacity
-                  style={styles.subCard}
-                  onPress={() => {
-                    navigation.navigate("Detalle PF", {
-                      id: item.name,
-                      amount: item.amount,
-                    });
-                  }}
-                >
-                  <View style={styles.caract}>
-                    <Text style={{ color: "white" }}>
-                      $ {item.amount.substring(1)}
-                    </Text>
-                    <Text style={{ color: "white" }}>53%</Text>
-                    <Text style={{ color: "white" }}>30</Text>
-                    <Text style={{ color: "green" }}>
-                      $ {(item.amount.substring(1) * 1.05).toFixed(2)}*
-                    </Text>
-                  </View>
-                </TouchableOpacity>
-              </View>
-            ))}
+        {!lockedStakeP ? (
+          <View style={{ justifyContent: "space-evenly", marginTop: 20 }}>
+            <Image
+              style={styles.imgS}
+              source={require("../../imgs/error.png")}
+            ></Image>
+            <Text style={styles.textoValidation}>
+              ¡No tienes plazos fijos aun!
+            </Text>
+          </View>
+        ) : lockedStakeP.length === lockedStakeF.length ? (
+          <View style={{ marginTop: 20 }}>
+            <Image
+              style={styles.imgS}
+              source={require("../../imgs/error.png")}
+            ></Image>
+            <Text style={styles.textoValidation}>
+              ¡No tienes plazos fijos aun!
+            </Text>
+          </View>
+        ) : (
+          lockedStakeP.map((item, index) => (
+            <View key={index}>
+              <TouchableOpacity
+                style={styles.subCard}
+                onPress={() => {
+                  navigation.navigate("Detalle PF", {
+                    id: item.name,
+                    amount: item.amount,
+                  });
+                }}
+              >
+                <View style={styles.caract}>
+                  <Text style={{ color: "white" }}>
+                    $ {item.amount.substring(1)}
+                  </Text>
+                  <Text style={{ color: "white" }}>53%</Text>
+                  <Text style={{ color: "white" }}>30</Text>
+                  <Text style={{ color: "green" }}>
+                    $ {(item.amount.substring(1) * 1.05).toFixed(2)}*
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+          ))
+        )}
       </ScrollView>
     </View>
   );
@@ -170,5 +201,15 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-around",
+  },
+  textoValidation: {
+    color: "red",
+    textAlign: "center",
+    fontSize: 20,
+  },
+  imgS: {
+    alignSelf: "center",
+    width: 50,
+    height: 50,
   },
 });

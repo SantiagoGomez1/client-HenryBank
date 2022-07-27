@@ -56,6 +56,8 @@ export const ADMIN_TO_USER = "ADMIN_TO_USER";
 export const BAN_USER = "BAN_USER";
 export const DISBAN_USER = "DISBAN_USER";
 
+export const PAYMENT = "PAYMENT";
+
 //------------------------------------------------------------------------------------------------//
 
 export const logIn = (form) => async (dispatch) => {
@@ -752,4 +754,37 @@ export const getTransactionsHistorial = (email, token) => async (dispatch) => {
     config
   );
   dispatch({ type: GET_TRANSACTIONS_HISTORIAL, payload: response.data });
+};
+
+//------------------------------------------------------------------------------------------------//
+
+export const payment = (token, amount, confirm) => async (dispatch) => {
+  const config = {
+    headers: {
+      Authorization: token,
+    },
+  };
+  const response = await axios.post(
+    `https://h-bank.herokuapp.com/user/recharge`,
+    {
+      amount: Number(amount),
+      paymentMethodType: "card",
+      currency: "ars",
+    },
+    config
+  );
+  const { clientSecret } = await response.data;
+  console.log(clientSecret);
+  const { error, paymentIntent } = await confirm(clientSecret, {
+    type: "Card",
+    billingDetails: { estado: "ok" },
+  });
+  console.log("errores", error, paymentIntent);
+  let validations = [];
+  if (error) {
+    validations.push(`Error code: ${error.code}`, error.message);
+  } else if (paymentIntent) {
+    validations.push("Ok");
+  }
+  dispatch({ type: PAYMENT, payload: validations });
 };
