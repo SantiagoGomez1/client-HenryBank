@@ -3,7 +3,10 @@ import React from "react";
 import { IconButton } from "react-native-paper";
 import { useSelector } from "react-redux";
 
-const conversion = 128.01;
+const conversion = (str) => {
+  let result = str * 128.01;
+  return Math.floor(result);
+};
 
 export default function WalletTotal() {
   const [dropdown, setDropdown] = React.useState(true);
@@ -11,7 +14,7 @@ export default function WalletTotal() {
   return (
     <View style={styles.card}>
       <View style={styles.container}>
-        <Text style={{ color: "white" }}>Tu total</Text>
+        <Text style={{ color: "white", textAlign: "center" }}>Tu total</Text>
         {dropdown ? (
           <IconButton
             icon="eye-outline"
@@ -29,7 +32,12 @@ export default function WalletTotal() {
         )}
       </View>
       {dropdown && (
-        <Text style={{ color: "white" }}>{"ARG: " + Math.floor(money)}</Text>
+        <View style={{ flexDirection: "row", justifyContent: "space-around" }}>
+          <Text style={{ color: "white" }}>{"ARG: $" + Math.floor(money)}</Text>
+          <Text style={{ color: "white" }}>
+            {"USD: $" + conversion(Math.floor(money))}
+          </Text>
+        </View>
       )}
       {/* {dropdown && (
         <Text style={{ color: "white" }}>

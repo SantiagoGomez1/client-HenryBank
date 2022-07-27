@@ -148,10 +148,10 @@ const AdminMovements = () => {
               <View style={styles.containerInfo}>
                 <Text style={styles.text}>Monto: ${item.amount}</Text>
                 <Text style={styles.text}>
-                  Balance del receptor: {item.amountDestiny}
+                  Balance del receptor: ${item.amountDestiny}
                 </Text>
                 <Text style={styles.text}>
-                  Balance del emisor: {item.amountOrigin}
+                  Balance del emisor: ${item.amountOrigin}
                 </Text>
                 <Text style={styles.text}>Fecha: {item.date}</Text>
               </View>

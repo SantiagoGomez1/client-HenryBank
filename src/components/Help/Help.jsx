@@ -5,6 +5,7 @@ import {
   StyleSheet,
   View,
   BackHandler,
+  Linking,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import Constants from "expo-constants";
@@ -15,6 +16,10 @@ const Help = () => {
   const navigation = useNavigation();
   const goBack = () => {
     navigation.navigate("Configs");
+  };
+  const url = "https://www.instagram.com/henrybank.app";
+  const handleOpenUrl = () => {
+    Linking.openURL(url);
   };
 
   React.useEffect(() => {
@@ -34,7 +39,7 @@ const Help = () => {
     <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
       <Text style={styles.title}>Ayuda</Text>
       <View style={styles.containerText}>
-        <Text style={styles.description}>
+        <Text style={styles.description1}>
           Si necesitas ayuda puedes escribirnos en nuesta cuenta de instagram
         </Text>
         <IconButton
@@ -43,7 +48,9 @@ const Help = () => {
           color="orange"
           size={50}
         />
-        <Text style={styles.description}>@henrybank.app</Text>
+        <TouchableOpacity onPress={() => handleOpenUrl()}>
+          <Text style={styles.description2}>@henrybank.app</Text>
+        </TouchableOpacity>
       </View>
       <TouchableOpacity>
         <Text onPress={() => goBack()} style={styles.back}>
@@ -78,11 +85,17 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: "center",
   },
-  description: {
-    color: "#fff",
+  description1: {
     fontSize: 15,
     textAlign: "center",
     padding: 10,
+    color: "#fff",
+  },
+  description2: {
+    fontSize: 15,
+    textAlign: "center",
+    padding: 10,
+    color: "aqua",
   },
   back: {
     color: "aqua",

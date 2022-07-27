@@ -12,7 +12,7 @@ const RenderScreenMovimientos = () => {
   const token = useSelector((state) => state.logIn.token);
   const mov = useSelector((state) => state.movements);
   const [typee, setTypee] = useState({ typee: "" });
-  const [render, setRender] = useState("INGRESOS");
+  const [render, setRender] = useState("");
 
   const handleType = (e, type) => {
     setTypee({ ...typee, [type]: e.nativeEvent.text });
@@ -202,10 +202,6 @@ const RenderScreenMovimientos = () => {
       <Switch setRender={setRender} />
       {!filteredEgresos[0] && !filteredIngresos[0] ? (
         <View style={styles.cont}>
-          <Image
-            style={styles.imgSuccess}
-            source={require("../../imgs/javimilei.png")}
-          ></Image>
           <Text style={styles.text2}>
             ¡Todavía no tienes movimientos en tu cuenta!
           </Text>
@@ -276,6 +272,27 @@ const RenderScreenMovimientos = () => {
       ) : render === "INGRESOStype" ? (
         <FlatList
           data={filtertedIngresosType}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => (
+            <UserCardMovimientos
+              id={item.id}
+              image={item.icon}
+              name={item.name}
+              amount={item.amount}
+              date={
+                item.date
+                  .substring(0, 10)
+                  .trim()
+                  .split("/")
+                  .reverse()
+                  .join("/") /* +' '+item.hour */
+              }
+            />
+          )}
+        />
+      ) : render === "" ? (
+        <FlatList
+          data={movementsSort}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
             <UserCardMovimientos

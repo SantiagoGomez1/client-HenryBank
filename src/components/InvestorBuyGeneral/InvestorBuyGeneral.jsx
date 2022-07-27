@@ -41,7 +41,14 @@ export default function InvestorBuyGeneral({ route, navigation }) {
 
         <View style={styles.card}>
           <View style={{ display: "flex" }}>
-            <Text style={{ color: "white", fontSize: 25, marginVertical: 15 }}>
+            <Text
+              style={{
+                color: "white",
+                fontSize: 25,
+                marginVertical: 15,
+                textAlign: "center",
+              }}
+            >
               ¿Cuánto quieres comprar?
             </Text>
           </View>
@@ -68,7 +75,7 @@ export default function InvestorBuyGeneral({ route, navigation }) {
           <View style={{ alignItems: "center", paddingBottom: 20 }}>
             <TextInput
               style={styles.input}
-              placeholder="00,00$"
+              placeholder="$00.00"
               placeholderTextColor="white"
               keyboardType="number-pad"
               value={value}
@@ -181,7 +188,7 @@ const styles = StyleSheet.create({
   },
   card: {
     borderWidth: 1,
-    marginHorizontal: 10,
+    marginHorizontal: 15,
     marginTop: 10,
     padding: 10,
     alignItems: "center",

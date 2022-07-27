@@ -121,7 +121,7 @@ const RegisterB = () => {
     let isValid = true;
 
     if (!validateName(formData.name)) {
-      setErrorName('Debes ingresar solo letras');
+      setErrorName('Debes ingresar solo letras, con una longitud mínima de tres caracteres');
       isValid = false;
     }
     if (!validateName(formData.lastName)) {
@@ -129,7 +129,7 @@ const RegisterB = () => {
       isValid = false;
     }
     if (formData.identity.length < 8) {
-      setErrorIdentity('Debes ingresar un número válido');
+      setErrorIdentity('Debes ingresar un formato válido');
       isValid = false;
     }
     if (!validateIdentity(formData.identity)) {
@@ -137,7 +137,7 @@ const RegisterB = () => {
       isValid = false;
     }
     if (!validateDateOfBirth(formData.dateOfBirth)) {
-      setErrorDateOfBirth('Debes ingresar un formato correcto');
+      setErrorDateOfBirth('Debes ingresar un formato correcto dd/mm/aaaa');
       isValid = false;
     }
 
@@ -145,7 +145,7 @@ const RegisterB = () => {
   };
 
   const validateName = function (name) {
-    const re = /^[A-Z]+$/i;
+    const re = /[a-zA-Z ]{3,254}/;
     return re.test(name);
   };
   const validateIdentity = function (identity) {

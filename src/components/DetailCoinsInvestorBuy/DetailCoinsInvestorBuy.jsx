@@ -5,6 +5,7 @@ import {
   Image,
   TouchableOpacity,
   BackHandler,
+  ScrollView,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
@@ -118,16 +119,16 @@ const styles = StyleSheet.create({
   background: {
     flex: 1,
     justifyContent: "space-between",
-    padding: 20,
   },
   img: {
     width: 150,
     height: 150,
     alignSelf: "center",
-    marginTop: 50,
+    marginTop: 35,
+    borderRadius: 100,
   },
   card: {
-    backgroundColor: "transparent",
+    backgroundColor: "rgba(255, 255, 255, 0.3)",
     borderWidth: 1,
     borderStyle: "solid",
     borderColor: "rgba(255, 255, 255, 0.5)",
@@ -140,9 +141,11 @@ const styles = StyleSheet.create({
     borderStyle: "solid",
     borderColor: "rgba(255, 255, 255, 0.5)",
     backgroundColor: "rgba(255, 255, 255, 0.1)",
+    marginHorizontal: 15,
   },
   btn: {
     alignSelf: "center",
+    margin: 5,
   },
   textSecondary: {
     color: "#fff",

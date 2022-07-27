@@ -31,7 +31,7 @@ export default function InvestorBuy() {
           style={{
             display: "flex",
             flexDirection: "row",
-            justifyContent: "space-between",
+            justifyContent: "space-around",
           }}
         >
           <TextInput
@@ -81,14 +81,14 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderStyle: "solid",
     borderColor: "rgba(255, 255, 255, 0.5)",
-    margin: 10,
+    margin: 15,
     borderRadius: 8,
     padding: 10,
     color: "white",
     width: 250,
   },
   card: {
-    backgroundColor: "transparent",
+    backgroundColor: "rgba(255, 255, 255, 0.3)",
     borderWidth: 1,
     borderStyle: "solid",
     borderColor: "rgba(255, 255, 255, 0.5)",

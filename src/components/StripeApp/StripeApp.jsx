@@ -11,10 +11,11 @@ import {
 } from "react-native";
 import { CardField, useConfirmPayment } from "@stripe/stripe-react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import { useSelector, useDispatch } from "react-redux";
+import { View, Text, StyleSheet, TextInput, Button, Alert } from "react-native";
+import { CardField } from "@stripe/stripe-react-native";
 import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
-
-const API_URL = "https://h-bank.herokuapp.com/user/recharge";
 
 const StripeApp = () => {
   const navigation = useNavigation();
@@ -47,18 +48,15 @@ const StripeApp = () => {
     return isValid;
   };
 
-  const { confirmPayment, loading } = useConfirmPayment();
-
-  const config = {
-    headers: {
-      Authorization: token,
-    },
-  };
   const handleOnChange = (e, type) => {
     setInput({ ...input.amount, [type]: e.nativeEvent.text });
   };
 
-  const validar = () => {
+  async function handlePayPress() {
+    if (!validateData() || !cardDetails?.complete) {
+      Alert.alert("Por favor complete todos los campos");
+      return;
+    }
     Alert.alert(
       "Ingresar dinero",
       `¿Seguro quieres ingresar $${input.amount}?`,
@@ -66,36 +64,16 @@ const StripeApp = () => {
         {
           text: "Cancelar",
         },
-        { text: "Si", onPress: () => handlePayPress() },
+        {
+          text: "Si",
+          onPress: () =>
+            navigation.navigate("SuccessIngresar", {
+              token: token,
+              amount: input.amount,
+            }),
+        },
       ]
     );
-  };
-  async function handlePayPress() {
-    if (!validateData() || !cardDetails?.complete) {
-      Alert.alert("Por favor complete todos los campos");
-      return;
-    } else {
-      const response = await axios.post(
-        API_URL,
-        {
-          amount: Number(input.amount),
-          paymentMethodType: "card",
-          currency: "ars",
-        },
-        config
-      );
-      const { clientSecret } = await response.data;
-      const { error, paymentIntent } = await confirmPayment(clientSecret, {
-        type: "Card",
-        billingDetails: { estado: "ok" },
-      });
-
-      if (error) {
-        return setErrorNumer(`Error code: ${error.code}`, error.message);
-      } else if (paymentIntent) {
-        navigation.navigate("SuccessOperacion");
-      }
-    }
   }
   return (
     <View style={styles.container}>
@@ -149,13 +127,6 @@ const StripeApp = () => {
           </Text>
         </LinearGradient>
       </TouchableOpacity>
-      {/* <Button
-        style={styles.btn}
-        onPress={validar}
-        title="Confirmar"
-        color={"purple"}
-        disable={loading}
-      /> */}
     </View>
   );
 };
