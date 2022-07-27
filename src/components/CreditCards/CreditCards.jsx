@@ -3,8 +3,6 @@ import {
   Text,
   View,
   ScrollView,
-  Button,
-  TouchableOpacity,
 } from "react-native";
 import React, { useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
@@ -13,6 +11,7 @@ import {
   getTarjetas,
 } from "../CreditCardAsyncStorage/CreditCardAsyncStorage";
 import { useFocusEffect } from "@react-navigation/native";
+import { Button } from "@rneui/themed";
 
 export default function CreditCards() {
   const [tarjetas, setTarjetas] = React.useState([]);
@@ -80,13 +79,15 @@ export default function CreditCards() {
           title="Agregar Nueva tarjeta"
           color={"purple"}
           onPress={() => navigation.navigate("NewCreditCard")}
-          style={{ marginBottom: 10 }}
+          style={{ marginVertical: 100 , }}
         />
         <Button
           title="Eliminar tarjetas"
+          onPress={() => borrarTarjetas()}          
           color={"purple"}
-          onPress={() => borrarTarjetas()}
-          style={{ marginTop: 10 }}
+          containerStyle={{
+            marginTop: 15,              
+          }}
         />
       </View>
     </View>

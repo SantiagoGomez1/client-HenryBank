@@ -78,8 +78,8 @@ const RenderScreenMovimientos = () => {
     } else if (mov[key].length !== 0 && key === "buyCrypto") {
       mov[key].forEach((element) => {
         let id = element.id;
-        let date = element.date.split("/").reverse().join("/");
-        let amount = element.amount;
+        let date = element.date.split("/").reverse().join("/");        
+        let amount = Number(element.amount).toFixed(2)
         let name = element.name;
         let hour = element.hour;
         let image = element.image.thumb;
@@ -98,7 +98,7 @@ const RenderScreenMovimientos = () => {
       mov[key].forEach((element) => {
         let id = element.id;
         let date = element.date.split("/").reverse().join("/");
-        let amount = element.amount;
+        let amount = Number(element.amount).toFixed(2)
         let name = element.name;
         let hour = element.hour;
         let image = element.image.thumb;
@@ -185,7 +185,7 @@ const RenderScreenMovimientos = () => {
       <Text style={styles.text}>Movimientos</Text>
       <View style={{ flexDirection: "row", alignSelf: "center" }}>
         <Input
-          placeholder="Recarga"
+          placeholder="Buscar..."
           placeholderTextColor={"gray"}
           onChange={(e) => handleType(e, "typee")}
           style={styles.input}

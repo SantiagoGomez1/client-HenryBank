@@ -10,7 +10,7 @@ const UserCardTransferencia = ({ data }) => {
   const token = useSelector((state) => state.logIn.token);
   const contactsAdded = useSelector((state) => state.contacts);
   let added = false;
-  contactsAdded.find((el) => el.name === data.name)
+  contactsAdded.find((el) => el.id === data.id)
     ? (added = true)
     : (added = false);
 
