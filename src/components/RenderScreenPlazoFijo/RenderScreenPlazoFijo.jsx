@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { View, Text, StyleSheet, Button, TextInput } from "react-native";
-import { Input, Icon } from "react-native-elements";
-import { useNavigation } from "@react-navigation/native";
 
+import { View, Text, StyleSheet, TouchableOpacity, TextInput } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import { LinearGradient } from "expo-linear-gradient";
+import { useNavigation } from "@react-navigation/native";
+import { Input, Icon } from "react-native-elements";
 import { lockedStake } from "../../redux/actions";
+
 
 const RenderScreenPlazoFijo = () => {
   const navigation = useNavigation();
@@ -46,11 +48,9 @@ const RenderScreenPlazoFijo = () => {
       <Text style={styles.subText}>Monto mínimo $1.000</Text>
       <Input
         style={styles.input}
-        // containerStyle={styles.input}
         placeholder="$ 00,00"
         placeholderTextColor="white"
         keyboardType="number-pad"
-        // label="Monto mínimo $1.000"
         onChange={(e) => handleOnChange(e, "mountLockedStake")}
         errorMessage={errorMount}
       />
@@ -68,12 +68,18 @@ const RenderScreenPlazoFijo = () => {
         </View>
       </View>
       <View style={styles.containerButton}>
-        <Button
-          style={styles.btn}
-          title="Confirmar"
-          color={"purple"}
-          onPress={() => createLockedStake()}
-        ></Button>
+        <TouchableOpacity onPress={() => createLockedStake()}>
+          <LinearGradient
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 0 }}
+            colors={["#4facfe", "#00f2fe"]}
+            style={{ paddingVertical: 10, width: 280, borderRadius: 11 }}
+          >
+            <Text style={{ color: "#ffffff", textAlign: "center" }}>
+              Confirmar
+            </Text>
+          </LinearGradient>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -82,12 +88,14 @@ const RenderScreenPlazoFijo = () => {
 const styles = StyleSheet.create({
   container: {
     borderWidth: 1,
-    borderColor: "white",
     height: 450,
     width: 350,
-    borderRadius: 8,
     alignItems: "center",
     paddingTop: 20,
+    borderRadius: 30,
+    borderStyle: "solid",
+    borderColor: "rgba(255, 255, 255, 0.5)",
+    backgroundColor: "rgba(255, 255, 255, 0.1)",
   },
   text: {
     color: "white",
@@ -114,7 +122,6 @@ const styles = StyleSheet.create({
   },
   containerBoxes: {
     justifyContent: "space-between",
-    paddingTop: 25,
   },
   containerBox: {
     flexDirection: "row",

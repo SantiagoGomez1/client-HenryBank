@@ -58,7 +58,7 @@ const Dialogs = () => {
           name={'account-multiple'}
           type="material-community"
           size={55}
-          color={'yellow'}          
+          color={'white'}          
           onPress={toggleDialog6}
         />
         <Text

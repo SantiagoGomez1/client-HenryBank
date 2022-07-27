@@ -1,29 +1,32 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, Image, Alert  } from "react-native";
+import { View, Text, StyleSheet, Image, Alert } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { Icon, Button } from "@rneui/themed";
 
-import {postContacts} from "../../redux/actions/index";
+import { postContacts } from "../../redux/actions/index";
 
-const UserCardTransferencia = ({data}) => {  
-  const dispatch = useDispatch();  
+const UserCardTransferencia = ({ data }) => {
+  const dispatch = useDispatch();
   const token = useSelector((state) => state.logIn.token);
   const contactsAdded = useSelector((state) => state.contacts);
   let added = false;
-  contactsAdded.find(el => el.name === data.name) ? added = true : added = false;
-  
-  const [contacts, setContacts] = useState({
-    id: '',
-    image: '',
-    name: '',
-    lastName: '',
-    email: '',
-    cbu: '',
-    alias: '',
-  });  
+  contactsAdded.find((el) => el.name === data.name)
+    ? (added = true)
+    : (added = false);
 
-  const  addContact = () => {      
-    setContacts({...contacts, 
+  const [contacts, setContacts] = useState({
+    id: "",
+    image: "",
+    name: "",
+    lastName: "",
+    email: "",
+    cbu: "",
+    alias: "",
+  });
+
+  const addContact = () => {
+    setContacts({
+      ...contacts,
       id: data.id,
       image: data.image,
       name: data.name,
@@ -31,19 +34,14 @@ const UserCardTransferencia = ({data}) => {
       email: data.email,
       cbu: data.cbu,
       alias: data.alias,
-    })        
-    Alert.alert(
-      "Contacto Agregado",
-      'Exitosamente',
-      [{text: "Ok"}]
-    );  
+    });
+    Alert.alert("Contacto Agregado", "Exitosamente", [{ text: "Ok" }]);
   };
 
   useEffect(() => {
-    !contacts.id ? null :
-    dispatch(postContacts(contacts, token));
-  }, [contacts]);  
-  
+    !contacts.id ? null : dispatch(postContacts(contacts, token));
+  }, [contacts]);
+
   return (
     <View style={styles.container}>
       <Image
@@ -52,21 +50,26 @@ const UserCardTransferencia = ({data}) => {
         source={{ uri: `${data.image}` }}
       />
       <View style={styles.containerData}>
-        <Icon
-          style={{          
-            paddingVertical: 1,
-            paddingRight: 2,
-            flexDirection: 'row-reverse',               
-          }}
-          name={added ? 'account-check' : 'account-plus-outline'}
-          type="material-community"
-          size={35}
-          color={added ? 'yellow' : 'purple'}        
-          onPress={!added ? () => addContact() : null}
-        />
-        <Text style={styles.text}>{data.name} {data.lastName}</Text>
+        <View style={{flexDirection:'row'}}>
+          <Text style={styles.text}>
+            {data.name} {data.lastName}
+          </Text>
+          <Icon
+            style={{
+              paddingVertical: 1,
+              paddingRight: 2,
+              flexDirection: "row-reverse",
+            }}
+            name={added ? "account-check" : "account-plus-outline"}
+            type="material-community"
+            size={35}
+            color={added ? "yellow" : "white"}
+            onPress={!added ? () => addContact() : null}
+          />
+        </View>
+
         <Text style={styles.textCBU}>CBU: {data.cbu}</Text>
-      </View >
+      </View>
     </View>
   );
 };
@@ -74,18 +77,18 @@ const UserCardTransferencia = ({data}) => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    justifyContent:'flex-start',
-    alignItems:'center',
+    justifyContent: "flex-start",
+    alignItems: "center",
     backgroundColor: "rgba(25, 23, 61, 0.5)",
-    paddingLeft:10,
-    borderWidth:1,
-    borderColor:'white',
-    borderRadius:40,
-    height:90,
-    width:300
+    paddingLeft: 10,
+    borderWidth: 1,
+    borderColor: "white",
+    borderRadius: 40,
+    height: 90,
+    width: 300,
   },
-  containerData:{
-    paddingLeft:10,
+  containerData: {
+    paddingLeft: 10,
   },
   image: {
     width: 70,
@@ -95,12 +98,12 @@ const styles = StyleSheet.create({
   text: {
     color: "white",
     fontWeight: "bold",
-    fontSize:19
+    fontSize: 19,
   },
-  textCBU:{
-    color:'gray',
-    fontSize:12
-  }
+  textCBU: {
+    color: "gray",
+    fontSize: 12,
+  },
 });
 
 export default UserCardTransferencia;

@@ -1,9 +1,18 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { View, Text, StyleSheet, TextInput, Button, Alert } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  Button,
+  Alert,
+  TouchableOpacity,
+} from "react-native";
 import { CardField, useConfirmPayment } from "@stripe/stripe-react-native";
-import axios from "axios";
+import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/native";
+import axios from "axios";
 
 const API_URL = "https://h-bank.herokuapp.com/user/recharge";
 
@@ -128,13 +137,25 @@ const StripeApp = () => {
           </Text>
         ) : null}
       </View>
-      <Button
+      <TouchableOpacity onPress={validar} disable={loading}>
+        <LinearGradient
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 0 }}
+          colors={["#4facfe", "#00f2fe"]}
+          style={{ paddingVertical: 10, margin: 10, borderRadius: 10 }}
+        >
+          <Text style={{ color: "#ffffff", textAlign: "center" }}>
+            Confirmar
+          </Text>
+        </LinearGradient>
+      </TouchableOpacity>
+      {/* <Button
         style={styles.btn}
         onPress={validar}
         title="Confirmar"
         color={"purple"}
         disable={loading}
-      />
+      /> */}
     </View>
   );
 };

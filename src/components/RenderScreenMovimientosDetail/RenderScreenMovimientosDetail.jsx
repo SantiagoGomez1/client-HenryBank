@@ -85,12 +85,14 @@ const RenderScreenMovimientosDetail = () => {
 const styles = StyleSheet.create({
   container: {
     borderWidth: 1,
-    borderColor: "white",
     height: 450,
     width: 350,
-    borderRadius: 8,
     alignItems: "center",
     paddingTop: 20,
+    borderRadius: 30,
+    borderStyle: "solid",
+    borderColor: "rgba(255, 255, 255, 0.5)",
+    backgroundColor: "rgba(255, 255, 255, 0.1)",
   },
   text: {
     color: "white",

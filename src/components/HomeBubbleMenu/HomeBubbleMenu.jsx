@@ -121,16 +121,21 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     borderRadius: 60,
+    borderStyle: "solid",
+    borderColor: "rgba(255, 255, 255, 0.5)",
+    backgroundColor: "rgba(255, 255, 255, 0.2)",
   },
   btnPress: {
     backgroundColor: "transparent",
-    borderWidth: 2,
+    borderWidth: 1,
     borderStyle: "solid",
     borderColor: "aqua",
     justifyContent: "center",
     width: 70,
     height: 70,
     borderRadius: 60,
+    borderStyle: "solid",
+    backgroundColor: "rgba(255, 255, 255, 0.2)",
   },
 });
 
