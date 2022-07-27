@@ -20,7 +20,6 @@ import {
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import * as AuthSession from "expo-auth-session";
 import * as WebBrowser from "expo-web-browser";
-import envs from "../../../env.js";
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -115,7 +114,9 @@ const LogIn = () => {
   }
 
   //----------------------Envs----------------------
-  const { CLIENT_ID, REDIRECT_URL } = envs;
+  CLIENT_ID =
+    "3723003346-i8mc0vbgp92ik62gae0jieh350vmqegb.apps.googleusercontent.com";
+  REDIRECT_URL = "https://auth.expo.io/@maxiwee/HenryBank";
   //----------------------Envs----------------------
   async function signInGoogle() {
     const RESPONSE_TYPE = "token";
