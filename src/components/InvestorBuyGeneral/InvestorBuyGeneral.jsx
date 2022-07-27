@@ -1,5 +1,5 @@
 import {
-  Button,
+  TouchableOpacity,
   Dimensions,
   StyleSheet,
   Text,
@@ -92,7 +92,7 @@ export default function InvestorBuyGeneral({ route, navigation }) {
           </View>
         </View>
         <View style={styles.btn}>
-          <Button
+          {/* <Button
             title="Continuar"
             onPress={async () => {
               const response = await axios.post(
@@ -125,7 +125,51 @@ export default function InvestorBuyGeneral({ route, navigation }) {
                 });
               }
             }}
-          />
+          /> */}
+          <TouchableOpacity
+            onPress={async () => {
+              const response = await axios.post(
+                "https://h-bank.herokuapp.com/crypto/buy",
+                {
+                  amount: value,
+                  crypto: id,
+                  price,
+                },
+                {
+                  headers: {
+                    Authorization: token,
+                  },
+                }
+              );
+              console.log("Esta es la respuesta de continuar", response.data);
+              if (response.data.msg === "Nueva Crypto Comprada") {
+                console.log("Entro en el primer if");
+                navigation.navigate("SuccessBuy", {
+                  success: 1,
+                });
+              } else if (response.data.msg === "Crypto Comprada") {
+                console.log("Entro en el segundo if");
+                navigation.navigate("SuccessBuy", {
+                  success: 1,
+                });
+              } else if (response.data.msg === "Fondos insuficientes") {
+                navigation.navigate("SuccessBuy", {
+                  success: 2,
+                });
+              }
+            }}
+          >
+            <LinearGradient
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 0 }}
+              colors={["#4facfe", "#00f2fe"]}
+              style={{ paddingVertical: 10, width: 200, borderRadius: 11 }}
+            >
+              <Text style={{ color: "#ffffff", textAlign: "center" }}>
+                Siguiente
+              </Text>
+            </LinearGradient>
+          </TouchableOpacity>
         </View>
       </LinearGradient>
     </KeyboardAwareScrollView>
@@ -143,15 +187,15 @@ const styles = StyleSheet.create({
     height: height,
   },
   card: {
-    backgroundColor: "rgba(255, 255, 255, 0.3)",
     borderWidth: 1,
-    borderStyle: "solid",
-    borderColor: "rgba(255, 255, 255, 0.5)",
     marginHorizontal: 15,
     marginTop: 10,
-    borderRadius: 8,
     padding: 10,
     alignItems: "center",
+    borderRadius: 30,
+    borderStyle: "solid",
+    borderColor: "rgba(255, 255, 255, 0.5)",
+    backgroundColor: "rgba(255, 255, 255, 0.1)",
   },
   input: {
     textAlign: "center",

@@ -252,12 +252,15 @@ export const getUserDetail = (token) => async (dispatch) => {
 
 export const getNews = () => (dispatch) => {
   return fetch(
-    "https://newsapi.org/v2/top-headlines?country=ar&category=business&apiKey=a09836a597c24e2490cdcbcf5f32fb6c"
+
+    'https://newsapi.org/v2/top-headlines?country=ar&category=business&apiKey=bb1736ab33f34f56bd8b4c1c6739aa4b'
+
   )
     .then((response) => response.json())
     .then((news) => {
       dispatch({ type: GET_NEWS, payload: news.articles });
     });
+
 };
 
 //------------------------------------------------------------------------------------------------//

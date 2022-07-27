@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
-import { View, Text, StyleSheet, Button } from "react-native";
+import { View, Text, StyleSheet, Button, TouchableOpacity } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
 import { Input, Icon } from "react-native-elements";
 import {
   renderScreen,
@@ -12,7 +13,7 @@ import {
 
 import { useDispatch, useSelector } from "react-redux";
 import Switch from "./Switch.jsx";
-import ContactsDialog from './ContactsDialog.jsx'
+import ContactsDialog from "./ContactsDialog.jsx";
 
 import UserCardTransferencia from "../UserCardTransferencia/UserCardTransferencia";
 
@@ -36,7 +37,7 @@ const RenderScreenTransferir = ({}) => {
   const handleOnChange = (e, type) => {
     setParams({ ...params, [type]: e.nativeEvent.text });
   };
-  
+
   const searchTransfer = () => {
     if (!params.cbu.length) {
       setErrors("Debes rellenar este campo.");
@@ -77,10 +78,11 @@ const RenderScreenTransferir = ({}) => {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Transferencia</Text>
-            
-      <ContactsDialog/>
-      
+
       <Switch setRender={setRender} />
+
+      <ContactsDialog />
+
       {render === "Alias" ? (
         <Input
           placeholder="Alias"
@@ -115,17 +117,38 @@ const RenderScreenTransferir = ({}) => {
           }
         />
       )}
-
-      {!next ? null : <UserCardTransferencia data={user} />}
+      {!next ? null : (
+        <View style={{paddingBottom:20}}>
+          <UserCardTransferencia data={user} />
+        </View>
+      )}
       <View>
         {!next ? (
-          <Button title="Siguiente" color={"gray"} />
+          <TouchableOpacity>
+            <LinearGradient
+              start={{ x: 1, y: 0 }}
+              end={{ x: 1, y: 0 }}
+              colors={["#f5f7fa", "#c3cfe2"]}
+              style={{ paddingVertical: 10, width: 300, borderRadius: 11 }}
+            >
+              <Text style={{ color: "#ffffff", textAlign: "center" }}>
+                Siguiente
+              </Text>
+            </LinearGradient>
+          </TouchableOpacity>
         ) : (
-          <Button
-            title="Siguiente"
-            color={"purple"}
-            onPress={() => setScreen(7)}
-          />
+          <TouchableOpacity onPress={() => setScreen(7)}>
+            <LinearGradient
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 0 }}
+              colors={["#4facfe", "#00f2fe"]}
+              style={{ paddingVertical: 10, width: 300, borderRadius: 11 }}
+            >
+              <Text style={{ color: "#ffffff", textAlign: "center" }}>
+                Siguiente
+              </Text>
+            </LinearGradient>
+          </TouchableOpacity>
         )}
       </View>
     </View>
@@ -137,10 +160,12 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     alignItems: "center",
     borderWidth: 1,
-    borderColor: "white",
-    borderRadius: 8,
     height: 450,
     width: 350,
+    borderRadius: 30,
+    borderStyle: "solid",
+    borderColor: "rgba(255, 255, 255, 0.5)",
+    backgroundColor: "rgba(255, 255, 255, 0.1)",
   },
   input: {
     backgroundColor: "rgba(25, 23, 61, 0.5)",

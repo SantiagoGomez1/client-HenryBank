@@ -1,8 +1,21 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  Button,
+  Alert,
+  TouchableOpacity,
+} from "react-native";
+import { CardField, useConfirmPayment } from "@stripe/stripe-react-native";
+import { LinearGradient } from "expo-linear-gradient";
 import { useSelector, useDispatch } from "react-redux";
 import { View, Text, StyleSheet, TextInput, Button, Alert } from "react-native";
 import { CardField } from "@stripe/stripe-react-native";
 import { useNavigation } from "@react-navigation/native";
+import axios from "axios";
 
 const StripeApp = () => {
   const navigation = useNavigation();
@@ -102,12 +115,18 @@ const StripeApp = () => {
           </Text>
         ) : null}
       </View>
-      <Button
-        style={styles.btn}
-        onPress={handlePayPress}
-        title="Confirmar"
-        color={"purple"}
-      />
+      <TouchableOpacity onPress={validar} disable={loading}>
+        <LinearGradient
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 0 }}
+          colors={["#4facfe", "#00f2fe"]}
+          style={{ paddingVertical: 10, margin: 10, borderRadius: 10 }}
+        >
+          <Text style={{ color: "#ffffff", textAlign: "center" }}>
+            Confirmar
+          </Text>
+        </LinearGradient>
+      </TouchableOpacity>
     </View>
   );
 };

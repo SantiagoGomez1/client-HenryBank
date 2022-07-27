@@ -3,7 +3,7 @@ import {
   Text,
   View,
   Image,
-  Button,
+  TouchableOpacity,
   BackHandler,
   ScrollView,
 } from "react-native";
@@ -85,9 +85,7 @@ export default function DetailCoinsInvestorBuy({ route, navigation }) {
           </View>
 
           <View style={styles.btn}>
-            <Button
-              title="Comprar"
-              color={"purple"}
+            <TouchableOpacity
               onPress={() =>
                 navigation.navigate("InvestorBuyGeneral", {
                   id: route.params.id,
@@ -95,7 +93,18 @@ export default function DetailCoinsInvestorBuy({ route, navigation }) {
                   price: data.current_price,
                 })
               }
-            />
+            >
+              <LinearGradient
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 0 }}
+                colors={["#4facfe", "#00f2fe"]}
+                style={{ paddingVertical: 10, width: 200, borderRadius: 11 }}
+              >
+                <Text style={{ color: "#ffffff", textAlign: "center" }}>
+                  Siguiente
+                </Text>
+              </LinearGradient>
+            </TouchableOpacity>
           </View>
         </LinearGradient>
       )}
@@ -128,6 +137,10 @@ const styles = StyleSheet.create({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+    borderRadius: 30,
+    borderStyle: "solid",
+    borderColor: "rgba(255, 255, 255, 0.5)",
+    backgroundColor: "rgba(255, 255, 255, 0.1)",
     marginHorizontal: 15,
   },
   btn: {

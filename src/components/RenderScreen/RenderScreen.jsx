@@ -15,10 +15,11 @@ import CardNews from "../CardNews/CardNews.jsx";
 const RenderScreen = () => {
   let ID = 1;
   const news = useSelector((state) => state.news);
+  console.log(news)
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Noticias</Text>
-      {!news[0] ? (
+      {!news ? (
         <View style={styles.backgroun2}>
           <View></View>
           <ActivityIndicator size={50} color="#0000ff" />
@@ -47,12 +48,14 @@ const RenderScreen = () => {
 const styles = StyleSheet.create({
   container: {
     borderWidth: 1,
-    borderColor: "white",
     height: 450,
     width: 350,
-    borderRadius: 8,
     alignItems: "center",
     paddingTop: 20,
+    borderRadius: 30,
+    borderStyle: "solid",
+    borderColor: "rgba(255, 255, 255, 0.5)",
+    backgroundColor: "rgba(255, 255, 255, 0.1)",
   },
   backgroun2: {
     flex: 1,

@@ -97,5 +97,9 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 10,
     height: 500,
+    borderRadius: 30,
+    borderStyle: "solid",
+    borderColor: "rgba(255, 255, 255, 0.5)",
+    backgroundColor: "rgba(255, 255, 255, 0.1)",
   },
 });

@@ -1,6 +1,7 @@
 import React from "react";
 
-import { View, Text, StyleSheet, Button } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch } from "react-redux";
 
@@ -17,20 +18,34 @@ const RenderScreen = () => {
     <View style={styles.container}>
       <Text style={styles.text}>Inversiones</Text>
       <Text style={styles.text2}>¿Querés constituir un plazo fijo?</Text>
-      <View style={styles.btn}>
-        <Button
-          title="¡Entra aquí y obtenlo!"
-          color={"purple"}
-          onPress={() => setScreen(5)}
-        ></Button>
+      <View style={styles.btn2}>
+        <TouchableOpacity onPress={() => setScreen(5)}>
+          <LinearGradient
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 0 }}
+            colors={["#4facfe", "#00f2fe"]}
+            style={{ paddingVertical: 10, width: 280, borderRadius: 11 }}
+          >
+            <Text style={{ color: "#ffffff", textAlign: "center" }}>
+              ¡Entra aquí y obtenlo!
+            </Text>
+          </LinearGradient>
+        </TouchableOpacity>
       </View>
       <Text style={styles.text2}>¿Querés comprar crypto?</Text>
       <View style={styles.btn2}>
-        <Button
-          title="¡Entra aquí y comprá!"
-          color={"purple"}
-          onPress={() => navigation.navigate("InvestorBuy")}
-        />
+        <TouchableOpacity onPress={() => navigation.navigate("InvestorBuy")}>
+          <LinearGradient
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 0 }}
+            colors={["#4facfe", "#00f2fe"]}
+            style={{ paddingVertical: 10, width: 280, borderRadius: 11, }}
+          >
+            <Text style={{ color: "#ffffff", textAlign: "center" }}>
+              ¡Entra aquí y comprá!
+            </Text>
+          </LinearGradient>
+        </TouchableOpacity>
       </View>
       <Text></Text>
     </View>
@@ -40,12 +55,14 @@ const RenderScreen = () => {
 const styles = StyleSheet.create({
   container: {
     borderWidth: 1,
-    borderColor: "white",
     height: 450,
     width: 350,
-    borderRadius: 8,
     paddingTop: 20,
     justifyContent: "space-between",
+    borderRadius: 30,
+    borderStyle: "solid",
+    borderColor: "rgba(255, 255, 255, 0.5)",
+    backgroundColor: "rgba(255, 255, 255, 0.1)",
   },
   text: {
     color: "white",

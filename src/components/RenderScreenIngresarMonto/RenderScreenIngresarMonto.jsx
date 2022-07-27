@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 
-import { View, Text, StyleSheet, TextInput, Button } from "react-native";
+import { View, Text, StyleSheet, TextInput, Button, TouchableOpacity } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
+import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/native";
 import { rechange } from "../../redux/actions";
 
@@ -74,11 +75,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     borderWidth: 1,
-    borderColor: "white",
     height: 450,
     width: 350,
-    borderRadius: 8,
+    borderRadius: 30,
     paddingTop: 20,
+    borderStyle: "solid",
+    borderColor: "rgba(255, 255, 255, 0.5)",
+    backgroundColor: "rgba(255, 255, 255, 0.1)",
   },
   containerAmount: {
     alignItems: "center",
