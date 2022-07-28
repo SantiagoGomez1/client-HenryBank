@@ -194,9 +194,9 @@ const AdminUserDetail = () => {
         <View style={styles.container}>
           <Text style={styles.textMain}>Opciones</Text>
           <View style={styles.containerOpciones}>
-            {info.state === "offline" ? (
+            {info.state === "disabled" ? (
               <TouchableOpacity
-                style={styles.touchable}
+                style={styles.touchable1}
                 onPress={() =>
                   Alert.alert(
                     "Deshabilitar cuenta",
@@ -216,7 +216,7 @@ const AdminUserDetail = () => {
             )}
             {info.state === "online" ? (
               <TouchableOpacity
-                style={styles.touchable}
+                style={styles.touchable1}
                 onPress={() =>
                   Alert.alert(
                     "Habilitar cuenta",
@@ -238,7 +238,7 @@ const AdminUserDetail = () => {
           <View style={styles.containerOpciones}>
             {info.role === "admin" ? (
               <TouchableOpacity
-                style={styles.touchable}
+                style={styles.touchable1}
                 onPress={() =>
                   Alert.alert(
                     "Hace admin",
@@ -259,7 +259,7 @@ const AdminUserDetail = () => {
 
             {info.role === "user" ? (
               <TouchableOpacity
-                style={styles.touchable}
+                style={styles.touchable1}
                 onPress={() =>
                   Alert.alert(
                     "Hace usuario",
@@ -346,6 +346,13 @@ const styles = StyleSheet.create({
   },
   touchable: {
     backgroundColor: "#140152",
+    padding: 10,
+    borderRadius: 50,
+    width: "45%",
+    margin: 2,
+  },
+  touchable1: {
+    backgroundColor: "grey",
     padding: 10,
     borderRadius: 50,
     width: "45%",

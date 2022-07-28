@@ -5,6 +5,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { StyleSheet, Image, ActivityIndicator, Text } from "react-native";
 import Constants from "expo-constants";
 import { useNavigation } from "@react-navigation/native";
+import { clearAdmin } from "../../redux/actions";
 import {
   banUser,
   disbanUser,
@@ -17,11 +18,12 @@ const AdminConfirmation = () => {
   const dispatch = useDispatch();
   const route = useRoute();
   const { email, token, type, name } = route.params;
-
+  console.log(email);
+  console.log(type);
   if (type === "UA") {
     useEffect(() => {
       dispatch(userToAdmin(email, token));
-    }, []);
+    }, [dispatch]);
   }
   if (type === "AU") {
     useEffect(() => {
@@ -42,35 +44,24 @@ const AdminConfirmation = () => {
   const adminToUserState = useSelector((state) => state.adminToUser);
   const disbanUserState = useSelector((state) => state.disbanUser);
   const banUserState = useSelector((state) => state.banUser);
-
-  if (type === "UA" && !userToAdminState[0]) {
-    return (
-      <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
-        <ActivityIndicator size={50} color="#0000ff" />
-      </LinearGradient>
-    );
-  } else if (type === "AU" && !adminToUserState[0]) {
-    return (
-      <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
-        <ActivityIndicator size={50} color="#0000ff" />
-      </LinearGradient>
-    );
-  } else if (type === "BN" && !banUserState[0]) {
-    return (
-      <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
-        <ActivityIndicator size={50} color="#0000ff" />
-      </LinearGradient>
-    );
-  } else if (type === "DB" && !disbanUserState[0]) {
-    return (
-      <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
-        <ActivityIndicator size={50} color="#0000ff" />
-      </LinearGradient>
-    );
-  } else if (
-    type === "UA" &&
-    userToAdminState === "cuenta convertida en admin con exito."
+  console.log(userToAdminState);
+  console.log(adminToUserState);
+  console.log(disbanUserState);
+  console.log(banUserState);
+  if (
+    !disbanUserState.length &&
+    !adminToUserState.length &&
+    !banUserState.length &&
+    !userToAdminState.length
   ) {
+    return (
+      <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
+        <ActivityIndicator size={50} color="#0000ff" />
+      </LinearGradient>
+    );
+  }
+  if (userToAdminState[0]) {
+    console.log("user", userToAdminState);
     return (
       <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
         <Text style={styles.textMain}>¡{name} ahora es admin!</Text>
@@ -80,15 +71,14 @@ const AdminConfirmation = () => {
         ></Image>
         <Text style={styles.noText}>
           {setTimeout(() => {
-            navigation.navigate("Admin Routes");
+            dispatch(clearAdmin());
+            navigation.navigate("AdminHome");
           }, 1500)}
         </Text>
       </LinearGradient>
     );
-  } else if (
-    type === "AU" &&
-    adminToUserState === "cuenta convertida en usuario correctamente."
-  ) {
+  } else if (adminToUserState[0]) {
+    console.log("admin", adminToUserState);
     return (
       <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
         <Text style={styles.textMain}>¡{name} ahora es usuario!</Text>
@@ -98,15 +88,14 @@ const AdminConfirmation = () => {
         ></Image>
         <Text style={styles.noText}>
           {setTimeout(() => {
-            navigation.navigate("Admin Routes");
+            dispatch(clearAdmin());
+            navigation.navigate("AdminHome");
           }, 1500)}
         </Text>
       </LinearGradient>
     );
-  } else if (
-    type === "DB" &&
-    disbanUserState === "cuenta habilitada con exito."
-  ) {
+  } else if (disbanUserState[0]) {
+    console.log("disban", disbanUserState);
     return (
       <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
         <Text style={styles.textMain}>¡{name} fué desbaneado con éxito!</Text>
@@ -115,16 +104,15 @@ const AdminConfirmation = () => {
           source={require("../../imgs/Check.png")}
         ></Image>
         <Text style={styles.noText}>
+          dispatch(clearAdmin())
           {setTimeout(() => {
-            navigation.navigate("Admin Routes");
+            navigation.navigate("AdminHome");
           }, 1500)}
         </Text>
       </LinearGradient>
     );
-  } else if (
-    type === "BN" &&
-    banUserState === "cuenta deshabilitada con exito."
-  ) {
+  } else if (banUserState[0]) {
+    console.log("ban", banUserState);
     return (
       <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
         <Text style={styles.textMain}>¡{name} fué baneado con éxito!</Text>
@@ -134,7 +122,8 @@ const AdminConfirmation = () => {
         ></Image>
         <Text style={styles.noText}>
           {setTimeout(() => {
-            navigation.navigate("Admin Routes");
+            dispatch(clearAdmin());
+            navigation.navigate("AdminHome");
           }, 1500)}
         </Text>
       </LinearGradient>
