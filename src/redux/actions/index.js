@@ -53,6 +53,8 @@ export const GET_TRANSACTIONS_HISTORIAL = "GET_TRANSACTIONS_HISTORIAL";
 export const USER_TO_ADMIN = "USER_TO_ADMIN";
 export const ADMIN_TO_USER = "ADMIN_TO_USER";
 
+export const CLEAR_ADMIN = "CLEAR_ADMIN";
+
 export const BAN_USER = "BAN_USER";
 export const DISBAN_USER = "DISBAN_USER";
 
@@ -252,15 +254,12 @@ export const getUserDetail = (token) => async (dispatch) => {
 
 export const getNews = () => (dispatch) => {
   return fetch(
-
-    'https://newsapi.org/v2/top-headlines?country=ar&category=business&apiKey=bb1736ab33f34f56bd8b4c1c6739aa4b'
-
+    "https://newsapi.org/v2/top-headlines?country=ar&category=business&apiKey=a09836a597c24e2490cdcbcf5f32fb6c"
   )
     .then((response) => response.json())
     .then((news) => {
       dispatch({ type: GET_NEWS, payload: news.articles });
     });
-
 };
 
 //------------------------------------------------------------------------------------------------//
@@ -674,7 +673,6 @@ export const disbanUser = (email, token) => async (dispatch) => {
 //------------------------------------------------------------------------------------------------//
 
 export const userToAdmin = (email, token) => async (dispatch) => {
-  console.log(email, token);
   const info = {
     email: email,
   };
@@ -694,7 +692,6 @@ export const userToAdmin = (email, token) => async (dispatch) => {
 //------------------------------------------------------------------------------------------------//
 
 export const adminToUser = (email, token) => async (dispatch) => {
-  console.log(email, token);
   const info = {
     email: email,
   };
@@ -761,33 +758,15 @@ export const getTransactionsHistorial = (email, token) => async (dispatch) => {
 
 //------------------------------------------------------------------------------------------------//
 
-export const payment = (token, amount, confirm) => async (dispatch) => {
-  const config = {
-    headers: {
-      Authorization: token,
-    },
+export const payment = (payload) => {
+  return { type: PAYMENT, payload: payload };
+};
+
+//------------------------------------------------------------------------------------------------//
+
+export const clearAdmin = (payload) => {
+  return {
+    type: CLEAR_ADMIN,
+    payload,
   };
-  const response = await axios.post(
-    `https://h-bank.herokuapp.com/user/recharge`,
-    {
-      amount: Number(amount),
-      paymentMethodType: "card",
-      currency: "ars",
-    },
-    config
-  );
-  const { clientSecret } = await response.data;
-  console.log(clientSecret);
-  const { error, paymentIntent } = await confirm(clientSecret, {
-    type: "Card",
-    billingDetails: { estado: "ok" },
-  });
-  console.log("errores", error, paymentIntent);
-  let validations = [];
-  if (error) {
-    validations.push(`Error code: ${error.code}`, error.message);
-  } else if (paymentIntent) {
-    validations.push("Ok");
-  }
-  dispatch({ type: PAYMENT, payload: validations });
 };

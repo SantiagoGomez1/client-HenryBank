@@ -41,7 +41,7 @@ const AdminHome = () => {
 
   useEffect(() => {
     dispatch(getAllUsers(token));
-  }, [dispatch]);
+  }, []);
 
   <LinearGradient colors={["#126492", "#140152"]} style={styles.background}>
     <ActivityIndicator size={50} color="#0000ff" />
