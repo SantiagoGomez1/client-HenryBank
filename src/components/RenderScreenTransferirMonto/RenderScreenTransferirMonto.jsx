@@ -47,6 +47,13 @@ const RenderScreenTransferirMonto = () => {
       return;
     }
     if (Number(params.amount) > Number(myUser.balance)) {
+      Alert.alert(
+        "Transferir dinero",
+        `Saldo insuficiente`,
+        [
+          {text: "Aceptar",}          
+        ]
+      );
       setErrors(false);
       setTimeout(() => {
         setErrors(true);
