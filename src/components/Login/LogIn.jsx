@@ -117,11 +117,8 @@ const LogIn = () => {
   //----------------------Envs----------------------
   CLIENT_ID =
     "3723003346-i8mc0vbgp92ik62gae0jieh350vmqegb.apps.googleusercontent.com";
-<<<<<<< HEAD
-  REDIRECT_URL = "https://auth.expo.io/@henrybank/HenryBank";
-=======
   REDIRECT_URL = "https://auth.expo.io/@emanueljuri/HenryBank";
->>>>>>> 67efeb19f248f01ae000b33bd4c38398a499f9dd
+
   //----------------------Envs----------------------
   async function signInGoogle() {
     dispatch(getAuthoToken());
