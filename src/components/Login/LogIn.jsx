@@ -140,12 +140,12 @@ const LogIn = () => {
   return (
     <>
       {LogIngoogle ? (
-        <Viwe style={styles.containerLoading}>
+        <View style={styles.containerLoading}>
           <Image
             style={styles.image}
             source={require('../../imgs/HenryBank.png')}
           ></Image>
-        </Viwe>
+        </View>
       ) : (
         <KeyboardAwareScrollView style={styles.container}>
           <LinearGradient
