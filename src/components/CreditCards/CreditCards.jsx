@@ -83,7 +83,7 @@ export default function CreditCards() {
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 0 }}
                 colors={["#667eea", "#764ba2"]}
-                style={{ paddingVertical: 10,width:370, borderRadius: 10 }}
+                style={{ paddingVertical: 10,width:300, borderRadius: 10, alignSelf: 'center'}}
               >
                 <Text style={{ color: "#ffffff", textAlign: "center" }}>
                   Agregar nueva tarjeta
@@ -95,7 +95,7 @@ export default function CreditCards() {
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 0 }}
                 colors={["#667eea", "#764ba2"]}
-                style={{ paddingVertical: 10,width:370, borderRadius: 10,marginTop:10 }}
+                style={{ paddingVertical: 10,width:300, borderRadius: 10, alignSelf: 'center', marginTop:10 }}
               >
                 <Text style={{ color: "#ffffff", textAlign: "center" }}>
                   Eliminar tarjetas
