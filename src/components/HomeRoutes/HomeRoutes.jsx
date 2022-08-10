@@ -34,8 +34,6 @@ const HomeRoutes = () => {
     dispatch(getMyUser(log));
     dispatch(getAllUsers(log));
     dispatch(getUserDetail(log));
-    dispatch(getNews());
-    dispatch(getUserDetail(log));
   }, [dispatch]);
 
   const user = useSelector((state) => state.userDetail);

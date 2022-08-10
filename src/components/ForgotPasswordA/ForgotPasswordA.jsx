@@ -87,11 +87,22 @@ const ForgotPasswordA = () => {
           onChange={(e) => handleOnChange(e, "identity")}
           errorMessage={errorIdentity}
         />
-        <Button
-          title="Enviar"
-          color={"purple"}
-          onPress={() => onSumbit()}
-        ></Button>
+        <TouchableOpacity onPress={() => onSumbit()}>
+          <LinearGradient
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 0 }}
+            colors={["#667eea", "#764ba2"]}
+            style={{
+              paddingVertical: 10,
+              width: 100,
+              borderRadius: 10,
+            }}
+          >
+            <Text style={{ color: "#ffffff", textAlign: "center" }}>
+              Enviar
+            </Text>
+          </LinearGradient>
+        </TouchableOpacity>
         <Text style={styles.text2}>
           Denes ingresar ambos datos correctamente de tu cuenta para poder
           ingresar una nueva contraseña
